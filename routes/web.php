@@ -1,6 +1,7 @@
 <?php
 
 use Illuminate\Support\Facades\Route;
+use App\Http\Controllers\ArtisanController;
 
 
 
@@ -8,7 +9,9 @@ use Illuminate\Support\Facades\Route;
 
 Route::get('/dashboard', function () {
     return view('dashboard');
-})->middleware(['auth'])->name('dashboard');
+})->middleware(['auth'])->name('dashboard'); 
+
+Route::get('/artisan/{id}',  [\App\Http\Controllers\ArtisanController::class, 'artisanProfile'])->name('artisanProfile');
 
 require __DIR__.'/auth.php';
 
