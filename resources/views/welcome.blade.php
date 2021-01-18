@@ -21,21 +21,18 @@
     </head>
     <body class="antialiased">
         <div class="relative flex items-top justify-center sm:items-center sm:pt-0">
-            @if (Route::has('login'))
             <div class="hidden fixed top-0 right-0 px-6 py-4 sm:block bg-green-600">
-                @auth
-                <a href="{{ url('/dashboard') }}" class="text-sm text-gray-700 underline">Dashboard</a>
-                @else
-                <a href="{{ route('login') }}" class="text-sm text-gray-700 underline">Login</a>
-                
-                @if (Route::has('register'))
-                <a href="{{ route('register') }}" class="ml-4 text-sm text-gray-700 underline">Register</a>
-                @endif
-                @endauth
+                <a href="{{ url('/dashboard') }}" class="text-sm text-yellow-100 font-bold"> Dashboard </a> 
+                <a href="{{ route('login') }}" class="text-sm text-yellow-100 font-bold "> Login </a>                                
+                <a href="{{ route('register') }}" class="ml-4 text-sm text-yellow-100 font-bold "> Register </a>
+                <a href="" class="ml-4 text-sm text-yellow-100 font-bold "> Nuestros productores </a>
+                <a href="" class="ml-4 text-sm text-yellow-100 font-bold "> Unete </a>
+                <a href="" class="ml-4 text-sm text-yellow-100 font-bold "> Profile </a>
+                <a href="" class="ml-4 text-sm text-yellow-100 font-bold "> My Cart </a>                
             </div>
-            @endif
+           
+            <img src="./image/cover.jpeg">
         </div>
-        <img src="./image/cover.jpeg">
         <div class="md:container md:mx-auto p-8 flex justify-center text-8l font-bold">
         Nuestros alimentos tienen orígenes cercanos, la relación con nuestros proveedores está basada en la vertiente humana por encima de la comercial.
         <br>
