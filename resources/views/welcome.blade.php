@@ -20,38 +20,43 @@
         </style>
     </head>
     <body class="antialiased">
-        <div class="relative flex items-top justify-center bg-gray-100 dark:bg-gray-900 sm:items-center sm:pt-0">
+        <div class="relative flex items-top justify-center sm:items-center sm:pt-0">
             @if (Route::has('login'))
-                <div class="hidden fixed top-0 right-0 px-6 py-4 sm:block">
-                    @auth
-                        <a href="{{ url('/dashboard') }}" class="text-sm text-gray-700 underline">Dashboard</a>
-                    @else
-                        <a href="{{ route('login') }}" class="text-sm text-gray-700 underline">Login</a>
-
-                        @if (Route::has('register'))
-                            <a href="{{ route('register') }}" class="ml-4 text-sm text-gray-700 underline">Register</a>
-                        @endif
-                    @endauth
-                </div>
+            <div class="hidden fixed top-0 right-0 px-6 py-4 sm:block bg-green-600">
+                @auth
+                <a href="{{ url('/dashboard') }}" class="text-sm text-gray-700 underline">Dashboard</a>
+                @else
+                <a href="{{ route('login') }}" class="text-sm text-gray-700 underline">Login</a>
+                
+                @if (Route::has('register'))
+                <a href="{{ route('register') }}" class="ml-4 text-sm text-gray-700 underline">Register</a>
+                @endif
+                @endauth
+            </div>
             @endif
         </div>
-        <div class="md:container md:mx-auto p-8 flex justify-center text-6xl">
-            Products
+        <img src="./image/cover.jpeg">
+        <div class="md:container md:mx-auto p-8 flex justify-center text-8l font-bold">
+        Nuestros alimentos tienen orígenes cercanos, la relación con nuestros proveedores está basada en la vertiente humana por encima de la comercial.
+        <br>
+        Ponemos el foco en el origen de los alimentos, siempre respetando su temporalidad.
+        Tenemos una relación con nuestros proveedores que va más allá de la comercial.  
+        <br>
+        Creamos valor económico, medioambiental y social; contribuimos al bienestar y al progreso de las generaciones presentes y futuras.
+       
         </div>
         <div class= "container my-12 mx-auto px-4 md:px-12">
             <div class="flex flex-wrap -mx-1 lg:-mx-4">
                 @foreach ($products as $product)
                 <div class="my-1 px-1 w-full md:w-1/2 lg:my-4 lg:px-4 lg:w-1/3">
-                        <article class="overflow-hidden rounded-lg shadow-lg">
-                            <a href="#">
-                                <img alt="Placeholder" class="w-full" src="{{$product->image}}">
-                            </a>
+                        <article class="overflow-hidden rounded-lg">
+                            <img alt="Placeholder" class="w-full" src="{{$product->image}}">
                             <header class="font-bold text-xl mb-2">
                                 <div class="px-6 py-4">
                                     {{$product->name}}
                                 </div>
                                 <div class="px-6 py-4 text-sm">
-                                   <a>Productor:  {{$product->artisan}} </a> 
+                                   <a href="#">Productor:  {{$product->artisan}} </a> 
                                 </div>
                                 <div class="ml-2 text-grey-darker text-base">
                                     {{$product->description}}
@@ -62,9 +67,9 @@
                                 <div class="flex flex-wrap pt-8 justify-around">
                                     
                                     @if ($product->stock < $product->sold)
-                                            <button class="h-10 px-6 text-base text-yellow-600 transition-colors duration-150 bg-white rounded-lg focus:shadow-outline hover:bg-yellow-200" type="submit">ADD</button>
+                                            <button class="h-10 px-6 text-base text-green-600 transition-colors duration-150 bg-white rounded-lg focus:shadow-outline hover:bg-green-200" type="submit">ADD</button>
                                     @else
-                                        <p class="text-yellow-600">Sold Out</p>
+                                        <p class="text-green-600">Sold Out</p>
                                     @endif
                                 </div>
                             </div>
