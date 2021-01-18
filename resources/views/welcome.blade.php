@@ -44,13 +44,16 @@
                 <div class="my-1 px-1 w-full md:w-1/2 lg:my-4 lg:px-4 lg:w-1/3">
                         <article class="overflow-hidden rounded-lg shadow-lg">
                             <a href="#">
-                                <img alt="Placeholder" class="w-full"src="https://picsum.photos/150/80.jpg">
+                                <img alt="Placeholder" class="w-full" src="{{$product->image}}">
                             </a>
-                            <header class="flex items-center justify-between leading-tight p-2 md:p-4">
+                            <header class="font-bold text-xl mb-2">
                                 <div class="px-6 py-4">
                                     {{$product->name}}
                                 </div>
-                                <div class=" font-extra-light text-grey-darker text-base inset-y-0 right-0">
+                                <div class="px-6 py-4 text-sm">
+                                   <a>{{$product->artisan}}</a> 
+                                </div>
+                                <div class="ml-2 text-grey-darker text-base">
                                     {{$product->description}}
                                 </div>
                             </header>
