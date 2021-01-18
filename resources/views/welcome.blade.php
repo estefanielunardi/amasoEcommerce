@@ -51,14 +51,14 @@
                                     {{$product->name}}
                                 </div>
                                 <div class="px-6 py-4 text-sm">
-                                   <a>{{$product->artisan}}</a> 
+                                   <a>Productor:  {{$product->artisan}} </a> 
                                 </div>
                                 <div class="ml-2 text-grey-darker text-base">
                                     {{$product->description}}
                                 </div>
                             </header>
                             <div class="px-4 py-4 md:px-10">
-                                <p class="py-4"> € {{$product->price}} </p>
+                                <p class="py-4"> {{$product->price}} €</p>
                                 <div class="flex flex-wrap pt-8 justify-around">
                                     
                                     @if ($product->stock < $product->sold)
