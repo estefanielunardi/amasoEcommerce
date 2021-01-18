@@ -55,7 +55,7 @@
                                 </div>
                             </header>
                             <div class="px-4 py-4 md:px-10">
-                                <p class="py-4"> {{$product->price}} </p>
+                                <p class="py-4"> € {{$product->price}} </p>
                                 <div class="flex flex-wrap pt-8 justify-around">
                                     
                                     @if ($product->stock < $product->sold)
