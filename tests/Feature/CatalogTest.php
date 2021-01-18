@@ -2,6 +2,7 @@
 
 namespace Tests\Feature;
 
+use App\Models\Product;
 use Illuminate\Foundation\Testing\RefreshDatabase;
 use Illuminate\Foundation\Testing\WithFaker;
 use Tests\TestCase;
@@ -29,6 +30,21 @@ class CatalogTest extends TestCase
 
         $response->assertViewIs("welcome")
         ->assertViewHas("products");
+    }
+
+    public function test_catalog_view_paginate_products()
+    {
+        $this->withoutExceptionHandling();
+
+        Product::factory(6)->create();
+        Product::factory(1)->create(["name"=>"Pan"]);
+
+         $response = $this->get(route('home'));
+
+        $response->assertViewIs("welcome")
+        ->assertViewHas("products")
+        ->assertViewMissing("product");
+
     }
 
 }
