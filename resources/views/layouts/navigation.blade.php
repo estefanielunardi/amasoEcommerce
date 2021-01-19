@@ -31,6 +31,16 @@
                         {{ __('Artisan') }}
                     </x-nav-link>
                 </div>
+                <div class="hidden space-x-8 sm:-my-px sm:ml-10 sm:flex">
+                    <x-nav-link>
+                        {{ __('My Card') }}
+                    </x-nav-link>
+                </div>
+                <div class="hidden space-x-8 sm:-my-px sm:ml-10 sm:flex">
+                    <x-nav-link>
+                        {{ __('Join Us') }}
+                    </x-nav-link>
+                </div>
             </div>
 
             @auth
