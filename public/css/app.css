@@ -66,7 +66,33 @@ body {
 		'Apple Color Emoji',
 		'Segoe UI Emoji';
 }
-
+.greenAmasoBg{
+  background-color: #336147;
+}
+.greenLightBg{
+  background-color:#81A78C;
+}
+.beigeAmasoBg{
+  background-color:#DAB162;
+}
+.beigeLightBg{
+  background-color:#FFFFFF;
+}
+.greenAmaso{
+  color: #336147;
+}
+.greenLight{
+  color: #81A78C;
+}
+.beigeAmaso{
+  color:#DAB162;
+}
+.beigeLight{
+  color:#FFFFFF;
+}
+.counter{
+  opacity: 0.6;
+}
 .textManifiesto{
   
   font-family: Exo;
@@ -80,21 +106,7 @@ body {
   align-items: center;
   text-align: center;
   
-  /* color 1 */
-  
   color: #336147;
-}
-
-.tituloManifiesto{
-
-font-family: Vollkorn;
-font-style: normal;
-font-weight: 600;
-font-size: 18px;
-line-height: 150%;
-/* identical to box height, or 27px */
-
-color: #336147;
 }
 
 
