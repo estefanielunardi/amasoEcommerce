@@ -97,6 +97,21 @@ line-height: 150%;
 color: #336147;
 }
 
+
+@media only screen and (min-width: 768px){ 
+    .buttomDesktop{
+    width: 6rem;
+  }
+}
+
+  @media only screen and (max-width: 768px){
+    .buttomPhone{
+      width: 3rem;
+    }
+  }
+
+
+
   input[type='number']::-webkit-inner-spin-button,
   input[type='number']::-webkit-outer-spin-button {
     -webkit-appearance: none;
