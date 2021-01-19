@@ -13,32 +13,32 @@
                 <!-- Navigation Links -->
                 <div class="hidden space-x-8 sm:-my-px sm:ml-10 sm:flex">
                     <x-nav-link :href="route('dashboard')" :active="request()->routeIs('dashboard')">
-                        {{ __('Dashboard') }}
+                        {{ __('Panel de administrador') }}
                     </x-nav-link>
                 </div>
                 <div class="hidden space-x-8 sm:-my-px sm:ml-10 sm:flex">
                     <x-nav-link>
-                        {{ __('Register') }}
+                        {{ __('Registro usuario') }}
                     </x-nav-link>
                 </div>
                 <div class="hidden space-x-8 sm:-my-px sm:ml-10 sm:flex">
                     <x-nav-link>
-                        {{ __('Login') }}
+                        {{ __('Login usuario') }}
                     </x-nav-link>
                 </div>
                 <div class="hidden space-x-8 sm:-my-px sm:ml-10 sm:flex">
                     <x-nav-link>
-                        {{ __('Artisan') }}
+                        {{ __('Artesanos') }}
                     </x-nav-link>
                 </div>
                 <div class="hidden space-x-8 sm:-my-px sm:ml-10 sm:flex">
                     <x-nav-link>
-                        {{ __('My Card') }}
+                        {{ __('Mi compra') }}
                     </x-nav-link>
                 </div>
                 <div class="hidden space-x-8 sm:-my-px sm:ml-10 sm:flex">
-                    <x-nav-link>
-                        {{ __('Join Us') }}
+                    <x-nav-link :href="route('joinArtisan')" :active="request()->routeIs('joinArtisan')">
+                        {{ __('Eres artesano? Unete!') }}
                     </x-nav-link>
                 </div>
             </div>
