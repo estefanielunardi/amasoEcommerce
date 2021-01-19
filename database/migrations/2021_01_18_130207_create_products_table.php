@@ -22,6 +22,7 @@ class CreateProductsTable extends Migration
             $table->integer('price');
             $table->integer('stock');
             $table->integer('sold');
+            $table->unsignedBigInteger('artisan_id');
             $table->timestamps();
         });
     }
