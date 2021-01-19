@@ -17,3 +17,7 @@ require __DIR__.'/auth.php';
 Route::get('/', [App\Http\Controllers\ProductController::class, 'getProducts'])->name('home');
 
 Route::get('/artisan/{id}',  [\App\Http\Controllers\ArtisanController::class, 'artisanProfile'])->name('artisanProfile');
+
+Route::get('/joinArtisan', [App\Http\Controllers\ArtisanController::class, 'joinUs'])->name('joinArtisan');
+
+Route::post('/joinArtisan', [App\Http\Controllers\ArtisanController::class, 'store'])->name('artisanStore');
