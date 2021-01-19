@@ -65,7 +65,35 @@ body {
 		'Segoe UI Emoji';
 }
 
+.textManifiesto{
+  
+  font-family: Exo;
+  font-style: normal;
+  font-weight: normal;
+  font-size: 13px;
+  line-height: 150%;
+  /* or 19px */
+  
+  display: flex;
+  align-items: center;
+  text-align: center;
+  
+  /* color 1 */
+  
+  color: #336147;
+}
 
+.tituloManifiesto{
+
+font-family: Vollkorn;
+font-style: normal;
+font-weight: 600;
+font-size: 18px;
+line-height: 150%;
+/* identical to box height, or 27px */
+
+color: #336147;
+}
 
   input[type='number']::-webkit-inner-spin-button,
   input[type='number']::-webkit-outer-spin-button {
