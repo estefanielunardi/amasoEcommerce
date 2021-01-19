@@ -12,12 +12,6 @@ Route::get('/dashboard', function () {
 })->middleware(['auth'])->name('dashboard'); 
 
 
-Route::get('/art', function () {
-    return view('profileArtisan');
-});
-
-
-
 require __DIR__.'/auth.php';
 
 Route::get('/', [App\Http\Controllers\ProductController::class, 'getProducts'])->name('home');
