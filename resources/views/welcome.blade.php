@@ -47,7 +47,27 @@
                 @foreach ($products as $product)
                 <div class="my-1 px-1 w-full md:w-1/2 lg:my-4 lg:px-4 lg:w-1/3">
                         <article class="overflow-hidden rounded-lg">
+                        
+                        <div class="relative">
                             <img alt="Placeholder" class="w-full" src="{{$product->image}}">
+                                    @if ($product->stock < $product->sold)
+                                    <div class="custom-number-input h-10 w-32 absolute bottom-2 right-1">
+                                        <div class="flex flex-row h-10 w-full rounded-lg relative bg-transparent mt-1">
+                                            <button data-action="decrement" class="bg-opacity-60 bg-green-200 text-white hover:bg-green-400 h-full w-20 rounded-l-2xl cursor-pointer outline-none">
+                                            <span class="m-auto text-2xl font-thin">−</span>
+                                            </button>
+                                            <input type="number" class="bg-opacity-30 border-transparent outline-none focus:outline-none text-center w-12 bg-green-600 font-semibold text-md   md:text-basecursor-default flex items-center text-white  outline-none" name="custom-input-number" value="0"></input>
+                                            <button data-action="increment" class="bg-opacity-60 bg-opacity-20 bg-green-200 text-white hover:bg-green-400 h-full w-20 rounded-r-2xl cursor-pointer outline-none">
+                                                <span class="m-auto text-2xl font-thin">+</span>
+                                            </button>
+                                        </div>
+                                    </div>
+                                    
+                                    @else
+                                        <p class="text-green-600">Sold Out</p>
+                                    @endif
+                         </div>
+
                             <header class="font-bold text-xl mb-2">
                                 <div class="px-6 py-4">
                                     {{$product->name}}
@@ -63,11 +83,6 @@
                                 <p class="py-4"> {{$product->price}} €</p>
                                 <div class="flex flex-wrap pt-8 justify-around">
                                     
-                                    @if ($product->stock < $product->sold)
-                                            <button class="h-10 px-6 text-base text-green-600 transition-colors duration-150 bg-white rounded-lg focus:shadow-outline hover:bg-green-200" type="submit">ADD</button>
-                                    @else
-                                        <p class="text-green-600">Sold Out</p>
-                                    @endif
                                 </div>
                             </div>
                         </article>
