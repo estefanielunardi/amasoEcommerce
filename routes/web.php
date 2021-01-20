@@ -28,6 +28,9 @@ Route::delete('/product/{id}', [App\Http\Controllers\ProductController::class, '
 
 Route::get('/product/edit/{id}', [App\Http\Controllers\ProductController::class, 'edit'])->name('editProduct')->middleware(['auth']);
 
+Route::put('/product/update/{product}', [App\Http\Controllers\ProductController::class, 'update'])->name('updateProduct')->middleware(['auth']);
+
+
 
 Route::get('/artisan/{id}',  [\App\Http\Controllers\ArtisanController::class, 'profile'])->name('artisanProfile');
 

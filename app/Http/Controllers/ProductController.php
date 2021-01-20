@@ -46,4 +46,19 @@ class ProductController extends Controller
         $product = Product::find($id);
         return view('products.edit', compact('product'));
     }
+
+    public function update(Request $request , Product $product)
+    {
+        $product->artisan = $request->artisan;
+        $product->name = $request->name;
+        $product->image = $request->image;
+        $product->description = $request->description;
+        $product->price = $request->price;
+        $product->stock = $request->stock;
+        $product->sold = $request->sold;
+
+        $product->save();
+
+        return redirect('profileArtisan');
+    }
 }
