@@ -38,7 +38,8 @@ class ArtisanProfileTest extends TestCase
         $response = $this->get('artisan/' . $artisan->id);
 
         $response->assertViewIs('profileArtisan')
-                ->assertViewHas('artisan');
+                ->assertViewHas('artisan')
+                ->assertSee($artisan -> name); 
     }
 
     public function testRouteJoinArtisan(){
