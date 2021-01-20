@@ -18,8 +18,8 @@ class UpdateProductTest extends TestCase
         $product= Product::factory()->create();
 
         $response = $this->put(route('updateProduct', $product) , $product->toArray());
-
-        $response->assertStatus(200);
+        
+        $response->assertRedirect('profileArtisan');
     }
 
     public function testDBHasBeenUpdate()
@@ -30,8 +30,6 @@ class UpdateProductTest extends TestCase
         $product->name = 'Mermelada';
     
         $response = $this->put(route('updateProduct', $product) , $product->toArray());
-
-        $response->assertRedirect('profileArtisan');
         $this->assertDatabaseHas('products', ['name'=>'Mermelada']);
     
     }
