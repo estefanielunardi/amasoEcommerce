@@ -23,4 +23,13 @@ class ArtisanController extends Controller
         return back();
     }
 
+    // public function getProducts(){
+    //     $artisan = Artisan::find($id);
+    //     $products = DB::table('products')
+    //             ->where('artisan_id', $id);
+    //     return view('profileArtisan', compact('products'));        
+
+
+    // }
+
 }
