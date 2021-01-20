@@ -110,6 +110,15 @@ body {
 }
 
 
+.title {
+  font-family: 'Vollkorn', serif;
+  font-style: normal;
+  font-weight: bold;
+  font-size: 30px;
+  line-height: 123%;
+  color: #81A78C;
+}
+
 @media only screen and (min-width: 768px){ 
     .buttomDesktop{
     width: 6rem;
