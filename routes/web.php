@@ -22,6 +22,8 @@ Route::get('/', [App\Http\Controllers\ProductController::class, 'getProducts'])-
 
 Route::post('/product/store', [App\Http\Controllers\ProductController::class, 'store'])->name('storeProduct');
 
+Route::delete('/product/{id}', [App\Http\Controllers\ProductController::class, 'destroy'])->name('deleteProduct')->middleware(['auth']);
+
 
 Route::get('/artisan/{id}',  [\App\Http\Controllers\ArtisanController::class, 'profile'])->name('artisanProfile');
 

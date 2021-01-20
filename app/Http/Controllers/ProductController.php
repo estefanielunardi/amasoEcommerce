@@ -32,4 +32,12 @@ class ProductController extends Controller
         return redirect('profileArtisan');
 
     }
+
+    public function destroy($id)
+    {
+        $product= Product::find($id);
+        $product->delete();
+
+        return redirect('profileArtisan');
+    }
 }
