@@ -1,14 +1,4 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Artisan Profile</title>
-
-    <link href="/css/app.css" rel="stylesheet">
-
-
-</head>
+<x-app-layout>
 <body>
 <section class="block space-y-8 ... p-12 ">
 
@@ -36,4 +26,4 @@
    
     <button></button>
 </body>
-</html>
+</x-app-layout>
