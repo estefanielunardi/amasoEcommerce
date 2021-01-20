@@ -1,36 +1,37 @@
 <x-app-layout>
-    <section>
-        <h1>Únete a nosotros</h1>
-        <h2>¿Quieres formar parte del equipo de productores amasó?</h2>
-        <p>Lorem ipsum dolor sit, amet consectetur adipisicing elit. Non consequatur sequi vel maxime magni enim, facere, nisi illum eum aperiam labore amet aliquam. Culpa aliquam, perferendis quam ratione mollitia impedit, ab rerum adipisci officia doloremque, praesentium sed aspernatur facilis nesciunt at corrupti? Pariatur vel quia aperiam ducimus, iste et ullam nobis, deleniti ratione tempora quo a autem excepturi quidem sit voluptatibus sequi. Quibusdam quas quidem iure! Mollitia repellendus veritatis tempore.</p>
+    <section class="flex flex-col m-10">
+        <h1 class="title pb-8">Únete a nosotros</h1>
+        <h2 class="pb-8 text-white text-xl font-serif"><span class="beigeAmasoBg my-4  p-1">&nbsp;¿Quieres formar parte del equipo&nbsp;&nbsp; &nbsp;&nbsp;de productores amasó? &nbsp; </span></h2>
+        <p class="greenAmaso">Lorem ipsum dolor sit, amet consectetur adipisicing elit. Non consequatur sequi vel maxime magni enim, facere, nisi illum eum aperiam labore amet aliquam.</p>
     </section>
-    <section>
+    <section class="flex flex-col m-10">
         <form action="">
-            <div>
-                <label for="nombre">Nombre y apellidos.</label>
-                <input type="text" id="nombre">
+            <div class="flex flex-col my-4 text-xl greenAmaso">
+                <label for="nombre" class="font-serif">Nombre y apellidos.</label>
+                <input type="text" id="nombre" class="w-100 border-solid border-2 border-green-500 rounded shadow-md h-10">
             </div>
-            <div>
-                <label for="localidad">Localidad.</label>
-                <input type="text" id="localidad">
+            <div class="flex flex-col my-4 text-xl greenAmaso">
+                <label for="localidad" class="font-serif">Localidad.</label>
+                <input type="text" id="localidad" class="w-100 border-solid border-2 border-green-500 rounded shadow-md h-10">
             </div>
-            <div>
-                <label for="correo">Email.</label>
-                <input type="text" id="correo">
+            <div class="flex flex-col my-4 text-xl greenAmaso">
+                <label for="correo" class="font-serif">Email.</label>
+                <input type="text" id="correo" class="w-100 border-solid border-2 border-green-500 rounded shadow-md h-10">
             </div>
-            <div>
-                <label for="contrseña">Contraseña.</label>
-                <input type="text" id="contraseña">
+            <div class="flex flex-col my-4 text-xl greenAmaso">
+                <label for="contrseña" class="font-serif">Contraseña.</label>
+                <input type="text" id="contraseña" class="w-100 border-solid border-2 border-green-500 rounded shadow-md h-10">
             </div>
-            <div>
-                <label for="sobreTi">Cunetanos algo sobre ti.</label>
-                <input type="text" id="sobreTi">
+            <div class="flex flex-col my-4 text-xl greenAmaso">
+                <label for="sobreTi" class="font-serif">Cunetanos algo sobre ti.</label>
+                <textarea rows="5" cols="80" id="sobreTi" class="w-100 border-solid border-2 border-green-500 rounded shadow-md">
+                </textarea>
             </div>
-            <div>
-                <button>Añade tu certificado.</button>
+            <div class="flex flex-col my-4 text-xl greenAmaso">
+                <button class="w-100  border-green-500 rounded shadow-md h-10 flex flex-row justify-center align-middle" ><svg class="h-6 w-auto" id="Capa_1"  viewBox="0 0 18 18"><defs><style>.cls-1{fill:none;stroke:#81a78c;stroke-linecap:round;stroke-linejoin:round;stroke-width:2px;}</style></defs><path class="cls-1" d="M281.64,198.36v1a3,3,0,0,0,.88,2.12,3,3,0,0,0,2.12.88h10a3,3,0,0,0,3-3v-1m-4-8-4-4m0,0-4,4m4-4v12" transform="translate(-280.64 -185.36)"/></svg>Añade tu certificado.</button>
             </div>
-            <div>
-                <button type="submit">ENVIAR</button>
+            <div class="flex justify-end">
+                <button type="submit" class=" beigeAmasoBg font-serif text-white text-2xl mt-4 px-12 py-4  rounded-xl shadow-md">enviar</button>
             </div>
         </form>
     </section>
