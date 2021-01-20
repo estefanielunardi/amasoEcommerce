@@ -42,7 +42,7 @@
                                 </div>
                             </div>
                             @else
-                            <p class="text-green-600">Sold Out</p>
+                            <p class="greenAmaso">Sold Out</p>
                             @endif
                     </div>
 
