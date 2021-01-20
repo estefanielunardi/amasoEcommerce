@@ -40,4 +40,10 @@ class ProductController extends Controller
 
         return redirect('profileArtisan');
     }
+
+    public function edit($id)
+    {
+        $product = Product::find($id);
+        return view('products.edit', compact('product'));
+    }
 }
