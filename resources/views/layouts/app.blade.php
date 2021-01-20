@@ -18,7 +18,7 @@
         <script src="{{ asset('js/app.js') }}" defer></script>
     </head>
     <body class="font-sans antialiased">
-        <div class="min-h-screen bg-gray-100">
+        <div class="min-h-screen bg-white">
             @include('layouts.navigation')
 
             <!-- Page Content -->
@@ -27,4 +27,9 @@
             </main>
         </div>
     </body>
+    <footer id="footerSection" class="flex justify-center flex justify-center my-8">
+    <p>Copyright  AMASÓ 2021   |     Conctacto     |
+    <br>
+            Aviso legal y privacidad</p>
+    </footer>
 </html>

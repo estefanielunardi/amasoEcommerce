@@ -7,7 +7,7 @@ use App\Models\Artisan;
 
 class ArtisanController extends Controller
 {
-    public function artisanProfile($id) 
+    public function profile($id) 
     {
         $artisan = Artisan::find($id); 
         return view('profileArtisan', compact('artisan'));

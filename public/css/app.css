@@ -100,8 +100,7 @@ body {
   font-weight: normal;
   font-size: 13px;
   line-height: 150%;
-  /* or 19px */
-  
+
   display: flex;
   align-items: center;
   text-align: center;
@@ -147,6 +146,24 @@ body {
     outline: none !important;
   }
 
+  #footerSection{
+    position: center;
+
+    font-family: Exo;
+    font-style: normal;
+    font-weight: normal;
+    font-size: 12px;
+    line-height: 150%;
+    /* or 18px */
+
+    display: flex;
+    align-items: center;
+    text-align: center;
+
+    /* color 2 */
+
+    color: #81A78C;
+  }
 
 /*
 Grouping content
