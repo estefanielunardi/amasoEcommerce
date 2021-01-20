@@ -25,5 +25,13 @@ class DatabaseSeeder extends Seeder
             'location'=>'Igualada, Barcelona',
             'image'=>'https://i.ibb.co/tBsVJMH/n-UFXna-Qq-400x400.jpg'
         ]);
+
+        Artisan::factory(1)->create([
+            'name'=>'Rosa Maria',
+            'email'=>'rosa@maria', 
+            'password'=>'12345678',
+            'location'=>'Montserrat, Barcelona',
+            'image'=>'https://i.ibb.co/g7RZC31/edward-cisneros-H6wpor9mjs-unsplash.jpg'
+        ]);
     }
 }

@@ -4,7 +4,7 @@
 
             <article class="flex justify-start">
                 <div>
-                    <img class="w-174 rounded-xl" src="https://i.ibb.co/tBsVJMH/n-UFXna-Qq-400x400.jpg" alt="foto julian campesino">
+                    <img class=" max-w-xs w-174 rounded-xl" src="{{$artisan->image}}" alt="foto julian campesino">
                 </div>
                 <div>
                     <p class="mx-3 my-2 rounded-full text-white font-bold beigeAmasoBg text-xs p-2">#agriculura ecológica</p>
