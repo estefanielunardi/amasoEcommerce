@@ -27,4 +27,9 @@
             </main>
         </div>
     </body>
+    <footer id="footerSection" class="flex justify-center flex justify-center my-8">
+    <p>Copyright  AMASÓ 2021   |     Conctacto     |
+    <br>
+            Aviso legal y privacidad</p>
+    </footer>
 </html>
