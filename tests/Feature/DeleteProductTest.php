@@ -20,7 +20,7 @@ class DeleteProductTest extends TestCase
        
         $response = $this->delete('/product/' . $product->id);
 
-        $response->assertStatus(200);
+        $response->assertStatus(302);
     }
 
     public function testDeleteProduct()
