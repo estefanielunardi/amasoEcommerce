@@ -27,4 +27,11 @@ class ArtisanController extends Controller
         return back();
     }
 
+    public function getAll(){
+
+        $artisans = DB::table('artisans')
+                    ->paginate(6);
+        return view('artisans', compact('artisans'));
+    }
+
 }

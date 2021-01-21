@@ -38,5 +38,6 @@ Route::get('/joinArtisan', [App\Http\Controllers\ArtisanController::class, 'join
 
 Route::post('/joinArtisan', [App\Http\Controllers\ArtisanController::class, 'store'])->name('artisanStore');
 
+Route::get('/artisans', [App\Http\Controllers\ArtisanController::class, 'getAll'])->name('artisans');
 
 
