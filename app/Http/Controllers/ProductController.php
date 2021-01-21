@@ -35,16 +35,17 @@ class ProductController extends Controller
         ]);
 
         $product->save();
-        return redirect('profileArtisan');
+        return redirect('/artisan/' .  $artisan_id);
 
     }
 
     public function destroy($id)
     {
+        $artisan_id= auth()->id();
         $product= Product::find($id);
         $product->delete();
 
-        return redirect('profileArtisan');
+        return redirect('/artisan/' .  $artisan_id);
     }
 
     public function edit($id)
@@ -68,6 +69,6 @@ class ProductController extends Controller
 
         $product->save();
 
-        return redirect('profileArtisan');
+        return redirect('/artisan/' .  $artisan_id);
     }
 }

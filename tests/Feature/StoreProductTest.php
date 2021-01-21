@@ -28,10 +28,8 @@ class StoreProductTest extends TestCase
             'stock'=>20,
         ]);
         
-        $response->assertRedirect('profileArtisan');
+        $response->assertRedirect('artisan/1');
         $this->assertDatabaseCount('products', 1);
         $this->assertDatabaseHas('products',['name'=>'Pan de trigo']);
     }
-
-
 }

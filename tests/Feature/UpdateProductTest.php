@@ -21,7 +21,7 @@ class UpdateProductTest extends TestCase
 
         $response = $this->put(route('updateProduct', $product) , $product->toArray());
         
-        $response->assertRedirect('profileArtisan');
+        $response->assertRedirect('artisan/1');
     }
 
     public function testDBHasBeenUpdate()
