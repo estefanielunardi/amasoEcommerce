@@ -36,7 +36,7 @@
                     <!-- Remember Me -->
                     <div class="flex flex-col my-4 text-xl greenAmaso">
                         <label class="font-serif"for="remember_me">
-                            <input id="remember_me" type="checkbox" class="w-100 border-solid border-2 border-green-500 rounded shadow-md h-10" name="remember">
+                            <input id="remember_me" type="checkbox"  name="remember">
                             <span class="font-serif text-sm">{{ __('Remember me') }}</span>
                         </label>
                     </div>
