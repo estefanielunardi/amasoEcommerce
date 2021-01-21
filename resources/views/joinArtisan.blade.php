@@ -8,23 +8,23 @@
         <form action="">
             <div class="flex flex-col my-4 text-xl greenAmaso">
                 <label for="nombre" class="font-serif">Nombre y apellidos.</label>
-                <input type="text" id="nombre" class="w-100 border-solid border-2 border-green-500 rounded shadow-md h-10">
+                <input type="text" id="nombre" class="w-100 border-solid border-2 borderGreen rounded shadow-md h-10">
             </div>
             <div class="flex flex-col my-4 text-xl greenAmaso">
                 <label for="localidad" class="font-serif">Localidad.</label>
-                <input type="text" id="localidad" class="w-100 border-solid border-2 border-green-500 rounded shadow-md h-10">
+                <input type="text" id="localidad" class="w-100 border-solid border-2 borderGreen rounded shadow-md h-10">
             </div>
             <div class="flex flex-col my-4 text-xl greenAmaso">
                 <label for="correo" class="font-serif">Email.</label>
-                <input type="text" id="correo" class="w-100 border-solid border-2 border-green-500 rounded shadow-md h-10">
+                <input type="text" id="correo" class="w-100 border-solid border-2 borderGreen rounded shadow-md h-10">
             </div>
             <div class="flex flex-col my-4 text-xl greenAmaso">
                 <label for="contrseña" class="font-serif">Contraseña.</label>
-                <input type="text" id="contraseña" class="w-100 border-solid border-2 border-green-500 rounded shadow-md h-10">
+                <input type="text" id="contraseña" class="w-100 border-solid border-2 borderGreen rounded shadow-md h-10">
             </div>
             <div class="flex flex-col my-4 text-xl greenAmaso">
-                <label for="sobreTi" class="font-serif">Cunetanos algo sobre ti.</label>
-                <textarea rows="5" cols="80" id="sobreTi" class="w-100 border-solid border-2 border-green-500 rounded shadow-md">
+                <label for="sobreTi" class="font-serif">Cuéntanos algo sobre ti.</label>
+                <textarea rows="5" cols="80" id="sobreTi" class="w-100 border-solid border-2 borderGreen rounded shadow-md">
                 </textarea>
             </div>
             <div class="flex flex-col my-4 text-xl greenAmaso">

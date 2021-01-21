@@ -10,7 +10,7 @@ class CreateArtisanTest extends TestCase
 {
     use RefreshDatabase;
 
-    public function testRouteJoinArtisan(){
+    public function testRouteJoinArtisanForm(){
 
         $response = $this->get('/joinArtisan');
 
