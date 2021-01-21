@@ -18,11 +18,11 @@
             </article>
         </section>  
 
+        <article class="p-12">
+        <h2 class="block title">productos de {{$artisan->name}}</h2>
+        </article>
         <div class="container my-12 mx-auto px-4 md:px-12">
             <div class="flex flex-wrap -mx-1 lg:-mx-4">
-                <article class="p-12">
-                <h2 class="block title">productos de {{$artisan->name}}</h2>
-                </article>
 
                 <div class="beigeAmasoBg rounded-full fixed bottom-20 right-10 z-40 shadow-2xl buttomDesktop buttomPhone">
                     <svg class="beigeLight w-full text-center p-2" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor">
