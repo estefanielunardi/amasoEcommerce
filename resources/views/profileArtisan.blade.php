@@ -71,7 +71,7 @@
 
                             </div>
                         </div>
-                       
+                        @auth
                         <div class="relative h-0 w-32 ..."> 
                             <form action="{{ route('editProduct', ['id' => $product->id]) }}" method="get">
                                 <button type="submit">                      
@@ -95,8 +95,7 @@
                         <div class="relative h-32 w-32 ...">
                             
                         </div>
-                      
-                        @auth
+
                         @endauth
 
                         
