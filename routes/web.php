@@ -22,7 +22,7 @@ require __DIR__.'/auth.php';
 
 Route::get('/', [App\Http\Controllers\ProductController::class, 'getProducts'])->name('home');
 
-Route::post('/product/store', [App\Http\Controllers\ProductController::class, 'store'])->name('storeProduct');
+Route::post('/product/store', [App\Http\Controllers\ProductController::class, 'store'])->name('storeProduct')->middleware(['auth']);
 
 Route::delete('/product/{id}', [App\Http\Controllers\ProductController::class, 'destroy'])->name('deleteProduct')->middleware(['auth']);
 
