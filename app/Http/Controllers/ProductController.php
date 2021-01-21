@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use App\Models\Product;
 use Illuminate\Support\Facades\DB;
+use App\Models\Artisan;
 
 class ProductController extends Controller
 {
@@ -12,20 +13,25 @@ class ProductController extends Controller
     {
         $products= DB::table("products")->paginate(6);
         
+        
         return view('welcome', compact("products"));
     }
 
     public function store(Request $request)
     {
+        $artisan_id= auth()->id();
+        $artisan= Artisan::find($artisan_id);
+      
+        
         $product= Product::create([
-            'artisan'=>$request->artisan,
+            'artisan'=>$artisan->name,
             'name'=>$request->name,
             'image'=>$request->image,
             'description'=>$request->description,
             'price'=>$request->price,
             'stock'=>$request->stock,
-            'sold'=>$request->sold,
-            'artisan_id'=>$request->artisan_id,
+            'sold'=>0,
+            'artisan_id'=>$artisan_id,
         ]);
 
         $product->save();
