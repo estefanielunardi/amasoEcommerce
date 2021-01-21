@@ -55,13 +55,16 @@ class ProductController extends Controller
 
     public function update(Request $request , Product $product)
     {
-        $product->artisan = $request->artisan;
+        $artisan_id= auth()->id();
+        $artisan= Artisan::find($artisan_id);
+
+        $product->artisan = $artisan->name;
         $product->name = $request->name;
         $product->image = $request->image;
         $product->description = $request->description;
         $product->price = $request->price;
         $product->stock = $request->stock;
-        $product->sold = $request->sold;
+        $product->sold = 0;
 
         $product->save();
 
