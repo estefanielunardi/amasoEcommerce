@@ -4,13 +4,17 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use App\Models\Artisan; 
+use Illuminate\Support\Facades\DB; 
 
 class ArtisanController extends Controller
 {
     public function profile($id) 
     {
         $artisan = Artisan::find($id); 
-        return view('profileArtisan', compact('artisan'));
+        $products = DB::table('products')
+        ->where('artisan_id', $id)
+        ->paginate(3);
+        return view('profileArtisan', compact('products', 'artisan'));   
     }
 
     public function joinUs(){
@@ -22,14 +26,5 @@ class ArtisanController extends Controller
         Artisan::create($request->all());
         return back();
     }
-
-    // public function getProducts(){
-    //     $artisan = Artisan::find($id);
-    //     $products = DB::table('products')
-    //             ->where('artisan_id', $id);
-    //     return view('profileArtisan', compact('products'));        
-
-
-    // }
 
 }

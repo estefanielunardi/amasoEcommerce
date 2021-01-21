@@ -34,8 +34,6 @@ Route::put('/product/update/{product}', [App\Http\Controllers\ProductController:
 
 Route::get('/artisan/{id}',  [\App\Http\Controllers\ArtisanController::class, 'profile'])->name('artisanProfile');
 
-Route::get('/artisan/products/{id}',  [\App\Http\Controllers\ArtisanController::class, 'getProducts'])->name('artisanCatalog');
-
 Route::get('/joinArtisan', [App\Http\Controllers\ArtisanController::class, 'joinUs'])->name('joinArtisan');
 
 Route::post('/joinArtisan', [App\Http\Controllers\ArtisanController::class, 'store'])->name('artisanStore');
