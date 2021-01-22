@@ -106,8 +106,8 @@
             </x-responsive-nav-link>
         </div>
         <div class="pt-2 pb-3 space-y-1">
-            <x-responsive-nav-link>
-                {{ __('Artisan') }}
+            <x-responsive-nav-link :href="route('artisans')" :active="request()->routeIs('artisans')">
+                {{ __('Artesanos') }}
             </x-responsive-nav-link>
         </div>
         <div class="pt-2 pb-3 space-y-1">
@@ -116,8 +116,8 @@
             </x-responsive-nav-link>
         </div>
         <div class="pt-2 pb-3 space-y-1">
-            <x-responsive-nav-link >
-                {{ __('Join Us') }}
+            <x-responsive-nav-link :href="route('joinArtisan')" :active="request()->routeIs('joinArtisan')">
+                {{ __('Eres artesano? Unete!') }}
             </x-responsive-nav-link>
         </div>
 
