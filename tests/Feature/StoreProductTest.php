@@ -6,6 +6,7 @@ use Illuminate\Foundation\Testing\RefreshDatabase;
 use Illuminate\Foundation\Testing\WithFaker;
 use Tests\TestCase;
 use App\Models\User;
+use App\Models\Artisan;
 
 
 class StoreProductTest extends TestCase
@@ -15,23 +16,20 @@ class StoreProductTest extends TestCase
     public function testStoreProduct()
     {
         $this->withoutExceptionHandling();
-        $this->actingAs(User::factory()->create());
+        $artisan= User::factory()->create();
+        $this->actingAs($artisan);
+        Artisan::factory()->create();
         
         $response = $this->post(route('storeProduct'),[
-            'artisan'=>'Maria Rosa',
             'name'=>'Pan de trigo',
             'image'=>'/img/Pan.jpg',
             'description'=>'Un Pan de trigo',
             'price'=>10,
             'stock'=>20,
-            'sold'=>15,
-            'artisan_id'=>1,
         ]);
         
-        $response->assertRedirect('profileArtisan');
+        $response->assertRedirect('artisan/1');
         $this->assertDatabaseCount('products', 1);
         $this->assertDatabaseHas('products',['name'=>'Pan de trigo']);
     }
-
-
 }

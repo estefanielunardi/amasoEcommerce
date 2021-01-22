@@ -1,4 +1,4 @@
-<x-guest-layout>
+<x-app-layout>
     <x-auth-card>
         <x-slot name="logo">
             <a href="/">
@@ -8,52 +8,56 @@
 
         <!-- Validation Errors -->
         <x-auth-validation-errors class="mb-4" :errors="$errors" />
+        <section class="container md:container md:mx-auto p-8 flex justify-center">
+            <div class="box-border p-4 bg-white h-128 w-96">
+                <form method="POST" action="{{ route('register') }}">
+                    @csrf
 
-        <form method="POST" action="{{ route('register') }}">
-            @csrf
+                    <!-- Name -->
+                    <div class="flex flex-col my-4 text-xl greenAmaso">
+                        <label class="font-serif" for="name" :value="__('Name')">{{ __('Name') }}</label>
 
-            <!-- Name -->
-            <div>
-                <x-label for="name" :value="__('Name')" />
+                        <input id="name" class="w-100 border-solid border-2 border-green-500 rounded shadow-md h-10"type="text" name="name" :value="old('name')" required autofocus />
+                    </div>
 
-                <x-input id="name" class="block mt-1 w-full" type="text" name="name" :value="old('name')" required autofocus />
+                    <!-- Email Address -->
+                    <div class="flex flex-col my-4 text-xl greenAmaso">
+                        <label class="font-serif"for="email" :value="__('Email')">{{ __('Email') }}</label>
+
+                        <input id="email" class="w-100 border-solid border-2 border-green-500 rounded shadow-md h-10" type="email" name="email" :value="old('email')" required />
+                    </div>
+
+                    <!-- Password -->
+                    <div class="flex flex-col my-4 text-xl greenAmaso">
+                        <label class="font-serif"for="password" :value="__('Password')">{{ __('Password') }}</label>
+
+                        <input id="password" class="w-100 border-solid border-2 border-green-500 rounded shadow-md h-10"
+                                        type="password"
+                                        name="password"
+                                        required autocomplete="new-password" />
+                    </div>
+
+                    <!-- Confirm Password -->
+                    <div class="flex flex-col my-4 text-xl greenAmaso">
+                        <label class="font-serif"for="password_confirmation" :value="__('Confirm Password')">{{ __('Confirm Password') }}</label>
+
+                        <input id="password_confirmation" class="w-100 border-solid border-2 border-green-500 rounded shadow-md h-10"
+                                        type="password"
+                                        name="password_confirmation" required />
+                    </div>
+
+                    <div class="flex items-center justify-end mt-4">
+                        <a class="underline text-sm greenAmaso hover:text-green-900" href="{{ route('login') }}">
+                            {{ __('Already registered?') }}
+                        </a>
+                    </div>
+                    <div class="flex justify-center">
+                        <button class=" beigeAmasoBg font-serif text-white text-2xl mt-4 px-12 py-4  rounded-xl shadow-md">
+                            {{ __('Register') }}
+                        </button>
+                    </div>               
+                </form>
             </div>
-
-            <!-- Email Address -->
-            <div class="mt-4">
-                <x-label for="email" :value="__('Email')" />
-
-                <x-input id="email" class="block mt-1 w-full" type="email" name="email" :value="old('email')" required />
-            </div>
-
-            <!-- Password -->
-            <div class="mt-4">
-                <x-label for="password" :value="__('Password')" />
-
-                <x-input id="password" class="block mt-1 w-full"
-                                type="password"
-                                name="password"
-                                required autocomplete="new-password" />
-            </div>
-
-            <!-- Confirm Password -->
-            <div class="mt-4">
-                <x-label for="password_confirmation" :value="__('Confirm Password')" />
-
-                <x-input id="password_confirmation" class="block mt-1 w-full"
-                                type="password"
-                                name="password_confirmation" required />
-            </div>
-
-            <div class="flex items-center justify-end mt-4">
-                <a class="underline text-sm text-gray-600 hover:text-gray-900" href="{{ route('login') }}">
-                    {{ __('Already registered?') }}
-                </a>
-
-                <x-button class="ml-4">
-                    {{ __('Register') }}
-                </x-button>
-            </div>
-        </form>
+        </section>
     </x-auth-card>
-</x-guest-layout>
+</x-app-layout>
