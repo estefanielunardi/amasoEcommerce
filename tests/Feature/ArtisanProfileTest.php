@@ -75,12 +75,5 @@ class ArtisanProfileTest extends TestCase
     }
 
 
-    public function testRouteJoinArtisan(){
 
-        $response = $this->get('/joinArtisan');
-
-        $response->assertStatus(200)
-            ->assertViewIs('joinArtisan');
-
-    }
 }

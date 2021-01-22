@@ -93,6 +93,11 @@ body {
 .counter{
   opacity: 0.6;
 }
+
+.borderGreen {
+  border-color: #81A78C;
+}
+
 .textManifiesto{
   
   font-family: Exo;
