@@ -29,21 +29,6 @@
 
                     <div class="relative">
                         <img alt="Placeholder" class="w-full" src="{{$product->image}}">
-                        @if ($product->stock < $product->sold)
-                            <div class="custom-number-input h-10 w-32 absolute bottom-2 right-1">
-                                <div class="flex flex-row h-10 w-full rounded-lg relative bg-transparent mt-1">
-                                    <button data-action="decrement" class="counter greenLightBg beigeLight h-full w-20 rounded-l-2xl cursor-pointer outline-none">
-                                        <span class="m-auto text-2xl font-thin">−</span>
-                                    </button>
-                                    <input type="number" class="counter border-transparent outline-none focus:outline-none text-center w-12 greenAmasoBg font-semibold text-md   md:text-basecursor-default flex items-center text-white  outline-none" name="custom-input-number" value="0"></input>
-                                    <button data-action="increment" class="counter  greenLightBg  beigeLight  h-full w-20 rounded-r-2xl cursor-pointer outline-none">
-                                        <span class="m-auto text-2xl font-thin">+</span>
-                                    </button>
-                                </div>
-                            </div>
-                            @else
-                            <p class="greenAmaso">Sold Out</p>
-                            @endif
                     </div>
 
                     <header class="font-bold text-xl mb-2">
@@ -59,7 +44,22 @@
                     </header>
                     <div class="px-4 py-4 md:px-10">
                         <p class="py-4"> {{$product->price}} €</p>
-                        <div class="flex flex-wrap pt-8 justify-around">
+                        <div class="relative">
+                        @if ($product->stock < $product->sold)
+                            <div class="custom-number-input h-10 w-32 absolute bottom-2 right-1">
+                                <div class="flex flex-row h-10 w-full rounded-lg relative bg-transparent mt-1">
+                                    <button data-action="decrement" class="counter greenLightBg beigeLight h-full w-20 rounded-l-2xl cursor-pointer outline-none">
+                                        <span class="m-auto text-2xl font-thin">−</span>
+                                    </button>
+                                    <input type="number" class="counter border-transparent outline-none focus:outline-none text-center w-12 greenAmasoBg font-semibold text-md   md:text-basecursor-default flex items-center text-white  outline-none" name="custom-input-number" value="0"></input>
+                                    <button data-action="increment" class="counter  greenLightBg  beigeLight  h-full w-20 rounded-r-2xl cursor-pointer outline-none">
+                                        <span class="m-auto text-2xl font-thin">+</span>
+                                    </button>
+                                </div>
+                            </div>
+                            @else
+                            <p class="greenAmaso">Sold Out</p>
+                            @endif
 
                         </div>
                     </div>
