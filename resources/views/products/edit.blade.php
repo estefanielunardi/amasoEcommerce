@@ -17,7 +17,10 @@
             </div>
             <div class="flex flex-col my-4 text-xl greenAmaso">
                 <label for="precio" class="font-serif">{{ __('Precio') }}</label>
-                <input type="number" id="contraseña" class="w-100 border-solid border-2 border-green-500 rounded shadow-md h-10" name="price" value="{{$product->price}}" required autocomplete="price" autofocus>
+                <div class="flex -mr-px my-4 greenAmaso">
+                    <span class="flex items-center leading-normal greenAmaso rounded rounded-r-none border-solid border-2 border-r-0 border-green-500 px-3 whitespace-no-wrap text-greenAmaso">€</span>
+                    <input type="number" id="contraseña" class="w-full border-solid border-2 border-green-500 rounded shadow-md h-10" name="price" value="{{$product->price}}" required autocomplete="price" autofocus>
+                </div>
             </div>
             <div class="flex flex-col my-4 text-xl greenAmaso">
                 <label for="cantidad" class="font-serif">{{ __('Cantidad') }}</label>
