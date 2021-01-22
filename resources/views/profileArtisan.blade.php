@@ -21,6 +21,7 @@
         <article class="p-8">
             <h2 class="block title">Productos de {{$artisan->name}}</h2>
         </article>
+        @auth
         <article class="flex justify-start pl-20">
             <form action="{{'/product/create'}}" method="get">
                 <button class="greenLightBg flex flex-row align-start font-serif text-white text-2xl mt-4 px-6 py-2  rounded-xl shadow-md" type="submit">
@@ -36,6 +37,7 @@
                 </svg>Subir un nuevo Producto</button>                                  
              </form>
         </article> 
+        @endauth
         <div class="container my-12 mx-auto px-4 md:px-12">
             <div class="flex flex-wrap -mx-1 lg:-mx-4">
 
