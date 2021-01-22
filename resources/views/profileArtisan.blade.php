@@ -16,13 +16,26 @@
                 <p class="block beigeAmaso text-sm"> {{$artisan->location}} </p>
                 <p class="block greenAmaso text-sm font-light"> {{$artisan->description}} </p>
             </article>
-        </section>  
+        </section>
 
-        <article class="p-12">
-        <h2 class="block title">productos de {{$artisan->name}}</h2>
+        <article class="p-8">
+            <h2 class="block title">Productos de {{$artisan->name}}</h2>
         </article>
-        
-
+        <article class="flex justify-start pl-20">
+            <form action="{{'/product/create'}}" method="get">
+                <button class="greenLightBg flex flex-row align-start font-serif text-white text-2xl mt-4 px-6 py-2  rounded-xl shadow-md" type="submit">
+                <svg width="30" height="30" viewBox="0 0 34 34" fill="none" xmlns="http://www.w3.org/2000/svg">
+                    <g clip-path="url(#clip0)">
+                    <path d="M8.48486 16.8905L25.4547 17.0491M16.8905 25.4547L17.0491 8.48491L16.8905 25.4547Z" stroke="white" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+                    </g>
+                    <defs>
+                    <clipPath id="clip0">
+                    <rect width="24" height="24" fill="white" transform="translate(0 16.8112) rotate(-44.4644)"/>
+                    </clipPath>
+                    </defs>
+                </svg>Subir un nuevo Producto</button>                                  
+             </form>
+        </article> 
         <div class="container my-12 mx-auto px-4 md:px-12">
             <div class="flex flex-wrap -mx-1 lg:-mx-4">
 
@@ -92,14 +105,9 @@
                                 {{ csrf_field() }} 
                             </form>                           
                         </div>
-                        <div class="relative h-32 w-32 ...">
-                            
+                        <div class="relative h-32 w-32 ...">                            
                         </div>
-
                         @endauth
-
-                        
-
                     </article>
                 </div>
                 @endforeach
