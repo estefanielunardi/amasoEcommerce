@@ -14,7 +14,6 @@ class DatabaseSeeder extends Seeder
         Product::factory(5)->create([
             'image'=> 'https://i.ibb.co/1TF2Z1R/840-560.jpg',
             'name'=> 'Pan de Campo',
-            'artisan'=> 'Juan Froilan de Todos los Santos',
             'description'=> 'Pan fresco elaborado con las mejores materias primas',
             'artisan_id' => 1
         ]);
@@ -22,7 +21,6 @@ class DatabaseSeeder extends Seeder
         Product::factory(5)->create([
             'image'=> 'https://i.ibb.co/Hn1CmjH/Mermelada-de-fresa-2.jpg',
             'name'=> 'Mermelada de Fresa',
-            'artisan'=> 'Rosa Maria',
             'description'=> 'Mermelada de fresa elaborada con las mejores materias primas',
             'artisan_id' => 2
         ]);
