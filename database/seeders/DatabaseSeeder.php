@@ -5,6 +5,7 @@ namespace Database\Seeders;
 use Illuminate\Database\Seeder;
 use App\Models\Product;
 use App\Models\Artisan;
+use Illuminate\Support\Str;
 
 class DatabaseSeeder extends Seeder
 {
@@ -28,6 +29,7 @@ class DatabaseSeeder extends Seeder
 
         Artisan::factory(1)->create([
             'name'=>'Juan Froilan de Todos los Santos',
+            'slug'=>Str::slug('Juan Froilan de Todos los Santos','-'),
             'email'=>'juanfroilan@santos', 
             'password'=>'12345678',
             'location'=>'Igualada, Barcelona',
@@ -36,6 +38,7 @@ class DatabaseSeeder extends Seeder
 
         Artisan::factory(1)->create([
             'name'=>'Rosa Maria',
+            'slug'=>Str::slug('Rosa Maria', '-'),
             'email'=>'rosa@maria', 
             'password'=>'12345678',
             'location'=>'Montserrat, Barcelona',
