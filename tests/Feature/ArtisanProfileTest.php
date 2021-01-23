@@ -16,7 +16,7 @@ class ArtisanProfileTest extends TestCase
         $artisan = Artisan::factory()->create(); 
 
         $this->withoutExceptionHandling();
-        $response = $this->get('artisan/' . $artisan->name);
+        $response = $this->get('artisan/' . $artisan->slug);
 
         $response->assertStatus(200);
     }
@@ -26,7 +26,7 @@ class ArtisanProfileTest extends TestCase
         $artisan = Artisan::factory()->create(); 
 
         $this->withoutExceptionHandling();
-        $response = $this->get('artisan/' . $artisan->name);
+        $response = $this->get('artisan/' . $artisan->slug);
 
         $response->assertViewIs('profileArtisan');
     }
@@ -36,7 +36,7 @@ class ArtisanProfileTest extends TestCase
         $artisan = Artisan::factory()->create(); 
 
         $this->withoutExceptionHandling();
-        $response = $this->get('artisan/' . $artisan->name);
+        $response = $this->get('artisan/' . $artisan->slug);
 
         $response->assertViewIs('profileArtisan')
                 ->assertViewHas('artisan')
@@ -51,7 +51,7 @@ class ArtisanProfileTest extends TestCase
             'artisan_id' => 1
         ]);
 
-        $response = $this->get('artisan/' . $artisan->name);
+        $response = $this->get('artisan/' . $artisan->slug);
         $response->assertViewIs('profileArtisan')
                 ->assertViewHas('products');
 
@@ -69,7 +69,7 @@ class ArtisanProfileTest extends TestCase
             'name' => 'vino'
         ]);
         
-        $response = $this->get('artisan/' . $artisan->name);
+        $response = $this->get('artisan/' . $artisan->slug);
         $response->assertViewHas('products')
                 ->assertViewMissing('productOut');
     }

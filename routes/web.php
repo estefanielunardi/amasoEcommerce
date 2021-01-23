@@ -32,7 +32,7 @@ Route::get('/product/edit/{id}', [App\Http\Controllers\ProductController::class,
 Route::put('/product/update/{product}', [App\Http\Controllers\ProductController::class, 'update'])->name('updateProduct')->middleware(['auth']);
 
 
-Route::get('/artisan/{artisan:name}',  [\App\Http\Controllers\ArtisanController::class, 'profile'])->name('artisanProfile');
+Route::get('/artisan/{artisan:slug}',  [\App\Http\Controllers\ArtisanController::class, 'profile'])->name('artisanProfile');
 
 Route::get('/joinArtisan', [App\Http\Controllers\ArtisanController::class, 'joinUs'])->name('joinArtisan');
 
