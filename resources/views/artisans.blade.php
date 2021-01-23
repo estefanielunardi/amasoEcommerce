@@ -7,7 +7,7 @@
             @foreach ($artisans as $artisan)           
                     <div class="relative w-60 p-4">
                         <img alt="Placeholder" class="w-full rounded-2xl" src="{{$artisan->image}}"/>
-                        <a href="/artisan/{{$artisan->id}}"> 
+                        <a href="/artisan/{{$artisan->slug}}"> 
                             <p class="textManifiesto p-2">{{$artisan->name}}</p>
                         </a>
                     </div>              
