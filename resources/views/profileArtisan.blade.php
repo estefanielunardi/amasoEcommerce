@@ -76,7 +76,8 @@
                             <p class="py-4"> {{$product->price}} €</p>
                             <div class="relative">
                                 @if ($product->stock < $product->sold)
-                                    <div class="custom-number-input h-10 w-32 absolute bottom-2 right-1">
+                                    <div class="custom-number-input h-12 w-32 absolute bottom-2 right-1">
+                                    <p class="textManifiesto text-base font-bold">Añadir al carrito</p>
                                         <div class="flex flex-row h-10 w-full rounded-lg relative bg-transparent mt-1">
                                             <button data-action="decrement" class="counter greenLightBg beigeLight h-full w-20 rounded-l-2xl cursor-pointer outline-none">
                                                 <span class="m-auto text-2xl font-thin">−</span>
