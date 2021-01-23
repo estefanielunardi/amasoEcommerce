@@ -11,7 +11,6 @@ class Product extends Model
     use HasFactory;
 
     protected $fillable = [
-        'artisan',
         'name',
         'image',
         'description',
@@ -20,6 +19,11 @@ class Product extends Model
         'sold',
         'artisan_id',
     ];
+
+    public function artisans()
+    {
+        return $this->belongsTo(Artisan::class, 'artisan_id');
+    }
 
     
 }
