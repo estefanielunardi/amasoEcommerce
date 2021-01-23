@@ -32,17 +32,4 @@ class CatalogTest extends TestCase
         ->assertViewHas("products");
     }
 
-    // public function test_catalog_view_paginate_products()
-    // {
-    //     Product::factory(6)->create();
-    //     Product::factory(1)->create();
-
-    //     $response = $this->get(route('home'));
-
-    //     $response->assertViewIs("welcome")
-    //     ->assertViewHas("products")
-    //     ->assertViewMissing("product");
-
-    // }
-
 }
