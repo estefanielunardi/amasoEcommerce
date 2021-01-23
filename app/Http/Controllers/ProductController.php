@@ -11,8 +11,7 @@ class ProductController extends Controller
 {
     public function getProducts()
     {
-        $products= DB::table("products")->paginate(6);
-        
+        $products= Product::with('artisans')->paginate(6);
         
         return view('welcome', compact("products"));
     }
@@ -20,11 +19,8 @@ class ProductController extends Controller
     public function store(Request $request)
     {
         $artisan_id= auth()->id();
-        $artisan= Artisan::find($artisan_id);
-      
-        
+             
         $product= Product::create([
-            'artisan'=>$artisan->name,
             'name'=>$request->name,
             'image'=>$request->image,
             'description'=>$request->description,
@@ -57,9 +53,7 @@ class ProductController extends Controller
     public function update(Request $request , Product $product)
     {
         $artisan_id= auth()->id();
-        $artisan= Artisan::find($artisan_id);
 
-        $product->artisan = $artisan->name;
         $product->name = $request->name;
         $product->image = $request->image;
         $product->description = $request->description;

@@ -66,7 +66,7 @@
                                 {{$product->name}}
                             </div>
                             <div class="px-6 py-4 text-sm">
-                                <a href="#">Productor: {{$product->artisan}} </a>
+                                <a href="#">Productor: {{$artisan->name}} </a>
                             </div>
                             <div class="ml-2 text-grey-darker text-base">
                                 {{$product->description}}
