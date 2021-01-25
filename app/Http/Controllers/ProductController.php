@@ -22,7 +22,7 @@ class ProductController extends Controller
              
         $product= Product::create([
             'name'=>$request->name,
-            'image'=>$request->image,
+            'image'=>$request->file('image')->store('uploads', 'public'),
             'description'=>$request->description,
             'price'=>$request->price,
             'stock'=>$request->stock,
@@ -41,7 +41,7 @@ class ProductController extends Controller
         $product= Product::find($id);
         $product->delete();
 
-        return redirect('/artisan/' .  $artisan_id);
+        return redirect('/artisan/' . $artisan_id);
     }
 
     public function edit($id)
