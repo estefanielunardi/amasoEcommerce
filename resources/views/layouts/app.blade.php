@@ -30,6 +30,9 @@
                 {{ $slot }}
             </main>
         </div>
+
+        @stack('scripts')
+
     </body>
     <footer id="footerSection" class="flex justify-center flex justify-center my-8">
     <p>Copyright  AMASÓ 2021   |     Conctacto     |

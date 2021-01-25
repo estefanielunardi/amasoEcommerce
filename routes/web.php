@@ -40,4 +40,4 @@ Route::post('/joinArtisan', [App\Http\Controllers\ArtisanController::class, 'sto
 
 Route::get('/artisans', [App\Http\Controllers\ArtisanController::class, 'getAll'])->name('artisans');
 
-
+Route::get('/cart', [App\Http\Controllers\CartController::class, 'getProducts'])->name('cart'); 
