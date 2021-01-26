@@ -57,8 +57,22 @@ class ArtisanController extends Controller
     public function edit($id)
     {
         $artisan = Artisan::find($id)->first();
-        
+
         return view('editArtisan', compact('artisan'));
+    }
+
+    public function update(Request $request , Artisan $artisan)
+    {
+        $artisan->name = $request->name;
+        $artisan->location = $request->location;
+        $artisan->description = $request->description;
+        $artisan->image  = $request->image;
+        $artisan->user_id =auth()->id();
+        $artisan->slug = $request->name;
+
+        $artisan->save();
+            
+        return redirect('/artisan/' . $artisan->slug);
     }
 
 }
