@@ -16,10 +16,6 @@ class ArtisanController extends Controller
         return view('profileArtisan', compact('products', 'artisan'));   
     }
 
-    public function joinUs(){
-        return view('joinArtisan');
-    }
-
     public function store(Request $request){
         $newArtisan = Artisan::create([
             'name' => $request->name,
