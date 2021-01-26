@@ -13,16 +13,15 @@ class ProductController extends Controller
     public function getProducts()
     {
         $products = Product::with('artisans')->paginate(6);
-        
         return view('welcome', compact("products"));
     }
 
     public function store(Request $request)
     {
-             
         $product= Product::create([
             'name'=>$request->name,
-            'image'=>$request->file('image')->store('uploads', 'public'),
+            // 'image'=>$request->file('image')->store('uploads', 'public'),
+            'image'=> 'imagen',
             'description'=>$request->description,
             'price'=>$request->price,
             'stock'=>$request->stock,
@@ -31,7 +30,7 @@ class ProductController extends Controller
         ]);
 
         $product->save();
-        return redirect('/artisan/' .  $artisan_id);
+        return redirect('/artisan/' .  $request->artisan_id);
 
     }
 
