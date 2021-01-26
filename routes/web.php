@@ -36,6 +36,8 @@ Route::get('/artisan/{artisan:slug}',  [\App\Http\Controllers\ArtisanController:
 
 Route::delete('/artisan/{artisan:slug}',  [\App\Http\Controllers\ArtisanController::class, 'destroy'])->name('deleteProfile')->middleware(['auth']);
 
+Route::get('/artisan/edit/{id}', [App\Http\Controllers\ArtisanController::class, 'edit'])->name('editProfile')->middleware(['auth']);
+
 Route::get('/joinArtisan', [App\Http\Controllers\ArtisanController::class, 'joinUs'])->name('joinArtisan')->middleware(['auth']);
 
 Route::post('/artisan/store', [App\Http\Controllers\ArtisanController::class, 'store'])->name('artisanStore');
