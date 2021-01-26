@@ -10,20 +10,11 @@ class Product extends Model
 {
     use HasFactory;
 
-    protected $fillable = [
-        'name',
-        'image',
-        'description',
-        'price',
-        'stock',
-        'sold',
-        'artisan_id',
-    ];
+    protected $guarded = [];
 
     public function artisans()
     {
-        return $this->belongsTo(Artisan::class, 'artisan_id');
+        return $this->belongsTo(Artisan::class, 'id');
     }
-
     
 }

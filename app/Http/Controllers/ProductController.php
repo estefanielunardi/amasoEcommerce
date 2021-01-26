@@ -6,19 +6,19 @@ use Illuminate\Http\Request;
 use App\Models\Product;
 use Illuminate\Support\Facades\DB;
 use App\Models\Artisan;
+use App\Models\User;
 
 class ProductController extends Controller
 {
     public function getProducts()
     {
-        $products= Product::with('artisans')->paginate(6);
+        $products = Product::with('artisans')->paginate(6);
         
         return view('welcome', compact("products"));
     }
 
     public function store(Request $request)
     {
-        $artisan_id= auth()->id();
              
         $product= Product::create([
             'name'=>$request->name,
@@ -27,7 +27,7 @@ class ProductController extends Controller
             'price'=>$request->price,
             'stock'=>$request->stock,
             'sold'=>0,
-            'artisan_id'=>$artisan_id,
+            'artisan_id'=>$request->artisan_id,
         ]);
 
         $product->save();

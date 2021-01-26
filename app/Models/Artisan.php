@@ -10,6 +10,12 @@ class Artisan extends Model
 {
     use HasFactory;
 
+    protected $guarded = [];
+
+    public function user()
+    {
+       return $this->belongsTo(User::class, 'id');
+    }
     public function products()
     {
         return $this->hasMany(Product::class);
