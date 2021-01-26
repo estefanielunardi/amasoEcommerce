@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use App\Models\Artisan; 
 use Illuminate\Support\Facades\DB; 
+use Illuminate\Support\Str;
 
 class ArtisanController extends Controller
 {
@@ -23,7 +24,7 @@ class ArtisanController extends Controller
             'description' =>$request->description,
             'image' =>$request->image, 
             'user_id' =>auth()->id(),
-            'slug' =>$request->name
+            'slug' => Str::slug($request->name, '-')
             ]);
             
             $newArtisan->save(); 
@@ -64,7 +65,7 @@ class ArtisanController extends Controller
         $artisan->description = $request->description;
         $artisan->image  = $request->image;
         $artisan->user_id =auth()->id();
-        $artisan->slug = $request->name;
+        $artisan->slug =Str::slug($request->name, '-');
 
         $artisan->save();
             

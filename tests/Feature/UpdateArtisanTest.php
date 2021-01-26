@@ -20,7 +20,7 @@ class UpdateArtisanTest extends TestCase
                
         $response = $this->put(route('updateArtisan', $artisan) , $artisan->toArray());
         
-        $response->assertRedirect('artisan/Mary');
+        $response->assertRedirect('artisan/mary');
     }
 
     public function testDBHasBeenUpdate()
