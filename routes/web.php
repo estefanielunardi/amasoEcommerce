@@ -1,7 +1,9 @@
 <?php
 
-use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\ArtisanController;
+use App\Http\Controllers\AdminController;
+use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\Route;
 
 
 
@@ -39,5 +41,7 @@ Route::get('/joinArtisan', [App\Http\Controllers\ArtisanController::class, 'join
 Route::post('/joinArtisan', [App\Http\Controllers\ArtisanController::class, 'store'])->name('artisanStore');
 
 Route::get('/artisans', [App\Http\Controllers\ArtisanController::class, 'getAll'])->name('artisans');
+
+Route::get('/admin', [App\Http\Controllers\AdminController::class, 'adminDash'])->middleware('checkAdmin')->name('adminDash');
 
 
