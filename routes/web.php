@@ -15,7 +15,7 @@ Route::get('/dashboard', function () {
 
 Route::get('/product/create', function () {
     return view('products.create');
-})->middleware(['auth'])->name('newProduct'); 
+})->middleware(['artisan'])->name('newProduct'); 
 
 Route::get('/joinArtisan', function () {
     return view('joinArtisan');
@@ -27,22 +27,22 @@ require __DIR__.'/auth.php';
 
 Route::get('/', [App\Http\Controllers\ProductController::class, 'getProducts'])->name('home');
 
-Route::post('/product/store', [App\Http\Controllers\ProductController::class, 'store'])->name('storeProduct')->middleware(['auth']);
+Route::post('/product/store', [App\Http\Controllers\ProductController::class, 'store'])->name('storeProduct')->middleware(['artisan']);
 
-Route::delete('/product/{id}', [App\Http\Controllers\ProductController::class, 'destroy'])->name('deleteProduct')->middleware(['auth']);
+Route::delete('/product/{id}', [App\Http\Controllers\ProductController::class, 'destroy'])->name('deleteProduct')->middleware(['artisan']);
 
-Route::get('/product/edit/{id}', [App\Http\Controllers\ProductController::class, 'edit'])->name('editProduct')->middleware(['auth']);
+Route::get('/product/edit/{id}', [App\Http\Controllers\ProductController::class, 'edit'])->name('editProduct')->middleware(['artisan']);
 
-Route::put('/product/update/{product}', [App\Http\Controllers\ProductController::class, 'update'])->name('updateProduct')->middleware(['auth']);
+Route::put('/product/update/{product}', [App\Http\Controllers\ProductController::class, 'update'])->name('updateProduct')->middleware(['artisan']);
 
 
 Route::get('/artisan/{artisan:slug}',  [\App\Http\Controllers\ArtisanController::class, 'profile'])->name('artisanProfile');
 
-Route::delete('/artisan/{artisan:slug}',  [\App\Http\Controllers\ArtisanController::class, 'destroy'])->name('deleteProfile')->middleware(['auth']);
+Route::delete('/artisan/{artisan:slug}',  [\App\Http\Controllers\ArtisanController::class, 'destroy'])->name('deleteProfile')->middleware(['artisan']);
 
-Route::get('/artisan/edit/{artisan:slug}', [App\Http\Controllers\ArtisanController::class, 'edit'])->name('editProfile')->middleware(['auth']);
+Route::get('/artisan/edit/{artisan:slug}', [App\Http\Controllers\ArtisanController::class, 'edit'])->name('editProfile')->middleware(['artisan']);
 
-Route::put('/artisan/update/{artisan}', [App\Http\Controllers\ArtisanController::class, 'update'])->name('updateArtisan')->middleware(['auth']);
+Route::put('/artisan/update/{artisan}', [App\Http\Controllers\ArtisanController::class, 'update'])->name('updateArtisan')->middleware(['artisan']);
 
 Route::post('/artisan/store', [App\Http\Controllers\ArtisanController::class, 'store'])->name('artisanStore');
 
