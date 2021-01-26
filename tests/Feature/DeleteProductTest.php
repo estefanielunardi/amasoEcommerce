@@ -34,7 +34,7 @@ class DeleteProductTest extends TestCase
        
         $response = $this->delete('/product/' . $product->id);
 
-        $response->assertRedirect('artisan/1');
+        $response->assertRedirect('artisan/' . $artisan->slug);
         $this->assertDatabaseCount('products', 0);
         $this->assertDatabaseMissing('products', $product->toArray());
     }
