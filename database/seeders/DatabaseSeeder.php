@@ -23,6 +23,7 @@ class DatabaseSeeder extends Seeder
        
         Artisan::factory(1)->create([
          
+            'user_id'=>1,
             'name'=>'Rosa Maria',
             'slug'=>Str::slug('Rosa Maria', '-'),
             'description' => 'Una artesana de corazon',
@@ -31,6 +32,7 @@ class DatabaseSeeder extends Seeder
         ]);
 
         Product::factory(5)->create([
+            'artisan_id'=>1,
             'image'=> 'https://i.ibb.co/Hn1CmjH/Mermelada-de-fresa-2.jpg',
             'name'=> 'Mermelada de Fresa',
             'description'=> 'Mermelada de fresa elaborada con las mejores materias primas',
