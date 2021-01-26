@@ -14,7 +14,7 @@ class Product extends Model
 
     public function artisans()
     {
-        return $this->belongsTo(Artisan::class, 'id');
+        return $this->belongsTo(Artisan::class, 'artisan_id');
     }
     
 }
