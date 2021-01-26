@@ -33,4 +33,13 @@ class ArtisanController extends Controller
         return view('artisans', compact('artisans'));
     }
 
+    public function destroy()
+    {
+        $id = auth()->id();
+        $artisan = Artisan::find($id)->first();
+        $artisan->delete();
+
+        return redirect('/');
+    }
+
 }
