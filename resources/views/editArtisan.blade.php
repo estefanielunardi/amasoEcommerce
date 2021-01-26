@@ -21,7 +21,7 @@
             </div>
             <div class="flex flex-col my-4 text-xl greenAmaso">
                 <label for="description" class="font-serif">{{ __('Cuentanos algo sobre ti') }}</label>
-                <input type="text" id="description" class="w-100 border-solid border-2 border-green-500 rounded shadow-md h-10" name="description" value="{{$artisan->description}}" required autocomplete="description" autofocus>
+                <textarea type="text" id="description" class="w-100 border-solid border-2 border-green-500 rounded shadow-md h-24" name="description" required autocomplete="description" autofocus>{{$artisan->description}}</textarea>
             </div>
             <div class="flex justify-center">
                 <button type="submit" class=" beigeAmasoBg font-serif text-white text-2xl mt-4 px-12 py-4  rounded-xl shadow-md">{{ __('Editar Perfil') }}</button>
