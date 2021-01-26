@@ -15,7 +15,8 @@ class UpdateProductTest extends TestCase
     public function testRouteIfUserIsAuth()
     {
         $this->withoutExceptionHandling();
-        $this->actingAs(User::factory()->create());
+        $this->actingAs(User::factory()->create(['isArtisan'=>true, 'id'=>1]));        
+        $artisan = Artisan::factory()->create(['user_id'=>1, 'id'=>1]);
        
         $product= Product::factory()->create();
 
@@ -27,7 +28,8 @@ class UpdateProductTest extends TestCase
     public function testDBHasBeenUpdate()
     {
         $this->withoutExceptionHandling();
-        $this->actingAs(User::factory()->create());
+        $this->actingAs(User::factory()->create(['isArtisan'=>true, 'id'=>1]));        
+        $artisan = Artisan::factory()->create(['user_id'=>1, 'id'=>1]);
        
         $product= Product::factory()->create();
         $product->name = 'Mermelada';

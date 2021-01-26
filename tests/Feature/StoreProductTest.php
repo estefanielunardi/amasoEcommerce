@@ -19,16 +19,16 @@ class StoreProductTest extends TestCase
         $this->withoutExceptionHandling();
         $this->actingAs(User::factory()->create(['isArtisan'=>true, 'id'=>1]));        
         Artisan::factory()->create(['user_id'=>1, 'id'=>1]);
-        $product = Product::factory()->create([
+        $product = [
             'name'=>'Pan de trigo',
-            'image'=>'/img/Pan.jpg',
+            // 'image'=> 'UploadedFile::fake()->image("img/Pan.jpg")',
+            'image'=> 'img/pan.jpg',
             'description'=>'Un Pan de trigo',
             'price'=>10,
             'stock'=>20,
             'artisan_id'=>1
-        ]);
-        dd($product);
-        $response = $this->post(route('storeProduct',$product), $product->toArray());
+        ];
+        $response = $this->post(route('storeProduct',$product));
         
         $response->assertRedirect('artisan/1');
         $this->assertDatabaseCount('products', 1);
