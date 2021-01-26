@@ -21,9 +21,21 @@ class ArtisanController extends Controller
     }
 
     public function store(Request $request){
+        $newArtisan = Artisan::create([
+            'name' => $request->name,
+            'location' =>$request->location,
+            'description' =>$request->description,
+            'image' =>$request->image, 
+            'user_id' =>auth()->id(),
+            'slug' =>$request->name
+            ]);
+            
+            $newArtisan->save(); 
+            
+        $id = auth()->id();
+        $artisan = DB::table('artisans')->where('user_id', $id)->first();
 
-        Artisan::create($request->all());
-        return back();
+        return redirect('/artisan/' .  $artisan->slug);
     }
 
     public function getAll(){
