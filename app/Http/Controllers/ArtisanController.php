@@ -51,8 +51,9 @@ class ArtisanController extends Controller
         return redirect('/');
     }
 
-    public function edit($id)
+    public function edit()
     {
+        $id = auth()->id();
         $artisan = Artisan::find($id)->first();
 
         return view('editArtisan', compact('artisan'));

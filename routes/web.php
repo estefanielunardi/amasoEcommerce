@@ -40,7 +40,7 @@ Route::get('/artisan/{artisan:slug}',  [\App\Http\Controllers\ArtisanController:
 
 Route::delete('/artisan/{artisan:slug}',  [\App\Http\Controllers\ArtisanController::class, 'destroy'])->name('deleteProfile')->middleware(['auth']);
 
-Route::get('/artisan/edit/{id}', [App\Http\Controllers\ArtisanController::class, 'edit'])->name('editProfile')->middleware(['auth']);
+Route::get('/artisan/edit/{artisan:slug}', [App\Http\Controllers\ArtisanController::class, 'edit'])->name('editProfile')->middleware(['auth']);
 
 Route::put('/artisan/update/{artisan}', [App\Http\Controllers\ArtisanController::class, 'update'])->name('updateArtisan')->middleware(['auth']);
 
