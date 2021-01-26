@@ -18,7 +18,7 @@ class StoreProductTest extends TestCase
     {
         $this->withoutExceptionHandling();
         $this->actingAs(User::factory()->create(['isArtisan'=>true, 'id'=>1]));        
-        Artisan::factory()->create(['user_id'=>1, 'id'=>1]);
+        $artisan = Artisan::factory()->create(['user_id'=>1, 'id'=>1]);
         $product = [
             'name'=>'Pan de trigo',
             // 'image'=> 'UploadedFile::fake()->image("img/Pan.jpg")',
@@ -30,7 +30,7 @@ class StoreProductTest extends TestCase
         ];
         $response = $this->post(route('storeProduct',$product));
         
-        $response->assertRedirect('artisan/1');
+        $response->assertRedirect('artisan/' . $artisan->slug);
         $this->assertDatabaseCount('products', 1);
         $this->assertDatabaseHas('products',['name'=>'Pan de trigo']);
     }
