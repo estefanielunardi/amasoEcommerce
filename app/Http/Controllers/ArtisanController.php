@@ -19,9 +19,7 @@ class ArtisanController extends Controller
 
     public function seeProfile() 
     {   
-        $id = auth()->id();
-        $artisan = DB::table('artisans')->where('user_id', $id)->first();
-
+        $artisan = Artisan::getArtisan();
         $products = DB::table('products')
         ->where('artisan_id', $artisan->id)
         ->paginate(3);
@@ -51,8 +49,7 @@ class ArtisanController extends Controller
             
             $newArtisan->save(); 
             
-        $id = auth()->id();
-        $artisan = DB::table('artisans')->where('user_id', $id)->first();
+            $artisan = Artisan::getArtisan();
 
         return redirect('/artisan/' .  $artisan->slug);
     }
@@ -66,8 +63,7 @@ class ArtisanController extends Controller
 
     public function destroy()
     {
-        $id = auth()->id();
-        $artisan = Artisan::find($id)->first();
+        $artisan = Artisan::getArtisan();
         $artisan->delete();
 
         return redirect('/');
@@ -75,10 +71,8 @@ class ArtisanController extends Controller
 
     public function edit()
     {
-        $user_id = auth()->id();
-        $artisan_id = DB::table('artisans')->where('user_id', $user_id)->first(['id']);
-        $id = $artisan_id->id;
-        $artisan = Artisan::find($id)->first();
+       $artisan = Artisan::getArtisan();
+
         return view('editArtisan', compact('artisan'));
     }
 
