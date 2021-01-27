@@ -24,7 +24,8 @@ class AdminDashboardTest extends TestCase
                 ->get('/admin');
 
         $response->assertStatus(200)
-                ->assertViewIs('adminDashboard');
+                ->assertViewIs('adminDashboard')
+                ->assertViewHas('artisanList');
     }
 
 }

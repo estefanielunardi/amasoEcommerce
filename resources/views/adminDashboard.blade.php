@@ -11,6 +11,14 @@
                 <div class="p-6 bg-white border-b border-gray-200">
                     You're an Admin, you have the Power!
                 </div>
+                <div>
+                    @foreach ($artisanList as $artisan)
+
+                        This is user {{ $artisan->name }}
+                        
+                    @endforeach
+                        
+                </div>
             </div>
         </div>
     </div>
