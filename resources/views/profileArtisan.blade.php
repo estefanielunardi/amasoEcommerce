@@ -111,7 +111,7 @@
                                 </button>
                                 @method('DELETE')
                                 {{ csrf_field() }} 
-                            </form>      -->                      
+                            </form>                           
                         </div>
                         <div class="relative h-32 w-32 ...">                            
                         </div>
