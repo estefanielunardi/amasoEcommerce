@@ -3,7 +3,6 @@
 namespace Tests\Feature\Product;
 
 use Illuminate\Foundation\Testing\RefreshDatabase;
-use Illuminate\Foundation\Testing\WithFaker;
 use Tests\TestCase;
 use App\Models\Product;
 use App\Models\User;
@@ -16,7 +15,7 @@ class EditProductTest extends TestCase
     {
         $this->withoutExceptionHandling();
         $this->actingAs(User::factory()->create(['isArtisan'=>true, 'id'=>1]));        
-        $artisan = Artisan::factory()->create(['user_id'=>1, 'id'=>1]);
+        Artisan::factory()->create(['user_id'=>1, 'id'=>1]);
         $product= Product::factory()->create();
 
         $response = $this->get('/product/edit/' . $product->id);
@@ -28,7 +27,7 @@ class EditProductTest extends TestCase
     {
         $this->withoutExceptionHandling();
         $this->actingAs(User::factory()->create(['isArtisan'=>true, 'id'=>1]));        
-        $artisan = Artisan::factory()->create(['user_id'=>1, 'id'=>1]);
+        Artisan::factory()->create(['user_id'=>1, 'id'=>1]);
         $product= Product::factory()->create();
 
         $response = $this->get('/product/edit/' . $product->id);
