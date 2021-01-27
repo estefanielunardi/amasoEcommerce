@@ -6,19 +6,26 @@
     </x-slot>
 
   
-    <div class="title m-20">
+    <div class="title m-10">
         Dashboard
     </div>
-        <div class="flex flex-col git justify-center align-center ">
-            <h3 class="font-sans beigeAmaso m-auto">Perfiles pendientes por aprobar.</h3>
-            <div class="">
+    <div class="flex flex-col justify-center items-center ">
+        <h2 class="font-sans beigeAmaso m-auto font-bold">Perfiles pendientes de aprobar.</h2>
+            <div class="flex flex-col w-full items-center">
                 @foreach ($artisanList as $artisan)
-                    <div class="justify-center align-center m-6 p-2 greenLightBg text-white w-3/4 rounded-md  ">
-                         {{$artisan->name}}</br>
+                    <div class="flex flex-row justify-center m-2 p-4 greenLightBg text-white rounded-md w-5/6 justify-between">
+                            <p class="ml-4">{{$artisan->name}}</p> <a href="{{route('profile')}}" class="greenAmaso mr-12 ">ver perfil</a> 
+                            
                     </div>
                 @endforeach
             </div>
-        </div>
+    </div>
+    <div class="flex flex-col mt-10 justify-center items-center ">
+        <h2 class="font-sans beigeAmaso m-auto font-bold">Perfiles activos.</h2>
+            <div class="flex flex-col w-full items-center">
+                {{-- foreach aqui porfavor... --}}
+            </div>
+    </div>
         
 </x-app-layout>
             
