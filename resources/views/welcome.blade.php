@@ -32,7 +32,7 @@
                 <article class="overflow-hidden rounded-lg">
 
                     <div class="relative">
-                        <img alt="Placeholder" class="w-full" src="{{$product->image}}">
+                        <img alt="Placeholder" class="w-full" src="{{ asset('storage') .'/'. $product->image}}">
                     </div>
 
                     <header class="font-bold text-xl mb-2">
