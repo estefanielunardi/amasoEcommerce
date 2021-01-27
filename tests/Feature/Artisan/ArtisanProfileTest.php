@@ -57,25 +57,6 @@ class ArtisanProfileTest extends TestCase
         $response = $this->get('artisan/' . $artisan->slug);
         $response->assertViewIs('profileArtisan')
                 ->assertViewHas('products');
-
-    }
-
-    public function testPaginateArtisanProducts() 
-    {
-        $this->actingAs(User::factory()->create(['isArtisan'=>true, 'id'=>1]));        
-        $artisan = Artisan::factory()->create(['user_id'=>1, 'id'=>1]);
-        Product::factory(3)->create([
-            'artisan_id' => 1
-        ]);
-
-        $productOut = Product::factory()->create([
-            'artisan_id' => 1,
-            'name' => 'vino'
-        ]);
-        
-        $response = $this->get('artisan/' . $artisan->slug);
-        $response->assertViewHas('products')
-                ->assertViewMissing('productOut');
     }
 
 }
