@@ -3,23 +3,15 @@
 namespace Tests\Feature\Product;
 
 use Illuminate\Foundation\Testing\RefreshDatabase;
-use Illuminate\Foundation\Testing\WithFaker;
 use Tests\TestCase;
 use App\Models\User;
 use App\Models\Artisan;
-use App\Models\Product;
-use Illuminate\Support\Facades\Storage;
-use Illuminate\Http\UploadedFile;
 
 
 class StoreProductTest extends TestCase
 {
     use RefreshDatabase;
     
-    public function testBasicTest()
-    {
-        $this->assertTrue(true);
-    }
     public function testStoreProduct()
     {
         $this->withoutExceptionHandling();
