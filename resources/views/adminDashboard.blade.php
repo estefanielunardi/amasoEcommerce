@@ -5,21 +5,27 @@
         </h2>
     </x-slot>
 
-    <div class="py-12">
-        <div class="max-w-7xl mx-auto sm:px-6 lg:px-8">
-            <div class="bg-white overflow-hidden shadow-sm sm:rounded-lg">
-                <div class="p-6 bg-white border-b border-gray-200">
-                    You're an Admin, you have the Power!
-                </div>
-                <div>
-                    @foreach ($artisanList as $artisan)
-
-                        This is user {{ $artisan->name }}
-                        
-                    @endforeach
-                        
-                </div>
+  
+    <div class="title m-20">
+        Dashboard
+    </div>
+        <div class="flex flex-col justify-center align-center ">
+            <h3 class="font-sans beigeAmaso m-auto">Perfiles pendientes por aprobar.</h3>
+            <div class="">
+                @foreach ($artisanList as $artisan)
+                    <div class="justify-center align-center m-6 p-2 greenLightBg text-white w-3/4 rounded-md  ">
+                         {{$artisan->name}}</br>
+                    </div>
+                @endforeach
             </div>
         </div>
-    </div>
+        
 </x-app-layout>
+            
+
+
+            
+                
+                            
+                        
+                        
