@@ -23,12 +23,11 @@ class ProductController extends Controller
 
         $product= Product::create([
             'name'=>$request->name,
-            // 'image'=>$request->file('image')->store('uploads', 'public'),
-            'image'=> 'imagen',
+            'image'=> $request->file('image')->store('uploads', 'public'),
             'description'=>$request->description,
             'price'=>$request->price,
             'stock'=>$request->stock,
-            'sold'=>0,
+            'sold'=> 0,
             'artisan_id'=>$artisan->id,
         ]);
 
