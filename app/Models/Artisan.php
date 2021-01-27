@@ -4,6 +4,7 @@ namespace App\Models;
 
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
+use Illuminate\Support\Facades\DB;
 
 
 class Artisan extends Model
@@ -24,6 +25,15 @@ class Artisan extends Model
     public function getRouteKeyName()
     {
         return 'slug';
+    }
+
+    public static function getArtisan()
+    {
+        $user_id = auth()->id();
+        $artisan_id = DB::table('artisans')->where('user_id', $user_id)->first(['id']);
+        $id = $artisan_id->id;
+        $artisan = Artisan::find($id)->first();
+        return $artisan;
     }
 
 }
