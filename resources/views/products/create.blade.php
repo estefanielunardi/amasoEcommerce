@@ -24,7 +24,7 @@
             </div>
             <div class="flex flex-col my-4 text-xl greenAmaso">
                 <label for="cantidad" class="font-serif">{{ __('Cantidad') }}</label>
-                <input type="number" id="cantidad" class="w-100 border-solid border-2 border-green-500 rounded shadow-md h-10" name="stock" required autocomplete="stock" autofocus>
+                <input type="number" min="0" id="cantidad" class="w-100 border-solid border-2 border-green-500 rounded shadow-md h-10" name="stock" required autocomplete="stock" autofocus>
             </div>
             <div class="flex flex-col my-4 text-xl greenAmaso">
                 <label for="descripcion" class="font-serif">{{ __('Descripción') }}</label>
