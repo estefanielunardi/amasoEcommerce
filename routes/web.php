@@ -38,6 +38,8 @@ Route::put('/product/update/{product}', [App\Http\Controllers\ProductController:
 
 Route::get('/artisan/{artisan:slug}',  [\App\Http\Controllers\ArtisanController::class, 'profile'])->name('artisanProfile');
 
+Route::get('/profile', [App\Http\Controllers\ArtisanController::class, 'seeProfile'])->name('profile')->middleware(['artisan']);
+
 Route::delete('/artisan/{artisan:slug}',  [\App\Http\Controllers\ArtisanController::class, 'destroy'])->name('deleteProfile')->middleware(['artisan']);
 
 Route::get('/artisan/edit/{artisan:slug}', [App\Http\Controllers\ArtisanController::class, 'edit'])->name('editProfile')->middleware(['artisan']);

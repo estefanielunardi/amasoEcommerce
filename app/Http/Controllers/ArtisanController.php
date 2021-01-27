@@ -17,6 +17,18 @@ class ArtisanController extends Controller
         return view('profileArtisan', compact('products', 'artisan'));   
     }
 
+    public function seeProfile() 
+    {   
+        $id = auth()->id();
+        $artisan = DB::table('artisans')->where('user_id', $id)->first();
+
+        $products = DB::table('products')
+        ->where('artisan_id', $artisan->id)
+        ->paginate(3);
+        
+        return view('profileArtisan', compact('products', 'artisan'));   
+    }
+
     public function store(Request $request){
         $newArtisan = Artisan::create([
             'name' => $request->name,
