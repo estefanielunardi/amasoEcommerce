@@ -1,6 +1,6 @@
 <?php
 
-namespace Tests\Feature;
+namespace Tests\Feature\Product;
 
 use Illuminate\Foundation\Testing\RefreshDatabase;
 use Illuminate\Foundation\Testing\WithFaker;
@@ -9,33 +9,34 @@ use App\Models\Product;
 use App\Models\User;
 use App\Models\Artisan;
 
-class UpdateProductTest extends TestCase
+class DeleteProductTest extends TestCase
 {
     use RefreshDatabase;
+
     public function testRouteIfUserIsAuth()
     {
         $this->withoutExceptionHandling();
         $this->actingAs(User::factory()->create(['isArtisan'=>true, 'id'=>1]));        
         $artisan = Artisan::factory()->create(['user_id'=>1, 'id'=>1]);
+        $product= Product::factory()->create();
        
-        $product= Product::factory()->create(['image'=> null]);
+        $response = $this->delete('/product/' . $product->id);
 
-        $response = $this->put(route('updateProduct', $product) , $product->toArray());
-        
-        $response->assertRedirect('artisan/' . $artisan->slug);
+        $response->assertStatus(302);
     }
 
-    public function testDBHasBeenUpdate()
+    public function testDeleteProduct()
     {
         $this->withoutExceptionHandling();
         $this->actingAs(User::factory()->create(['isArtisan'=>true, 'id'=>1]));        
         $artisan = Artisan::factory()->create(['user_id'=>1, 'id'=>1]);
+        $product= Product::factory()->create();
        
-        $product= Product::factory()->create(['image'=> null]);
-        $product->name = 'Mermelada';
-    
-        $this->put(route('updateProduct', $product) , $product->toArray());
-        $this->assertDatabaseHas('products', ['name'=>'Mermelada']);
-    
+        $response = $this->delete('/product/' . $product->id);
+
+        $response->assertRedirect('artisan/' . $artisan->slug);
+        $this->assertDatabaseCount('products', 0);
+        $this->assertDatabaseMissing('products', $product->toArray());
     }
+    
 }

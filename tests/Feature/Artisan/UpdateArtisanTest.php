@@ -1,9 +1,8 @@
 <?php
 
-namespace Tests\Feature;
+namespace Tests\Feature\Artisan;
 
 use Illuminate\Foundation\Testing\RefreshDatabase;
-use Illuminate\Foundation\Testing\WithFaker;
 use Tests\TestCase;
 use App\Models\Artisan;
 use App\Models\User;
@@ -30,7 +29,7 @@ class UpdateArtisanTest extends TestCase
         $artisan = Artisan::factory()->create(['user_id'=>1, 'id'=>1, 'name'=>'Maria', 'image'=>null]);
         $artisan->name = 'Mary';
     
-        $response = $this->put(route('updateArtisan', $artisan) , $artisan->toArray());
+        $this->put(route('updateArtisan', $artisan) , $artisan->toArray());
         $this->assertDatabaseHas('artisans', ['name'=>'Mary']);
     
     }

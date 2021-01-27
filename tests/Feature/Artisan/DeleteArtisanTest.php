@@ -1,9 +1,8 @@
 <?php
 
-namespace Tests\Feature;
+namespace Tests\Feature\Artisan;
 
 use Illuminate\Foundation\Testing\RefreshDatabase;
-use Illuminate\Foundation\Testing\WithFaker;
 use Tests\TestCase;
 use App\Models\Artisan;
 use App\Models\User;
@@ -14,7 +13,7 @@ class DeleteArtisanTest extends TestCase
     public function testDeleteArtisanProfile()
     {
         $this->actingAs(User::factory()->create(['isArtisan'=>true, 'id'=>1]));        
-        $artisan =  Artisan::factory()->create(['user_id'=>1, 'id'=>1, 'name'=>'Pepita']);
+        Artisan::factory()->create(['user_id'=>1, 'id'=>1, 'name'=>'Pepita']);
         $response = $this->delete('/artisan/Pepita');
 
         $response->assertRedirect('/');

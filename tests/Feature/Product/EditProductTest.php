@@ -1,23 +1,25 @@
 <?php
 
-namespace Tests\Feature;
+namespace Tests\Feature\Product;
 
 use Illuminate\Foundation\Testing\RefreshDatabase;
 use Illuminate\Foundation\Testing\WithFaker;
 use Tests\TestCase;
-use App\Models\Artisan;
+use App\Models\Product;
 use App\Models\User;
+use App\Models\Artisan;
 
-class EditArtisanTest extends TestCase
+class EditProductTest extends TestCase
 {
-  use RefreshDatabase;
-    public function testReturnEditForm()
+    use RefreshDatabase;
+    public function testRouteIfUserIsAuth()
     {
         $this->withoutExceptionHandling();
         $this->actingAs(User::factory()->create(['isArtisan'=>true, 'id'=>1]));        
         $artisan = Artisan::factory()->create(['user_id'=>1, 'id'=>1]);
-        
-        $response = $this->get('/artisan/edit/'. $artisan->id);
+        $product= Product::factory()->create();
+
+        $response = $this->get('/product/edit/' . $product->id);
 
         $response->assertStatus(200);
     }
@@ -27,12 +29,11 @@ class EditArtisanTest extends TestCase
         $this->withoutExceptionHandling();
         $this->actingAs(User::factory()->create(['isArtisan'=>true, 'id'=>1]));        
         $artisan = Artisan::factory()->create(['user_id'=>1, 'id'=>1]);
-       
+        $product= Product::factory()->create();
 
-        $response = $this->get('/artisan/edit/' . $artisan->id);
+        $response = $this->get('/product/edit/' . $product->id);
 
-        $response->assertViewIs('editArtisan')
-             ->assertViewHas('artisan');
+        $response->assertViewIs('products.edit')
+            ->assertViewHas(['product'=>$product]);
     }
 }
-
