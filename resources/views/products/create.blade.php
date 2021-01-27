@@ -19,7 +19,7 @@
                 <label for="precio" class="font-serif">{{ __('Precio') }}</label>
                 <div class="flex -mr-px greenAmaso">
                     <span class="flex items-center leading-normal greenAmaso rounded rounded-r-none border-solid border-2 border-r-0 border-green-500 px-3 whitespace-no-wrap text-greenAmaso">€</span>
-                    <input type="number" id="precio" class="w-full border-solid border-2 border-green-500 rounded shadow-md h-10" name="price" required autocomplete="price" autofocus>
+                    <input type="number" min="0"id="precio" class="w-full border-solid border-2 border-green-500 rounded shadow-md h-10" name="price" required autocomplete="price" autofocus>
 			    </div>
             </div>
             <div class="flex flex-col my-4 text-xl greenAmaso">
