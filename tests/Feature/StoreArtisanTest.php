@@ -20,7 +20,6 @@ class StoreArtisanTest extends TestCase
             'name' => 'Pepita', 
             'location' => 'Tarragona', 
             'description' => 'sfxghrsf', 
-            'image' => 'image.jpg'
         ];
         
         $response = $this->post(route('artisanStore', $artisan));

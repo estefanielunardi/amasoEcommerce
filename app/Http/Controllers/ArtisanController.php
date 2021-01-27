@@ -30,11 +30,21 @@ class ArtisanController extends Controller
     }
 
     public function store(Request $request){
+
+        $image = '';
+        if($request->image)
+        {
+            $image = $request->file('image')->store('uploads', 'public');
+        } 
+        else
+        {
+            $image = 'uploads/default-product.jpeg';
+        }    
         $newArtisan = Artisan::create([
             'name' => $request->name,
             'location' =>$request->location,
             'description' =>$request->description,
-            'image' =>$request->image, 
+            'image' => $image, 
             'user_id' =>auth()->id(),
             'slug' => Str::slug($request->name, '-')
             ]);

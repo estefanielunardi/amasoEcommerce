@@ -18,7 +18,7 @@
         @endcan
             <article class="flex justify-start">
                 <div>
-                    <img class=" max-w-xs w-174 rounded-xl" src="{{$artisan->image}}" alt="foto de perfil">
+                    <img class=" max-w-xs w-174 rounded-xl" src="{{ asset('storage') .'/'. $artisan->image}}" alt="foto de perfil">
                 </div>
             </article>
             <article class= "space-y-3">
