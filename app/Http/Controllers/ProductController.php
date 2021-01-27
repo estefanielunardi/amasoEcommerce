@@ -20,15 +20,8 @@ class ProductController extends Controller
     {
         $artisan = Artisan::getArtisan();
 
-        $image = '';
-        if($request->image)
-        {
-            $image = $request->file('image')->store('uploads', 'public');
-        } 
-        else
-        {
-            $image = 'uploads/default-product.jpeg';
-        }    
+        $image = $this->setImage($request);
+
         $product= Product::create([
             'name'=>$request->name,
             'image'=> $image,
@@ -63,18 +56,9 @@ class ProductController extends Controller
     public function update(Request $request , Product $product)
     {
         $artisan = Artisan::getArtisan();
-        $image = '';
-        if($request->image)
-        {
-            $image = $request->file('image')->store('uploads', 'public');
-        } 
-        else
-        {
-            $image = 'uploads/default-product.jpeg';
-        }    
-
+        
+        $product->image = $request->image;
         $product->name = $request->name;
-        $product->image = $image;
         $product->description = $request->description;
         $product->price = $request->price;
         $product->stock = $request->stock;
@@ -83,5 +67,19 @@ class ProductController extends Controller
         $product->save();
 
         return redirect('/artisan/' .  $artisan->slug);
+    }
+
+    private function setImage($request)
+    {
+        $image = '';
+        if($request->image)
+        {
+             $image = $request->file('image')->store('uploads', 'public');
+        } 
+        else
+        {
+             $image = 'uploads/default-product.jpeg';
+        }  
+        return $image;  
     }
 }
