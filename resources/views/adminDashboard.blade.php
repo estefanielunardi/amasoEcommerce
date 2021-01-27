@@ -9,7 +9,7 @@
     <div class="title m-20">
         Dashboard
     </div>
-        <div class="flex flex-col justify-center align-center ">
+        <div class="flex flex-col git justify-center align-center ">
             <h3 class="font-sans beigeAmaso m-auto">Perfiles pendientes por aprobar.</h3>
             <div class="">
                 @foreach ($artisanList as $artisan)
