@@ -32,7 +32,7 @@
                 <article class="overflow-hidden rounded-lg">
 
                     <div class="relative">
-                        <img alt="Placeholder" class="w-full" src="{{$product->image}}">
+                        <img alt="Placeholder" class="w-full" src="{{ asset('storage') .'/'. $product->image}}">
                     </div>
 
                     <header class="font-bold text-xl mb-2">
@@ -49,7 +49,7 @@
                     <div class="px-4 py-4 md:px-10">
                         <p class="py-4"> {{$product->price}} €</p>
                         <div class="relative">
-                            @if ($product->stock < $product->sold)
+                            @if ($product->stock > $product->sold)
                                 <div class="custom-number-input h-12 w-32 absolute bottom-2 right-1">
                                     <p class="textManifiesto text-base font-bold">Añadir al carrito</p>
                                     <x-counter></x-counter>

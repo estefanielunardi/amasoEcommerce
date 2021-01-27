@@ -33,7 +33,7 @@ class DatabaseSeeder extends Seeder
 
         Product::factory(5)->create([
             'artisan_id'=>1,
-            'image'=> 'https://i.ibb.co/Hn1CmjH/Mermelada-de-fresa-2.jpg',
+            'image'=> 'uploads/8Q8qn1T92X929f4uDmlk34lwpRXGKk1GNQ2z5wJC.jpg',
             'name'=> 'Mermelada de Fresa',
             'description'=> 'Mermelada de fresa elaborada con las mejores materias primas',
             

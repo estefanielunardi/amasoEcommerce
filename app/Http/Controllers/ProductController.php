@@ -21,14 +21,22 @@ class ProductController extends Controller
         $id = auth()->id();
         $artisan = DB::table('artisans')->where('user_id', $id)->first();
 
+        $image = '';
+        if($request->image)
+        {
+            $image = $request->file('image')->store('uploads', 'public');
+        } 
+        else
+        {
+            $image = 'uploads/default-product.jpeg';
+        }    
         $product= Product::create([
             'name'=>$request->name,
-            // 'image'=>$request->file('image')->store('uploads', 'public'),
-            'image'=> 'imagen',
+            'image'=> $image,
             'description'=>$request->description,
             'price'=>$request->price,
             'stock'=>$request->stock,
-            'sold'=>0,
+            'sold'=> 0,
             'artisan_id'=>$artisan->id,
         ]);
 
@@ -58,9 +66,18 @@ class ProductController extends Controller
     {
         $id = auth()->id();
         $artisan = DB::table('artisans')->where('user_id', $id)->first();
+        $image = '';
+        if($request->image)
+        {
+            $image = $request->file('image')->store('uploads', 'public');
+        } 
+        else
+        {
+            $image = 'uploads/default-product.jpeg';
+        }    
 
         $product->name = $request->name;
-        $product->image = $request->image;
+        $product->image = $image;
         $product->description = $request->description;
         $product->price = $request->price;
         $product->stock = $request->stock;
