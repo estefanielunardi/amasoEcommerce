@@ -10,6 +10,6 @@ class AdminController extends Controller
     public function adminDash(){
 
         $artisanList = Artisan::all();
-        return view('dashboard', ['artisanList' => $artisanList]);
+        return view('adminDashboard', ['artisanList' => $artisanList]);
     }
 }
