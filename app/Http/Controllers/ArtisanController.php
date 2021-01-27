@@ -75,18 +75,28 @@ class ArtisanController extends Controller
 
     public function edit()
     {
-        $id = auth()->id();
+        $user_id = auth()->id();
+        $artisan_id = DB::table('artisans')->where('user_id', $user_id)->first(['id']);
+        $id = $artisan_id->id;
         $artisan = Artisan::find($id)->first();
-
         return view('editArtisan', compact('artisan'));
     }
 
     public function update(Request $request , Artisan $artisan)
     {
+        $image = '';
+        if($request->image)
+        {
+            $image = $request->file('image')->store('uploads', 'public');
+        } 
+        else
+        {
+            $image = 'uploads/default-product.jpeg';
+        }    
         $artisan->name = $request->name;
         $artisan->location = $request->location;
         $artisan->description = $request->description;
-        $artisan->image  = $request->image;
+        $artisan->image  = $image;
         $artisan->user_id =auth()->id();
         $artisan->slug =Str::slug($request->name, '-');
 

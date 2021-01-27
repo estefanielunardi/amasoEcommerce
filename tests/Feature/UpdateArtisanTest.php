@@ -15,7 +15,7 @@ class UpdateArtisanTest extends TestCase
     {
         $this->withoutExceptionHandling();
         $this->actingAs(User::factory()->create(['isArtisan'=>true, 'id'=>1]));        
-        $artisan = Artisan::factory()->create(['user_id'=>1, 'id'=>1, 'name'=>'Maria']);
+        $artisan = Artisan::factory()->create(['user_id'=>1, 'id'=>1, 'name'=>'Maria', 'image'=>null]);
         $artisan->name = 'Mary';
                
         $response = $this->put(route('updateArtisan', $artisan) , $artisan->toArray());
@@ -27,7 +27,7 @@ class UpdateArtisanTest extends TestCase
     {
         $this->withoutExceptionHandling();
         $this->actingAs(User::factory()->create(['isArtisan'=>true, 'id'=>1]));        
-        $artisan = Artisan::factory()->create(['user_id'=>1, 'id'=>1, 'name'=>'Maria']);
+        $artisan = Artisan::factory()->create(['user_id'=>1, 'id'=>1, 'name'=>'Maria', 'image'=>null]);
         $artisan->name = 'Mary';
     
         $response = $this->put(route('updateArtisan', $artisan) , $artisan->toArray());
