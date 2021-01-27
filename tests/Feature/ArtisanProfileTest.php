@@ -7,14 +7,15 @@ use Illuminate\Foundation\Testing\WithFaker;
 use Tests\TestCase;
 use App\Models\Artisan;
 use App\Models\Product;
+use App\Models\User;
 
 class ArtisanProfileTest extends TestCase
 {
     use RefreshDatabase; 
     public function testRouteArtisanProfile()
     {
-        $artisan = Artisan::factory()->create(); 
-
+        $this->actingAs(User::factory()->create(['isArtisan'=>true, 'id'=>1]));        
+        $artisan = Artisan::factory()->create(['user_id'=>1, 'id'=>1]);
         $this->withoutExceptionHandling();
         $response = $this->get('artisan/' . $artisan->slug);
 
@@ -23,7 +24,8 @@ class ArtisanProfileTest extends TestCase
 
     public function testReturnArtisanProfileView()
     {
-        $artisan = Artisan::factory()->create(); 
+        $this->actingAs(User::factory()->create(['isArtisan'=>true, 'id'=>1]));        
+        $artisan = Artisan::factory()->create(['user_id'=>1, 'id'=>1]);
 
         $this->withoutExceptionHandling();
         $response = $this->get('artisan/' . $artisan->slug);
@@ -33,7 +35,8 @@ class ArtisanProfileTest extends TestCase
 
     public function testReturnArtisanProfileViewWithData()
     {
-        $artisan = Artisan::factory()->create(); 
+        $this->actingAs(User::factory()->create(['isArtisan'=>true, 'id'=>1]));        
+        $artisan = Artisan::factory()->create(['user_id'=>1, 'id'=>1]);
 
         $this->withoutExceptionHandling();
         $response = $this->get('artisan/' . $artisan->slug);
@@ -46,7 +49,8 @@ class ArtisanProfileTest extends TestCase
     public function testReturnArtisanProfileViewHasProducts()
     {
 
-        $artisan = Artisan::factory()->create(); 
+        $this->actingAs(User::factory()->create(['isArtisan'=>true, 'id'=>1]));        
+        $artisan = Artisan::factory()->create(['user_id'=>1, 'id'=>1]);
         $products = Product::factory(3)->create([
             'artisan_id' => 1
         ]);
@@ -59,7 +63,8 @@ class ArtisanProfileTest extends TestCase
 
     public function testPaginateArtisanProducts() 
     {
-        $artisan = Artisan::factory()->create(); 
+        $this->actingAs(User::factory()->create(['isArtisan'=>true, 'id'=>1]));        
+        $artisan = Artisan::factory()->create(['user_id'=>1, 'id'=>1]);
         $products = Product::factory(3)->create([
             'artisan_id' => 1
         ]);

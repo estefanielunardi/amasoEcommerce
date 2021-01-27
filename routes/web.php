@@ -15,7 +15,11 @@ Route::get('/dashboard', function () {
 
 Route::get('/product/create', function () {
     return view('products.create');
-})->middleware(['auth'])->name('newProduct'); 
+})->middleware(['artisan'])->name('newProduct'); 
+
+Route::get('/joinArtisan', function () {
+    return view('joinArtisan');
+})->name('joinArtisan')->middleware(['auth']);
 
 
 
@@ -23,20 +27,26 @@ require __DIR__.'/auth.php';
 
 Route::get('/', [App\Http\Controllers\ProductController::class, 'getProducts'])->name('home');
 
-Route::post('/product/store', [App\Http\Controllers\ProductController::class, 'store'])->name('storeProduct')->middleware(['auth']);
+Route::post('/product/store', [App\Http\Controllers\ProductController::class, 'store'])->name('storeProduct')->middleware(['artisan']);
 
-Route::delete('/product/{id}', [App\Http\Controllers\ProductController::class, 'destroy'])->name('deleteProduct')->middleware(['auth']);
+Route::delete('/product/{id}', [App\Http\Controllers\ProductController::class, 'destroy'])->name('deleteProduct')->middleware(['artisan']);
 
-Route::get('/product/edit/{id}', [App\Http\Controllers\ProductController::class, 'edit'])->name('editProduct')->middleware(['auth']);
+Route::get('/product/edit/{id}', [App\Http\Controllers\ProductController::class, 'edit'])->name('editProduct')->middleware(['artisan']);
 
-Route::put('/product/update/{product}', [App\Http\Controllers\ProductController::class, 'update'])->name('updateProduct')->middleware(['auth']);
+Route::put('/product/update/{product}', [App\Http\Controllers\ProductController::class, 'update'])->name('updateProduct')->middleware(['artisan']);
 
 
 Route::get('/artisan/{artisan:slug}',  [\App\Http\Controllers\ArtisanController::class, 'profile'])->name('artisanProfile');
 
-Route::get('/joinArtisan', [App\Http\Controllers\ArtisanController::class, 'joinUs'])->name('joinArtisan');
+Route::get('/profile', [App\Http\Controllers\ArtisanController::class, 'seeProfile'])->name('profile')->middleware(['artisan']);
 
-Route::post('/joinArtisan', [App\Http\Controllers\ArtisanController::class, 'store'])->name('artisanStore');
+Route::delete('/artisan/{artisan:slug}',  [\App\Http\Controllers\ArtisanController::class, 'destroy'])->name('deleteProfile')->middleware(['artisan']);
+
+Route::get('/artisan/edit/{artisan:slug}', [App\Http\Controllers\ArtisanController::class, 'edit'])->name('editProfile')->middleware(['artisan']);
+
+Route::put('/artisan/update/{artisan}', [App\Http\Controllers\ArtisanController::class, 'update'])->name('updateArtisan')->middleware(['artisan']);
+
+Route::post('/artisan/store', [App\Http\Controllers\ArtisanController::class, 'store'])->name('artisanStore');
 
 Route::get('/artisans', [App\Http\Controllers\ArtisanController::class, 'getAll'])->name('artisans');
 
@@ -45,3 +55,12 @@ Route::get('/admin', [App\Http\Controllers\AdminController::class, 'adminDash'])
 
 
 Route::get('/cart', [App\Http\Controllers\CartController::class, 'getProducts'])->name('cart')->middleware(['auth']); 
+
+Route::get('/cart', [App\Http\Controllers\CartController::class, 'getProducts'])->name('cart')->middleware(['auth']); 
+
+Route::post('/cart-add', [App\Http\Controllers\CartController::class, 'addProducts'])->name('cartAddProduct')->middleware(['auth']);
+
+Route::post('/cart-clear', [App\Http\Controllers\CartController::class, 'clearProducts'])->name('cartClear')->middleware(['auth']);
+
+Route::post('/cart-removeitem', [App\Http\Controllers\CartController::class, 'removeProducts'])->name('cartRemoveProduct')->middleware(['auth']);
+

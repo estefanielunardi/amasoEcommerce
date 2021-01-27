@@ -25,6 +25,12 @@ class AuthServiceProvider extends ServiceProvider
     {
         $this->registerPolicies();
 
-        //
+        Gate::define('isArtisan', function($user) {
+            return $user->isArtisan == true; 
+        });
+
+        Gate::define('isAuth', function($user) {
+            return $user->isArtisan == false;
+        }); 
     }
 }

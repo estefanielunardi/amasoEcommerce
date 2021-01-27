@@ -22,6 +22,8 @@ class CreateProductsTable extends Migration
             $table->integer('stock');
             $table->integer('sold');
             $table->unsignedBigInteger('artisan_id');
+            $table->foreign('artisan_id')->references('id')->on('artisans')->onUpdate('cascade')
+            ->onDelete('cascade');
             $table->timestamps();
         });
     }

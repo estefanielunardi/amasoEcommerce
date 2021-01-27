@@ -14,7 +14,7 @@ class CreateProductTest extends TestCase
     public function testRouteIfUserIsAuth()
     {
         $this-> withoutExceptionHandling();
-        $this->actingAs(User::factory()->create());
+        $this->actingAs(User::factory()->create(['isArtisan'=>true, 'id'=>1]));        
 
         $response = $this->get(route('newProduct'));
 
@@ -24,7 +24,7 @@ class CreateProductTest extends TestCase
     public function testReturnNewProductForm()
     {
         $this-> withoutExceptionHandling();
-        $this->actingAs(User::factory()->create());
+        $this->actingAs(User::factory()->create(['isArtisan'=>true, 'id'=>1]));
 
         $response = $this->get(route('newProduct'));
 
