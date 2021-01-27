@@ -18,8 +18,7 @@ class ProductController extends Controller
 
     public function store(Request $request)
     {
-        $id = auth()->id();
-        $artisan = DB::table('artisans')->where('user_id', $id)->first();
+        $artisan = Artisan::getArtisan();
 
         $image = '';
         if($request->image)
@@ -46,9 +45,8 @@ class ProductController extends Controller
     }
 
     public function destroy($id)
-    {
-        $artisanId = auth()->id();
-        $artisan = DB::table('artisans')->where('user_id', $artisanId)->first();
+    {   
+        $artisan = Artisan::getArtisan();
 
         $product= Product::find($id);
         $product->delete();
@@ -64,8 +62,7 @@ class ProductController extends Controller
 
     public function update(Request $request , Product $product)
     {
-        $id = auth()->id();
-        $artisan = DB::table('artisans')->where('user_id', $id)->first();
+        $artisan = Artisan::getArtisan();
         $image = '';
         if($request->image)
         {
