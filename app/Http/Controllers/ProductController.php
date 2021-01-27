@@ -21,9 +21,18 @@ class ProductController extends Controller
         $id = auth()->id();
         $artisan = DB::table('artisans')->where('user_id', $id)->first();
 
+        $image = '';
+        if($request->image)
+        {
+            $image = $request->file('image')->store('uploads', 'public');
+        } 
+        else
+        {
+            $image = 'uploads/default-product.jpeg';
+        }    
         $product= Product::create([
             'name'=>$request->name,
-            'image'=> $request->file('image')->store('uploads', 'public'),
+            'image'=> $image,
             'description'=>$request->description,
             'price'=>$request->price,
             'stock'=>$request->stock,

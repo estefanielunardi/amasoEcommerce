@@ -12,8 +12,8 @@
                 <input type="text" id="nombre" class="w-100 border-solid border-2 border-green-500 rounded shadow-md h-10" name="name"  required autocomplete="name" autofocus>
             </div>
             <div class="flex flex-col my-4 text-xl greenAmaso">
-                <label for="imagen" class="font-serif">{{ __('Imagen URL') }}</label>
-                <input accept="image/*" type="file" id="image" class="w-100 border-solid border-2 border-green-500 rounded shadow-md h-10" name="image"  required autocomplete="image" autofocus>
+                <label for="imagen" class="font-serif">{{ __('Imagen') }}</label>
+                <input accept="image/*" type="file" id="image" class="w-100 border-solid border-2 border-green-500 rounded shadow-md h-10" name="image" autofocus>
             </div>
             <div class="flex flex-col my-4 text-xl greenAmaso">
                 <label for="precio" class="font-serif">{{ __('Precio') }}</label>

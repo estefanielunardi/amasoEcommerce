@@ -20,26 +20,23 @@ class StoreProductTest extends TestCase
     {
         $this->assertTrue(true);
     }
-    // public function testStoreProduct()
-    // {
-    //     $this->withoutExceptionHandling();
+    public function testStoreProduct()
+    {
+        $this->withoutExceptionHandling();
         
-    //     Storage::fake('public/photos');
-
-    //     $this->actingAs(User::factory()->create(['isArtisan'=>true, 'id'=>1]));        
-    //     $artisan = Artisan::factory()->create(['user_id'=>1, 'id'=>1]);
-    //     $product = [
-    //         'name'=>'Pan de trigo',
-    //         'image'=> 'UploadedFile::fake()->image("photo.jpg")',
-    //         'description'=>'Un Pan de trigo',
-    //         'price'=>10,
-    //         'stock'=>20,
-    //         'artisan_id'=>1
-    //     ];
-    //     $response = $this->post(route('storeProduct',$product));
+        $this->actingAs(User::factory()->create(['isArtisan'=>true, 'id'=>1]));        
+        $artisan = Artisan::factory()->create(['user_id'=>1, 'id'=>1]);
+        $product = [
+            'name'=>'Pan de trigo',
+            'description'=>'Un Pan de trigo',
+            'price'=>10,
+            'stock'=>20,
+            'artisan_id'=>1
+        ];
+        $response = $this->post(route('storeProduct',$product));
         
-    //     $response->assertRedirect('artisan/' . $artisan->slug);
-    //     $this->assertDatabaseCount('products', 1);
-    //     $this->assertDatabaseHas('products',['name'=>'Pan de trigo']);
-    // }
+        $response->assertRedirect('artisan/' . $artisan->slug);
+        $this->assertDatabaseCount('products', 1);
+        $this->assertDatabaseHas('products',['name'=>'Pan de trigo']);
+    }
 }
