@@ -20,7 +20,7 @@ class ProductFactory extends Factory
             'price' =>$this->faker->numberBetween(0,100),
             'stock' =>$this->faker->numberBetween(0,100),
             'sold' =>$this->faker->numberBetween(0,100),
-            'artisan_id' =>$this->faker->randomNumber()
+            'artisan_id'=>1,
         ];
     }
 }
