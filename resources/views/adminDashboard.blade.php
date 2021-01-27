@@ -6,7 +6,7 @@
     </x-slot>
 
   
-    <div class="title m-10">
+    <div class="title m-20">
         Dashboard
     </div>
     <div class="flex flex-col justify-center items-center ">

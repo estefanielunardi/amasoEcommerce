@@ -1,21 +1,21 @@
 <nav x-data="{ open: false }" class="greenAmasoBg">
     <!-- Primary Navigation Menu -->
     <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 ">
-        <div class="flex justify-between h-16">
-            <div class="flex">
+        <div class="flex justify-around h-16">
+            <div class="flex justify-between">
                 <!-- Logo -->
-                <div class="flex-shrink-0 flex items-center ml-6">
+                <div class="flex items-center ml-6 mr-20">
                     <a href="{{ route('home') }}">
                         <x-application-logo class="block h-10 w-auto fill-current text-gray-600" />
                     </a>
                 </div>
 
                 <!-- Navigation Links -->
-                <div class="hidden space-x-8 sm:-my-px sm:ml-10 sm:flex ">
+                {{-- <div class="hidden space-x-8 sm:-my-px sm:ml-10 sm:flex ">
                     <x-nav-link :href="route('adminDash')" :active="request()->routeIs('adminDash')">
                         {{ __('Panel de administrador') }}
                     </x-nav-link>
-                </div>
+                </div> --}}
                 <div class="hidden space-x-8 sm:-my-px sm:ml-10 sm:flex">
                     <x-nav-link  :href="route('register')" :active="request()->routeIs('register')">
                         {{ __('Register') }}
@@ -41,11 +41,11 @@
                         {{ __('Mi compra') }}
                     </x-nav-link>
                 </div>
-                <div class="hidden space-x-8 sm:-my-px sm:ml-10 sm:flex">
+                {{-- <div class="hidden space-x-8 sm:-my-px sm:ml-10 sm:flex">
                     <x-nav-link :href="route('joinArtisan')" :active="request()->routeIs('joinArtisan')">
                         {{ __('Eres artesano? Unete!') }}
                     </x-nav-link>
-                </div>
+                </div> --}}
             </div>
 
             @auth
@@ -76,6 +76,17 @@
                                 {{ __('Logout') }}
                             </x-dropdown-link>
                         </form>
+                        @if(Auth::user->is_admin)         
+                            <form method="GET" action="{{ route('adminDash') }}">
+                                @csrf
+
+                                <x-dropdown-link :href="route('adminDash')"
+                                        onclick="event.preventDefault();
+                                                    this.closest('form').submit();">
+                                    {{ __('Panel administrador') }}
+                                </x-dropdown-link>
+                            </form>
+                        @endif
                     </x-slot>
                 </x-dropdown>
             </div>
@@ -153,6 +164,8 @@
                                         this.closest('form').submit();">
                         {{ __('Logout') }}
                     </x-responsive-nav-link>
+                    
+
                 </form>
             </div>
         </div>
