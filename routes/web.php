@@ -1,9 +1,8 @@
 <?php
 
-use App\Http\Controllers\ArtisanController;
-use App\Http\Controllers\AdminController;
-use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Route;
+
+
 
 
 
@@ -33,8 +32,7 @@ Route::get('/product/edit/{id}', [App\Http\Controllers\ProductController::class,
 Route::put('/product/update/{product}', [App\Http\Controllers\ProductController::class, 'update'])->name('updateProduct')->middleware(['auth']);
 
 
-
-Route::get('/artisan/{id}',  [\App\Http\Controllers\ArtisanController::class, 'profile'])->name('artisanProfile');
+Route::get('/artisan/{artisan:slug}',  [\App\Http\Controllers\ArtisanController::class, 'profile'])->name('artisanProfile');
 
 Route::get('/joinArtisan', [App\Http\Controllers\ArtisanController::class, 'joinUs'])->name('joinArtisan');
 
@@ -45,3 +43,5 @@ Route::get('/artisans', [App\Http\Controllers\ArtisanController::class, 'getAll'
 Route::get('/admin', [App\Http\Controllers\AdminController::class, 'adminDash'])->middleware('checkAdmin')->name('adminDash');
 
 
+
+Route::get('/cart', [App\Http\Controllers\CartController::class, 'getProducts'])->name('cart')->middleware(['auth']); 

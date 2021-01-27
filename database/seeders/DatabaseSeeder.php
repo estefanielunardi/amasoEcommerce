@@ -5,6 +5,7 @@ namespace Database\Seeders;
 use Illuminate\Database\Seeder;
 use App\Models\Product;
 use App\Models\Artisan;
+use Illuminate\Support\Str;
 
 class DatabaseSeeder extends Seeder
 {
@@ -14,7 +15,6 @@ class DatabaseSeeder extends Seeder
         Product::factory(5)->create([
             'image'=> 'https://i.ibb.co/1TF2Z1R/840-560.jpg',
             'name'=> 'Pan de Campo',
-            'artisan'=> 'Juan Froilan de Todos los Santos',
             'description'=> 'Pan fresco elaborado con las mejores materias primas',
             'artisan_id' => 1
         ]);
@@ -22,7 +22,6 @@ class DatabaseSeeder extends Seeder
         Product::factory(5)->create([
             'image'=> 'https://i.ibb.co/Hn1CmjH/Mermelada-de-fresa-2.jpg',
             'name'=> 'Mermelada de Fresa',
-            'artisan'=> 'Rosa Maria',
             'description'=> 'Mermelada de fresa elaborada con las mejores materias primas',
             'artisan_id' => 2
         ]);
@@ -30,6 +29,7 @@ class DatabaseSeeder extends Seeder
 
         Artisan::factory(1)->create([
             'name'=>'Juan Froilan de Todos los Santos',
+            'slug'=>Str::slug('Juan Froilan de Todos los Santos','-'),
             'email'=>'juanfroilan@santos', 
             'password'=>'12345678',
             'location'=>'Igualada, Barcelona',
@@ -38,6 +38,7 @@ class DatabaseSeeder extends Seeder
 
         Artisan::factory(1)->create([
             'name'=>'Rosa Maria',
+            'slug'=>Str::slug('Rosa Maria', '-'),
             'email'=>'rosa@maria', 
             'password'=>'12345678',
             'location'=>'Montserrat, Barcelona',

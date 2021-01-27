@@ -8,11 +8,10 @@ use Illuminate\Support\Facades\DB;
 
 class ArtisanController extends Controller
 {
-    public function profile($id) 
-    {
-        $artisan = Artisan::find($id); 
+    public function profile(Artisan $artisan) 
+    {   
         $products = DB::table('products')
-        ->where('artisan_id', $id)
+        ->where('artisan_id', $artisan->id)
         ->paginate(3);
         return view('profileArtisan', compact('products', 'artisan'));   
     }

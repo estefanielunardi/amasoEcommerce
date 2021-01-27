@@ -26,25 +26,10 @@ class CatalogTest extends TestCase
 
     public function test_catalog_view_has_products()
     {
-         $response = $this->get(route('home'));
+        $response = $this->get(route('home'));
 
         $response->assertViewIs("welcome")
         ->assertViewHas("products");
-    }
-
-    public function test_catalog_view_paginate_products()
-    {
-        $this->withoutExceptionHandling();
-
-        Product::factory(6)->create();
-        Product::factory(1)->create(["name"=>"Pan"]);
-
-         $response = $this->get(route('home'));
-
-        $response->assertViewIs("welcome")
-        ->assertViewHas("products")
-        ->assertViewMissing("product");
-
     }
 
 }

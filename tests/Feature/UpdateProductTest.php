@@ -16,7 +16,7 @@ class UpdateProductTest extends TestCase
     {
         $this->withoutExceptionHandling();
         $this->actingAs(User::factory()->create());
-        Artisan::factory()->create();
+       
         $product= Product::factory()->create();
 
         $response = $this->put(route('updateProduct', $product) , $product->toArray());
@@ -28,11 +28,11 @@ class UpdateProductTest extends TestCase
     {
         $this->withoutExceptionHandling();
         $this->actingAs(User::factory()->create());
-        Artisan::factory()->create();
+       
         $product= Product::factory()->create();
         $product->name = 'Mermelada';
     
-        $response = $this->put(route('updateProduct', $product) , $product->toArray());
+        $this->put(route('updateProduct', $product) , $product->toArray());
         $this->assertDatabaseHas('products', ['name'=>'Mermelada']);
     
     }

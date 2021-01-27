@@ -170,6 +170,23 @@ body {
     color: #81A78C;
   }
 
+  .productCart {
+    background: #81A78C;
+    border-radius: 9px;
+  }
+
+  .tuCarritoTitle {
+    position: absolute;
+    font-family: Vollkorn;
+    font-style: normal;
+    font-weight: bold;
+    font-size: 30px;
+    line-height: 123%;
+    display: flex;
+    align-items: center;
+    color: #81A78C;
+  }
+
 /*
 Grouping content
 ================
