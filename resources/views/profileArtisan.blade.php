@@ -84,15 +84,7 @@
                                 @if ($product->stock > $product->sold)
                                     <div class="custom-number-input h-12 w-32 absolute bottom-2 right-1">
                                     <p class="textManifiesto text-base font-bold">Añadir al carrito</p>
-                                        <div class="flex flex-row h-10 w-full rounded-lg relative bg-transparent mt-1">
-                                            <button data-action="decrement" class="counter greenLightBg beigeLight h-full w-20 rounded-l-2xl cursor-pointer outline-none">
-                                                <span class="m-auto text-2xl font-thin">−</span>
-                                            </button>
-                                            <input type="number" class="counter border-transparent outline-none focus:outline-none text-center w-12 greenAmasoBg font-semibold text-md   md:text-basecursor-default flex items-center text-white  outline-none" name="custom-input-number" value="0"></input>
-                                            <button data-action="increment" class="counter  greenLightBg  beigeLight  h-full w-20 rounded-r-2xl cursor-pointer outline-none">
-                                                <span class="m-auto text-2xl font-thin">+</span>
-                                            </button>
-                                        </div>
+                                       <x-counter></x-counter>
                                     </div>
                                 @else
                                     <p class="greenAmaso">Sold Out</p>
@@ -109,6 +101,7 @@
                                     </svg>
                                 </button>
                             </form> 
+
                             <form action="{{ route('deleteProduct', ['id' => $product->id]) }}"  method="POST">
                                 <button type="submit" onclick="return confirm('Oh no, seguro que quieres eliminar este producto?')">
                                     <svg class="absolute left-72 inset-x-10 bottom-0 h-16 ..." width="38" height="38" viewBox="0 0 38 38" fill="none" xmlns="http://www.w3.org/2000/svg">
@@ -118,7 +111,7 @@
                                 </button>
                                 @method('DELETE')
                                 {{ csrf_field() }} 
-                            </form>                           
+                            </form>      -->                      
                         </div>
                         <div class="relative h-32 w-32 ...">                            
                         </div>

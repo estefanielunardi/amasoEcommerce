@@ -52,7 +52,8 @@
                             @if ($product->stock > $product->sold)
                                 <div class="custom-number-input h-12 w-32 absolute bottom-2 right-1">
                                     <p class="textManifiesto text-base font-bold">Añadir al carrito</p>
-                                    <div class="flex flex-row h-10 w-full rounded-lg relative bg-transparent mt-1">
+                                    <x-counter></x-counter>
+                                   <!--  <div class="flex flex-row h-10 w-full rounded-lg relative bg-transparent mt-1">
                                         <button data-action="decrement" class="counter greenLightBg beigeLight h-full w-20 rounded-l-2xl cursor-pointer outline-none">
                                             <span class="m-auto text-2xl font-thin">−</span>
                                         </button>
@@ -61,7 +62,7 @@
                                             <span class="m-auto text-2xl font-thin">+</span>
                                         </button>
                                     </div>
-                                </div>
+                                                      -->           
                                 @else
                                 <p class="greenAmaso">Sold Out</p>
                                 @endif
@@ -75,46 +76,6 @@
         {!! $products->links() !!}
     </div>
 
-    @push('scripts')
-    <script>
-        function decrement(e) {
-            const btn = e.target.parentNode.parentElement.querySelector(
-                'button[data-action="decrement"]'
-            );
-            const target = btn.nextElementSibling;
-            let value = Number(target.value);
-            value--;
-            target.value = value;
-        }
-
-        function increment(e) {
-            const btn = e.target.parentNode.parentElement.querySelector(
-                'button[data-action="decrement"]'
-            );
-            const target = btn.nextElementSibling;
-            let value = Number(target.value);
-            value++;
-            target.value = value;
-        }
-
-        const decrementButtons = document.querySelectorAll(
-            `button[data-action="decrement"]`
-        );
-
-        const incrementButtons = document.querySelectorAll(
-            `button[data-action="increment"]`
-        );
-
-        decrementButtons.forEach(btn => {
-            btn.addEventListener("click", decrement);
-        });
-
-        incrementButtons.forEach(btn => {
-            btn.addEventListener("click", increment);
-        });
-    </script>
-
-    @endpush
-
+    
 
 </x-app-layout>
