@@ -80,6 +80,7 @@
                         </header>
                         <div class="px-4 py-4 md:px-10">
                             <p class="py-4"> {{$product->price}} €</p>
+                            @can('isAuth')
                             <div class="relative">
                                 @if ($product->stock > $product->sold)
                                     <div class="custom-number-input h-12 w-32 absolute bottom-2 right-1">
@@ -90,6 +91,7 @@
                                     <p class="greenAmaso">Sold Out</p>
                                 @endif
                             </div>
+                            @endcan
                         </div>
                         @can('isArtisan')
                         <div class="relative h-0 w-32 ..."> 
