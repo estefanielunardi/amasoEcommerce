@@ -3,7 +3,6 @@
 namespace Tests\Feature\Product;
 
 use Illuminate\Foundation\Testing\RefreshDatabase;
-use Illuminate\Foundation\Testing\WithFaker;
 use Tests\TestCase;
 use App\Models\Product;
 use App\Models\User;
@@ -29,7 +28,7 @@ class UpdateProductTest extends TestCase
     {
         $this->withoutExceptionHandling();
         $this->actingAs(User::factory()->create(['isArtisan'=>true, 'id'=>1]));        
-        $artisan = Artisan::factory()->create(['user_id'=>1, 'id'=>1]);
+        Artisan::factory()->create(['user_id'=>1, 'id'=>1]);
        
         $product= Product::factory()->create(['image'=> null]);
         $product->name = 'Mermelada';
