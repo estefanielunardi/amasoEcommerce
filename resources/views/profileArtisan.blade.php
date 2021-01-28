@@ -10,6 +10,8 @@
                 Editar perfil
             </a>             
         </button>
+        @endcan
+        @can('isArtisan')
         <form method="POST" action="{{ route('deleteProfile', $artisan->slug) }}">
             <x-modal title="¿Eliminar perfil?" submit-label="Eliminar">
                 <x-slot name="trigger">
