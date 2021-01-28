@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use App\Models\Product;
+use App\Models\User;
 
 
 class CartController extends Controller
@@ -17,19 +18,14 @@ class CartController extends Controller
 
   
 
-    public function addProducts(request $request)
+    public function addProducts($id)
         {
-            $product= Product::find($request->product_id);
-            
-            Cart::add(
-                $product->id,
-                $product->name,
-                $product->price,
-                1,
-                array("urlphoto=>$product->urlphoto")
-            );
 
-            return back()->with('success',"$product->name ¡se ha agregado con éxito al carrito!");
+            $product = Product::find($id);
+            $id = auth()->id();
+            $user = User::find($id); 
+            $user->products()->attach($id);
+            
         }
     
 
