@@ -68,11 +68,12 @@ class ArtisanController extends Controller
 
     public function update(Request $request , Artisan $artisan)
     {
-        dd($request); 
+        $image = $this->setImage($request);
+
         $artisan->name = $request->name;
         $artisan->location = $request->location;
         $artisan->description = $request->description;
-        $artisan->image  = $request->file('image')->store('uploads', 'public');
+        $artisan->image  = $image;
         $artisan->user_id =auth()->id();
         $artisan->slug =Str::slug($request->name, '-');
 
