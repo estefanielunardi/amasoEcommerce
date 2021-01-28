@@ -21,10 +21,10 @@ Route::get('/joinArtisan', function () {
     return view('joinArtisan');
 })->name('joinArtisan')->middleware(['auth']);
 
-
-
 require __DIR__.'/auth.php';
 
+
+//---PRODUCT ROUTES
 Route::get('/', [App\Http\Controllers\ProductController::class, 'getProducts'])->name('home');
 
 Route::post('/product/store', [App\Http\Controllers\ProductController::class, 'store'])->name('storeProduct')->middleware(['artisan']);
@@ -35,7 +35,7 @@ Route::get('/product/edit/{id}', [App\Http\Controllers\ProductController::class,
 
 Route::put('/product/update/{product}', [App\Http\Controllers\ProductController::class, 'update'])->name('updateProduct')->middleware(['artisan']);
 
-
+//---ARTISAN ROUTES
 Route::get('/artisan/{artisan:slug}',  [\App\Http\Controllers\ArtisanController::class, 'profile'])->name('artisanProfile');
 
 Route::get('/profile', [App\Http\Controllers\ArtisanController::class, 'seeProfile'])->name('profile')->middleware(['artisan']);
@@ -51,10 +51,14 @@ Route::post('/artisan/store', [App\Http\Controllers\ArtisanController::class, 's
 Route::get('/artisans', [App\Http\Controllers\ArtisanController::class, 'getAll'])->name('artisans');
 
 
+//---ADMIN ROUTES
 Route::get('/admin', [App\Http\Controllers\AdminController::class, 'adminDash'])->middleware('checkAdmin')->name('adminDash');
 
+Route::get('/profiles', [App\Http\Controllers\ArtisanController::class, 'seeArtisanProfile'])->middleware(['checkAdmin'])->name('profileArtisan');
 
 
+
+//---CART ROUTES
 Route::get('/cart', [App\Http\Controllers\CartController::class, 'getProducts'])->name('cart')->middleware(['auth']); 
 
 Route::get('/cart', [App\Http\Controllers\CartController::class, 'getProducts'])->name('cart')->middleware(['auth']); 

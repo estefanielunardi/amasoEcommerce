@@ -75,22 +75,20 @@
                                                 this.closest('form').submit();">
                                 {{ __('Logout') }}
                             </x-dropdown-link>
-                        </form>
-                        @if(Auth::user->is_admin)         
+                        </form>       
                             <form method="GET" action="{{ route('adminDash') }}">
                                 @csrf
-
                                 <x-dropdown-link :href="route('adminDash')"
                                         onclick="event.preventDefault();
                                                     this.closest('form').submit();">
                                     {{ __('Panel administrador') }}
                                 </x-dropdown-link>
                             </form>
-                        @endif
                     </x-slot>
                 </x-dropdown>
             </div>
             @endauth
+
 
             <!-- Hamburger -->
             <div class="-mr-2 flex items-center sm:hidden">
