@@ -4,12 +4,6 @@ use Illuminate\Support\Facades\Route;
 
 
 
-Route::get('/product', function () {
-    return view('product');
-})->name('product'); 
-
-
-
 Route::get('/dashboard', function () {
     return view('dashboard');
 })->middleware(['auth'])->name('dashboard'); 
