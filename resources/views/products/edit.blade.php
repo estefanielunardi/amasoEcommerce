@@ -4,7 +4,7 @@
     </section>
     <section class="container md:container md:mx-auto p-8 flex justify-center">
     <div class="box-border p-4 bg-white h-128 w-96">
-        <form method="POST" action="{{ route('updateProduct' , $product) }}">
+        <form method="POST" action="{{ route('updateProduct' , $product) }}" enctype="multipart/form-data">
         @method('PUT')
                 @csrf
             <div class="flex flex-col my-4 text-xl greenAmaso">

@@ -29,15 +29,8 @@ class ArtisanController extends Controller
 
     public function store(Request $request){
 
-        $image = '';
-        if($request->image)
-        {
-            $image = $request->file('image')->store('uploads', 'public');
-        } 
-        else
-        {
-            $image = 'uploads/default-product.jpeg';
-        }    
+        $image = $this->setImage($request);
+
         $newArtisan = Artisan::create([
             'name' => $request->name,
             'location' =>$request->location,
@@ -48,10 +41,8 @@ class ArtisanController extends Controller
             ]);
             
             $newArtisan->save(); 
-            
-            $artisan = Artisan::getArtisan();
 
-        return redirect('/artisan/' .  $artisan->slug);
+        return redirect('/artisan/' .  $newArtisan ->slug);
     }
 
     public function getAll(){
@@ -71,12 +62,26 @@ class ArtisanController extends Controller
 
     public function edit()
     {
-       $artisan = Artisan::getArtisan();
-
+        $artisan = Artisan::getArtisan();       
         return view('editArtisan', compact('artisan'));
     }
 
     public function update(Request $request , Artisan $artisan)
+    {
+        dd($request); 
+        $artisan->name = $request->name;
+        $artisan->location = $request->location;
+        $artisan->description = $request->description;
+        $artisan->image  = $request->file('image')->store('uploads', 'public');
+        $artisan->user_id =auth()->id();
+        $artisan->slug =Str::slug($request->name, '-');
+
+        $artisan->save();
+            
+        return redirect('/artisan/' . $artisan->slug);
+    }
+
+    private function setImage($request)
     {
         $image = '';
         if($request->image)
@@ -86,17 +91,8 @@ class ArtisanController extends Controller
         else
         {
             $image = 'uploads/default-product.jpeg';
-        }    
-        $artisan->name = $request->name;
-        $artisan->location = $request->location;
-        $artisan->description = $request->description;
-        $artisan->image  = $image;
-        $artisan->user_id =auth()->id();
-        $artisan->slug =Str::slug($request->name, '-');
-
-        $artisan->save();
-            
-        return redirect('/artisan/' . $artisan->slug);
+        }  
+        return $image;  
     }
 
 }

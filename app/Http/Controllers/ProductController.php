@@ -54,10 +54,11 @@ class ProductController extends Controller
     }
 
     public function update(Request $request , Product $product)
-    {
+    { 
         $artisan = Artisan::getArtisan();
-        
-        $product->image = $request->image;
+        $image = $this->setImage($request);
+
+        $product->image = $image;
         $product->name = $request->name;
         $product->description = $request->description;
         $product->price = $request->price;
@@ -82,4 +83,5 @@ class ProductController extends Controller
         }  
         return $image;  
     }
+
 }
