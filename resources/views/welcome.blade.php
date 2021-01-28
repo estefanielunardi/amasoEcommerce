@@ -51,22 +51,20 @@
                         <div class="relative">
                             @if ($product->stock > $product->sold)
                                 <div class="custom-number-input h-12 w-32 absolute bottom-2 right-1">
-                                    <p class="textManifiesto text-base font-bold">Añadir al carrito</p>
-                                
-                                   <!-- <div class="flex flex-row h-10 w-full rounded-lg relative bg-transparent mt-1">
+                                    <p class="textManifiesto text-base font-bold">Añadir al carrito</p>                                
+                                   <div class="flex flex-row h-10 w-full rounded-lg relative bg-transparent mt-1">
                                         <button data-action="decrement" class="counter greenLightBg beigeLight h-full w-20 rounded-l-2xl cursor-pointer outline-none">
-                                            <span class="m-auto text-2xl font-thin">−</span>
+                                        <span class="m-auto text-2xl font-thin">
+                                                <a href="{{ route('removeProductCart' , $product->id) }}">-</a>
+                                            </span>
                                         </button>
                                         <input type="number" class="counter border-transparent outline-none focus:outline-none text-center w-12 greenAmasoBg font-semibold text-md   md:text-basecursor-default flex items-center text-white  outline-none" name="custom-input-number" value="0"></input>
-                                        <button data-action="increment" action="{{route('cartAddProduct')}}" class="counter  greenLightBg  beigeLight  h-full w-20 rounded-r-2xl cursor-pointer outline-none">
-                                            <span class="m-auto text-2xl font-thin">+</span>
+                                        <button data-action="increment" class="counter  greenLightBg  beigeLight  h-full w-20 rounded-r-2xl cursor-pointer outline-none">
+                                            <span class="m-auto text-2xl font-thin">
+                                                <a href="{{ route('cartAddProduct' , $product->id) }}">+</a>
+                                            </span>
                                         </button>
-                                    </div>       -->
-                                <form method="POST" action="{{route('cartAddProduct')}}">
-                                    <button type="submit" class=" beigeAmasoBg font-serif text-white text-2xl mt-4 px-12 py-4  rounded-xl shadow-md">{{ __('Publicar Producto') }}</button>
-                                </form>
-
-
+                                    </div>      
                                 @else
                                 <p class="greenAmaso">Sold Out</p>
                                 @endif
