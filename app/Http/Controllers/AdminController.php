@@ -19,10 +19,6 @@ class AdminController extends Controller
 
     public function seeArtisanProfile(Artisan $artisan){
 
-        
-        // $request_id = $request->id;
-        // $artisan = DB::table('artisans')->where('id', $id);
-        
         $products = DB::table('products')
         ->where('artisan_id', $artisan->id)
         ->paginate(3);

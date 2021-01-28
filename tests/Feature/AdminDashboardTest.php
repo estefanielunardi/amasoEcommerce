@@ -42,7 +42,7 @@ class AdminDashboardTest extends TestCase
         $artisan = Artisan::factory()->create(['user_id'=>1, 'id'=>1]);
 
         $response = $this->actingAs($admin)
-                ->get('profiles/' . $artisan->slug);
+                ->get('artisan/' . $artisan->slug);
 
         $response->assertStatus(200)
                 ->assertViewIs('profileArtisan')
