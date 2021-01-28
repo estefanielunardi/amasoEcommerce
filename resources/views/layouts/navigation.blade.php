@@ -4,7 +4,7 @@
         <div class="flex justify-around h-16">
             <div class="flex justify-between">
                 <!-- Logo -->
-                <div class="flex items-center ml-6 mr-20">
+                <div class="flex items-center ">
                     <a href="{{ route('home') }}">
                         <x-application-logo class="block h-10 w-auto fill-current text-gray-600" />
                     </a>
@@ -52,7 +52,7 @@
 
             <!-- Settings Dropdown -->
             <div class="hidden sm:flex sm:items-center sm:ml-6">
-                <x-dropdown align="right" width="48">
+                <x-dropdown >
                     <x-slot name="trigger">
                         <button class="flex items-center text-sm font-medium beigeLight hover:text-gray-700 hover:border-gray-300 focus:outline-none focus:text-gray-700 focus:border-gray-300 transition duration-150 ease-in-out">
                             <div>{{ Auth::user()->name }}</div>

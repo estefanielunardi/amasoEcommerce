@@ -13,7 +13,7 @@ class AdminController extends Controller
 {
     public function adminDash(){
 
-        $artisanList = User::where('isArtisan', true)->get();
+        $artisanList = DB::table('artisans')->get();
         return view('adminDashboard', ['artisanList' => $artisanList]);
     }
 

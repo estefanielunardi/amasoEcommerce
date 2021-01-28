@@ -19,6 +19,7 @@ class Artisan
     {
         if(Auth::check() && Auth::user()->isArtisan){
             return $next($request);
+
         }
 
         return response()->json('Not artisan user', 401);
