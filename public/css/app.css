@@ -75,8 +75,11 @@ body {
 .beigeAmasoBg{
   background-color:#DAB162;
 }
+.beigeAmasoBg:hover{
+  background-color:#BE9A56;
+}
 .beigeLightBg{
-  background-color:#FFFFFF;
+  background-color:#EEE5CF;
 }
 .greenAmaso{
   color: #336147;
@@ -88,7 +91,7 @@ body {
   color:#DAB162;
 }
 .beigeLight{
-  color:#FFFFFF;
+  color:#EEE5CF;
 }
 .counter{
   opacity: 0.6;
