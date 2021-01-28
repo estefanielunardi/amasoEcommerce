@@ -64,7 +64,7 @@
                     <article class="overflow-hidden rounded-lg">
                  
                         <div class="relative">
-                            <img alt="Placeholder" class="w-full" src="{{ asset('storage') .'/'.$product->image}}" class="w-16">
+                            <img alt="Placeholder" src="{{ asset('storage') .'/'.$product->image}}" class="w-full">
                         </div>
 
                         <header class="font-bold text-xl mb-2">
