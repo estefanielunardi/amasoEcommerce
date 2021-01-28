@@ -1,52 +1,48 @@
 <x-app-layout>
-<H1 class="tuCarritoTitle">Tu Carrito</H1>
+<h1 class="tuCarritoTitle">Tu Carrito</h1>
     <section>
         <div>
-            @foreach ($products as $product)
-            <div class="my-1 px-1 w-full md:w-1/2 lg:my-4 lg:px-4 lg:w-1/3 productCart" >
-                <article class="overflow-hidden rounded-lg">
-
-                    <div class="relative">
-                        <img alt="Placeholder" class="w-full" src="{{ asset('storage') .'/'.$product->image}}" class="w-16">
-                    </div>
-
-                    <header class="font-bold text-xl mb-2">
-                        <div class="px-6 py-4">
-                            {{$product->name}}
+            <div class="flex flex-col p-10 justify-center">
+                <div class="flex flex-col w-full mt-10">
+                    <div class="greenAmaso w-full flex flex-row justify-end">
+                        <p class="p-4">Ud.</p>
+                        <p class="p-4">Precio</p>
+                    </div>    
+                    @foreach ($products as $product)    
+                    <div class="flex flex-row" >
+                    <form>
+                        <x-modal title="¿Eliminar producto?" submit-label="Eliminar">
+                            <x-slot name="trigger">
+                                <button type="button" @click="on = true" class="text-l greenAmaso mt-2 px-4 py-8 rounded-xl">
+                                    X
+                                </button>
+                            </x-slot>
+                            ¿Está seguro de que desea eliminar este producto del carrito?
+                        </x-modal>
+                    </form>
+                        <div class="flex flex-row justify-center m-2 p-4 greenLightBg text-white rounded-md w-full justify-between">
+                            <div class="flex flex-row justify-start">
+                                <img class="w-16 rounded"src="{{ asset('storage') .'/'. $product->image}}"/>    
+                                <p class="p-4">{{$product->name}}</p>  
+                            </div>
+                            <div class="flex flex-row justify-end">    
+                                <p class="p-4">{{$product->price}}</p>
+                                <p class="p-4">{{$product->price}} €</p>                       
+                            </div>
                         </div>
-                        <div class="px-6 py-4 text-sm">
-                            <a href="/artisan/{{$product->artisans->slug}}">Productor: {{$product->artisans->name}} </a>
-                        </div>
-                        <div class="ml-2 text-grey-darker text-base">
-                            {{$product->description}}
-                        </div>
-                    </header>
-                    <div class="px-4 py-4 md:px-10">
-                        <p class="py-4"> {{$product->price}} €</p>
-                        <div class="relative">
-                            @if ($product->stock < $product->sold)
-                                <div class="custom-number-input h-12 w-32 absolute bottom-2 right-1">
-                                    <p class="textManifiesto text-base font-bold">Añadir al carrito</p>
-                                    <div class="flex flex-row h-10 w-full rounded-lg relative bg-transparent mt-1">
-                                        <button data-action="decrement" class="counter greenLightBg beigeLight h-full w-20 rounded-l-2xl cursor-pointer outline-none">
-                                            <span class="m-auto text-2xl font-thin">−</span>
-                                        </button>
-                                        <input type="number" class="counter border-transparent outline-none focus:outline-none text-center w-12 greenAmasoBg font-semibold text-md   md:text-basecursor-default flex items-center text-white  outline-none" name="custom-input-number" value="0"></input>
-                                        <button data-action="increment" class="counter  greenLightBg  beigeLight  h-full w-20 rounded-r-2xl cursor-pointer outline-none">
-                                            <span class="m-auto text-2xl font-thin">+</span>
-                                        </button>
-                                    </div>
-                                </div>
-                                @else
-                                <p class="greenAmaso">Sold Out</p>
-                                @endif
-                        </div>
-                    </div>
-                </article>
-            </div>
-            @endforeach
-
+                    </div>            
+                    @endforeach
+                </div>
             {!! $products->links() !!}
+            </div>
+            <div class="flex justify-end p-4 pr-24"">
+                <h2 class="greenAmaso text-lg font-bold">Total: 20,00 €</h2>
+            </div>
+            <form>
+                <div class="flex justify-end p-4 pr-10">
+                    <button type="submit" class=" beigeAmasoBg font-serif text-white text-2xl mt-4 px-12 py-4  rounded-xl shadow-md">Tramitar Pedido</button>
+                </div>
+            </form>
         </div>
     </section>
 
