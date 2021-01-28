@@ -91,7 +91,7 @@ class ArtisanController extends Controller
         } 
         else
         {
-            $image = 'uploads/default-product.jpeg';
+            $image = 'uploads/amaso.png';
         }  
         return $image;  
     }
