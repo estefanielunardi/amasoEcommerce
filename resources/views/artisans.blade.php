@@ -6,7 +6,7 @@
         <div class="flex flex-wrap -mx-1 lg:-mx-4">
             @foreach ($artisans as $artisan)           
                     <div class="relative w-60 p-4">
-                        <img alt="Placeholder" class="w-full rounded-2xl" src="{{$artisan->image}}"/>
+                        <img alt="Placeholder" class="w-full rounded-2xl" src="{{ asset('storage') .'/'. $artisan->image}}"/>
                         <a href="/artisan/{{$artisan->slug}}"> 
                             <p class="textManifiesto p-2">{{$artisan->name}}</p>
                         </a>
