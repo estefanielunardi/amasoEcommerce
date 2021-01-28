@@ -54,7 +54,7 @@ Route::get('/artisans', [App\Http\Controllers\ArtisanController::class, 'getAll'
 //---ADMIN ROUTES
 Route::get('/admin', [App\Http\Controllers\AdminController::class, 'adminDash'])->middleware('checkAdmin')->name('adminDash');
 
-Route::get('/profiles', [App\Http\Controllers\ArtisanController::class, 'seeArtisanProfile'])->middleware(['checkAdmin'])->name('profileArtisan');
+Route::get('/profiles/{artisan:slug}', [App\Http\Controllers\AdminController::class, 'seeArtisanProfile'])->middleware(['checkAdmin'])->name('profileArtisan');
 
 
 

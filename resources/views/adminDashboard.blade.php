@@ -14,7 +14,7 @@
             <div class="flex flex-col w-full mt-10 items-center">
                 @foreach ($artisanList as $artisan)
                     <div class="flex flex-row justify-center m-2 p-4 greenLightBg text-white rounded-md w-5/6 justify-between">
-                            <p class="ml-4">{{$artisan->name}}</p> <a href="{{route('profile', $artisan->id)}}" class="greenAmaso mr-12 ">ver perfil</a> 
+                            <p class="ml-4">{{$artisan->name}}</p> <a href="/artisan/{{$artisan->slug}}" class="greenAmaso mr-12 ">ver perfil</a> 
                             
                     </div>
                 @endforeach
