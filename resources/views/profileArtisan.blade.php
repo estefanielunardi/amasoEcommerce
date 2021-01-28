@@ -23,7 +23,7 @@
         @endcan
             <article class="flex justify-start">
                 <div>
-                    <img class=" max-w-xs w-174 rounded-xl" src="{{$artisan->image}}" alt="foto de perfil">
+                    <img class=" max-w-xs w-174 rounded-xl" src="{{ asset('storage') .'/'. $artisan->image}}" alt="foto de perfil">
                 </div>
             </article>
             <article class= "space-y-3">
@@ -69,7 +69,7 @@
                     <article class="overflow-hidden rounded-lg">
                  
                         <div class="relative">
-                            <img alt="Placeholder" class="w-full" src="{{ asset('storage') .'/'.$product->image}}" class="w-16">
+                            <img alt="Placeholder" src="{{ asset('storage') .'/'.$product->image}}" class="w-full">
                         </div>
 
                         <header class="font-bold text-xl mb-2">
@@ -85,24 +85,18 @@
                         </header>
                         <div class="px-4 py-4 md:px-10">
                             <p class="py-4"> {{$product->price}} €</p>
+                            @can('isAuth')
                             <div class="relative">
-                                @if ($product->stock < $product->sold)
+                                @if ($product->stock > $product->sold)
                                     <div class="custom-number-input h-12 w-32 absolute bottom-2 right-1">
                                     <p class="textManifiesto text-base font-bold">Añadir al carrito</p>
-                                        <div class="flex flex-row h-10 w-full rounded-lg relative bg-transparent mt-1">
-                                            <button data-action="decrement" class="counter greenLightBg beigeLight h-full w-20 rounded-l-2xl cursor-pointer outline-none">
-                                                <span class="m-auto text-2xl font-thin">−</span>
-                                            </button>
-                                            <input type="number" class="counter border-transparent outline-none focus:outline-none text-center w-12 greenAmasoBg font-semibold text-md   md:text-basecursor-default flex items-center text-white  outline-none" name="custom-input-number" value="0"></input>
-                                            <button data-action="increment" class="counter  greenLightBg  beigeLight  h-full w-20 rounded-r-2xl cursor-pointer outline-none">
-                                                <span class="m-auto text-2xl font-thin">+</span>
-                                            </button>
-                                        </div>
+                                       <x-counter></x-counter>
                                     </div>
                                 @else
                                     <p class="greenAmaso">Sold Out</p>
                                 @endif
                             </div>
+                            @endcan
                         </div>
                         @can('isArtisan')
                         <div class="relative h-0 w-32 ..."> 

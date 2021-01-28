@@ -18,17 +18,17 @@ class ProductController extends Controller
 
     public function store(Request $request)
     {
-        $id = auth()->id();
-        $artisan = DB::table('artisans')->where('user_id', $id)->first();
+        $artisan = Artisan::getArtisan();
+
+        $image = $this->setImage($request);
 
         $product= Product::create([
             'name'=>$request->name,
-            // 'image'=>$request->file('image')->store('uploads', 'public'),
-            'image'=> 'imagen',
+            'image'=> $image,
             'description'=>$request->description,
             'price'=>$request->price,
             'stock'=>$request->stock,
-            'sold'=>0,
+            'sold'=> 0,
             'artisan_id'=>$artisan->id,
         ]);
 
@@ -38,9 +38,8 @@ class ProductController extends Controller
     }
 
     public function destroy($id)
-    {
-        $artisanId = auth()->id();
-        $artisan = DB::table('artisans')->where('user_id', $artisanId)->first();
+    {   
+        $artisan = Artisan::getArtisan();
 
         $product= Product::find($id);
         $product->delete();
@@ -55,12 +54,12 @@ class ProductController extends Controller
     }
 
     public function update(Request $request , Product $product)
-    {
-        $id = auth()->id();
-        $artisan = DB::table('artisans')->where('user_id', $id)->first();
+    { 
+        $artisan = Artisan::getArtisan();
+        $image = $this->setImage($request);
 
+        $product->image = $image;
         $product->name = $request->name;
-        $product->image = $request->image;
         $product->description = $request->description;
         $product->price = $request->price;
         $product->stock = $request->stock;
@@ -70,4 +69,19 @@ class ProductController extends Controller
 
         return redirect('/artisan/' .  $artisan->slug);
     }
+
+    private function setImage($request)
+    {
+        $image = '';
+        if($request->image)
+        {
+             $image = $request->file('image')->store('uploads', 'public');
+        } 
+        else
+        {
+             $image = 'uploads/amaso.png';
+        }  
+        return $image;  
+    }
+
 }

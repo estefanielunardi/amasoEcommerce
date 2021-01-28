@@ -1,9 +1,8 @@
 <?php
 
-namespace Tests\Feature;
+namespace Tests\Feature\Artisan;
 
 use Illuminate\Foundation\Testing\RefreshDatabase;
-use Illuminate\Foundation\Testing\WithFaker;
 use Tests\TestCase;
 use App\Models\Artisan;
 use App\Models\User;
@@ -15,7 +14,7 @@ class UpdateArtisanTest extends TestCase
     {
         $this->withoutExceptionHandling();
         $this->actingAs(User::factory()->create(['isArtisan'=>true, 'id'=>1]));        
-        $artisan = Artisan::factory()->create(['user_id'=>1, 'id'=>1, 'name'=>'Maria']);
+        $artisan = Artisan::factory()->create(['user_id'=>1, 'id'=>1, 'name'=>'Maria', 'image'=>null]);
         $artisan->name = 'Mary';
                
         $response = $this->put(route('updateArtisan', $artisan) , $artisan->toArray());
@@ -27,10 +26,10 @@ class UpdateArtisanTest extends TestCase
     {
         $this->withoutExceptionHandling();
         $this->actingAs(User::factory()->create(['isArtisan'=>true, 'id'=>1]));        
-        $artisan = Artisan::factory()->create(['user_id'=>1, 'id'=>1, 'name'=>'Maria']);
+        $artisan = Artisan::factory()->create(['user_id'=>1, 'id'=>1, 'name'=>'Maria', 'image'=>null]);
         $artisan->name = 'Mary';
     
-        $response = $this->put(route('updateArtisan', $artisan) , $artisan->toArray());
+        $this->put(route('updateArtisan', $artisan) , $artisan->toArray());
         $this->assertDatabaseHas('artisans', ['name'=>'Mary']);
     
     }
