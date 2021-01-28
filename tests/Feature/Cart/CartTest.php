@@ -5,43 +5,39 @@ namespace Tests\Feature\Cart;
 use Illuminate\Foundation\Testing\RefreshDatabase;
 use Illuminate\Foundation\Testing\WithFaker;
 use Tests\TestCase;
+use App\Models\User;
 
 class CartTest extends TestCase
 {
     use RefreshDatabase;
 
-    public function testBasicTest()
+    
+    public function testCartRoute()
     {
-        $this->assertTrue(true);
+        $this->actingAs(User::factory()->create());
+        $response = $this->get(route('cart'));
+
+        $response->assertStatus(200);
     }
-    // public function testCartRoute()
-    // {
-    //     $response = $this->get(route('cart'));
 
-    //     $response->assertStatus(200);
-    // }
+    public function testReturnCartView()
+    {
+        $this->actingAs(User::factory()->create());
+        
+        $response = $this->get(route('cart'));
 
-    // public function testReturnCartView()
-    // {
-    //     $response = $this->get(route('cart'));
+        $response->assertViewIs("cart");
+    }
 
-    //     $response->assertViewIs("cart");
-    // }
+    public function testCartViewHasProducts()
+    {
+        $this->withoutExceptionHandling();
+        $this->actingAs(User::factory()->create());
+        $response =  $this->get(route('cart'));
 
-    // public function testCartViewHasProducts()
-    // {
-    //     $this->withoutExceptionHandling();
-    //     $response =  $this->get(route('cart'));
-
-    //     $response->assertViewIs("cart")
-    //     ->assertViewHas("products");
-    // }
-
-   // public function testCanSelectProductFromCatalogue()
-
-
-   // public function testAuthUserCanAddProductsToCart()
-   
+        $response->assertViewIs("cart")
+        ->assertViewHas("products");
+    }   
 
 }
 
