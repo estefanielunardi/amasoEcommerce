@@ -20,6 +20,8 @@ class CreateProductUserTable extends Migration
             $table->foreign('user_id')->references('id')->on('users');
             $table->unsignedBigInteger('product_id');
             $table->foreign('product_id')->references('id')->on('products');
+            $table->integer('amount')->nullable()->default(0);
+            $table->integer('buyed')->default(false);
         });
     }
 
