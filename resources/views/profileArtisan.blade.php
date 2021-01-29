@@ -11,8 +11,7 @@
             </a>             
         </button>
         @endcan
-        @can('isArtisan', 'is_admin')
-        
+        @can('isArtisan')    
         <form method="POST" action="{{ route('deleteProfile', $artisan->slug) }}">
             <x-modal title="¿Eliminar perfil?" submit-label="Eliminar">
                 <x-slot name="trigger">
@@ -24,7 +23,18 @@
             {{ csrf_field() }}
         </form>
         @endcan
-      
+        @can('isAdmin')
+        <form method="POST" action="{{ route('deleteProfile', $artisan->slug) }}">
+            <x-modal title="¿Eliminar perfil?" submit-label="Eliminar">
+                <x-slot name="trigger">
+                    <button type="button" @click="on = true" class= "greenLightBg flex flex-row align-start text-sm text-white mt-4 px-6 py-2  rounded-xl shadow-md">Eliminar Perfil</button>
+                </x-slot>
+                ¿Está seguro de que desea eliminar su perfil?
+            </x-modal>
+            @method('DELETE')
+            {{ csrf_field() }}
+        </form>
+        @endcan
             <article class="flex justify-start">
                 <div>
                     <img class=" max-w-xs w-174 rounded-xl" src="{{ asset('storage') .'/'. $artisan->image}}" alt="foto de perfil">

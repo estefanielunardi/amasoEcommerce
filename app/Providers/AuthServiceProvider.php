@@ -33,7 +33,7 @@ class AuthServiceProvider extends ServiceProvider
             return $user->isArtisan == false;
         }); 
 
-        Gate::define('is_admin', function($user) {
+        Gate::define('isAdmin', function($user) {
             return $user->is_admin == true; 
         });
     }
