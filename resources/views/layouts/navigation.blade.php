@@ -11,11 +11,14 @@
                 </div>
 
                 <!-- Navigation Links -->
-                {{-- <div class="hidden space-x-8 sm:-my-px sm:ml-10 sm:flex ">
-                    <x-nav-link :href="route('adminDash')" :active="request()->routeIs('adminDash')">
+                @can('isAdmin')
+                <div class="hidden space-x-8 sm:-my-px sm:ml-10 sm:flex ">
+                    <x-nav-link :href="route('dashboard')" :active="request()->routeIs('dashboard')">
                         {{ __('Panel de administrador') }}
                     </x-nav-link>
-                </div> --}}
+                </div>
+                @endcan
+                @guest
                 <div class="hidden space-x-8 sm:-my-px sm:ml-10 sm:flex">
                     <x-nav-link  :href="route('register')" :active="request()->routeIs('register')">
                         {{ __('Register') }}
@@ -26,11 +29,14 @@
                         {{ __('Login') }}
                     </x-nav-link>
                 </div>
+                @endguest
+                @can('isArtisan')
                 <div class="hidden space-x-8 sm:-my-px sm:ml-10 sm:flex">
                     <x-nav-link :href="route('profile')" :active="request()->routeIs('profile')">
                         {{ __('Mi perfil') }}
                     </x-nav-link>
                 </div>
+                @endcan
                 <div class="hidden space-x-8 sm:-my-px sm:ml-10 sm:flex">
                     <x-nav-link :href="route('artisans')" :active="request()->routeIs('artisans')">
                         {{ __('Artesanos') }}
@@ -41,11 +47,13 @@
                         {{ __('Mi compra') }}
                     </x-nav-link>
                 </div>
-                {{-- <div class="hidden space-x-8 sm:-my-px sm:ml-10 sm:flex">
+                @can('isAuth')
+                <div class="hidden space-x-8 sm:-my-px sm:ml-10 sm:flex">
                     <x-nav-link :href="route('joinArtisan')" :active="request()->routeIs('joinArtisan')">
                         {{ __('Eres artesano? Unete!') }}
                     </x-nav-link>
-                </div> --}}
+                </div>
+                @endcan
             </div>
 
             @auth

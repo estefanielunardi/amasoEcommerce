@@ -1,20 +1,17 @@
 <x-app-layout>
-    <img class="w-full" src="./image/cover.jpeg">
+    <header class="static">
+        <img class="w-full h-64 object-cover lg:h-full" src="./image/cover2.jpg">
+        <section class="absolute top-24 left-10 w-52 lg:w-96 lg:top-52 lg:left-52">
+            <p class="heroTitle text-2xl pb-5 lg:text-5xl">
+            Nuestros alimentos tienen orígenes cercanos a tí.
+            </p>
+            <p class="heroText text-xs lg:text-xl">
+            La relación con nuestros proveedores está basada en la vertiente humana por encima de la comercial.
+            </p>
+        </section>
 
-    <div class="md:container md:mx-auto p-8 flex justify-center text-8l font-bold">
-        <div class="textManifiesto">
-            <h3 class="textManifiesto text-center font-bold">MANIFIESTO
-                <br>
-                Nuestros alimentos tienen orígenes cercanos, la relación con nuestros proveedores está basada en la vertiente humana por encima de la comercial.
-                <br>
-                Ponemos el foco en el origen de los alimentos, siempre respetando su temporalidad.
-                Tenemos una relación con nuestros proveedores que va más allá de la comercial.
-                <br>
-                Creamos valor económico, medioambiental y social; contribuimos al bienestar y al progreso de las generaciones presentes y futuras.
-            </h3>
-        </div>
+    </header>
 
-    </div>
 
     <div class="hidden space-x-8 sm:-my-px sm:ml-10 sm:flex">
         <x-nav-link :href="route('cart')" :active="request()->routeIs('cart')">
@@ -54,7 +51,7 @@
                                     <x-counter></x-counter>
                                 </div>
                             @else 
-                                <p class="text-lg beigeAmasoBg leading-4">Producto agotado</p>
+                                <p class="text-lg beigeAmasoBg p-1 mt-4 leading-4">Producto agotado</p>
                             @endif
                         </div>
                     </section>
