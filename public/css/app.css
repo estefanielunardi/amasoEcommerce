@@ -116,6 +116,26 @@ body {
   color: #336147;
 }
 
+.heroTitle {
+  font-family: Vollkorn;
+  font-weight: 800;
+  /* font-size: 30px; */
+  line-height: 28px;
+  text-align: center;
+  letter-spacing: -0.02em;
+  color: #336147;
+}
+
+.heroText {
+  font-family: Exo;
+  font-style: normal;
+  font-weight: normal;
+  /* font-size: 16px; */
+  line-height: 16px;
+  text-align: center;
+  color: #336147;
+}
+
 
 .title {
   font-family: 'Vollkorn', serif;
