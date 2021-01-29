@@ -47,7 +47,7 @@ class CartController extends Controller
             }
 
 
-            return redirect('/');            
+            return back();            
         }
     
     public function removeProduct($product_id)
@@ -77,7 +77,7 @@ class CartController extends Controller
             }
 
         }    
-        return redirect('/'); 
+        return back();
     }
 
 }
