@@ -13,7 +13,7 @@
                 <!-- Navigation Links -->
                 @can('isAdmin')
                 <div class="hidden space-x-8 sm:-my-px sm:ml-10 sm:flex ">
-                    <x-nav-link :href="route('dashboard')" :active="request()->routeIs('dashboard')">
+                    <x-nav-link :href="route('adminDash')" :active="request()->routeIs('adminDash')">
                         {{ __('Panel de administrador') }}
                     </x-nav-link>
                 </div>
@@ -83,15 +83,17 @@
                                                 this.closest('form').submit();">
                                 {{ __('Logout') }}
                             </x-dropdown-link>
-                        </form>       
-                            <form method="GET" action="{{ route('adminDash') }}">
-                                @csrf
-                                <x-dropdown-link :href="route('adminDash')"
-                                        onclick="event.preventDefault();
-                                                    this.closest('form').submit();">
-                                    {{ __('Panel administrador') }}
-                                </x-dropdown-link>
-                            </form>
+                        </form>
+                        @can('isAdmin')    
+                        <form method="GET" action="{{ route('adminDash') }}">
+                            @csrf
+                            <x-dropdown-link :href="route('adminDash')"
+                                    onclick="event.preventDefault();
+                                                this.closest('form').submit();">
+                                {{ __('Panel administrador') }}
+                            </x-dropdown-link>
+                        </form>
+                        @endcan
                     </x-slot>
                 </x-dropdown>
             </div>
