@@ -30,14 +30,14 @@ class Artisan extends Model
     public static function getArtisan()
     {
         $user_id = auth()->id();
-        
         $artisan_id = DB::table('artisans')->where('user_id', $user_id)->value('id');
-        dd($artisan_id);
-        $id = $artisan_id[0]->id;
-        
-        $artisan = Artisan::find($id);
+        $artisan = Artisan::find($artisan_id);
         return $artisan;
-
     }
+        
+        
+        
+        
+
 
 }
