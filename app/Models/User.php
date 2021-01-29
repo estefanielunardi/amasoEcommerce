@@ -78,17 +78,11 @@ class User extends Authenticatable
         if(is_null($userProduct))
         {
             $this->products()->attach($product_id);
-            DB::table('product_user')
-                    ->where('user_id',$user_id)
-                    ->where('product_id',$product_id)
-                    ->increment('amount', 1);
+            $this->incrementProductAmount($product_id,$user_id);
         }
         else
         {
-            DB::table('product_user')
-                    ->where('user_id',$user_id)
-                    ->where('product_id',$product_id)
-                    ->increment('amount', 1);
+            $this->incrementProductAmount($product_id,$user_id);
         }
     }
 
@@ -98,25 +92,42 @@ class User extends Authenticatable
 
         if($userProduct)
         {
-            $amount = DB::table('product_user')
-                        ->where('user_id',$user_id)
-                        ->where('product_id',$product_id)
-                        ->get('amount');
-    
-            $num = $amount[0]->amount;
-            if ($num == 1)
+            $amount = $this->getProductAmount($product_id,$user_id);    
+            
+            if ($amount == 1)
             {
                 $this->products()->detach($product_id);
             }
             else
             {
-                DB::table('product_user')
-                        ->where('user_id',$user_id)
-                        ->where('product_id',$product_id)
-                        ->decrement('amount', 1);
+                $this->decrementProductAmount($product_id,$user_id);
             }
-
         }  
+    }
+
+    public function incrementProductAmount($product_id,$user_id)
+    {
+        DB::table('product_user')
+                    ->where('user_id',$user_id)
+                    ->where('product_id',$product_id)
+                    ->increment('amount', 1);
+    } 
+
+    public function decrementProductAmount($product_id,$user_id)
+    {
+        DB::table('product_user')
+            ->where('user_id',$user_id)
+            ->where('product_id',$product_id)
+            ->decrement('amount', 1);
+    }
+
+    private function getProductAmount($product_id,$user_id)
+    {
+        $amount = DB::table('product_user')
+                    ->where('user_id',$user_id)
+                    ->where('product_id',$product_id)
+                    ->value('amount');
+        return $amount;
     }
 
 }
