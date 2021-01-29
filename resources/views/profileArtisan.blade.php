@@ -86,7 +86,7 @@
                                 </p>
                             </div>
                             <div class="block py-2 flex items-center justify-around">
-                            
+                            @cannot('isArtisan')
                                 @if ($product->stock > $product->sold)
                                     <p class="inline-block productPrice">{{$product->price}} €</p>
                                     <div class="grid justify-items-center">
@@ -96,7 +96,7 @@
                                 @else 
                                     <p class="text-lg beigeAmasoBg p-1 mt-4 leading-4">Producto agotado</p>
                                 @endif
-                           
+                            @endcannot
                             @can('isArtisan')
                                 <form action="{{ route('editProduct', ['id' => $product->id]) }}" method="get">
                                     <button type="submit">                      
