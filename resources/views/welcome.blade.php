@@ -51,19 +51,22 @@
                             <p class="inline-block productPrice">{{$product->price}} €</p>
                             <div class="grid justify-items-center">
                                 <p class="text-sm">Añadir al carrito:</p>
+
                                 <div class="flex flex-row h-10 w-full rounded-lg relative bg-transparent mt-1">
-                                        <button data-action="decrement" class="counter greenLightBg beigeLight h-full w-20 rounded-l-2xl cursor-pointer outline-none">
+                                    <form action="{{ route('removeProductCart' , $product->id) }}" method="POST">
+                                        <button data-action="decrement" type="submit" class="counter greenLightBg beigeLight h-full w-20 rounded-l-2xl cursor-pointer outline-none">
+                                            <span class="m-auto text-2xl font-thin">-</span>
+                                        @method('DELETE')
+                                        {{ csrf_field() }}
+                                        </button>
+                                    </form>
+                                    <input type="number" class="counter border-transparent outline-none focus:outline-none text-center w-12 greenAmasoBg font-semibold text-md   md:text-basecursor-default flex items-center text-white  outline-none" name="custom-input-number" value="0"></input>
+                                    <button data-action="increment" class="counter  greenLightBg  beigeLight  h-full w-20 rounded-r-2xl cursor-pointer outline-none">
                                         <span class="m-auto text-2xl font-thin">
-                                                <a href="{{ route('removeProductCart' , $product->id) }}">-</a>
+                                            <a href="{{ route('cartAddProduct' , $product->id) }}">+</a>
                                         </span>
-                                        </button>
-                                        <input type="number" class="counter border-transparent outline-none focus:outline-none text-center w-12 greenAmasoBg font-semibold text-md   md:text-basecursor-default flex items-center text-white  outline-none" name="custom-input-number" value="0"></input>
-                                        <button data-action="increment" class="counter  greenLightBg  beigeLight  h-full w-20 rounded-r-2xl cursor-pointer outline-none">
-                                            <span class="m-auto text-2xl font-thin">
-                                                <a href="{{ route('cartAddProduct' , $product->id) }}">+</a>
-                                            </span>
-                                        </button>
-                                </div>        
+                                    </button>
+                                </div>
                             </div>
                             @else
                             <p class="text-lg beigeAmasoBg leading-4">Producto agotado</p>
