@@ -60,5 +60,5 @@ Route::get('/cart/add/{id}', [App\Http\Controllers\CartController::class, 'addPr
 
 Route::post('/cart/clear', [App\Http\Controllers\CartController::class, 'clearProducts'])->name('cartClear')->middleware(['auth']);
 
-Route::get('/cart/remove/{id}', [App\Http\Controllers\CartController::class, 'removeProduct'])->name('removeProductCart')->middleware(['auth']);
+Route::delete('/cart/remove/{id}', [App\Http\Controllers\CartController::class, 'removeProduct'])->name('removeProductCart')->middleware(['auth']);
 

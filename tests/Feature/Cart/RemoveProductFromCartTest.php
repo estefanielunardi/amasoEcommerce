@@ -19,9 +19,9 @@ class RemoveProductFromCartTest extends TestCase
                
         $product= Product::factory()->create(['image'=> null]);
 
-        $response = $this->get(route('removeProductCart', $product->id));
+        $response = $this->delete(route('removeProductCart', $product->id));
 
-        $response->assertRedirect('/');
+        $response->assertRedirect();
     }
 
     public function testDecreaseAmountOfProductFromCartnDB()
@@ -34,7 +34,7 @@ class RemoveProductFromCartTest extends TestCase
         $this->get(route('cartAddProduct', $product->id));
         $this->get(route('cartAddProduct', $product->id));
         
-        $this->get(route('removeProductCart', $product->id));
+        $this->delete(route('removeProductCart', $product->id));
 
         $this->assertDatabaseCount('product_user', 1)
         ->assertDatabaseHas('product_user', ['product_id'=>1,'user_id'=>1, 'amount'=>1]);
@@ -50,7 +50,7 @@ class RemoveProductFromCartTest extends TestCase
         $product = Product::factory()->create(['image'=> null]);
         $this->get(route('cartAddProduct', $product->id));
         
-        $this->get(route('removeProductCart', $product->id));
+        $this->delete(route('removeProductCart', $product->id));
 
         $this->assertDatabaseCount('product_user', 0)
         ->assertDatabaseMissing('product_user', ['product_id'=>1,'user_id'=>1]);

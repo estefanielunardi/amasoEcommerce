@@ -9,7 +9,7 @@
                     </div>    
                     @foreach ($products as $product)    
                     <div class="flex flex-row" >
-                    <form>
+                    <form method="POST" action="{{ route('removeProductCart', $product->id) }}">
                         <x-modal title="¿Eliminar producto?" submit-label="Eliminar">
                             <x-slot name="trigger">
                                 <button type="button" @click="on = true" class="text-l greenAmaso mt-2 px-4 py-8 rounded-xl">
@@ -18,6 +18,8 @@
                             </x-slot>
                             ¿Está seguro de que desea eliminar este producto del carrito?
                         </x-modal>
+                        @method('DELETE')
+                        {{ csrf_field() }}
                     </form>
                         <div class="flex flex-row justify-center m-2 p-4 greenLightBg text-white rounded-md w-full justify-between">
                             <div class="flex flex-row justify-start">
