@@ -64,9 +64,9 @@
                                         </span>
                                     </button>
                                 </div>
-                            </div>
-                            @else
-                            <p class="text-lg beigeAmasoBg leading-4">Producto agotado</p>
+                             </div>   
+                            @else 
+                                <p class="text-lg beigeAmasoBg p-1 mt-4 leading-4">Producto agotado</p>
                             @endif
                         </div>
                     </section>
