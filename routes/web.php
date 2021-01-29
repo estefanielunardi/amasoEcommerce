@@ -52,6 +52,8 @@ Route::get('/admin', [App\Http\Controllers\AdminController::class, 'adminDash'])
 
 Route::get('/profiles/{artisan:slug}', [App\Http\Controllers\AdminController::class, 'seeArtisanProfile'])->middleware(['checkAdmin'])->name('profileArtisan');
 
+Route::delete('/profiles/{id}', [App\Http\Controllers\AdminController::class, 'deleteArtisan'])->middleware(['checkAdmin'])->name('AdminDeleteProfile');
+
 
 
 //---CART ROUTES

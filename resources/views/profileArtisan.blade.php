@@ -24,12 +24,12 @@
         </form>
         @endcan
         @can('isAdmin')
-        <form method="POST" action="{{ route('deleteProfile', $artisan->slug) }}">
+        <form method="POST" action="{{ route('AdminDeleteProfile', $artisan->id) }}">
             <x-modal title="¿Eliminar perfil?" submit-label="Eliminar">
                 <x-slot name="trigger">
                     <button type="button" @click="on = true" class= "greenLightBg flex flex-row align-start text-sm text-white mt-4 px-6 py-2  rounded-xl shadow-md">Eliminar Perfil</button>
                 </x-slot>
-                ¿Está seguro de que desea eliminar su perfil?
+                ¿Está seguro de que desea eliminar este perfil?
             </x-modal>
             @method('DELETE')
             {{ csrf_field() }}

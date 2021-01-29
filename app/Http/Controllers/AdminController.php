@@ -26,6 +26,16 @@ class AdminController extends Controller
         return view('profileArtisan', compact('products', 'artisan'));
 
     }
+    public function deleteArtisan($id){
+
+        DB::table('artisans')->where('id', $id)->delete();
+        return redirect('/');
         
+        
+        
+    }    
 
 }
+
+       
+
