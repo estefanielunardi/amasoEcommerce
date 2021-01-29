@@ -43,18 +43,30 @@
                         </div>
                         <div class="block py-1">
                             <p class="productDescription">
-                            {{$product->description}}
+                                {{$product->description}}
                             </p>
                         </div>
                         <div class="block py-2 flex items-center justify-around">
                             @if ($product->stock > $product->sold)
-                                <p class="inline-block productPrice">{{$product->price}} €</p>
-                                <div class="grid justify-items-center">
-                                    <p class="text-sm">Añadir al carrito:</p>
-                                    <x-counter></x-counter>
-                                </div>
-                            @else 
-                                <p class="text-lg beigeAmasoBg leading-4">Producto agotado</p>
+                            <p class="inline-block productPrice">{{$product->price}} €</p>
+                            <div class="grid justify-items-center">
+                                <p class="text-sm">Añadir al carrito:</p>
+                                <div class="flex flex-row h-10 w-full rounded-lg relative bg-transparent mt-1">
+                                        <button data-action="decrement" class="counter greenLightBg beigeLight h-full w-20 rounded-l-2xl cursor-pointer outline-none">
+                                        <span class="m-auto text-2xl font-thin">
+                                                <a href="{{ route('removeProductCart' , $product->id) }}">-</a>
+                                        </span>
+                                        </button>
+                                        <input type="number" class="counter border-transparent outline-none focus:outline-none text-center w-12 greenAmasoBg font-semibold text-md   md:text-basecursor-default flex items-center text-white  outline-none" name="custom-input-number" value="0"></input>
+                                        <button data-action="increment" class="counter  greenLightBg  beigeLight  h-full w-20 rounded-r-2xl cursor-pointer outline-none">
+                                            <span class="m-auto text-2xl font-thin">
+                                                <a href="{{ route('cartAddProduct' , $product->id) }}">+</a>
+                                            </span>
+                                        </button>
+                                </div>        
+                            </div>
+                            @else
+                            <p class="text-lg beigeAmasoBg leading-4">Producto agotado</p>
                             @endif
                         </div>
                     </section>
@@ -64,47 +76,47 @@
 
         </div>
         {!! $products->links() !!}
-    </div>
-    @push('scripts')
-    <script>
-        function decrement(e) {
-            const btn = e.target.parentNode.parentElement.querySelector(
-                'button[data-action="decrement"]'
+        </div>
+        @push('scripts')
+        <script>
+            function decrement(e) {
+                const btn = e.target.parentNode.parentElement.querySelector(
+                    'button[data-action="decrement"]'
+                );
+                const target = btn.nextElementSibling;
+                let value = Number(target.value);
+                value--;
+                target.value = value;
+            }
+
+            function increment(e) {
+                const btn = e.target.parentNode.parentElement.querySelector(
+                    'button[data-action="decrement"]'
+                );
+                const target = btn.nextElementSibling;
+                let value = Number(target.value);
+                value++;
+                target.value = value;
+            }
+
+            const decrementButtons = document.querySelectorAll(
+                `button[data-action="decrement"]`
             );
-            const target = btn.nextElementSibling;
-            let value = Number(target.value);
-            value--;
-            target.value = value;
-        }
 
-        function increment(e) {
-            const btn = e.target.parentNode.parentElement.querySelector(
-                'button[data-action="decrement"]'
+            const incrementButtons = document.querySelectorAll(
+                `button[data-action="increment"]`
             );
-            const target = btn.nextElementSibling;
-            let value = Number(target.value);
-            value++;
-            target.value = value;
-        }
 
-        const decrementButtons = document.querySelectorAll(
-            `button[data-action="decrement"]`
-        );
+            decrementButtons.forEach(btn => {
+                btn.addEventListener("click", decrement);
+            });
 
-        const incrementButtons = document.querySelectorAll(
-            `button[data-action="increment"]`
-        );
+            incrementButtons.forEach(btn => {
+                btn.addEventListener("click", increment);
+            });
+        </script>
 
-        decrementButtons.forEach(btn => {
-            btn.addEventListener("click", decrement);
-        });
+        @endpush
 
-        incrementButtons.forEach(btn => {
-            btn.addEventListener("click", increment);
-        });
-    </script>
-
-    @endpush
-    
 
 </x-app-layout>
