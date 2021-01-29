@@ -35,9 +35,9 @@ class Artisan extends Model
         return $artisan;
     }
         
-        
-        
-        
-
-
 }
+        
+        
+        
+
+

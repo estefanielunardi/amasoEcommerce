@@ -32,5 +32,9 @@ class AuthServiceProvider extends ServiceProvider
         Gate::define('isAuth', function($user) {
             return $user->isArtisan == false;
         }); 
+
+        Gate::define('is_admin', function($user) {
+            return $user->is_admin == true; 
+        });
     }
 }

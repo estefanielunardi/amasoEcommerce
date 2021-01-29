@@ -11,7 +11,8 @@
             </a>             
         </button>
         @endcan
-        @can('isArtisan')
+        @can('isArtisan', 'is_admin')
+        
         <form method="POST" action="{{ route('deleteProfile', $artisan->slug) }}">
             <x-modal title="¿Eliminar perfil?" submit-label="Eliminar">
                 <x-slot name="trigger">
@@ -23,6 +24,7 @@
             {{ csrf_field() }}
         </form>
         @endcan
+      
             <article class="flex justify-start">
                 <div>
                     <img class=" max-w-xs w-174 rounded-xl" src="{{ asset('storage') .'/'. $artisan->image}}" alt="foto de perfil">
