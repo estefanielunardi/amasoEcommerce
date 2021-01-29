@@ -5,7 +5,6 @@
             <div class="flex flex-col p-10 justify-center">
                 <div class="flex flex-col w-full mt-10">
                     <div class="greenAmaso w-full flex flex-row justify-end">
-                        <p class="p-4">Ud.</p>
                         <p class="p-4">Precio</p>
                     </div>    
                     @foreach ($products as $product)    
@@ -26,17 +25,16 @@
                                 <p class="p-4">{{$product->name}}</p>  
                             </div>
                             <div class="flex flex-row justify-end">    
-                                <p class="p-4">{{$product->price}}</p>
                                 <p class="p-4">{{$product->price}} €</p>                       
                             </div>
                         </div>
                     </div>            
                     @endforeach
                 </div>
-            {!! $products->links() !!}
+           
             </div>
             <div class="flex justify-end p-4 pr-24"">
-                <h2 class="greenAmaso text-lg font-bold">Total: 20,00 €</h2>
+                <h2 class="greenAmaso text-lg font-bold">Total: {{$total}} €</h2>
             </div>
             <form>
                 <div class="flex justify-end p-4 pr-10">

@@ -15,8 +15,14 @@ class CartController extends Controller
         $products = DB::select("SELECT * FROM `products`
                 WHERE `id` IN (
                     SELECT `product_id` FROM `product_user` WHERE `user_id` = $id);");
-                
-        return view('cart', compact("products"));
+        
+        $total = 0;
+        foreach($products as $product)
+        {
+            $total += $product->price;
+        }
+
+        return view('cart', compact("products", "total"));
     }
 
     public function addProduct($product_id)
