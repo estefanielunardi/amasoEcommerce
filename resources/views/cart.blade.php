@@ -5,6 +5,7 @@
             <div class="flex flex-col p-10 justify-center">
                 <div class="flex flex-col w-full mt-10">
                     <div class="greenAmaso w-full flex flex-row justify-end">
+                        <p class="p-4">Ud.</p>
                         <p class="p-4">Precio</p>
                     </div>    
                     @foreach ($products as $product)    
@@ -26,7 +27,8 @@
                                 <img class="w-16 rounded"src="{{ asset('storage') .'/'. $product->image}}"/>    
                                 <p class="p-4">{{$product->name}}</p>  
                             </div>
-                            <div class="flex flex-row justify-end">    
+                            <div class="flex flex-row justify-end"> 
+                                <p class="p-4">{{$product->amount}}</p>    
                                 <p class="p-4">{{$product->price}} €</p>                       
                             </div>
                         </div>

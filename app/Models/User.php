@@ -54,11 +54,12 @@ class User extends Authenticatable
 
     public function getProductsInBasket($id)
     {
-        $products = DB::select("SELECT * FROM `products`
-                WHERE `id` IN (
-                    SELECT `product_id` FROM `product_user` WHERE `user_id` = $id);");
-        
-
+        $products = DB::table('products')
+        ->join('product_user', 'products.id', '=', 'product_user.product_id')   
+        ->where('user_id','=', $id)
+        ->select('products.*', 'product_user.amount')
+        ->get();
+    
         return $products;
     }
 
@@ -67,7 +68,7 @@ class User extends Authenticatable
         $total = 0;
         foreach($products as $product)
         {
-            $total += $product->price;
+            $total += $product->price * $product->amount;
         }
         return $total;
     }
