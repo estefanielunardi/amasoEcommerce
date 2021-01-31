@@ -68,7 +68,7 @@ class User extends Authenticatable
         $total = 0;
         foreach($products as $product)
         {
-            $total += $product->price * $product->amount;
+            $total += number_format(($product->price * $product->amount)/100,2);
         }
         return $total;
     }

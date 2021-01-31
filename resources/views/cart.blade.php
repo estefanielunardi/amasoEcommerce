@@ -29,7 +29,7 @@
                             </div>
                             <div class="flex flex-row justify-end"> 
                                 <p class="p-4">{{$product->amount}}</p>    
-                                <p class="p-4">{{$product->price}} €</p>                       
+                                <p class="p-4">{{number_format($product->price / 100, 2)}} €</p>                       
                             </div>
                         </div>
                     </div>            
