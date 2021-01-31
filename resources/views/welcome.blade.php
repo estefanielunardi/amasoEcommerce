@@ -45,7 +45,7 @@
                         </div>
                         <div class="block py-2 flex items-center justify-around">
                             @if ($product->stock > $product->sold)
-                            <p class="inline-block productPrice">{{$product->price}} €</p>
+                            <p class="inline-block productPrice">{{number_format($product->price / 100,2)}} €</p>
                             <div class="grid justify-items-center">
                                 <p class="text-sm">Añadir al carrito:</p>
                                 <div class="flex flex-row h-9 w-full rounded-lg relative bg-transparent mt-1 vollkorn">

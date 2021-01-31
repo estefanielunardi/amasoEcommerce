@@ -26,7 +26,7 @@ class ProductController extends Controller
             'name'=>$request->name,
             'image'=> $image,
             'description'=>$request->description,
-            'price'=>$request->price,
+            'price'=>$request->price * 100,
             'stock'=>$request->stock,
             'sold'=> 0,
             'artisan_id'=>$artisan->id,
@@ -61,7 +61,7 @@ class ProductController extends Controller
         $product->image = $image;
         $product->name = $request->name;
         $product->description = $request->description;
-        $product->price = $request->price;
+        $product->price = $request->price*100;
         $product->stock = $request->stock;
         $product->sold = 0;
 
