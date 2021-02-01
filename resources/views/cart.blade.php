@@ -38,7 +38,7 @@
            
             </div>
             <div class="flex justify-end p-4 pr-24"">
-                <h2 class="greenAmaso text-lg font-bold">Total: {{$total}} €</h2>
+                <h2 class="greenAmaso text-lg font-bold">Total: {{number_format($total, 2)}} €</h2>
             </div>
             <form>
                 <div class="flex justify-end p-4 pr-10">
