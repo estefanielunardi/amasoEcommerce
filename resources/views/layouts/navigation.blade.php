@@ -1,21 +1,24 @@
 <nav x-data="{ open: false }" class="greenAmasoBg">
     <!-- Primary Navigation Menu -->
     <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 ">
-        <div class="flex justify-between h-16">
-            <div class="flex">
+        <div class="flex justify-around h-16">
+            <div class="flex justify-between">
                 <!-- Logo -->
-                <div class="flex-shrink-0 flex items-center ml-6">
+                <div class="flex items-center ">
                     <a href="{{ route('home') }}">
                         <x-application-logo class="block h-10 w-auto fill-current text-gray-600" />
                     </a>
                 </div>
 
                 <!-- Navigation Links -->
+                @can('isAdmin')
                 <div class="hidden space-x-8 sm:-my-px sm:ml-10 sm:flex ">
-                    <x-nav-link :href="route('dashboard')" :active="request()->routeIs('dashboard')">
+                    <x-nav-link :href="route('adminDash')" :active="request()->routeIs('adminDash')">
                         {{ __('Panel de administrador') }}
                     </x-nav-link>
                 </div>
+                @endcan
+                @guest
                 <div class="hidden space-x-8 sm:-my-px sm:ml-10 sm:flex">
                     <x-nav-link  :href="route('register')" :active="request()->routeIs('register')">
                         {{ __('Register') }}
@@ -26,11 +29,14 @@
                         {{ __('Login') }}
                     </x-nav-link>
                 </div>
+                @endguest
+                @can('isArtisan')
                 <div class="hidden space-x-8 sm:-my-px sm:ml-10 sm:flex">
                     <x-nav-link :href="route('profile')" :active="request()->routeIs('profile')">
                         {{ __('Mi perfil') }}
                     </x-nav-link>
                 </div>
+                @endcan
                 <div class="hidden space-x-8 sm:-my-px sm:ml-10 sm:flex">
                     <x-nav-link :href="route('artisans')" :active="request()->routeIs('artisans')">
                         {{ __('Artesanos') }}
@@ -41,18 +47,20 @@
                         {{ __('Mi compra') }}
                     </x-nav-link>
                 </div>
+                @can('isAuth')
                 <div class="hidden space-x-8 sm:-my-px sm:ml-10 sm:flex">
                     <x-nav-link :href="route('joinArtisan')" :active="request()->routeIs('joinArtisan')">
                         {{ __('Eres artesano? Unete!') }}
                     </x-nav-link>
                 </div>
+                @endcan
             </div>
 
             @auth
 
             <!-- Settings Dropdown -->
             <div class="hidden sm:flex sm:items-center sm:ml-6">
-                <x-dropdown align="right" width="48">
+                <x-dropdown >
                     <x-slot name="trigger">
                         <button class="flex items-center text-sm font-medium beigeLight hover:text-gray-700 hover:border-gray-300 focus:outline-none focus:text-gray-700 focus:border-gray-300 transition duration-150 ease-in-out">
                             <div>{{ Auth::user()->name }}</div>
@@ -76,10 +84,21 @@
                                 {{ __('Logout') }}
                             </x-dropdown-link>
                         </form>
+                        @can('isAdmin')    
+                        <form method="GET" action="{{ route('adminDash') }}">
+                            @csrf
+                            <x-dropdown-link :href="route('adminDash')"
+                                    onclick="event.preventDefault();
+                                                this.closest('form').submit();">
+                                {{ __('Panel administrador') }}
+                            </x-dropdown-link>
+                        </form>
+                        @endcan
                     </x-slot>
                 </x-dropdown>
             </div>
             @endauth
+
 
             <!-- Hamburger -->
             <div class="-mr-2 flex items-center sm:hidden">
@@ -96,8 +115,8 @@
     <!-- Responsive Navigation Menu -->
     <div :class="{'block': open, 'hidden': ! open}" class="hidden sm:hidden">
         <div class="pt-2 pb-3 space-y-1">
-            <x-responsive-nav-link :href="route('dashboard')" :active="request()->routeIs('dashboard')">
-                {{ __('Dashboard') }}
+            <x-responsive-nav-link :href="route('adminDash')" :active="request()->routeIs('adminDash')">
+                {{ __('Administrador') }}
             </x-responsive-nav-link>
         </div>
         <div class="pt-2 pb-3 space-y-1">
@@ -153,6 +172,8 @@
                                         this.closest('form').submit();">
                         {{ __('Logout') }}
                     </x-responsive-nav-link>
+                    
+
                 </form>
             </div>
         </div>

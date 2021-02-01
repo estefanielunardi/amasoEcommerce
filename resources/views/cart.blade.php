@@ -10,7 +10,7 @@
                     </div>    
                     @foreach ($products as $product)    
                     <div class="flex flex-row" >
-                    <form>
+                    <form method="POST" action="{{ route('removeProductCart', $product->id) }}">
                         <x-modal title="¿Eliminar producto?" submit-label="Eliminar">
                             <x-slot name="trigger">
                                 <button type="button" @click="on = true" class="text-l greenAmaso mt-2 px-4 py-8 rounded-xl">
@@ -19,24 +19,26 @@
                             </x-slot>
                             ¿Está seguro de que desea eliminar este producto del carrito?
                         </x-modal>
+                        @method('DELETE')
+                        {{ csrf_field() }}
                     </form>
                         <div class="flex flex-row justify-center m-2 p-4 greenLightBg text-white rounded-md w-full justify-between">
                             <div class="flex flex-row justify-start">
                                 <img class="w-16 rounded"src="{{ asset('storage') .'/'. $product->image}}"/>    
                                 <p class="p-4">{{$product->name}}</p>  
                             </div>
-                            <div class="flex flex-row justify-end">    
-                                <p class="p-4">{{$product->price}}</p>
-                                <p class="p-4">{{$product->price}} €</p>                       
+                            <div class="flex flex-row justify-end"> 
+                                <p class="p-4">{{$product->amount}}</p>    
+                                <p class="p-4">{{number_format($product->price / 100, 2)}} €</p>                       
                             </div>
                         </div>
                     </div>            
                     @endforeach
                 </div>
-            {!! $products->links() !!}
+           
             </div>
             <div class="flex justify-end p-4 pr-24"">
-                <h2 class="greenAmaso text-lg font-bold">Total: 20,00 €</h2>
+                <h2 class="greenAmaso text-lg font-bold">Total: {{number_format($total, 2)}} €</h2>
             </div>
             <form>
                 <div class="flex justify-end p-4 pr-10">

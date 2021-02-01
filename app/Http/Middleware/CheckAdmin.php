@@ -6,7 +6,7 @@ use Closure;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 
-class Artisan
+class CheckAdmin
 {
     /**
      * Handle an incoming request.
@@ -17,11 +17,9 @@ class Artisan
      */
     public function handle(Request $request, Closure $next)
     {
-        if(Auth::check() && Auth::user()->isArtisan){
-            return $next($request);
-
+        if (Auth::user() == null || !Auth::user()->is_admin) {
+            return redirect('/');
         }
-
-        return response()->json('Not artisan user', 401);
+        return $next($request);
     }
 }

@@ -16,6 +16,9 @@ Use a better box model (opinionated).
 *::after {
   box-sizing: border-box;
 }
+* {
+  outline: none !important
+}
 
 /**
 Use a more readable tab size (opinionated).
@@ -116,6 +119,26 @@ body {
   color: #336147;
 }
 
+.heroTitle {
+  font-family: Vollkorn;
+  font-weight: 800;
+  /* font-size: 30px; */
+  line-height: 28px;
+  text-align: center;
+  letter-spacing: -0.02em;
+  color: #336147;
+}
+
+.heroText {
+  font-family: Exo;
+  font-style: normal;
+  font-weight: normal;
+  /* font-size: 16px; */
+  line-height: 16px;
+  text-align: center;
+  color: #336147;
+}
+
 
 .title {
   font-family: 'Vollkorn', serif;
@@ -124,6 +147,43 @@ body {
   font-size: 30px;
   line-height: 123%;
   color: #81A78C;
+}
+
+.productTitle {
+  font-family: Vollkorn;
+  font-style: normal;
+  font-weight: 500;
+  font-size: 22px;
+}
+
+.productProductor {
+  font-family: Exo;
+  font-style: normal;
+  font-weight: 300;
+  font-size: 14px;
+  color: #81A78C;
+}
+
+.productDescription {
+  font-family: Exo;
+  font-style: italic;
+  font-weight: 300;
+  font-size: 12px;
+}
+
+.productPrice {
+  font-family: Exo;
+  font-style: normal;
+  font-weight: normal;
+  font-size: 21px;
+}
+
+.exo {
+  font-family: Exo;
+}
+
+.vollkorn {
+  font-family: Vollkorn;
 }
 
 @media only screen and (min-width: 768px){ 

@@ -5,6 +5,7 @@ namespace App\Models;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Support\Facades\DB;
+use App\Models\User;
 
 
 class Artisan extends Model
@@ -29,12 +30,15 @@ class Artisan extends Model
 
     public static function getArtisan()
     {
-        $user_id = auth()->id();    
-        $artisan_id = DB::table('artisans')->where('user_id', $user_id)->get(['id']);    
-        $id = $artisan_id[0]->id;    
-        $artisan = Artisan::find($id);
-        
+        $user_id = auth()->id();
+        $artisan_id = DB::table('artisans')->where('user_id', $user_id)->value('id');
+        $artisan = Artisan::find($artisan_id);
         return $artisan;
     }
-
+        
 }
+        
+        
+        
+
+
