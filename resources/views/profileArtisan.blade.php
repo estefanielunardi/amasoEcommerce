@@ -111,8 +111,7 @@
                                         </p>
                                     </div>
                                     <div class="block py-2 flex items-center justify-around">
-                                        <p class="inline-block productPrice">{{number_format($product->price / 100,2)}} €</p>
-                                    
+                                        <p class="inline-block productPrice">{{number_format($product->price / 100,2)}} €</p>                                
                                         @if(auth()->id() !== $artisan->user_id)
                                             @if ($product->stock > $product->sold)
                                             <div class="grid justify-items-center">
