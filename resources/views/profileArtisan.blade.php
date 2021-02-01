@@ -27,19 +27,35 @@
             @method('DELETE')
             {{ csrf_field() }}
         </form>
-        @endif
-        @can('isAdmin')
-        <form method="POST" action="{{ route('AdminDeleteProfile', $artisan->id) }}">
-            <x-modal title="¿Eliminar perfil?" submit-label="Eliminar">
-                <x-slot name="trigger">
-                    <button type="button" @click="on = true" class= "greenLightBg flex flex-row align-start text-sm text-white mt-4 px-6 py-2  rounded-xl shadow-md">Eliminar Perfil</button>
-                </x-slot>
-                ¿Está seguro de que desea eliminar este perfil?
-            </x-modal>
-            @method('DELETE')
-            {{ csrf_field() }}
-        </form>
         @endcan
+        <div class="flex flex-row">
+            @if (!$artisan->aproved)
+                @can('isAdmin')
+                <form  method="POST" action="{{ route('aproveArtisan', $artisan->id) }}">
+                    <x-modal title="¿Aprobar artesano?" submit-label="Aprobar">
+                        <x-slot name="trigger">
+                            <button type="button" @click="on = true" class= "beigeAmasoBg flex flex-row align-start text-sm text-white mt-4 px-6 py-2  rounded-xl shadow-md">Aprobar artesano</button>
+                        </x-slot>
+                        A partir de ahora este artesano podrá vender sus productos en Amasó.
+                    </x-modal>
+                    @method('POST')
+                    {{ csrf_field() }}
+                </form>
+                @endcan
+            @endif
+            @can('isAdmin')
+            <form  class="ml-20" method="POST" action="{{ route('adminDeleteProfile', $artisan->id) }}">
+                <x-modal title="¿Eliminar perfil?" submit-label="Eliminar">
+                    <x-slot name="trigger">
+                        <button type="button" @click="on = true" class= "bg-red-400 flex flex-row align-start text-sm text-white mt-4 px-6 py-2  rounded-xl shadow-md">Eliminar Perfil</button>
+                    </x-slot>
+                    ¿Está seguro de que desea eliminar este perfil?
+                </x-modal>
+                @method('DELETE')
+                {{ csrf_field() }}
+            </form>
+            @endcan
+        </div>
             <article class="flex justify-start">
                 <div>
                     <img class=" max-w-xs w-174 rounded-xl" src="{{ asset('storage') .'/'. $artisan->image}}" alt="foto de perfil">

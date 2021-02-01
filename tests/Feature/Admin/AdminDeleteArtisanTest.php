@@ -27,7 +27,7 @@ class AdminDeleteArtisanTest extends TestCase
         $response = $this->actingAs($admin)
                 ->delete('profiles/' . $artisan->id);
 
-        $response->assertRedirect('/');
+        $response->assertRedirect(route('adminDash'));
         $this->assertDatabaseCount('artisans', 0);
         $this->assertDatabaseMissing('artisans', ['name'=>'Pepita']);
                 

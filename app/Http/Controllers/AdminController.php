@@ -31,8 +31,14 @@ class AdminController extends Controller
         $user_id = DB::table('artisans')->where('id', $id)->value('user_id');
         DB::table('users')->where('id', $user_id)->update(['isArtisan'=> 0]);
         DB::table('artisans')->where('id', $id)->delete();
-        return redirect('/');
+        return redirect(route('adminDash'));
     }    
+
+    public function aproveArtisan($id){
+
+        DB::table('artisans')->where('id', $id)->update(['aproved'=> 1]);
+        return redirect(route('adminDash'));
+    }
         
         
         
