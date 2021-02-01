@@ -112,30 +112,30 @@
                                     </div>
                                     <div class="block py-2 flex items-center justify-around">
                                         <p class="inline-block productPrice">{{number_format($product->price / 100,2)}} €</p>
-                                        @can('isAuth')
-                                        @if ($product->stock > $product->sold)
-                                        <div class="grid justify-items-center">
-                                            <p class="text-sm">Añadir al carrito:</p>
-                                            <div class="flex flex-row h-9 w-full rounded-lg relative bg-transparent mt-1 vollkorn">
-                                                <form action="{{ route('removeProductCart' , $product->id) }}" method="POST">
-                                                    <button data-action="decrement" type="submit" class="counter greenLightBg beigeLight h-full w-9 rounded-l-2xl cursor-pointer outline-none">
-                                                        <span class="m-auto text-2xl font-thin text-white">-</span>
-                                                        @method('DELETE')
-                                                        {{ csrf_field() }}
+                                        @if('isAuth' ||auth()->id() != $artisan->user_id)
+                                            @if ($product->stock > $product->sold)
+                                            <div class="grid justify-items-center">
+                                                <p class="text-sm">Añadir al carrito:</p>
+                                                <div class="flex flex-row h-9 w-full rounded-lg relative bg-transparent mt-1 vollkorn">
+                                                    <form action="{{ route('removeProductCart' , $product->id) }}" method="POST">
+                                                        <button data-action="decrement" type="submit" class="counter greenLightBg beigeLight h-full w-9 rounded-l-2xl cursor-pointer outline-none">
+                                                            <span class="m-auto text-2xl font-thin text-white">-</span>
+                                                            @method('DELETE')
+                                                            {{ csrf_field() }}
+                                                        </button>
+                                                    </form>
+                                                    <input type="number" class="counter border-transparent outline-none focus:outline-none text-center w-10 greenAmasoBg font-semibold text-xl  md:text-basecursor-default flex items-center text-white  outline-none" name="custom-input-number" value="0"></input>
+                                                    <button data-action="increment" class="counter  greenLightBg  beigeLight  h-full w-9 rounded-r-2xl cursor-pointer outline-none">
+                                                        <span class="m-auto text-2xl font-thin text-white">
+                                                            <a href="{{ route('cartAddProduct' , $product->id) }}">+</a>
+                                                        </span>
                                                     </button>
-                                                </form>
-                                                <input type="number" class="counter border-transparent outline-none focus:outline-none text-center w-10 greenAmasoBg font-semibold text-xl  md:text-basecursor-default flex items-center text-white  outline-none" name="custom-input-number" value="0"></input>
-                                                <button data-action="increment" class="counter  greenLightBg  beigeLight  h-full w-9 rounded-r-2xl cursor-pointer outline-none">
-                                                    <span class="m-auto text-2xl font-thin text-white">
-                                                        <a href="{{ route('cartAddProduct' , $product->id) }}">+</a>
-                                                    </span>
-                                                </button>
+                                                </div>
                                             </div>
-                                        </div>
-                                        @else
-                                        <p class="text-lg beigeAmasoBg leading-4">Producto agotado</p>
+                                            @else
+                                            <p class="text-lg beigeAmasoBg leading-4">Producto agotado</p>
+                                            @endif
                                         @endif
-                                        @endcan
                                         @if(auth()->id() == $artisan->user_id)
                                         <form action="{{ route('editProduct', ['id' => $product->id]) }}" method="get">
                                             <button type="submit">
