@@ -61,9 +61,7 @@ Route::get('/cart', [App\Http\Controllers\CartController::class, 'getProducts'])
 
 Route::get('/cart', [App\Http\Controllers\CartController::class, 'getProducts'])->name('cart')->middleware(['auth']); 
 
-Route::post('/cart-add', [App\Http\Controllers\CartController::class, 'addProducts'])->name('cartAddProduct')->middleware(['auth']);
+Route::get('/cart/add/{id}', [App\Http\Controllers\CartController::class, 'addProduct'])->name('cartAddProduct')->middleware(['auth']);
 
-Route::post('/cart-clear', [App\Http\Controllers\CartController::class, 'clearProducts'])->name('cartClear')->middleware(['auth']);
-
-Route::post('/cart-removeitem', [App\Http\Controllers\CartController::class, 'removeProducts'])->name('cartRemoveProduct')->middleware(['auth']);
+Route::delete('/cart/{id}', [App\Http\Controllers\CartController::class, 'removeProduct'])->name('removeProductCart')->middleware(['auth']);
 
