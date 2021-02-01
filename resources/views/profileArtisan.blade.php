@@ -2,21 +2,25 @@
 
     <body>
         <section class="block space-y-8 ... p-12 ">
-        @can('isArtisan')
+        @if(auth()->id() == $artisan->user_id)
         <button class= "greenLightBg flex flex-row align-start text-sm text-white mt-4 px-6 py-2  rounded-xl shadow-md">               
             <svg  width="24" height="24" viewBox="0 0 31 32" fill="none" xmlns="http://www.w3.org/2000/svg">
             <path d="M21.0582 5.7376C21.3442 5.43197 21.6862 5.18819 22.0644 5.02048C22.4427 4.85277 22.8494 4.76449 23.2611 4.7608C23.6727 4.75711 24.0809 4.83808 24.4619 4.99897C24.8428 5.15987 25.189 5.39748 25.48 5.69794C25.7711 5.9984 26.0013 6.35568 26.1571 6.74895C26.313 7.14222 26.3915 7.56359 26.3879 7.98849C26.3843 8.41338 26.2988 8.83329 26.1363 9.2237C25.9739 9.61411 25.7377 9.96721 25.4416 10.2624L24.2125 11.5312L19.8291 7.0064L21.0582 5.7376ZM17.6374 9.2688L4.6499 22.6752V27.2H9.0333L22.0223 13.7936L17.6358 9.2688H17.6374Z" fill="white"/>
             </svg> 
-            <a href="{{route('editProfile', $artisan->slug) }}" method="get"}}>
+            <a href="{{route('editProfile', $artisan->slug) }}" method="get">
                 Editar perfil
             </a>             
         </button>
-        @endcan
-        @can('isArtisan')    
+
         <form method="POST" action="{{ route('deleteProfile', $artisan->slug) }}">
             <x-modal title="¿Eliminar perfil?" submit-label="Eliminar">
                 <x-slot name="trigger">
-                    <button type="button" @click="on = true" class= "greenLightBg flex flex-row align-start text-sm text-white mt-4 px-6 py-2  rounded-xl shadow-md">Eliminar Perfil</button>
+                    <button type="button" @click="on = true" class= "greenLightBg flex flex-row align-start text-sm text-white mt-4 px-6 py-2  rounded-xl shadow-md">
+                        <svg width="24" height="24"xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 7l-.867 12.142A2 2 0 0116.138 21H7.862a2 2 0 01-1.995-1.858L5 7m5 4v6m4-6v6m1-10V4a1 1 0 00-1-1h-4a1 1 0 00-1 1v3M4 7h16" />
+                        </svg>
+                        Eliminar Perfil
+                    </button>
                 </x-slot>
                 ¿Está seguro de que desea eliminar su perfil?
             </x-modal>
@@ -67,7 +71,7 @@
         <article class="p-8">
             <h2 class="block title">Productos de {{$artisan->name}}</h2>
         </article>
-        @can('isArtisan')
+        @if(auth()->id() == $artisan->user_id)
         <article class="flex justify-center pb-7">
             <form action="{{'/product/create'}}" method="get">
                 <button class="greenLightBg  flex flex-row align-start font-serif text-white text-2xl mt-4 px-6 py-2  rounded-xl shadow-md" type="submit">
@@ -85,11 +89,11 @@
                 </button>
             </form>
         </article>
-        @endcan
+        @endif
 
         <div class="container my-12 mx-auto px-4 md:px-12">
             <div class="flex flex-wrap -mx-1 lg:-mx-4">
-                @can('isAuth')
+                @if('isAuth' || auth()->id() != $artisan->user_id)
                 <div class="hidden space-x-8 sm:-my-px sm:ml-10 sm:flex">
                     <x-nav-link :href="route('cart')" :active="request()->routeIs('cart')">
                         <div class="beigeAmasoBg rounded-full fixed bottom-20 right-10 z-40 shadow-2xl buttomDesktop buttomPhone">
@@ -99,7 +103,7 @@
                         </div>
                     </x-nav-link>
                 </div>
-                @endcan
+                @endif
 
 
                 <article class="max-w-screen-xl mx-auto px-4">
@@ -123,32 +127,32 @@
                                         </p>
                                     </div>
                                     <div class="block py-2 flex items-center justify-around">
-                                        <p class="inline-block productPrice">{{number_format($product->price / 100,2)}} €</p>
-                                        @can('isAuth')
-                                        @if ($product->stock > $product->sold)
-                                        <div class="grid justify-items-center">
-                                            <p class="text-sm">Añadir al carrito:</p>
-                                            <div class="flex flex-row h-9 w-full rounded-lg relative bg-transparent mt-1 vollkorn">
-                                                <form action="{{ route('removeProductCart' , $product->id) }}" method="POST">
-                                                    <button data-action="decrement" type="submit" class="counter greenLightBg beigeLight h-full w-9 rounded-l-2xl cursor-pointer outline-none">
-                                                        <span class="m-auto text-2xl font-thin text-white">-</span>
-                                                        @method('DELETE')
-                                                        {{ csrf_field() }}
+                                        <p class="inline-block productPrice">{{number_format($product->price / 100,2)}} €</p>                                
+                                        @if(auth()->id() !== $artisan->user_id)
+                                            @if ($product->stock > $product->sold)
+                                            <div class="grid justify-items-center">
+                                                <p class="text-sm">Añadir al carrito:</p>
+                                                <div class="flex flex-row h-9 w-full rounded-lg relative bg-transparent mt-1 vollkorn">
+                                                    <form action="{{ route('removeProductCart' , $product->id) }}" method="POST">
+                                                        <button data-action="decrement" type="submit" class="counter greenLightBg beigeLight h-full w-9 rounded-l-2xl cursor-pointer outline-none">
+                                                            <span class="m-auto text-2xl font-thin text-white">-</span>
+                                                            @method('DELETE')
+                                                            {{ csrf_field() }}
+                                                        </button>
+                                                    </form>
+                                                    <input type="number" class="counter border-transparent outline-none focus:outline-none text-center w-10 greenAmasoBg font-semibold text-xl  md:text-basecursor-default flex items-center text-white  outline-none" name="custom-input-number" value="0"></input>
+                                                    <button data-action="increment" class="counter  greenLightBg  beigeLight  h-full w-9 rounded-r-2xl cursor-pointer outline-none">
+                                                        <span class="m-auto text-2xl font-thin text-white">
+                                                            <a href="{{ route('cartAddProduct' , $product->id) }}">+</a>
+                                                        </span>
                                                     </button>
-                                                </form>
-                                                <input type="number" class="counter border-transparent outline-none focus:outline-none text-center w-10 greenAmasoBg font-semibold text-xl  md:text-basecursor-default flex items-center text-white  outline-none" name="custom-input-number" value="0"></input>
-                                                <button data-action="increment" class="counter  greenLightBg  beigeLight  h-full w-9 rounded-r-2xl cursor-pointer outline-none">
-                                                    <span class="m-auto text-2xl font-thin text-white">
-                                                        <a href="{{ route('cartAddProduct' , $product->id) }}">+</a>
-                                                    </span>
-                                                </button>
+                                                </div>
                                             </div>
-                                        </div>
-                                        @else
-                                        <p class="text-lg beigeAmasoBg leading-4">Producto agotado</p>
+                                            @else
+                                            <p class="text-lg beigeAmasoBg leading-4">Producto agotado</p>
+                                            @endif
                                         @endif
-                                        @endcan
-                                        @can('isArtisan')
+                                        @if(auth()->id() == $artisan->user_id)
                                         <form action="{{ route('editProduct', ['id' => $product->id]) }}" method="get">
                                             <button type="submit">
                                                 <svg class="inset-x-0 bottom-0 h-16 ..." width="38" height="38" viewBox="0 0 38 38" fill="none" xmlns="http://www.w3.org/2000/svg">
@@ -173,7 +177,7 @@
                                             @method('DELETE')
                                             {{ csrf_field() }}
                                         </form>
-                                        @endcan
+                                        @endif
                                     </div>
                                 </section>
                             </section>
