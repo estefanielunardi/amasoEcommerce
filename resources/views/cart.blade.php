@@ -27,6 +27,21 @@
                                 <img class="w-16 rounded"src="{{ asset('storage') .'/'. $product->image}}"/>    
                                 <p class="p-4">{{$product->name}}</p>  
                             </div>
+                            <div class="flex flex-row h-9 w-full rounded-lg relative bg-transparent mt-1 vollkorn">
+                                    <form action="{{ route('removeProductCart' , $product->id) }}" method="POST">
+                                        <button data-action="decrement" type="submit" class="counter greenLightBg beigeLight h-full w-9 rounded-l-2xl cursor-pointer outline-none">
+                                            <span class="m-auto text-2xl font-thin text-white">-</span>
+                                            @method('DELETE')
+                                            {{ csrf_field() }}
+                                        </button>
+                                    </form>
+                                    <input type="number" value="{{$product->amount}}" class="counter border-transparent outline-none focus:outline-none text-center w-10 greenAmasoBg font-semibold text-xl  md:text-basecursor-default flex items-center text-white  outline-none" name="custom-input-number" value="0"></input>
+                                    <button data-action="increment" class="counter  greenLightBg  beigeLight  h-full w-9 rounded-r-2xl cursor-pointer outline-none">
+                                        <span class="m-auto text-2xl font-thin text-white">
+                                            <a href="{{ route('cartAddProduct' , $product->id) }}">+</a>
+                                        </span>
+                                    </button>
+                                </div>
                             <div class="flex flex-row justify-end"> 
                                 <p class="p-4">{{$product->amount}}</p>    
                                 <p class="p-4">{{number_format($product->price / 100, 2)}} €</p>                       
