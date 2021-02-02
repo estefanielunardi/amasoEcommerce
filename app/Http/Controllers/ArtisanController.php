@@ -28,7 +28,7 @@ class ArtisanController extends Controller
         }
         else
         {
-            return view('responsesAdmin', ["message" => "Tu perfil esta siendo evaluado, recibiras noticias pronto por email!"]);
+            return view('responsesAdmin', ["message" => "Tu perfil está siendo evaluado, ¡Recibirás notícias pronto por email!"]);
         }
         
         return view('profileArtisan', compact('products', 'artisan'));   
