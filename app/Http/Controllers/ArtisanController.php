@@ -48,6 +48,7 @@ class ArtisanController extends Controller
     public function getAll(){
 
         $artisans = DB::table('artisans')
+                    ->where('aproved','=', 1)
                     ->paginate(6);
         return view('artisans', compact('artisans'));
     }

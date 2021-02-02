@@ -27,19 +27,35 @@
             @method('DELETE')
             {{ csrf_field() }}
         </form>
-        @endif
-        @can('isAdmin')
-        <form method="POST" action="{{ route('AdminDeleteProfile', $artisan->id) }}">
-            <x-modal title="¿Eliminar perfil?" submit-label="Eliminar">
-                <x-slot name="trigger">
-                    <button type="button" @click="on = true" class= "greenLightBg flex flex-row align-start text-sm text-white mt-4 px-6 py-2  rounded-xl shadow-md">Eliminar Perfil</button>
-                </x-slot>
-                ¿Está seguro de que desea eliminar este perfil?
-            </x-modal>
-            @method('DELETE')
-            {{ csrf_field() }}
-        </form>
         @endcan
+        <div class="flex flex-row">
+            @if (!$artisan->aproved)
+                @can('isAdmin')
+                <form  method="POST" action="{{ route('aproveArtisan', $artisan->id) }}">
+                    <x-modal title="¿Aprobar artesano?" submit-label="Aprobar">
+                        <x-slot name="trigger">
+                            <button type="button" @click="on = true" class= "beigeAmasoBg flex flex-row align-start text-sm text-white mt-4 px-6 py-2  rounded-xl shadow-md">Aprobar artesano</button>
+                        </x-slot>
+                        A partir de ahora este artesano podrá vender sus productos en Amasó.
+                    </x-modal>
+                    @method('POST')
+                    {{ csrf_field() }}
+                </form>
+                @endcan
+            @endif
+            @can('isAdmin')
+            <form  class="ml-20" method="POST" action="{{ route('adminDeleteProfile', $artisan->id) }}">
+                <x-modal title="¿Eliminar perfil?" submit-label="Eliminar">
+                    <x-slot name="trigger">
+                        <button type="button" @click="on = true" class= "bg-red-400 flex flex-row align-start text-sm text-white mt-4 px-6 py-2  rounded-xl shadow-md">Eliminar Perfil</button>
+                    </x-slot>
+                    ¿Está seguro de que desea eliminar este perfil?
+                </x-modal>
+                @method('DELETE')
+                {{ csrf_field() }}
+            </form>
+            @endcan
+        </div>
             <article class="flex justify-start">
                 <div>
                     <img class=" max-w-xs w-174 rounded-xl" src="{{ asset('storage') .'/'. $artisan->image}}" alt="foto de perfil">
@@ -96,7 +112,7 @@
                         @foreach($products as $product)
                         <div class=" px-1 w-full flex flex-col p-6 sm:w-1/2 lg:w-1/3">
                             <section class="w-72 h-96 shadow-lg rounded-xl">
-                                <header class="">
+                                <header class="h-48 overflow-hidden">
                                     <img alt="Placeholder" class="rounded-xl rounded-b-none object-fill w-full" src="{{ asset('storage') .'/'. $product->image}}">
                                 </header>
 
@@ -105,7 +121,7 @@
                                         <h2 class="productTitle">{{$product->name}}</h2>
                                         <h3 class="productProductor">Productor: {{$artisan->name}}</h3>
                                     </div>
-                                    <div class="block py-1">
+                                    <div class="block py-1 h-12 overflow-auto">
                                         <p class="productDescription">
                                             {{$product->description}}
                                         </p>
@@ -115,7 +131,7 @@
                                         @if(auth()->id() !== $artisan->user_id)
                                             @if ($product->stock > $product->sold)
                                             <div class="grid justify-items-center">
-                                                <p class="text-sm">Añadir al carrito:</p>
+                                                <p class="text-xs">Añadir al carrito:</p>
                                                 <div class="flex flex-row h-9 w-full rounded-lg relative bg-transparent mt-1 vollkorn">
                                                     <form action="{{ route('removeProductCart' , $product->id) }}" method="POST">
                                                         <button data-action="decrement" type="submit" class="counter greenLightBg beigeLight h-full w-9 rounded-l-2xl cursor-pointer outline-none">
