@@ -57,8 +57,8 @@
             @endcan
         </div>
             <article class="flex justify-start">
-                <div>
-                    <img class=" max-w-xs w-174 rounded-xl" src="{{ asset('storage') .'/'. $artisan->image}}" alt="foto de perfil">
+                <div class="max-h-96 w-96 overflow-hidden rounded-xl">
+                    <img class="object-fill w-full" src="{{ asset('storage') .'/'. $artisan->image}}" alt="foto de perfil">
                 </div>
             </article>
             <article class="space-y-3">
