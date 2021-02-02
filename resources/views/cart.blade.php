@@ -4,10 +4,6 @@
         <div>
             <div class="flex flex-col p-10 justify-center">
                 <div class="flex flex-col w-full mt-10">
-                    <div class="greenAmaso w-full flex flex-row justify-end">
-                        <p class="p-4">Ud.</p>
-                        <p class="p-4">Precio</p>
-                    </div>
                     @foreach ($products as $product)
                     <div class="flex flex-row">
                         <form method="POST" action="{{ route('removeProductCart', $product->id) }}">
@@ -45,7 +41,7 @@
                                 </div>
                             </div>
                             <div class="flex flex-row justify-end">
-                                <p class="p-4">{{$product->amount}}</p>
+                                <p class="p-4">{{$product->amount}} Ud.</p>
                                 <p class="p-4">{{number_format($product->price / 100, 2)}} €</p>
                             </div>
                         </div>
