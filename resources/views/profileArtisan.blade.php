@@ -97,7 +97,6 @@
                     <p class="text-sm pl-2 exo">Subir un nuevo Producto</p>
                 </button>
             </form>
-<<<<<<< HEAD
             <button class="greenLightBg w-max flex flex-row align-start font-serif text-white text-2xl mt-4 px-6 py-2  rounded-xl shadow-md">
              <svg width="30" height="30" viewBox="0 0 34 34" fill="none" xmlns="http://www.w3.org/2000/svg">
                         <g clip-path="url(#clip0)">
@@ -110,10 +109,6 @@
                         </defs>
                     </svg>
                     <a href="/orders">Mis Pedidos</a>
-=======
-            <button class="beigeAmasoBg flex flex-row align-start items-center font-serif text-white text-2xl mt-4 px-3 py-2 pr-4 ml-4 rounded-xl shadow-md">
-                    <p class="text-sm pl-1 exo">Mis pedidos</p>
->>>>>>> 4321ff8bf4bde4cd5763e6b2f398c2ed779bcd55
             </button>
         </article>
         @endif
