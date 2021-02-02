@@ -17,6 +17,8 @@ Route::get('/joinArtisan', function () {
     return view('joinArtisan');
 })->name('joinArtisan')->middleware(['auth']);
 
+
+
 require __DIR__.'/auth.php';
 
 
@@ -70,4 +72,6 @@ Route::delete('/cart/{id}', [App\Http\Controllers\CartController::class, 'remove
 Route::delete('/all/cart/{id}', [App\Http\Controllers\CartController::class, 'deleteProduct'])->name('deleteProductCart')->middleware(['auth']);
 
 //--PAYMENT ROUTES
+Route::get('/purchase/order', [App\Http\Controllers\PaymentController::class, 'order'])->name('purchaseOrder')->middleware(['auth']);
+
 Route::get('/purchase', [App\Http\Controllers\PaymentController::class, 'purchase'])->name('purchase')->middleware(['auth']);
