@@ -3,9 +3,9 @@
 
 Aplicación creada con la idea de poder ofrecer una via digital a los pequeños productores locales que quieren vender sus productos a clientes cercanos.
 
-1. [Usuarios.](##Usuarios.)
-2. [Artesanos.](##Artesanos.)
-3. [Administradores.](##Adminstradores.)
+1. [Usuarios.](#usuarios.)
+2. [Artesanos.](#artesanos.)
+3. [Administradores.](#adminstradores.)
 
 ## Usuarios.
 En la aplicación los usuarios pueden ver tanto los artesanos locales como sus productos. Pueden comprar productos.
