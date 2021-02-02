@@ -60,6 +60,11 @@ class ArtisanController extends Controller
         return view('artisans', compact('artisans'));
     }
 
+    public function orders()
+    {
+        return view('artisanOrders');
+    }
+
     public function destroy()
     {
         $artisan = Artisan::getArtisan();

@@ -99,7 +99,7 @@
                             </clipPath>
                         </defs>
                     </svg>
-                    Mis Pedidos
+                    <a href="/orders">Mis Pedidos</a>
             </button>
         </article>
         @endif
