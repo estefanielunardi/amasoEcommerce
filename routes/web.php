@@ -67,3 +67,5 @@ Route::get('/cart/add/{id}', [App\Http\Controllers\CartController::class, 'addPr
 
 Route::delete('/cart/{id}', [App\Http\Controllers\CartController::class, 'removeProduct'])->name('removeProductCart')->middleware(['auth']);
 
+//--PAYMENT ROUTES
+Route::get('/purchase', [App\Http\Controllers\PaymentController::class, 'purchase'])->name('purchase')->middleware(['auth']);
