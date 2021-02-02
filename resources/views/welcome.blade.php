@@ -12,8 +12,8 @@
 
     </header>
     <x-button-cart />
-    <article class="max-w-screen-xl mx-auto px-4">
-        <div class=" ml-6 flex flex-wrap">
+    <article class="max-w-screen-xl pl-4 sm:pl-10 xl:pl-20 mx-auto px-4">
+        <div class=" ml-6 flex flex-wrap justify-center">
 
             @foreach($products as $product)
             <x-product-card :product="$product"/>
