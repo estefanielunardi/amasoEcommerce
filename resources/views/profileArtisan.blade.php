@@ -2,32 +2,52 @@
 
     <body>
         <section class="block space-y-8 ... p-12 ">
-        @if(auth()->id() == $artisan->user_id)
-        <button class= "greenLightBg flex flex-row align-start text-sm text-white mt-4 px-6 py-2  rounded-xl shadow-md">               
-            <svg  width="24" height="24" viewBox="0 0 31 32" fill="none" xmlns="http://www.w3.org/2000/svg">
-            <path d="M21.0582 5.7376C21.3442 5.43197 21.6862 5.18819 22.0644 5.02048C22.4427 4.85277 22.8494 4.76449 23.2611 4.7608C23.6727 4.75711 24.0809 4.83808 24.4619 4.99897C24.8428 5.15987 25.189 5.39748 25.48 5.69794C25.7711 5.9984 26.0013 6.35568 26.1571 6.74895C26.313 7.14222 26.3915 7.56359 26.3879 7.98849C26.3843 8.41338 26.2988 8.83329 26.1363 9.2237C25.9739 9.61411 25.7377 9.96721 25.4416 10.2624L24.2125 11.5312L19.8291 7.0064L21.0582 5.7376ZM17.6374 9.2688L4.6499 22.6752V27.2H9.0333L22.0223 13.7936L17.6358 9.2688H17.6374Z" fill="white"/>
-            </svg> 
-            <a href="{{route('editProfile', $artisan->slug) }}" method="get">
-                Editar perfil
-            </a>             
-        </button>
+            <section class=" flex flex-col md:flex-row">
+                <article class="flex justify-start pb-8">
+                    <div class="max-h-96 w-96 overflow-hidden rounded-xl">
+                        <img class="object-fill w-full" src="{{ asset('storage') .'/'. $artisan->image}}" alt="foto de perfil">
+                    </div>
+                </article>
+                <article class="space-y-3 md:pl-10">
+                    <div>
+                        <h2 class="block title text-2xl	"> {{$artisan->name}} </h2>
+                        <p class="block beigeAmaso text-sm"> {{$artisan->location}} </p>
+                        <p class="block greenAmaso text-sm font-light w-64 lg:w-96 pb-5"> {{$artisan->description}} </p>
+                    </div>
+                    <div>
+                        @if(auth()->id() == $artisan->user_id)
+                        <button class= "greenLightBg flex flex-row align-start text-sm text-white mt-4 px-3 py-2  rounded-xl shadow-md">               
+                            <svg  width="24" height="24" viewBox="0 0 31 32" fill="none" xmlns="http://www.w3.org/2000/svg">
+                            <path d="M21.0582 5.7376C21.3442 5.43197 21.6862 5.18819 22.0644 5.02048C22.4427 4.85277 22.8494 4.76449 23.2611 4.7608C23.6727 4.75711 24.0809 4.83808 24.4619 4.99897C24.8428 5.15987 25.189 5.39748 25.48 5.69794C25.7711 5.9984 26.0013 6.35568 26.1571 6.74895C26.313 7.14222 26.3915 7.56359 26.3879 7.98849C26.3843 8.41338 26.2988 8.83329 26.1363 9.2237C25.9739 9.61411 25.7377 9.96721 25.4416 10.2624L24.2125 11.5312L19.8291 7.0064L21.0582 5.7376ZM17.6374 9.2688L4.6499 22.6752V27.2H9.0333L22.0223 13.7936L17.6358 9.2688H17.6374Z" fill="white"/>
+                            </svg> 
+                            <a class= "text-sm pl-2 pt-1 exo" href="{{route('editProfile', $artisan->slug) }}" method="get">
+                                Editar perfil
+                            </a>             
+                        </button>
 
-        <form method="POST" action="{{ route('deleteProfile', $artisan->slug) }}">
-            <x-modal title="¿Eliminar perfil?" submit-label="Eliminar">
-                <x-slot name="trigger">
-                    <button type="button" @click="on = true" class= "greenLightBg flex flex-row align-start text-sm text-white mt-4 px-6 py-2  rounded-xl shadow-md">
-                        <svg width="24" height="24"xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 7l-.867 12.142A2 2 0 0116.138 21H7.862a2 2 0 01-1.995-1.858L5 7m5 4v6m4-6v6m1-10V4a1 1 0 00-1-1h-4a1 1 0 00-1 1v3M4 7h16" />
-                        </svg>
-                        Eliminar Perfil
-                    </button>
-                </x-slot>
-                ¿Está seguro de que desea eliminar su perfil?
-            </x-modal>
-            @method('DELETE')
-            {{ csrf_field() }}
-        </form>
-        @endcan
+                        <form class="" method="POST" action="{{ route('deleteProfile', $artisan->slug) }}">
+                            <x-modal title="¿Eliminar perfil?" submit-label="Eliminar">
+                                <x-slot name="trigger">
+                                    <button type="button" @click="on = true" class= "greenLightBg flex flex-row align-start text-sm text-white mt-4 px-3 py-2  rounded-xl shadow-md">
+                                        <svg width="24" height="24"xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 7l-.867 12.142A2 2 0 0116.138 21H7.862a2 2 0 01-1.995-1.858L5 7m5 4v6m4-6v6m1-10V4a1 1 0 00-1-1h-4a1 1 0 00-1 1v3M4 7h16" />
+                                        </svg>
+                                        <p class="text-sm pl-2 pt-1 exo">
+                                            Eliminar Perfil
+                                        </p>
+                                    </button>
+                                </x-slot>
+                                ¿Está seguro de que desea eliminar su perfil?
+                            </x-modal>
+                            @method('DELETE')
+                            {{ csrf_field() }}
+                        </form>
+                        @endif
+                    </div>
+                </article>
+            </section>
+        </section>
+
         <div class="flex flex-row">
             @if (!$artisan->aproved)
                 @can('isAdmin')
@@ -56,25 +76,14 @@
             </form>
             @endcan
         </div>
-            <article class="flex justify-start">
-                <div class="max-h-96 w-96 overflow-hidden rounded-xl">
-                    <img class="object-fill w-full" src="{{ asset('storage') .'/'. $artisan->image}}" alt="foto de perfil">
-                </div>
-            </article>
-            <article class="space-y-3">
-                <h2 class="block title text-2xl	"> {{$artisan->name}} </h2>
-                <p class="block beigeAmaso text-sm"> {{$artisan->location}} </p>
-                <p class="block greenAmaso text-sm font-light"> {{$artisan->description}} </p>
-            </article>
-        </section>
 
-        <article class="p-8">
+        <article class="pl-12">
             <h2 class="block title">Productos de {{$artisan->name}}</h2>
         </article>
         @if(auth()->id() == $artisan->user_id)
-        <article class="flex justify-center pb-7">
+        <article class="flex justify-center md:justify-start md:pl-12 pb-7">
             <form action="{{'/product/create'}}" method="get">
-                <button class="greenLightBg  flex flex-row align-start font-serif text-white text-2xl mt-4 px-6 py-2  rounded-xl shadow-md" type="submit">
+                <button class="greenLightBg  flex flex-row align-start items-center font-serif text-white text-2xl mt-4 px-3 py-2  rounded-xl shadow-md" type="submit">
                     <svg width="30" height="30" viewBox="0 0 34 34" fill="none" xmlns="http://www.w3.org/2000/svg">
                         <g clip-path="url(#clip0)">
                             <path d="M8.48486 16.8905L25.4547 17.0491M16.8905 25.4547L17.0491 8.48491L16.8905 25.4547Z" stroke="white" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" />
@@ -85,7 +94,7 @@
                             </clipPath>
                         </defs>
                     </svg>
-                    Subir un nuevo Producto
+                    <p class="text-sm pl-2 exo">Subir un nuevo Producto</p>
                 </button>
             </form>
         </article>
@@ -97,7 +106,7 @@
         @endif
 
 
-        <article class="max-w-screen-xl mx-auto px-4">
+        <article class="max-w-screen-xl  pl-4 sm:pl-10 xl:pl-20 mx-auto px-4">
             <div class=" ml-6 flex flex-wrap">
 
                 @foreach($products as $product)
