@@ -1,18 +1,25 @@
 <x-app-layout>
-    <div>
-        <h3 class="greenAmaso text-bold text-2xl p-2 pt-4 text-center">Nuestros productores</h3>
-    </div>
-    <div class="container my-12 mx-auto px-4 md:px-12">
-        <div class="flex flex-wrap -mx-1 lg:-mx-4">
-            @foreach ($artisans as $artisan)           
-                    <div class="relative w-60 p-4">
-                        <img alt="Placeholder" class="w-full rounded-2xl" src="{{ asset('storage') .'/'. $artisan->image}}"/>
-                        <a href="/artisan/{{$artisan->slug}}"> 
-                            <p class="textManifiesto p-2">{{$artisan->name}}</p>
-                        </a>
-                    </div>              
-            @endforeach
+    <header class="static">
+        <img class="w-full h-64 object-cover lg:h-96" src="./image/coverArtisans.jpg">
+        <section class="absolute top-24 left-10 w-52 lg:w-96 lg:top-52 lg:left-52">
+            <h2 class="block title text-white pb-5 lg:text-5xl">Nuestros productores</h2>
+        </section>
+    </header>
+
+    <div class="flex flex-wrap justify-center md:space-x-20 my-12 mx-auto px-4 md:px-12">
+        @foreach ($artisans as $artisan)           
+        <div class="flex flex-col -mx-1 lg:-mx-4 pb-10 items-center">
+            <div class="relative w-56 h-56 overflow-hidden rounded-full">
+                <img alt="Placeholder" class="object-fill w-full rounded-2xl" src="{{ asset('storage') .'/'. $artisan->image}}"/>
+            </div>              
+            <a href="/artisan/{{$artisan->slug}}"> 
+                <p class="vollkorn text-xl pt-5">{{$artisan->name}}</p>
+            </a>
+            <p class="w-52 exo text-xs italic text-center pt-2">
+                {{$artisan->description}}
+            </p>
         </div>
+        @endforeach
         {!! $artisans->links() !!}
     </div>
 </x-app-layout>
