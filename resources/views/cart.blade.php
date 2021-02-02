@@ -9,7 +9,7 @@
                         <form method="POST" action="{{ route('removeProductCart', $product->id) }}">
                             <x-modal title="¿Eliminar producto?" submit-label="Eliminar">
                                 <x-slot name="trigger">
-                                    <button type="button" @click="on = true" class="text-l greenAmaso mt-2 px-4 py-8 rounded-xl">
+                                    <button type="button" @click="on = true" class="text-xl font-bold greenAmaso mt-2 px-4 py-8 rounded-xl">
                                         X
                                     </button>
                                 </x-slot>
@@ -24,7 +24,7 @@
                                 <p class="p-4">{{$product->name}}</p>
                             </div>
                             <div class="flex flex-row justify-start">
-                                <div class="flex flex-row h-9 w-full rounded-lg relative bg-transparent mt-1 vollkorn">
+                                <div class="flex flex-row h-9 w-full rounded-lg relative bg-transparent mt-1 exo">
                                     <form action="{{ route('removeProductCart' , $product->id) }}" method="POST">
                                         <button data-action="decrement" type="submit" class="counter greenLightBg beigeLight h-full w-9 rounded-l-2xl cursor-pointer outline-none">
                                             <span class="m-auto text-2xl font-thin text-white">-</span>
