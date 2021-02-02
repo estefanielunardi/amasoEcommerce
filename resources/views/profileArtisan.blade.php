@@ -81,7 +81,7 @@
             <h2 class="block title">Productos de {{$artisan->name}}</h2>
         </article>
         @if(auth()->id() == $artisan->user_id)
-        <article class="flex justify-center md:justify-start md:pl-12 pb-7">
+        <article class="flex pl-12 md:justify-start pb-7">
             <form action="{{'/product/create'}}" method="get">
                 <button class="greenLightBg  flex flex-row align-start items-center font-serif text-white text-2xl mt-4 px-3 py-2  rounded-xl shadow-md" type="submit">
                     <svg width="30" height="30" viewBox="0 0 34 34" fill="none" xmlns="http://www.w3.org/2000/svg">
@@ -105,9 +105,17 @@
         <x-button-cart />
         @endif
 
+        @if (count($products) === 0)
+        <section class="p-12 w-full h-96 content-center flex-wrap flex justify-center">
+            <p class="beigeAmaso text-xl text-center"> 
+                Aún no has publicado ningún producto. ¡Sube el primero!
+            </p>
+        </section>
+        @endif
 
         <article class="max-w-screen-xl  pl-4 sm:pl-10 xl:pl-20 mx-auto px-4">
             <div class=" ml-6 flex flex-wrap">
+
 
                 @foreach($products as $product)
                 <div class=" px-1 w-full flex flex-col p-6 sm:w-1/2 lg:w-1/3">

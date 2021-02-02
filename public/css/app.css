@@ -104,20 +104,6 @@ body {
   border-color: #81A78C;
 }
 
-.textManifiesto{
-  
-  font-family: Exo;
-  font-style: normal;
-  font-weight: normal;
-  font-size: 13px;
-  line-height: 150%;
-
-  display: flex;
-  align-items: center;
-  text-align: center;
-  
-  color: #336147;
-}
 
 .heroTitle {
   font-family: Vollkorn;
