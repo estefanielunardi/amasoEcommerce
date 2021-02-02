@@ -53,9 +53,9 @@
             <div class="flex justify-end p-4 pr-24"">
                 <h2 class=" greenAmaso text-lg font-bold">Total: {{number_format($total, 2)}} €</h2>
             </div>
-            <form>
+            <form method="GET" action="{{ route('purchaseOrder') }}">
                 <div class="flex justify-end p-4 pr-10">
-                    <button type="submit" class=" beigeAmasoBg font-serif text-white text-2xl mt-4 px-12 py-4  rounded-xl shadow-md">Tramitar Pedido</button>
+                    <button type="submit" class=" beigeAmasoBg font-serif text-white text-2xl mt-4 px-12 py-4  rounded-xl shadow-md">Pagar</button>
                 </div>
             </form>
         </div>
