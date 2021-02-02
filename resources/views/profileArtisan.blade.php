@@ -72,7 +72,7 @@
             <h2 class="block title">Productos de {{$artisan->name}}</h2>
         </article>
         @if(auth()->id() == $artisan->user_id)
-        <article class="flex justify-center pb-7">
+        <article class="flex flex-col justify-center pb-7 pl-7">
             <form action="{{'/product/create'}}" method="get">
                 <button class="greenLightBg  flex flex-row align-start font-serif text-white text-2xl mt-4 px-6 py-2  rounded-xl shadow-md" type="submit">
                     <svg width="30" height="30" viewBox="0 0 34 34" fill="none" xmlns="http://www.w3.org/2000/svg">
@@ -88,6 +88,19 @@
                     Subir un nuevo Producto
                 </button>
             </form>
+            <button class="greenLightBg w-max flex flex-row align-start font-serif text-white text-2xl mt-4 px-6 py-2  rounded-xl shadow-md">
+             <svg width="30" height="30" viewBox="0 0 34 34" fill="none" xmlns="http://www.w3.org/2000/svg">
+                        <g clip-path="url(#clip0)">
+                            <path d="M8.48486 16.8905L25.4547 17.0491M16.8905 25.4547L17.0491 8.48491L16.8905 25.4547Z" stroke="white" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" />
+                        </g>
+                        <defs>
+                            <clipPath id="clip0">
+                                <rect width="24" height="24" fill="white" transform="translate(0 16.8112) rotate(-44.4644)" />
+                            </clipPath>
+                        </defs>
+                    </svg>
+                    Mis Pedidos
+            </button>
         </article>
         @endif
 
