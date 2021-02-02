@@ -64,6 +64,22 @@ class User extends Authenticatable
         return $products;
     }
 
+    public function buyProductsInBasket($user_id){
+        $this->decrementStock($user_id);
+        
+        DB::table('product_user')
+            ->where('user_id',$user_id)
+            ->update(['buyed' => 1]);
+    }
+
+    public function decrementStock($user_id)
+    {
+        $products = $this->getProductsInBasket($user_id);  
+            DB::table('products')
+                ->where('id',$products[0]->id)
+                ->decrement('stock', $products[0]->amount);       
+    }
+
     public function calculateTotal($products)
     {
         $total = 0;
