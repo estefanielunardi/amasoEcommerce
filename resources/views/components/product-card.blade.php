@@ -7,7 +7,9 @@
         <section class="px-4">
             <div class="block py-2">
                 <h2 class="productTitle">{{$product->name}}</h2>
-                <h3 class="productProductor">Productor: {{$product->artisans->name}}</h3>
+                <h3 class="productProductor">Productor: 
+                    <a href="/artisan/{{$product->artisans->slug}}">{{$product->artisans->name}}</a>
+                </h3>
             </div>
             <div class="block py-1 h-12 overflow-auto">
                 <p class="productDescription">
@@ -18,19 +20,11 @@
                 @if ($product->stock > $product->sold)
                 <p class="inline-block productPrice">{{number_format($product->price / 100,2)}} €</p>
                 <div class="grid justify-items-center">
-                    <p class="text-xs">Añadir al carrito:</p>
-                    <div class="flex flex-row h-9 w-full rounded-lg relative bg-transparent mt-1 vollkorn">
-                        <form action="{{ route('removeProductCart' , $product->id) }}" method="POST">
-                            <button data-action="decrement" type="submit" class="counter greenLightBg beigeLight h-full w-9 rounded-l-2xl cursor-pointer outline-none">
-                                <span class="m-auto text-2xl font-thin text-white">-</span>
-                                @method('DELETE')
-                                {{ csrf_field() }}
-                            </button>
-                        </form>
-                        <input type="number" class="counter border-transparent outline-none focus:outline-none text-center w-10 greenAmasoBg font-semibold text-xl  md:text-basecursor-default flex items-center text-white  outline-none" name="custom-input-number" value="0"></input>
-                        <button data-action="increment" class="counter  greenLightBg  beigeLight  h-full w-9 rounded-r-2xl cursor-pointer outline-none">
-                            <span class="m-auto text-2xl font-thin text-white">
-                                <a href="{{ route('cartAddProduct' , $product->id) }}">+</a>
+                    
+                    <div class="flex flex-row h-9 w-full justify-center rounded-lg relative bg-transparent mt-1 vollkorn">                      
+                        <button class="greenLightBg  rounded-xl">
+                            <span class="m-auto text-xl p-2 font-thin text-white">
+                                <a href="{{ route('cartAddProduct' , $product->id) }}">Añadir</a>
                             </span>
                         </button>
                     </div>
