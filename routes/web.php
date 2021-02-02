@@ -69,6 +69,7 @@ Route::get('/cart/add/{id}', [App\Http\Controllers\CartController::class, 'addPr
 
 Route::delete('/cart/{id}', [App\Http\Controllers\CartController::class, 'removeProduct'])->name('removeProductCart')->middleware(['auth']);
 
+Route::delete('/all/cart/{id}', [App\Http\Controllers\CartController::class, 'deleteProduct'])->name('deleteProductCart')->middleware(['auth']);
 
 //--PAYMENT ROUTES
 Route::get('/purchase/order', [App\Http\Controllers\PaymentController::class, 'order'])->name('purchaseOrder')->middleware(['auth']);
