@@ -18,11 +18,18 @@ class ArtisanController extends Controller
     }
 
     public function seeProfile() 
-    {   
+    {       
         $artisan = Artisan::getArtisan();
-        $products = DB::table('products')
-        ->where('artisan_id', $artisan->id)
-        ->paginate(3);
+        if($artisan->aproved)
+        {
+            $products = DB::table('products')
+            ->where('artisan_id', $artisan->id)
+            ->paginate(3);
+        }
+        else
+        {
+            return view('responsesAdmin', ["message" => "Tu perfil esta siendo evaluado, recibiras noticias pronto por email!"]);
+        }
         
         return view('profileArtisan', compact('products', 'artisan'));   
     }
