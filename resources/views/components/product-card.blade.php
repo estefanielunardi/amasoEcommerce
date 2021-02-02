@@ -7,7 +7,9 @@
         <section class="px-4">
             <div class="block py-2">
                 <h2 class="productTitle">{{$product->name}}</h2>
-                <h3 class="productProductor">Productor: {{$product->artisans->name}}</h3>
+                <h3 class="productProductor">Productor: 
+                    <a href="/artisan/{{$product->artisans->slug}}">{{$product->artisans->name}}</a>
+                </h3>
             </div>
             <div class="block py-1 h-12 overflow-auto">
                 <p class="productDescription">
@@ -17,7 +19,8 @@
             <div class="block py-2 flex items-center justify-around">
                 @if ($product->stock > $product->sold)
                 <p class="inline-block productPrice">{{number_format($product->price / 100,2)}} €</p>
-                <div class="grid justify-items-center">                    
+                <div class="grid justify-items-center">
+                    
                     <div class="flex flex-row h-9 w-full justify-center rounded-lg relative bg-transparent mt-1 vollkorn">                      
                         <button class="greenLightBg  rounded-xl">
                             <span class="m-auto text-xl p-2 font-thin text-white">
