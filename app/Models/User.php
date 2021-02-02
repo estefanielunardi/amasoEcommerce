@@ -123,6 +123,12 @@ class User extends Authenticatable
         }  
     }
 
+    public function deleteProductFromCart($product_id)
+    {
+        $this->products()->detach($product_id);
+    
+    }
+
     public function incrementProductAmount($product_id,$user_id)
     {
         DB::table('product_user')
