@@ -48,6 +48,8 @@ Route::post('/artisan/store', [App\Http\Controllers\ArtisanController::class, 's
 
 Route::get('/artisans', [App\Http\Controllers\ArtisanController::class, 'getAll'])->name('artisans');
 
+Route::get('/orders', [App\Http\Controllers\ArtisanController::class, 'orders'])->name('orders')->middleware(['artisan']);
+
 
 //---ADMIN ROUTES
 Route::get('/admin', [App\Http\Controllers\AdminController::class, 'adminDash'])->middleware('checkAdmin')->name('adminDash');
