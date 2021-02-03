@@ -10,28 +10,27 @@ use App\Models\User;
 class EditArtisanTest extends TestCase
 {
   use RefreshDatabase;
-    public function testReturnEditForm()
-    {
-        $this->withoutExceptionHandling();
-        $this->actingAs(User::factory()->create(['isArtisan'=>true, 'id'=>1]));        
-        $artisan = Artisan::factory()->create(['user_id'=>1, 'id'=>1]);
-        
-        $response = $this->get('/artisan/edit/'. $artisan->id);
 
-        $response->assertStatus(200);
-    }
+  private Artisan $artisan;
 
-    public function testReturnViewOfEditForm()
-    {
-        $this->withoutExceptionHandling();
-        $this->actingAs(User::factory()->create(['isArtisan'=>true, 'id'=>1]));        
-        $artisan = Artisan::factory()->create(['user_id'=>1, 'id'=>1]);
-       
+  protected function setUp(): void
+  {
+    parent::setUp();
+    $this->actingAs(User::factory()->create(['id' => 1, 'isArtisan' => true]));
+    $this->artisan = Artisan::factory()->create(['user_id' => 1, 'id' => 1]);
+  }
+  public function testReturnEditForm()
+  {
+    $response = $this->get('/artisan/edit/' . $this->artisan->id);
 
-        $response = $this->get('/artisan/edit/' . $artisan->id);
+    $response->assertStatus(200);
+  }
 
-        $response->assertViewIs('editArtisan')
-             ->assertViewHas('artisan');
-    }
+  public function testReturnViewOfEditForm()
+  {
+    $response = $this->get('/artisan/edit/' . $this->artisan->id);
+
+    $response->assertViewIs('editArtisan')
+      ->assertViewHas('artisan');
+  }
 }
-

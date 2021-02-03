@@ -11,30 +11,31 @@ use App\Models\Artisan;
 class UpdateProductTest extends TestCase
 {
     use RefreshDatabase;
+
+    private Product $product;
+    private Artisan $artisan;
+
+    protected function setUp(): void
+    {
+        parent::setUp();
+        $this->actingAs(User::factory()->create(['isArtisan' => true, 'id' => 1]));
+        $this->artisan = Artisan::factory()->create(['user_id' => 1, 'id' => 1]);
+
+        $this->product = Product::factory()->create(['image' => null]);
+    }
+
     public function testRouteIfUserIsAuth()
     {
-        $this->withoutExceptionHandling();
-        $this->actingAs(User::factory()->create(['isArtisan'=>true, 'id'=>1]));        
-        $artisan = Artisan::factory()->create(['user_id'=>1, 'id'=>1]);
-       
-        $product= Product::factory()->create(['image'=> null]);
+        $response = $this->put(route('updateProduct', $this->product), $this->product->toArray());
 
-        $response = $this->put(route('updateProduct', $product) , $product->toArray());
-        
-        $response->assertRedirect('artisan/' . $artisan->slug);
+        $response->assertRedirect('artisan/' . $this->artisan->slug);
     }
 
     public function testDBHasBeenUpdate()
     {
-        $this->withoutExceptionHandling();
-        $this->actingAs(User::factory()->create(['isArtisan'=>true, 'id'=>1]));        
-        Artisan::factory()->create(['user_id'=>1, 'id'=>1]);
-       
-        $product= Product::factory()->create(['image'=> null]);
-        $product->name = 'Mermelada';
-    
-        $this->put(route('updateProduct', $product) , $product->toArray());
-        $this->assertDatabaseHas('products', ['name'=>'Mermelada']);
-    
+        $this->product->name = 'Mermelada';
+
+        $this->put(route('updateProduct', $this->product), $this->product->toArray());
+        $this->assertDatabaseHas('products', ['name' => 'Mermelada']);
     }
 }

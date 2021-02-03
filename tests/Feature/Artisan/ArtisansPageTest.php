@@ -10,11 +10,18 @@ use App\Models\User;
 class ArtisansPageTest extends TestCase
 {
     use RefreshDatabase;
+
+    private Artisan $artisan;
+
+    protected function setUp(): void
+    {
+        parent::setUp();
+        $this->actingAs(User::factory()->create(['id' => 1, 'isArtisan' => true]));
+        $this->artisan = Artisan::factory()->create(['user_id' => 1, 'id' => 1]);
+    }
     public function testRoute()
     {
-        $this->withoutExceptionHandling();
-        $this->actingAs(User::factory()->create(['isArtisan'=>true, 'id'=>1]));        
-        Artisan::factory()->create(['user_id'=>1, 'id'=>1]);
+        $this->artisan;
         $response = $this->get('/artisans');
 
         $response->assertStatus(200);
@@ -22,21 +29,17 @@ class ArtisansPageTest extends TestCase
 
     public function testReturnArtisansView()
     {
-        $this->actingAs(User::factory()->create(['isArtisan'=>true, 'id'=>1]));        
-        Artisan::factory()->create(['user_id'=>1, 'id'=>1]);
-
+        $this->artisan;
         $response = $this->get('/artisans');
         $response->assertViewIs('artisans');
     }
 
     public function testReturnArtisansViewWithArtisans()
     {
-        $this->actingAs(User::factory()->create(['isArtisan'=>true, 'id'=>1]));        
-        Artisan::factory()->create(['user_id'=>1, 'id'=>1]);
-
+        $this->artisan;
         $response = $this->get('/artisans');
 
         $response->assertViewIs('artisans')
-                ->assertViewHas('artisans');
+            ->assertViewHas('artisans');
     }
 }

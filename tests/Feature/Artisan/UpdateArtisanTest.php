@@ -10,28 +10,30 @@ use App\Models\User;
 class UpdateArtisanTest extends TestCase
 {
     use RefreshDatabase;
+
+    private Artisan $artisan;
+
+    protected function setUp(): void
+    {
+        parent::setUp();
+        $this->actingAs(User::factory()->create(['isArtisan' => true, 'id' => 1]));
+        $this->artisan = Artisan::factory()->create(['user_id' => 1, 'id' => 1, 'name' => 'Maria', 'image' => null]);
+    }
+
     public function testRouteIfUserIsAuth()
     {
-        $this->withoutExceptionHandling();
-        $this->actingAs(User::factory()->create(['isArtisan'=>true, 'id'=>1]));        
-        $artisan = Artisan::factory()->create(['user_id'=>1, 'id'=>1, 'name'=>'Maria', 'image'=>null]);
-        $artisan->name = 'Mary';
-               
-        $response = $this->put(route('updateArtisan', $artisan) , $artisan->toArray());
-        
+        $this->artisan->name = 'Mary';
+
+        $response = $this->put(route('updateArtisan', $this->artisan), $this->artisan->toArray());
+
         $response->assertRedirect('artisan/mary');
     }
 
     public function testDBHasBeenUpdate()
     {
-        $this->withoutExceptionHandling();
-        $this->actingAs(User::factory()->create(['isArtisan'=>true, 'id'=>1]));        
-        $artisan = Artisan::factory()->create(['user_id'=>1, 'id'=>1, 'name'=>'Maria', 'image'=>null]);
-        $artisan->name = 'Mary';
-    
-        $this->put(route('updateArtisan', $artisan) , $artisan->toArray());
-        $this->assertDatabaseHas('artisans', ['name'=>'Mary']);
-    
-    }
+        $this->artisan->name = 'Mary';
 
+        $this->put(route('updateArtisan', $this->artisan), $this->artisan->toArray());
+        $this->assertDatabaseHas('artisans', ['name' => 'Mary']);
+    }
 }

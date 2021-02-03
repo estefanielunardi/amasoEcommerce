@@ -10,53 +10,46 @@ use App\Models\User;
 
 class ArtisanProfileTest extends TestCase
 {
-    use RefreshDatabase; 
+    use RefreshDatabase;
+
+    private Artisan $artisan;
+    private Product $product;
+
+    protected function setUp(): void
+    {
+        parent::setUp();
+        $this->actingAs(User::factory()->create(['id' => 1, 'isArtisan' => true]));
+        $this->artisan = Artisan::factory()->create(['user_id' => 1, 'id' => 1]);
+        $this->product = Product::factory()->create(['image' => null, 'name' => 'mermelada']);
+    }
     public function testRouteArtisanProfile()
     {
-        $this->actingAs(User::factory()->create(['isArtisan'=>true, 'id'=>1]));        
-        $artisan = Artisan::factory()->create(['user_id'=>1, 'id'=>1]);
-        $this->withoutExceptionHandling();
-        $response = $this->get('artisan/' . $artisan->slug);
+
+        $response = $this->get('artisan/' . $this->artisan->slug);
 
         $response->assertStatus(200);
     }
 
     public function testReturnArtisanProfileView()
     {
-        $this->actingAs(User::factory()->create(['isArtisan'=>true, 'id'=>1]));        
-        $artisan = Artisan::factory()->create(['user_id'=>1, 'id'=>1]);
-
-        $this->withoutExceptionHandling();
-        $response = $this->get('artisan/' . $artisan->slug);
+        $response = $this->get('artisan/' . $this->artisan->slug);
 
         $response->assertViewIs('profileArtisan');
     }
 
     public function testReturnArtisanProfileViewWithData()
     {
-        $this->actingAs(User::factory()->create(['isArtisan'=>true, 'id'=>1]));        
-        $artisan = Artisan::factory()->create(['user_id'=>1, 'id'=>1]);
-
-        $this->withoutExceptionHandling();
-        $response = $this->get('artisan/' . $artisan->slug);
+        $response = $this->get('artisan/' . $this->artisan->slug);
 
         $response->assertViewIs('profileArtisan')
-                ->assertViewHas('artisan')
-                ->assertSee($artisan -> name); 
+            ->assertViewHas('artisan')
+            ->assertSee($this->artisan->name);
     }
 
     public function testReturnArtisanProfileViewHasProducts()
     {
-
-        $this->actingAs(User::factory()->create(['isArtisan'=>true, 'id'=>1]));        
-        $artisan = Artisan::factory()->create(['user_id'=>1, 'id'=>1]);
-        Product::factory(3)->create([
-            'artisan_id' => 1
-        ]);
-
-        $response = $this->get('artisan/' . $artisan->slug);
+        $response = $this->get('artisan/' . $this->artisan->slug);
         $response->assertViewIs('profileArtisan')
-                ->assertViewHas('products');
+            ->assertViewHas('products');
     }
-
 }

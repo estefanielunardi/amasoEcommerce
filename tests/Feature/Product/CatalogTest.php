@@ -27,7 +27,6 @@ class CatalogTest extends TestCase
         $response = $this->get(route('home'));
 
         $response->assertViewIs("welcome")
-        ->assertViewHas("products");
+            ->assertViewHas("products");
     }
-
 }
