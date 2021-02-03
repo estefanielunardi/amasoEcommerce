@@ -51,7 +51,7 @@
 
                     <div class="flex flex-col my-4 text-xl greenAmaso">
                         <label class="font-serif" for='isArtisan' :value="__('isArtisan')">Registrarse como Artesano</label>
-                        <select id="isArtisan" name="isArtisan" class="focus:ring-indigo-500 focus:border-indigo-500 h-full py-0 pl-2 pr-7 border-transparent bg-transparent greenAmaso sm:text-sm rounded-md">
+                        <select id="isArtisan" name="isArtisan" class="focus:ring-indigo-500 bg-gray-100 focus:border-indigo-500 h-full py-0 pl-2 pr-7 border-transparent bg-transparent greenAmaso sm:text-sm rounded-md">
                             <option value='0'>No</option>                   
                             <option value='1'>Si</option>
                         </select>                    
