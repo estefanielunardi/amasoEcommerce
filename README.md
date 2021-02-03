@@ -70,16 +70,22 @@ Aplicación creada con la idea de poder ofrecer una via digital a los pequeños 
 ### Adminstradores
 - Los administradores disponen de un panel de control donde podrán visualizar a los artesanos que se hayan inscrito en la aplicación. 
 - Los administradores deberan aprovar a los artesanos inscritos antes de que estos puedan vender sus productos.
-- Se envía un email a los artesanos con la actualización del estatus de su perfil (aprobado\desaprobado).
+- Se envía un email a los artesanos con la actualización del estatus de su perfil (aprobado\desaprobado)
 
 
 
 ## Aprendizajes
 
 - 
+- 
+-
 
 ## Siguientes pasos
 
-- 
+- Incluir una API para la pasarela de pago. 
+- Implementar patrón repositorio.
+- Vincular un carrito con cada usuario que se destruye luego de la compra.
+- Implementar transacciones para las bases de datos.
+- Utilizar sesiones que reserven los productos durante un tiempo determinado en cada carrito.
 
 
