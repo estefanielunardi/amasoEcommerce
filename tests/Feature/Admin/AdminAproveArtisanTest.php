@@ -11,65 +11,62 @@ use Illuminate\Support\Facades\Mail;
 
 class AdminAproveArtisanTest extends TestCase
 {
-    
-        use RefreshDatabase; 
-    
-        public function testAdminCanAproveArtisan()
-        {
-            $admin = User::factory()->create([
-                'name'=>'Estefanie',
-                'email'=>'este@fani.es',
-                'password'=>'12345678',
-                'is_admin'=>true,
-                'id'=>1,
-            ]); 
-            User::factory()->create([
-                'name'=>'Pepita',
-                'email'=>'pepi@ta',
-                'id'=>2,
-            ]); 
-    
-            $artisan = Artisan::factory()->create(['user_id'=>2, 'id'=>1, 'name'=>'Pepita', 'aproved'=>false]);
-              
-            $response = $this->actingAs($admin)
-                    ->post('profiles/' . $artisan->id);
-    
-            $response->assertRedirect(route('adminDash'));
-            $this->assertDatabaseHas('artisans', ['name'=>'Pepita', 'aproved'=>true]);
-            
-                    
-        }
 
-        public function testSendsEmailWhenProfileIsAproved()
-        {
-            $this->withoutExceptionHandling();
-            Mail::fake();
-            $admin = User::factory()->create([
-                'name'=>'Estefanie',
-                'email'=>'este@fani.es',
-                'password'=>'12345678',
-                'is_admin'=>true,
-            ]); 
+    use RefreshDatabase;
 
-            User::factory()->create(['name'=>'Pepita','email'=>'pepi@ta','id'=>2,]);
-    
-            $artisan = Artisan::factory()->create(['user_id'=>2, 'id'=>1, 'name'=>'Pepita', 'aproved'=>false]);
-              
-            $this->actingAs($admin)->post('profiles/' . $artisan->id);
-    
-            Mail::assertSent(ArtisanProfileAprovedEmail::class);
-    
-        }
+    private Artisan $artisan;
+    private User $admin;
+    private User $user;
 
-        public function testMailContent()
+    protected function setUp(): void
     {
-        $user = User::factory()->create(['name'=>'Pepita','email'=>'pepi@ta','id'=>2,]);
-        $mailable = new ArtisanProfileAprovedEmail($user->name);
+        parent::setUp();
+        $this->admin = User::factory()->create([
+            'name' => 'Estefanie',
+            'email' => 'este@fani.es',
+            'password' => '12345678',
+            'is_admin' => true,
+            'id' => 1,
+        ]);
+        $this->user = User::factory()->create([
+            'name' => 'Pepita',
+            'email' => 'pepi@ta',
+            'id' => 2,
+        ]);
+
+        $this->artisan = Artisan::factory()->create([
+            'user_id' => 2,
+            'id' => 1,
+            'name' => 'Pepita',
+            'aproved' => false
+        ]);
+    }
+
+    public function testAdminCanAproveArtisan()
+    {
+        $response = $this->actingAs($this->admin)
+            ->post('profiles/' . $this->artisan->id);
+
+        $response->assertRedirect(route('adminDash'));
+        $this->assertDatabaseHas('artisans', ['name' => 'Pepita', 'aproved' => true]);
+    }
+
+    public function testSendsEmailWhenProfileIsAproved()
+    {
+        Mail::fake();
+
+        $this->actingAs($this->admin)->post('profiles/' . $this->artisan->id);
+
+        Mail::assertSent(ArtisanProfileAprovedEmail::class);
+    }
+
+    public function testMailContent()
+    {
+        $mailable = new ArtisanProfileAprovedEmail($this->user->name);
 
         $mailable->assertSeeInHtml('Amasó');
-        $mailable->assertSeeInHtml($user->name);
+        $mailable->assertSeeInHtml($this->user->name);
         $mailable->assertSeeInHtml('Felicidades Pepita! Tu perfil ha sido aprovado');
         $mailable->assertSeeInHtml('Ya puedes subir tus productos en www.amaso.com');
     }
-    
 }

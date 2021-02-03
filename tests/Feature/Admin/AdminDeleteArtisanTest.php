@@ -10,65 +10,56 @@ use App\Models\Artisan;
 use App\Mail\ArtisanProfileDeletedEmail;
 
 
-
 class AdminDeleteArtisanTest extends TestCase
 {
-    use RefreshDatabase; 
+    use RefreshDatabase;
+
+    private Artisan $artisan;
+    private User $user;
+    private User $admin;
+
+    protected function setUp(): void
+    {
+        parent::setUp();
+        $this->admin = User::factory()->create([
+            'name' => 'Estefanie',
+            'email' => 'este@fani.es',
+            'password' => '12345678',
+            'is_admin' => true,
+        ]);
+
+        $this->artisan = Artisan::factory()->create([
+            'user_id' => 1,
+            'id' => 1,
+            'name' => 'Pepita',
+        ]);
+        $this->user = User::factory()->create(['name' => 'Pepita', 'email' => 'pepi@ta', 'id' => 2,]);
+    }
+
     public function testAdminCanDeleteAnArtisan()
     {
-        $admin = User::factory()->create([
-            'name'=>'Estefanie',
-            'email'=>'este@fani.es',
-            'password'=>'12345678',
-            'is_admin'=>true,
-        ]); 
-
-        $artisan = Artisan::factory()->create(['user_id'=>1, 'id'=>1, 'name'=>'Pepita']);
-          
-        $response = $this->actingAs($admin)
-                ->delete('profiles/' . $artisan->id);
+        $response = $this->actingAs($this->admin)->delete('profiles/' . $this->artisan->id);
 
         $response->assertRedirect(route('adminDash'));
         $this->assertDatabaseCount('artisans', 0);
-        $this->assertDatabaseMissing('artisans', ['name'=>'Pepita']);
-                
+        $this->assertDatabaseMissing('artisans', ['name' => 'Pepita']);
     }
 
     public function testSendsEmailWhenProfileIsDeleted()
-        {
-            $this->withoutExceptionHandling();
-            Mail::fake();
-            $admin = User::factory()->create([
-                'name'=>'Estefanie',
-                'email'=>'este@fani.es',
-                'password'=>'12345678',
-                'is_admin'=>true,
-            ]); 
+    {
+        Mail::fake();
 
-            User::factory()->create(['name'=>'Pepita','email'=>'pepi@ta','id'=>2,]);
-    
-            $artisan = Artisan::factory()->create(['user_id'=>2, 'id'=>1, 'name'=>'Pepita', 'aproved'=>false]);
-              
-            $this->actingAs($admin)->delete('profiles/' . $artisan->id);
-    
-            Mail::assertSent(ArtisanProfileDeletedEmail::class);
-    
-        }
+        $this->actingAs($this->admin)->delete('profiles/' . $this->artisan->id);
+
+        Mail::assertSent(ArtisanProfileDeletedEmail::class);
+    }
 
     public function testMailContent()
     {
-        $user = User::factory()->create(['name'=>'Pepita','email'=>'pepi@ta','id'=>2,]);
-        $mailable = new ArtisanProfileDeletedEmail($user->name);
+        $mailable = new ArtisanProfileDeletedEmail($this->user->name);
 
         $mailable->assertSeeInHtml('Amasó');
-        $mailable->assertSeeInHtml($user->name);
+        $mailable->assertSeeInHtml($this->user->name);
         $mailable->assertSeeInHtml('Lo sentimos Pepita, Tu perfil no ha sido aprovado');
     }
 }
-
-
-
-
-        
-
-
