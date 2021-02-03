@@ -11,12 +11,20 @@ use App\Models\Product;
 class ArtisanOrdersTest extends TestCase
 {
     use RefreshDatabase;
-    public function testRoute()
+    
+    private Artisan $artisan;
+    private Product $product;
+
+    protected function setUp() :void
     {
-        $this->withoutExceptionHandling();
+        parent::setUp();
         $this->actingAs(User::factory()->create(['id'=>1,'isArtisan'=>true]));
-        Artisan::factory()->create(['user_id'=>1, 'id'=>1]);
-        
+        $this->artisan = Artisan::factory()->create(['user_id'=>1, 'id'=>1]);
+        $this->product= Product::factory()->create(['image'=> null, 'name'=>'mermelada']);
+    }
+    
+    public function testRoute()
+    {   
         $response = $this->get(route('orders'));
 
         $response->assertStatus(200);
@@ -24,13 +32,7 @@ class ArtisanOrdersTest extends TestCase
 
     public function testReturnOrdersView()
     {
-        $this->withoutExceptionHandling();
-        $this->actingAs(User::factory()->create(['id'=>1,'isArtisan'=>true]));
-        Artisan::factory()->create(['user_id'=>1, 'id'=>1]);
-
-        $product= Product::factory()->create(['image'=> null, 'name'=>'mermelada']);
-
-        $this->get(route('cartAddProduct', $product->id));
+        $this->get(route('cartAddProduct', $this->product->id));
         $response = $this->get(route('orders'));
         $response->assertviewIs('artisanOrders');
         $response->assertviewIs('artisanOrders')
