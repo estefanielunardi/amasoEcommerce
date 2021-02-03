@@ -32,12 +32,14 @@
                                             {{ csrf_field() }}
                                         </button>
                                     </form>
-                                    <input type="number" class="counter border-transparent outline-none focus:outline-none text-center w-10 greenAmasoBg font-semibold text-xl  md:text-basecursor-default flex items-center text-white  outline-none" name="custom-input-number" value="{{$product->amount}}"></input>
+                                    <input type="number" max="{{$product->stock}}" class="counter border-transparent outline-none focus:outline-none text-center w-10 greenAmasoBg font-semibold text-xl  md:text-basecursor-default flex items-center text-white  outline-none" name="custom-input-number" value="{{$product->amount}}"></input>
+                                    @if($product->stock > $product->amount)
                                     <button data-action="increment" class="counter  greenLightBg  beigeLight  h-full w-9 rounded-r-2xl cursor-pointer outline-none">
                                         <span class="m-auto text-2xl font-thin text-white">
                                             <a href="{{ route('cartAddProduct' , $product->id) }}">+</a>
                                         </span>
                                     </button>
+                                    @endif
                                 </div>
                             </div>
                             <div class="flex flex-row justify-end">
