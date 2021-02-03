@@ -7,6 +7,8 @@ use Tests\TestCase;
 use App\Models\User;
 use App\Models\Artisan;
 use App\Models\Product;
+use App\Mail\PurchaseConfirmation; 
+use Illuminate\Support\Facades\Mail;
 
 class PaymentConfirmationTest extends TestCase
 {
@@ -84,5 +86,29 @@ class PaymentConfirmationTest extends TestCase
                                         'number_card'=>'SE12345678',
                                         'expiring_date'=>'11/12/20']);
     
+    }
+
+    public function testSendsEmailWhenPurchaseIsCompleted()
+    {
+        $this->withoutExceptionHandling();
+        Mail::fake();
+
+        $this->actingAs(User::factory()->create(['name'=>'Pepita','email'=>'pepi@ta','id'=>2,]));
+
+        $this->put('/purchase');
+
+        Mail::assertSent(PurchaseConfirmation::class);
+
+    }
+
+        public function testMailContent()
+    {
+        $user = User::factory()->create(['name'=>'Pepita','email'=>'pepi@ta','id'=>2,]);
+        $mailable = new PurchaseConfirmation($user->name);
+
+        $mailable->assertSeeInHtml('Amasó');
+        $mailable->assertSeeInHtml($user->name);
+        $mailable->assertSeeInHtml('tu pedido ha sido realizado con éxito');
+        $mailable->assertSeeInHtml('Gracias por confiar en nosotros.');
     }
 }
