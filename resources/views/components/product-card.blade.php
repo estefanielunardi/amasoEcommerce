@@ -11,26 +11,26 @@
                     <a href="/artisan/{{$product->artisans->slug}}">{{$product->artisans->name}}</a>
                 </h3>
             </div>
-            <div class="block py-1 h-12 overflow-auto">
+            <div class="block py-1 h-16 overflow-auto">
                 <p class="productDescription">
                     {{$product->description}}
                 </p>
             </div>
             <div class="block py-2 flex items-center justify-around">
                 @if ($product->stock > $product->sold)
-                <p class="inline-block productPrice">{{number_format($product->price / 100,2)}} €</p>
+                <p class="pt-2 pr-2 inline-block productPrice">{{number_format($product->price / 100,2)}} €</p>
                 <div class="grid justify-items-center">
                     
                     <div class="flex flex-row h-9 w-full justify-center rounded-lg relative bg-transparent mt-1 vollkorn">                      
                         <button class="greenLightBg  rounded-xl">
-                            <span class="m-auto text-xl p-2 font-thin text-white">
+                            <span class="m-auto text-lg p-2 font-thin exo text-white">
                                 <a href="{{ route('cartAddProduct' , $product->id) }}">Añadir</a>
                             </span>
                         </button>
                     </div>
                 </div>
                 @else
-                <p class="text-lg beigeAmasoBg p-1 mt-4 leading-4">Producto agotado</p>
+                <p class="text-lg beigeAmasoBg p-1 mt-2 leading-4">Producto agotado</p>
                 @endif
             </div>
         </section>
