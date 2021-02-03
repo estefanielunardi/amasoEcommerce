@@ -7,7 +7,7 @@
             <form>
                 <div class="flex flex-col my-4 text-xl greenAmaso">
                     <label for="direction" class="font-serif">{{ __('Dirección postal') }}</label>
-                    <input type="text" id="direccion" placeholder="Calle, número, piso puerta" class="w-100 border-solid border-2 border-green-500 rounded shadow-md h-10" name="direction" required autocomplete="direction" autofocus>
+                    <input type="text" id="direction" placeholder="Calle, número, piso puerta" class="w-100 border-solid border-2 border-green-500 rounded shadow-md h-10" name="direction" required autocomplete="direction" autofocus>
                 </div>
                 <div class="flex flex-col my-4 text-xl greenAmaso">
                     <label for="location" class="font-serif">{{ __('Localidad/Provincia') }}</label>
@@ -30,8 +30,8 @@
                             <input type="number" id="card" class="w-100 border-solid border-2 border-green-500 rounded shadow-md h-10" name="card" required autocomplete="card" autofocus>
                         </div>
                         <div class="flex flex-col my-4 text-xl greenAmaso">
-                            <label for="" class="font-serif">{{ __('Nombre en la tarjeta') }}</label>
-                            <input type="text" id="location" class="w-100 border-solid border-2 border-green-500 rounded shadow-md h-10" name="name" required autocomplete="name" autofocus>
+                            <label for="name" class="font-serif">{{ __('Nombre en la tarjeta') }}</label>
+                            <input type="text" id="name" class="w-100 border-solid border-2 border-green-500 rounded shadow-md h-10" name="name" required autocomplete="name" autofocus>
                         </div>
                         <div class="flex flex-col my-4 text-xl greenAmaso">
                             <label for="nombre" class="font-serif">{{ __('Fecha de vencimiento') }}</label>
@@ -67,7 +67,7 @@
             <div class="flex justify-end p-4 pr-24">
                 <h2 class=" greenAmaso text-lg font-bold">Total: {{number_format($total, 2)}} €</h2>
             </div>
-            <form  action="#">
+            <form  method="GET" action="{{ route('purchase') }}">
                 <div class="flex justify-center p-4 pr-10">
                     <button type="submit" class=" beigeAmasoBg font-serif text-white text-2xl mt-4 px-12 py-4 rounded-xl shadow-md">Tramitar Pedido</button>
                 </div>

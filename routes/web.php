@@ -76,4 +76,4 @@ Route::delete('/all/cart/{id}', [App\Http\Controllers\CartController::class, 'de
 //--PAYMENT ROUTES
 Route::get('/purchase/order', [App\Http\Controllers\PaymentController::class, 'order'])->name('purchaseOrder')->middleware(['auth']);
 
-Route::get('/purchase', [App\Http\Controllers\PaymentController::class, 'purchase'])->name('purchase')->middleware(['auth']);
+Route::put('/purchase', [App\Http\Controllers\PaymentController::class, 'purchase'])->name('purchase')->middleware(['auth']);
