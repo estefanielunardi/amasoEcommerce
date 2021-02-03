@@ -3,11 +3,10 @@
 namespace App\Mail;
 
 use Illuminate\Bus\Queueable;
-use Illuminate\Contracts\Queue\ShouldQueue;
 use Illuminate\Mail\Mailable;
 use Illuminate\Queue\SerializesModels;
 
-class ArtisanProfileAprovedEmail extends Mailable
+class ArtisanProfileDeletedEmail extends Mailable
 {
     use Queueable, SerializesModels;
 
@@ -28,9 +27,9 @@ class ArtisanProfileAprovedEmail extends Mailable
      */
     public function build()
     {
-        return $this->from('amaso@root.com', 'Mailtrap')
+        $this->from('amaso@root.com', 'Mailtrap')
             ->subject('Amasó')
-            ->view('emails.artisanAproved')
+            ->view('emails.artisanDeleted')
             ->with([
                 'name' => $this->name,
             ]);

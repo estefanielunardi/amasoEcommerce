@@ -17,7 +17,7 @@
             </div>
             <div class="flex flex-col my-4 text-xl greenAmaso">
                 <label for="imagen" class="font-serif">{{ __('Imagen de Perfil') }}</label>
-                <input accept="image/*" type="file" id="image" class="w-100 border-solid border-2 border-green-500 rounded shadow-md h-10" name="image" autofocus>
+                <input accept="image/*" type="file" id="image" class="custom-file-input  w-100 border-solid border-2 border-green-500 rounded shadow-md h-10" name="image" autofocus>
             </div>
             <div class="flex flex-col my-4 text-xl greenAmaso">
                 <label for="location" class="font-serif">{{ __('Localidad') }}</label>
