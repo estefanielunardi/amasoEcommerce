@@ -17,7 +17,7 @@
                 </div>
                 <div class="flex flex-col my-4 text-xl greenAmaso">
                     <label for="postal" class="font-serif">{{ __('Código postal') }}</label>
-                    <input type="text" id="postal" class="w-100 border-solid border-2 border-green-500 rounded shadow-md h-10" name="postal"  required autocomplete="postal" autofocus>
+                    <input type="number" id="postal" class="w-100 border-solid border-2 border-green-500 rounded shadow-md h-10" name="postal"  required autocomplete="postal" autofocus>
                 </div>
             
             <section class="flex flex-col m-10">
@@ -29,15 +29,15 @@
                     <form>
                         <div class="flex flex-col my-4 text-xl greenAmaso">
                             <label for="card" class="font-serif">{{ __('Número de tarjeta') }}</label>
-                            <input type="number" id="card" class="w-100 border-solid border-2 border-green-500 rounded shadow-md h-10" name="card" required autocomplete="card" autofocus>
+                            <input placeholder="sin espacios ni simbolos" id="card" class="w-100 border-solid border-2 border-green-500 rounded shadow-md h-10" name="card" required autocomplete="card" autofocus>
                         </div>
                         <div class="flex flex-col my-4 text-xl greenAmaso">
-                            <label for="name" class="font-serif">{{ __('Nombre en la tarjeta') }}</label>
+                            <label for="name" class="font-serif">{{ __('Titular de la tarjeta') }}</label>
                             <input type="text" id="name" class="w-100 border-solid border-2 border-green-500 rounded shadow-md h-10" name="name" required autocomplete="name" autofocus>
                         </div>
                         <div class="flex flex-col my-4 text-xl greenAmaso">
                             <label for="nombre" class="font-serif">{{ __('Fecha de vencimiento') }}</label>
-                            <input type="number" id="date" class="w-100 border-solid border-2 border-green-500 rounded shadow-md h-10" name="date"  required autocomplete="date" autofocus>
+                            <input type="text"required pattern="([0-2][0-9]|(3)[0-1])(\/)(((0)[0-9])|((1)[0-2]))(\/)(0[1-9]|[12]\d|3[01])" placeholder="dd/mm/yy" id="date" class="w-100 border-solid border-2 border-green-500 rounded shadow-md h-10" name="date"  required autocomplete="date" autofocus>
                         </div>
             
                 </div>
