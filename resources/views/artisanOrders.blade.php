@@ -7,7 +7,6 @@
                     <th class="p-3 font-bold vollkorn text-white greenLightBg hidden lg:table-cell">Producto</th>
                     <th class="p-3 font-bold vollkorn text-white greenLightBg hidden lg:table-cell">Cantidad</th>
                     <th class="p-3 font-bold vollkorn text-white greenLightBg hidden lg:table-cell">Total</th>
-                    <th class="p-3 font-bold vollkorn text-white greenLightBg hidden lg:table-cell">Comprador</th>
                     <th class="p-3 font-bold vollkorn text-white greenLightBg hidden lg:table-cell">Email</th>
                     <th class="p-3 font-bold vollkorn text-white greenLightBg hidden lg:table-cell">Direccion</th>
                     <th class="p-3 font-bold vollkorn text-white greenLightBg hidden lg:table-cell">C.P</th>
@@ -15,43 +14,40 @@
                 </tr>
             </thead>
             <tbody>
+            @foreach ($orders as $order)
                 <tr class="bg-white lg:hover:bg-gray-100 flex lg:table-row flex-row lg:flex-row flex-wrap lg:flex-no-wrap mb-10 lg:mb-0">
                     <td class="w-full lg:w-auto p-3 text-gray-800 text-center border border-b block lg:table-cell relative lg:static">
-                        <span >Mermelada de fresa</span>
+                    <span>{{$order->name}}</span>
                         
                     </td>
                     <td class="w-full lg:w-auto p-3 text-gray-800 text-center border border-b text-center block lg:table-cell relative lg:static">
-                        <span>3</span>
+                    <span>{{$order->amount}}</span>
                         
                     </td>
                     <td class="w-full lg:w-auto p-3 text-gray-800 text-center border border-b block lg:table-cell relative lg:static">
-                        <span >9 €</span>
-                        
-                    </td>
-                    <td class="w-full lg:w-auto p-3 text-gray-800 text-center border border-b text-center block lg:table-cell relative lg:static">
-                        <span >Maria Mercedes</span>
+                    <span>{{number_format($order->amount * $order->price/100,2)}} €</span>
                         
                     </td>
                     <td class="w-full lg:w-auto p-3 text-gray-800 text-center border border-b block lg:table-cell relative lg:static">
-                        <span >maria@mercedes</span>
+                    <span>{{$order->email}}</span>
                     
                     </td>
                     <td class="w-full lg:w-auto p-3 text-gray-800 text-center border border-b text-center block lg:table-cell relative lg:static">
-                        <span >Calle Melancolia nro 7</span>                    
+                    <span>{{$order->direction}}</span>                    
                     </td>
                     <td class="w-full lg:w-auto p-3 text-gray-800 text-center border border-b text-center block lg:table-cell relative lg:static">
-                        <span >08014</span>
+                    <span>{{$order->postal}}</span>
                         
                     </td>
                     <td class="w-full lg:w-auto p-3 text-gray-800 text-center border border-b text-center block lg:table-cell relative lg:static">
-                        <span >20/12/2020</span>
+                    <span>{{$order->updated_at}}</span>
             
                     </td>
                 </tr>
                 
-                
+                @endforeach 
             </tbody>
         </table>
-
+        {!! $orders->links() !!}
     </div>
 </x-app-layout>
