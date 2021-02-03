@@ -3,7 +3,7 @@
     <body>
         <section class="block space-y-8 ... p-12 ">
             <section class=" flex flex-col md:flex-row">
-                <article class="flex justify-start pb-8">
+                <article class="flex justify-start pb-6">
                     <div class="max-h-96 w-96 overflow-hidden rounded-xl">
                         <img class="object-fill w-full" src="{{ asset('storage') .'/'. $artisan->image}}" alt="foto de perfil">
                     </div>
@@ -48,10 +48,10 @@
             </section>
         </section>
 
-        <div class="flex flex-row">
+        <div class="flex flex-row mb-10">
             @if (!$artisan->aproved)
                 @can('isAdmin')
-                <form  method="POST" action="{{ route('aproveArtisan', $artisan->id) }}">
+                <form class="ml-12" method="POST" action="{{ route('aproveArtisan', $artisan->id) }}">
                     <x-modal title="¿Aprobar artesano?" submit-label="Aprobar">
                         <x-slot name="trigger">
                             <button type="button" @click="on = true" class= "beigeAmasoBg flex flex-row align-start text-sm text-white mt-4 px-6 py-2  rounded-xl shadow-md">Aprobar artesano</button>
