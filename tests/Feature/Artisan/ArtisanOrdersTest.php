@@ -5,6 +5,8 @@ namespace Tests\Feature\Artisan;
 use Illuminate\Foundation\Testing\RefreshDatabase;
 use Tests\TestCase;
 use App\Models\User;
+use App\Models\Artisan;
+use App\Models\Product;
 
 class ArtisanOrdersTest extends TestCase
 {
@@ -12,7 +14,8 @@ class ArtisanOrdersTest extends TestCase
     public function testRoute()
     {
         $this->withoutExceptionHandling();
-        $this->actingAs(User::factory()->create(['isArtisan'=>true]));
+        $this->actingAs(User::factory()->create(['id'=>1,'isArtisan'=>true]));
+        Artisan::factory()->create(['user_id'=>1, 'id'=>1]);
         
         $response = $this->get(route('orders'));
 
@@ -22,10 +25,15 @@ class ArtisanOrdersTest extends TestCase
     public function testReturnOrdersView()
     {
         $this->withoutExceptionHandling();
-        $this->actingAs(User::factory()->create(['isArtisan'=>true]));
-        
-        $response = $this->get(route('orders'));
+        $this->actingAs(User::factory()->create(['id'=>1,'isArtisan'=>true]));
+        Artisan::factory()->create(['user_id'=>1, 'id'=>1]);
 
+        $product= Product::factory()->create(['image'=> null, 'name'=>'mermelada']);
+
+        $this->get(route('cartAddProduct', $product->id));
+        $response = $this->get(route('orders'));
         $response->assertviewIs('artisanOrders');
+        $response->assertviewIs('artisanOrders')
+                ->assertViewHas('orders');
     }
 }
