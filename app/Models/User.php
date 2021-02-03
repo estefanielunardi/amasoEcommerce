@@ -75,9 +75,13 @@ class User extends Authenticatable
     public function decrementStock($user_id)
     {
         $products = $this->getProductsInBasket($user_id);  
+        foreach($products as $product)
+        {
             DB::table('products')
-                ->where('id',$products[0]->id)
-                ->decrement('stock', $products[0]->amount);       
+                ->where('id',$product->id)
+                ->decrement('stock', $product->amount);       
+
+        }
     }
 
     public function calculateTotal($products)

@@ -45,12 +45,16 @@ class PaymentConfirmationTest extends TestCase
 
         $this->actingAs(User::factory()->create(['isArtisan'=>true, 'id'=>1]));        
         Artisan::factory()->create(['user_id'=>1, 'id'=>1]);       
-        $product = Product::factory()->create(['image'=> null,'id'=>1, 'name'=>'mermelada', 'stock'=>4]);
-        $this->get(route('cartAddProduct', $product->id));
-        $this->get(route('cartAddProduct', $product->id));
+        $mermelada = Product::factory()->create(['image'=> null,'id'=>1, 'name'=>'mermelada', 'stock'=>4]);
+        $pan = Product::factory()->create(['image'=> null,'id'=>2, 'name'=>'pan', 'stock'=>4]);
+        $this->get(route('cartAddProduct', $mermelada->id));
+        $this->get(route('cartAddProduct', $mermelada->id));
+        $this->get(route('cartAddProduct', $pan->id));
+        $this->get(route('cartAddProduct', $pan->id));
         
         $this->get('/purchase');
 
-        $this->assertDatabaseHas('products', ['id'=>1,'stock'=>2]);
+        $this->assertDatabaseHas('products', ['id'=>1,'stock'=>2, 'name'=>'mermelada']);
+        $this->assertDatabaseHas('products', ['id'=>2,'stock'=>2, 'name'=>'pan']);
     }
 }
