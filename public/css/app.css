@@ -72,8 +72,14 @@ body {
 .greenAmasoBg{
   background-color: #336147;
 }
+.greenAmasoBg:hover{
+  background-color: #2D563F;
+}
 .greenLightBg{
   background-color:#81A78C;
+}
+.greenLightBg:hover{
+  background-color: #7E9C86;
 }
 .beigeAmasoBg{
   background-color:#DAB162;
