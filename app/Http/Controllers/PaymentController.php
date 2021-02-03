@@ -2,8 +2,11 @@
 
 namespace App\Http\Controllers;
 
+use App\Mail\PurchaseConfirmation;
 use App\Models\User;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Mail;
+use Illuminate\Support\Facades\DB;
 
 class PaymentController extends Controller
 {
@@ -36,7 +39,12 @@ class PaymentController extends Controller
         $user->number_card = $request->number_card;
         $user->expiring_date = $request->expiring_date;
 
-        $user->save();
+        $user->save(); 
+
+        $emailUser = DB::table('users')->where('id', $user_id)->value('email');
+        $name = DB::table('users')->where('id', $user_id)->value('name');
+
+        Mail::to($emailUser)->send(new PurchaseConfirmation($name));
         return redirect('/');
 
     }
