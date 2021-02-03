@@ -63,7 +63,6 @@ class AdminDeleteArtisanTest extends TestCase
         $mailable->assertSeeInHtml('Amasó');
         $mailable->assertSeeInHtml($user->name);
         $mailable->assertSeeInHtml('Lo sentimos Pepita, Tu perfil no ha sido aprovado');
-        $mailable->assertSeeInHtml('Puedes mirar nuestros criterios de aceptacion en www.amaso.com');
     }
 }
 
