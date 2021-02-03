@@ -1,6 +1,6 @@
 <x-app-layout>
     <header> 
-        <h1 class="title ">Tu Carrito</h1>
+        <h1 class="title py-12 pl-8 md:p-12">Tu Carrito</h1>
     </header>
     <section>
         @if (count($products) === 0)
@@ -10,13 +10,13 @@
             </p>
         </section>
         @endif
-        <section>
+        <section class="flex flex-col">
             @foreach($products as $product)
-            <article class="flex flex-row pb-5 h-20 items-center">
+            <article class="flex flex-row h-20 items-center px-5 mb-5 md:ml-20 lg:ml-36 xl:ml-56">
                 <form method="POST" action="{{ route('removeProductCart', $product->id) }}">
                     <x-modal title="¿Eliminar producto?" submit-label="Eliminar">
                         <x-slot name="trigger">
-                            <button type="button" @click="on = true" class="text-xl font-bold greenAmaso mt-2 px-4 py-8 rounded-xl">
+                            <button type="button" @click="on = true" class="text-xl font-bold greenAmaso mt-2 px-3 py-8 rounded-xl">
                                 X
                             </button>
                         </x-slot>
@@ -25,36 +25,27 @@
                     @method('DELETE')
                     {{ csrf_field() }}
                 </form>
-                <div class="flex flex-row static items-center greenLightBg text-white rounded-md h-14 w-80">
+                <div class="flex flex-row relative items-center rounded-md shadow-md greenLightBg text-white h-14 w-full md:w-3/4 md:h-20">
                     <div class="flex flex-row">
-                        <div class="hidden md:contents w-14 h-14 overflow-hidden rounded-xl m-1">
+                        <div class="hidden w-14 h-14 overflow-hidden rounded-xl m-1">
                             <img class="object-fill h-full" src="{{ asset('storage') .'/'. $product->image}}" />
                         </div>
-                        <p class="text-xs px-3">{{$product->name}}</p>
+                        <p class="px-3 md:pl-5 text-sm md:text-lg">{{$product->name}}</p>
                     </div>
-                    <div class="flex flex-row w-52 absolute right-4 justify-between">
-                        <p>Counter</p>
-                        <p class="">{{$product->amount}} Ud.</p>
-                        <p class="">{{number_format($product->price / 100, 2)}} €</p>
-                    </div>
-                </div>
-            </article>
-            @endforeach
-        </section>
-
-                       <!--<div class="flex flex-row justify-end">
-                            <div class="flex flex-row h-9 w-full rounded-lg relative bg-transparent mt-1 exo">
+                    <div class="flex text-sm flex-row w-48 absolute right-4 justify-between">
+                        <div class="flex flex-row justify-end">
+                            <div class="flex flex-row h-6 w-full relative bg-transparent exo text-sm shadow-md">
                                 <form action="{{ route('removeProductCart' , $product->id) }}" method="POST">
-                                    <button data-action="decrement" type="submit" class="counter greenLightBg beigeLight h-full w-9 rounded-l-2xl cursor-pointer outline-none">
-                                        <span class="m-auto text-2xl font-thin text-white">-</span>
+                                    <button data-action="decrement" type="submit" class="counter greenAmasoBg  h-full w-6 cursor-pointer outline-none">
+                                        <span class="m-auto font-thin text-white">-</span>
                                         @method('DELETE')
                                         {{ csrf_field() }}
                                     </button>
                                 </form>
-                                <input type="number" max="{{$product->stock}}" class="counter border-transparent outline-none focus:outline-none text-center w-10 greenAmasoBg font-semibold text-xl  md:text-basecursor-default flex items-center text-white  outline-none" name="custom-input-number" value="{{$product->amount}}"></input>
+                                <input type="number" max="{{$product->stock}}" class="counter border-transparent outline-none focus:outline-none text-center w-6 greenLightBg md:text-basecursor-default flex items-center text-white outline-none" name="custom-input-number" value="{{$product->amount}}"></input>
                                 @if($product->stock > $product->amount)
-                                <button data-action="increment" class="counter  greenLightBg  beigeLight  h-full w-9 rounded-r-2xl cursor-pointer outline-none">
-                                    <span class="m-auto text-2xl font-thin text-white">
+                                <button data-action="increment" class="counter  greenAmasoBg  h-full w-6 cursor-pointer outline-none">
+                                    <span class="m-auto font-thin text-white">
                                         <a href="{{ route('cartAddProduct' , $product->id) }}">+</a>
                                     </span>
                                 </button>
@@ -62,17 +53,26 @@
                                 <p class="text-sm p-2">Agotado</p>
                                 @endif
                             </div>
-                        </div>-->
+                        </div>
+                        <p class="pt-1">{{$product->amount}} Ud.</p>
+                        <p class="pt-1">{{number_format($product->price / 100, 2)}} €</p>
+                    </div>
+                </div>
+            </article>
+            @endforeach
+        <div class="flex justify-center p-4 pt-20">
+            <h2 class=" greenAmaso text-lg font-bold">Total: {{number_format($total, 2)}} €</h2>
+        </div>
+        <div class="flex justify-center p-7">
+            <form method="GET" action="{{ route('purchaseOrder') }}">
+                <div class="">
+                    <button type="submit" class=" beigeAmasoBg font-serif text-white text-2xl mt-4 px-12 py-4  rounded-xl shadow-md">Pagar</button>
+                </div>
+            </form>
+        </div>
+        </section>
                   
         
-        <div class="flex justify-end p-4 pr-24"">
-                <h2 class=" greenAmaso text-lg font-bold">Total: {{number_format($total, 2)}} €</h2>
-        </div>
-        <form method="GET" action="{{ route('purchaseOrder') }}">
-            <div class="flex justify-end p-4 pr-10">
-                <button type="submit" class=" beigeAmasoBg font-serif text-white text-2xl mt-4 px-12 py-4  rounded-xl shadow-md">Pagar</button>
-            </div>
-        </form>
     
 
 </x-app-layout>
