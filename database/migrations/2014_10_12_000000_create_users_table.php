@@ -23,6 +23,12 @@ class CreateUsersTable extends Migration
             $table->boolean('isArtisan')->default(false);
             $table->rememberToken();
             $table->timestamps();
+            $table->string('direction')->nullable();
+            $table->string('location')->nullable();
+            $table->integer('postal')->nullable();
+            $table->string('number_card')->nullable();
+            $table->string('expiring_date')->nullable();
+
         });
     }
 

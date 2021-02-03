@@ -20,10 +20,9 @@ class PaymentConfirmationTest extends TestCase
 
         $this->get(route('cartAddProduct', $product->id));
 
-        $this->get('/purchase');
-        $response = $this->get('/purchase');
+        $response = $this->put('/purchase');
 
-        $response->assertStatus(200);
+        $response->assertRedirect('/');
     }
 
     public function testBuyProductsWhenPurchase()
@@ -34,7 +33,7 @@ class PaymentConfirmationTest extends TestCase
 
         $this->get(route('cartAddProduct', $product->id));
 
-        $this->get('/purchase');
+         $this->put(route('purchase'));
 
         $this->assertDatabaseHas('product_user', ['buyed'=>1]);
     }
@@ -52,9 +51,38 @@ class PaymentConfirmationTest extends TestCase
         $this->get(route('cartAddProduct', $pan->id));
         $this->get(route('cartAddProduct', $pan->id));
         
-        $this->get('/purchase');
+        $this->put('/purchase');
 
         $this->assertDatabaseHas('products', ['id'=>1,'stock'=>2, 'name'=>'mermelada']);
         $this->assertDatabaseHas('products', ['id'=>2,'stock'=>2, 'name'=>'pan']);
+    }
+
+    public function testSaveUserInformationCard()
+    {
+        $this->withoutExceptionHandling();
+        
+        $this->actingAs(User::factory()->create(['name'=>'Alfredo', 'email'=>'alfredo@alfredo', 'password'=>'12345678']));
+
+        $card = [
+            'direction'=>'calle tomas',
+            'location'=>'Madrid',
+            'postal'=>2020,
+            'number_card'=>'SE12345678',
+            'expiring_date'=>'11/12/20',
+        ];
+
+        $response = $this->put(route('purchase',$card));
+
+        $response->assertRedirect('/');
+
+        $this->assertDatabaseHas('users',['name'=>'Alfredo', 
+                                        'email'=>'alfredo@alfredo', 
+                                        'password'=>'12345678',
+                                        'direction'=>'calle tomas',
+                                        'location'=>'Madrid',
+                                        'postal'=>2020,
+                                        'number_card'=>'SE12345678',
+                                        'expiring_date'=>'11/12/20']);
+    
     }
 }
