@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Mail\ArtisanProfileAprovedEmail;
+use App\Mail\ArtisanProfileDeletedEmail;
 use Illuminate\Support\Facades\Mail;
 use Illuminate\Support\Facades\Artisan;
 use Illuminate\Support\Facades\DB;
@@ -30,6 +31,10 @@ class AdminController extends Controller
         $user_id = DB::table('artisans')->where('id', $id)->value('user_id');
         DB::table('users')->where('id', $user_id)->update(['isArtisan'=> 0]);
         DB::table('artisans')->where('id', $id)->delete();
+        $emailUser = DB::table('users')->where('id', $user_id)->value('email');
+        $name = DB::table('users')->where('id', $user_id)->value('name');
+
+        Mail::to($emailUser)->send(new ArtisanProfileDeletedEmail($name));
         return redirect(route('adminDash'));
     }    
 
