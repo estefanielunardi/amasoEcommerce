@@ -5,14 +5,15 @@
             <p class="heroTitle text-left text-2xl pb-5 lg:text-5xl">
                 Nuestros alimentos tienen orígenes cercanos a tí.
             </p>
-            <p class="heroText text-left text-xs lg:w-96 lg:text-xl">
-                La relación con nuestros proveedores está basada en la vertiente humana por encima de la comercial.
+            <p class="heroText text-left w-44 text-xs lg:w-80 lg:text-xl">
+                Tienda online de productos locales y artesanales. 
             </p>
         </section>
-
     </header>
+
     <x-button-cart />
     <article class="max-w-screen-xl pl-4 sm:pl-10 xl:pl-20 mx-auto px-4">
+    <h1 class="title text-center pb-10 pt-36">Catálogo</h1>
         <div class=" ml-6 flex flex-wrap justify-center">
 
             @foreach($products as $product)
