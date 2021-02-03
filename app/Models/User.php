@@ -95,10 +95,21 @@ class User extends Authenticatable
         return $total;
     }
 
-    public function addProductInCart($product_id,$user_id)
+    public function findProduct($product_id, $user_id)
     {
+        $buyed = DB::table('product_user')
+                    ->where('user_id',$user_id)
+                    ->where('product_id',$product_id)
+                    ->value('buyed');
+        return $buyed;
+    }
+
+    public function addProductInCart($product_id, $user_id)
+    {
+        $buyed = $this->findProduct($product_id, $user_id);
         $userProduct = $this->products()->find($product_id);
-        if(is_null($userProduct))
+        
+        if(is_null($userProduct) || $buyed)
         {
             $this->products()->attach($product_id);
             $this->incrementProductAmount($product_id,$user_id);
