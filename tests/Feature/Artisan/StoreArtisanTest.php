@@ -25,7 +25,7 @@ class StoreArtisanTest extends TestCase
         $this->assertDatabaseCount('artisans', 1)
                 ->assertDatabaseHas('artisans', ['name' => 'Pepita']);
 
-        $response->assertRedirect('artisan/pepita');
+        $response->assertViewIs('responsesAdmin');
 
     }
 }
