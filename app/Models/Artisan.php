@@ -36,17 +36,6 @@ class Artisan extends Model
         return $artisan;
     }
         
-    public function getOrders($id)
-    {
-        $orders = DB::table('products')
-                            ->where('artisan_id','=', $id)
-                            ->join('product_user', 'products.id', '=', 'product_user.product_id') 
-                            ->join('users', 'users.id','=', 'product_user.user_id')  
-                            ->where('buyed','=', 1)
-                            ->select('product_user.amount', 'users.*','products.*')
-                            ->paginate(10);
-        return $orders;
-    }
 }
         
         

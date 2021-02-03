@@ -6,7 +6,6 @@ use Illuminate\Http\Request;
 use App\Models\Artisan; 
 use Illuminate\Support\Facades\DB; 
 use Illuminate\Support\Str;
-use App\Models\User;
 
 class ArtisanController extends Controller
 {
@@ -63,13 +62,7 @@ class ArtisanController extends Controller
 
     public function orders()
     {
-        $user_id = auth()->id();
-        $user = User::find($user_id); 
-        $id = DB::table('artisans')->where('user_id','=',$user_id)->value('id');
-        $artisan = Artisan::find($id);
-        $orders = $artisan->getOrders($id);
-
-        return view('artisanOrders', compact('orders'));
+        return view('artisanOrders');
     }
 
     public function destroy()
