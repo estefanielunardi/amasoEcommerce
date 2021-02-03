@@ -4,9 +4,7 @@
     </section>
     <section class="container md:container md:mx-auto flex justify-center">
         <div class="box-border bg-white h-128 w-96">
-        <form  method="POST" action="{{ route('purchase') }}">
-            @method('PUT')
-            {{ csrf_field() }}
+            <form>
                 <div class="flex flex-col my-4 text-xl greenAmaso">
                     <label for="direction" class="font-serif">{{ __('Dirección postal') }}</label>
                     <input type="text" id="direction" placeholder="Calle, número, piso puerta" class="w-100 border-solid border-2 border-green-500 rounded shadow-md h-10" name="direction" required autocomplete="direction" autofocus>
@@ -19,7 +17,7 @@
                     <label for="postal" class="font-serif">{{ __('Código postal') }}</label>
                     <input type="text" id="postal" class="w-100 border-solid border-2 border-green-500 rounded shadow-md h-10" name="postal"  required autocomplete="postal" autofocus>
                 </div>
-            
+            </form>
             <section class="flex flex-col m-10">
                 <h1 class="title">Metodo de pago</h1>
                 <h3 class="greenAmaso">Tarjeta de crédito o débito</h3>
@@ -39,7 +37,7 @@
                             <label for="nombre" class="font-serif">{{ __('Fecha de vencimiento') }}</label>
                             <input type="number" id="date" class="w-100 border-solid border-2 border-green-500 rounded shadow-md h-10" name="date"  required autocomplete="date" autofocus>
                         </div>
-            
+                    </form>
                 </div>
             </section>
             <section class="flex flex-col m-10">
@@ -69,6 +67,7 @@
             <div class="flex justify-end p-4 pr-24">
                 <h2 class=" greenAmaso text-lg font-bold">Total: {{number_format($total, 2)}} €</h2>
             </div>
+            <form  method="GET" action="{{ route('purchase') }}">
                 <div class="flex justify-center p-4 pr-10">
                     <button type="submit" class=" beigeAmasoBg font-serif text-white text-2xl mt-4 px-12 py-4 rounded-xl shadow-md">Tramitar Pedido</button>
                 </div>

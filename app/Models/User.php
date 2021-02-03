@@ -58,7 +58,6 @@ class User extends Authenticatable
         $products = DB::table('products')
         ->join('product_user', 'products.id', '=', 'product_user.product_id')   
         ->where('user_id','=', $id)
-        ->where('buyed', '=', 0)
         ->select('products.*', 'product_user.amount')
         ->get();
     

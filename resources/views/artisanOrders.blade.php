@@ -15,44 +15,43 @@
                 </tr>
             </thead>
             <tbody>
-            @foreach ($orders as $order)
                 <tr class="bg-white lg:hover:bg-gray-100 flex lg:table-row flex-row lg:flex-row flex-wrap lg:flex-no-wrap mb-10 lg:mb-0">
                     <td class="w-full lg:w-auto p-3 text-gray-800 text-center border border-b block lg:table-cell relative lg:static">
-                        <span>{{$order->name}}</span>
+                        <span >Mermelada de fresa</span>
                         
                     </td>
                     <td class="w-full lg:w-auto p-3 text-gray-800 text-center border border-b text-center block lg:table-cell relative lg:static">
-                        <span>{{$order->amount}}</span>
+                        <span>3</span>
                         
                     </td>
                     <td class="w-full lg:w-auto p-3 text-gray-800 text-center border border-b block lg:table-cell relative lg:static">
-                        <span>{{$order->amount * $order->price}}</span>
+                        <span >9 €</span>
                         
                     </td>
                     <td class="w-full lg:w-auto p-3 text-gray-800 text-center border border-b text-center block lg:table-cell relative lg:static">
-                        <span>Maria Mercedes</span>
+                        <span >Maria Mercedes</span>
                         
                     </td>
                     <td class="w-full lg:w-auto p-3 text-gray-800 text-center border border-b block lg:table-cell relative lg:static">
-                        <span>{{$order->email}}</span>
+                        <span >maria@mercedes</span>
                     
                     </td>
                     <td class="w-full lg:w-auto p-3 text-gray-800 text-center border border-b text-center block lg:table-cell relative lg:static">
-                        <span>{{$order->direction}}</span>                    
+                        <span >Calle Melancolia nro 7</span>                    
                     </td>
                     <td class="w-full lg:w-auto p-3 text-gray-800 text-center border border-b text-center block lg:table-cell relative lg:static">
-                        <span>{{$order->postal}}</span>
+                        <span >08014</span>
                         
                     </td>
                     <td class="w-full lg:w-auto p-3 text-gray-800 text-center border border-b text-center block lg:table-cell relative lg:static">
-                        <span>{{$order->updated_at}}</span>
+                        <span >20/12/2020</span>
             
                     </td>
                 </tr>
                 
-               @endforeach 
+                
             </tbody>
         </table>
-        {!! $orders->links() !!}
+
     </div>
 </x-app-layout>
