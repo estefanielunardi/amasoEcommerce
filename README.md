@@ -30,6 +30,8 @@
 - TDD
 - Agile
 - Scrum 
+- Pair programming
+- Git Flow
 
 ### Kanban link
 
@@ -76,9 +78,9 @@ Aplicación creada con la idea de poder ofrecer una via digital a los pequeños 
 
 ## Aprendizajes
 
+- Plantear un proyecto desde scratch.
+- Implementar cambios incrementales.
 - 
-- 
--
 
 ## Siguientes pasos
 
@@ -87,6 +89,7 @@ Aplicación creada con la idea de poder ofrecer una via digital a los pequeños 
 - Vincular a cada usuario un carrito que se destruye luego de la compra.
 - Implementar transacciones para las bases de datos.
 - Utilizar sesiones que reserven los productos durante un tiempo determinado en cada carrito.
+- Utilizar Docker.
 
 
 
