@@ -1,27 +1,85 @@
 # AMASÓ ECOMMERCE
-## La app para conectar a los artesanos y productores locales con sus clientes.
 
-Aplicación creada con la idea de poder ofrecer una via digital a los pequeños productores locales que quieren vender sus productos a clientes cercanos.
+## La app para conectar artesanos y productores locales con sus clientes.
 
-1. [Usuarios.](#usuarios)
-2. [Artesanos.](#artesanos)
-3. [Administradores.](#adminstradores)
+# Requisitos técnicos
 
-## Usuarios
-En la aplicación los usuarios pueden ver tanto los artesanos locales como sus productos. Pueden comprar productos.
+- Laravel 8
+- PHP 7.4
+- composer 1.10.15
 
-## Artesanos
-Los artesanos pueden subir sus productos para la venta. Editar y eliminar productos. Editar y eliminar su perfil de artesano.
+# Instalación
 
-## Adminstradores
-Los administradores disponen de un panel de control donde podrán visualizar a los artesanos que se hayan inscrito en la aplicación. Los administradores deberan aprovar a los artesanos inscritos antes de que estos puedan vender sus productos.
+ ` composer install `
 
-## Tortus Team:
+ ` npm install && npm run dev `
+
+ ` php artisan migrate `
+
+
+## Running app
+
+` php artisan serve ` 
+
+## Running Tests
+
+` php artisan test `
+
+## Metodología de trabajo
+
+- TDD
+- Agile
+- Scrum 
+
+### Kanban link
+
+
+
+### Heroku link
+
+
+
+### Proyecto creado en equipo durante el Bootcamp Factoria F5.
+
+Integrantes:
 
 * Carmen Pérez.
 * Laura Bassani.
 * Estefanie Garcia.
 * Alejandra Stasi.
 * Joaquim Francès.
+
+
+Aplicación creada con la idea de poder ofrecer una via digital a los pequeños productores locales que quieren vender sus productos a clientes cercanos.
+
+- [Usuarios.](#usuarios)
+- [Artesanos.](#artesanos)
+- [Administradores.](#adminstradores)
+
+### Usuarios
+- En la aplicación los usuarios pueden ver tanto los artesanos locales como sus productos.
+- Pueden comprar productos.
+- Reciven un email de confirmación de compra.
+
+### Artesanos
+- Los artesanos pueden subir sus productos para la venta. 
+- Editar y eliminar productos. 
+- Editar y eliminar su perfil de artesano.
+- Pueden ver sus productos vendidos con los datos del comprador.
+
+### Adminstradores
+- Los administradores disponen de un panel de control donde podrán visualizar a los artesanos que se hayan inscrito en la aplicación. 
+- Los administradores deberan aprovar a los artesanos inscritos antes de que estos puedan vender sus productos.
+- Se envía un email a los artesanos con la actualización del estatus de su perfil (aprobado\desaprobado).
+
+
+
+## Aprendizajes
+
+- 
+
+## Siguientes pasos
+
+- 
 
 
