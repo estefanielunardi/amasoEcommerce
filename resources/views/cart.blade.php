@@ -39,6 +39,8 @@
                                             <a href="{{ route('cartAddProduct' , $product->id) }}">+</a>
                                         </span>
                                     </button>
+                                    @else
+                                    <p class="text-sm p-2">Agotado</p>
                                     @endif
                                 </div>
                             </div>
