@@ -2,12 +2,11 @@
 
 namespace App\Http\Controllers;
 
-
-use App\Models\User;
-use Illuminate\Http\Request;
+use App\Mail\ArtisanProfileAprovedEmail;
+use Illuminate\Support\Facades\Mail;
 use Illuminate\Support\Facades\Artisan;
 use Illuminate\Support\Facades\DB;
-use SebastianBergmann\Environment\Console;
+
 
 class AdminController extends Controller
 {
@@ -35,8 +34,14 @@ class AdminController extends Controller
     }    
 
     public function aproveArtisan($id){
-
+        
         DB::table('artisans')->where('id', $id)->update(['aproved'=> 1]);
+        
+        $user_id = DB::table('artisans')->where('id', $id)->value('user_id');        
+        $emailUser = DB::table('users')->where('id', $user_id)->value('email');
+        $name = DB::table('users')->where('id', $user_id)->value('name');
+    
+        Mail::to($emailUser)->send(new ArtisanProfileAprovedEmail($name));
         return redirect(route('adminDash'));
     }
         

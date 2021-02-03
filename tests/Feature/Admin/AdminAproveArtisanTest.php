@@ -2,11 +2,12 @@
 
 namespace Tests\Feature;
 
+use App\Mail\ArtisanProfileAprovedEmail;
 use Illuminate\Foundation\Testing\RefreshDatabase;
-use Illuminate\Foundation\Testing\WithFaker;
 use Tests\TestCase;
 use App\Models\User;
 use App\Models\Artisan;
+use Illuminate\Support\Facades\Mail;
 
 class AdminAproveArtisanTest extends TestCase
 {
@@ -20,9 +21,15 @@ class AdminAproveArtisanTest extends TestCase
                 'email'=>'este@fani.es',
                 'password'=>'12345678',
                 'is_admin'=>true,
+                'id'=>1,
+            ]); 
+            User::factory()->create([
+                'name'=>'Pepita',
+                'email'=>'pepi@ta',
+                'id'=>2,
             ]); 
     
-            $artisan = Artisan::factory()->create(['user_id'=>1, 'id'=>1, 'name'=>'Pepita', 'aproved'=>false]);
+            $artisan = Artisan::factory()->create(['user_id'=>2, 'id'=>1, 'name'=>'Pepita', 'aproved'=>false]);
               
             $response = $this->actingAs($admin)
                     ->post('profiles/' . $artisan->id);
@@ -32,5 +39,37 @@ class AdminAproveArtisanTest extends TestCase
             
                     
         }
+
+        public function testSendsEmailWhenProfileIsAproved()
+        {
+            $this->withoutExceptionHandling();
+            Mail::fake();
+            $admin = User::factory()->create([
+                'name'=>'Estefanie',
+                'email'=>'este@fani.es',
+                'password'=>'12345678',
+                'is_admin'=>true,
+            ]); 
+
+            User::factory()->create(['name'=>'Pepita','email'=>'pepi@ta','id'=>2,]);
+    
+            $artisan = Artisan::factory()->create(['user_id'=>2, 'id'=>1, 'name'=>'Pepita', 'aproved'=>false]);
+              
+            $this->actingAs($admin)->post('profiles/' . $artisan->id);
+    
+            Mail::assertSent(ArtisanProfileAprovedEmail::class);
+    
+        }
+
+        public function testMailContent()
+    {
+        $user = User::factory()->create(['name'=>'Pepita','email'=>'pepi@ta','id'=>2,]);
+        $mailable = new ArtisanProfileAprovedEmail($user->name);
+
+        $mailable->assertSeeInHtml('Amasó');
+        $mailable->assertSeeInHtml($user->name);
+        $mailable->assertSeeInHtml('Felicidades Pepita! Tu perfil ha sido aprovado');
+        $mailable->assertSeeInHtml('Ya puedes subir tus productos en www.amaso.com');
+    }
     
 }
