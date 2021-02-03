@@ -5,6 +5,7 @@
             <h2 class="block title text-white pb-5 lg:text-5xl">Nuestros productores</h2>
         </section>
     </header>
+    <x-button-cart />
 
     <div class="flex flex-wrap justify-center md:space-x-20 my-12 mx-auto px-4 md:px-12">
         @foreach ($artisans as $artisan)           
