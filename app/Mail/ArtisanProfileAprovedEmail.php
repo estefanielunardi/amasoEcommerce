@@ -28,7 +28,7 @@ class ArtisanProfileAprovedEmail extends Mailable
      */
     public function build()
     {
-        return $this->from('eventizator@root.com', 'Mailtrap')
+        return $this->from('amaso@root.com', 'Mailtrap')
             ->subject('Amasó')
             ->view('emails.artisanAproved')
             ->with([
