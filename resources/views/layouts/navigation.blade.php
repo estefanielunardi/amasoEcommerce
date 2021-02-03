@@ -9,7 +9,7 @@
                 </a>
             </div>
             <!-- Navigation Links -->
-            <div class="hidden md:flex md:w-full md:m-auto">
+            <div class="hidden md:flex md:w-full md:m-auto md:ml-20">
                 @can('isAdmin')
                 <div class=" space-x-8 sm:-my-px sm:ml-10 ">
                     <x-nav-link :href="route('adminDash')" :active="request()->routeIs('adminDash')">
