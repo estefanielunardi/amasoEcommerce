@@ -11,28 +11,29 @@ use App\Models\Artisan;
 class EditProductTest extends TestCase
 {
     use RefreshDatabase;
+
+    private Product $product;
+    private Artisan $artisan;
+
+    protected function setUp(): void
+    {
+        parent::setUp();
+        $this->actingAs(User::factory()->create(['isArtisan' => true, 'id' => 1]));
+        $this->artisan = Artisan::factory()->create(['user_id' => 1, 'id' => 1]);
+        $this->product = Product::factory()->create();
+    }
     public function testRouteIfUserIsAuth()
     {
-        $this->withoutExceptionHandling();
-        $this->actingAs(User::factory()->create(['isArtisan'=>true, 'id'=>1]));        
-        Artisan::factory()->create(['user_id'=>1, 'id'=>1]);
-        $product= Product::factory()->create();
-
-        $response = $this->get('/product/edit/' . $product->id);
+        $response = $this->get('/product/edit/' . $this->product->id);
 
         $response->assertStatus(200);
     }
 
     public function testReturnViewOfEditForm()
     {
-        $this->withoutExceptionHandling();
-        $this->actingAs(User::factory()->create(['isArtisan'=>true, 'id'=>1]));        
-        Artisan::factory()->create(['user_id'=>1, 'id'=>1]);
-        $product= Product::factory()->create();
-
-        $response = $this->get('/product/edit/' . $product->id);
+        $response = $this->get('/product/edit/' . $this->product->id);
 
         $response->assertViewIs('products.edit')
-            ->assertViewHas(['product'=>$product]);
+            ->assertViewHas(['product' => $this->product]);
     }
 }

@@ -12,30 +12,30 @@ class DeleteProductTest extends TestCase
 {
     use RefreshDatabase;
 
+    private Product $product;
+    private Artisan $artisan;
+
+    protected function setUp(): void
+    {
+        parent::setUp();
+        $this->actingAs(User::factory()->create(['isArtisan' => true, 'id' => 1]));
+        $this->artisan = Artisan::factory()->create(['user_id' => 1, 'id' => 1]);
+        $this->product = Product::factory()->create();
+    }
+
     public function testRouteIfUserIsAuth()
     {
-        $this->withoutExceptionHandling();
-        $this->actingAs(User::factory()->create(['isArtisan'=>true, 'id'=>1]));        
-        Artisan::factory()->create(['user_id'=>1, 'id'=>1]);
-        $product= Product::factory()->create();
-       
-        $response = $this->delete('/product/' . $product->id);
+        $response = $this->delete('/product/' . $this->product->id);
 
         $response->assertStatus(302);
     }
 
     public function testDeleteProduct()
     {
-        $this->withoutExceptionHandling();
-        $this->actingAs(User::factory()->create(['isArtisan'=>true, 'id'=>1]));        
-        $artisan = Artisan::factory()->create(['user_id'=>1, 'id'=>1]);
-        $product= Product::factory()->create();
-       
-        $response = $this->delete('/product/' . $product->id);
+        $response = $this->delete('/product/' . $this->product->id);
 
-        $response->assertRedirect('artisan/' . $artisan->slug);
+        $response->assertRedirect('artisan/' . $this->artisan->slug);
         $this->assertDatabaseCount('products', 0);
-        $this->assertDatabaseMissing('products', $product->toArray());
+        $this->assertDatabaseMissing('products', $this->product->toArray());
     }
-    
 }
