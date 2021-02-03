@@ -23,14 +23,14 @@
                     <div class="flex flex-col my-4 text-xl greenAmaso">
                         <label class="font-serif" for="email" :value="__('Email')">{{ __('Email') }}</label>
 
-                        <input id="email" class="w-100 border-solid border-2 border-green-500 rounded shadow-md h-10"type="email" name="email" :value="old('email')" required autofocus />
+                        <input id="email" class="w-100 border-solid border-2 borderGreen rounded shadow-md h-10"type="email" name="email" :value="old('email')" required autofocus />
                     </div>
 
                     <!-- Password -->
                     <div class="flex flex-col my-4 text-xl greenAmaso">
                         <label class="font-serif"for="password" :value="__('Password')">{{ __('Password') }}</label>
 
-                        <input id="password" class="w-100 border-solid border-2 border-green-500 rounded shadow-md h-10"
+                        <input id="password" class="w-100 border-solid border-2 borderGreen rounded shadow-md h-10"
                                         type="password"
                                         name="password"
                                         required autocomplete="current-password" />

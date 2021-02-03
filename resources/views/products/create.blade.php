@@ -9,26 +9,26 @@
                 @csrf
             <div class="flex flex-col my-4 text-xl greenAmaso">
                 <label for="nombre" class="font-serif">{{ __('Nombre del Producto') }}</label>
-                <input type="text" id="nombre" class="w-100 border-solid border-2 border-green-500 rounded shadow-md h-10" name="name"  required autocomplete="name" autofocus>
+                <input type="text" id="nombre" class="w-100 border-solid border-2 borderGreen rounded shadow-md h-10" name="name"  required autocomplete="name" autofocus>
             </div>
             <div class="flex flex-col my-4 text-xl greenAmaso">
                 <label for="imagen" class="font-serif">{{ __('Imagen') }}</label>
-                <input accept="image/*" type="file" id="image" class="custom-file-input w-100 border-solid border-2 border-green-500 rounded shadow-md h-10" name="image" autofocus>
+                <input accept="image/*" type="file" id="image" class="custom-file-input w-100 border-solid border-2 borderGreen rounded shadow-md h-10" name="image" autofocus>
             </div>
             <div class="flex flex-col my-4 text-xl greenAmaso">
                 <label for="precio" class="font-serif">{{ __('Precio') }}</label>
                 <div class="flex -mr-px greenAmaso">
-                    <span class="flex items-center leading-normal greenAmaso rounded rounded-r-none border-solid border-2 border-r-0 border-green-500 px-3 whitespace-no-wrap text-greenAmaso">€</span>
-                    <input type="number" onchange="setTwoNumberDecimal()" min="0"step="0.01"id="precio" class="w-full border-solid border-2 border-green-500 rounded shadow-md h-10" name="price" placeholder="00.00"required autocomplete="price" autofocus>
+                    <span class="flex items-center leading-normal greenAmaso rounded rounded-r-none border-solid border-2 border-r-0 borderGreen px-3 whitespace-no-wrap text-greenAmaso">€</span>
+                    <input type="number" onchange="setTwoNumberDecimal()" min="0"step="0.01"id="precio" class="w-full border-solid border-2 borderGreen rounded shadow-md h-10" name="price" placeholder="00.00"required autocomplete="price" autofocus>
 			    </div>
             </div>
             <div class="flex flex-col my-4 text-xl greenAmaso">
                 <label for="cantidad" class="font-serif">{{ __('Cantidad') }}</label>
-                <input type="number" min="0" id="cantidad" class="w-100 border-solid border-2 border-green-500 rounded shadow-md h-10" name="stock" required autocomplete="stock" autofocus>
+                <input type="number" min="0" id="cantidad" class="w-100 border-solid border-2 borderGreen rounded shadow-md h-10" name="stock" required autocomplete="stock" autofocus>
             </div>
             <div class="flex flex-col my-4 text-xl greenAmaso">
                 <label for="descripcion" class="font-serif">{{ __('Descripción') }}</label>
-                <textarea type="text" id="descripcion" class="w-100 border-solid border-2 border-green-500 rounded shadow-md h-24" name="description"  required autocomplete="description" autofocus ></textarea> 
+                <textarea type="text" id="descripcion" class="w-100 border-solid border-2 borderGreen rounded shadow-md h-24" name="description"  required autocomplete="description" autofocus ></textarea> 
             </div>
             <div class="flex justify-center">
                 <button type="submit" class=" beigeAmasoBg font-serif text-white text-2xl mt-4 px-12 py-4  rounded-xl shadow-md">{{ __('Publicar Producto') }}</button>

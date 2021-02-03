@@ -20,21 +20,21 @@
                     <div class="flex flex-col my-4 text-xl greenAmaso">
                         <label class="font-serif" for="name" :value="__('Name')">{{ __('Name') }}</label>
 
-                        <input id="name" class="w-100 border-solid border-2 border-green-500 rounded shadow-md h-10"type="text" name="name" :value="old('name')" required autofocus />
+                        <input id="name" class="w-100 border-solid border-2 borderGreen rounded shadow-md h-10"type="text" name="name" :value="old('name')" required autofocus />
                     </div>
 
                     <!-- Email Address -->
                     <div class="flex flex-col my-4 text-xl greenAmaso">
                         <label class="font-serif"for="email" :value="__('Email')">{{ __('Email') }}</label>
 
-                        <input id="email" class="w-100 border-solid border-2 border-green-500 rounded shadow-md h-10" type="email" name="email" :value="old('email')" required />
+                        <input id="email" class="w-100 border-solid border-2 borderGreen rounded shadow-md h-10" type="email" name="email" :value="old('email')" required />
                     </div>
 
                     <!-- Password -->
                     <div class="flex flex-col my-4 text-xl greenAmaso">
                         <label class="font-serif"for="password" :value="__('Password')">{{ __('Password') }}</label>
 
-                        <input id="password" class="w-100 border-solid border-2 border-green-500 rounded shadow-md h-10"
+                        <input id="password" class="w-100 border-solid border-2 borderGreen rounded shadow-md h-10"
                                         type="password"
                                         name="password"
                                         required autocomplete="new-password" />
@@ -44,7 +44,7 @@
                     <div class="flex flex-col my-4 text-xl greenAmaso">
                         <label class="font-serif"for="password_confirmation" :value="__('Confirm Password')">{{ __('Confirm Password') }}</label>
 
-                        <input id="password_confirmation" class="w-100 border-solid border-2 border-green-500 rounded shadow-md h-10"
+                        <input id="password_confirmation" class="w-100 border-solid border-2 borderGreen rounded shadow-md h-10"
                                         type="password"
                                         name="password_confirmation" required />
                     </div>

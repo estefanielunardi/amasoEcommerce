@@ -13,19 +13,19 @@
                 @csrf
                 <div class="flex flex-col my-4 text-xl greenAmaso">
                 <label for="nombre" class="font-serif">{{ __('Nombre o tu Marca Personal') }}</label>
-                <input type="text" id="name" class="w-100 border-solid border-2 border-green-500 rounded shadow-md h-10" name="name" required autocomplete="name" autofocus>
+                <input type="text" id="name" class="w-100 border-solid border-2 borderGreen rounded shadow-md h-10" name="name" required autocomplete="name" autofocus>
             </div>
             <div class="flex flex-col my-4 text-xl greenAmaso">
                 <label for="imagen" class="font-serif">{{ __('Imagen de Perfil') }}</label>
-                <input accept="image/*" type="file" id="image" class="custom-file-input  w-100 border-solid border-2 border-green-500 rounded shadow-md h-10" name="image" autofocus>
+                <input accept="image/*" type="file" id="image" class="custom-file-input  w-100 border-solid border-2 borderGreen rounded shadow-md h-10" name="image" autofocus>
             </div>
             <div class="flex flex-col my-4 text-xl greenAmaso">
                 <label for="location" class="font-serif">{{ __('Localidad') }}</label>
-                <input type="text" id="location" class="w-100 border-solid border-2 border-green-500 rounded shadow-md h-10" name="location"  required autocomplete="location" autofocus>
+                <input type="text" id="location" class="w-100 border-solid border-2 borderGreen rounded shadow-md h-10" name="location"  required autocomplete="location" autofocus>
             </div>
             <div class="flex flex-col my-4 text-xl greenAmaso">
                 <label for="description" class="font-serif">{{ __('Cuentanos algo sobre ti') }}</label>
-                <textarea type="text" id="description" class="w-100 border-solid border-2 border-green-500 rounded shadow-md h-24" name="description" required autocomplete="description" autofocus></textarea>
+                <textarea type="text" id="description" class="w-100 border-solid border-2 borderGreen rounded shadow-md h-24" name="description" required autocomplete="description" autofocus></textarea>
             </div>
                 <div class="flex justify-end">
                     <button type="submit" class=" beigeAmasoBg font-serif text-white text-2xl mt-4 px-12 py-4  rounded-xl shadow-md">Enviar</button>
