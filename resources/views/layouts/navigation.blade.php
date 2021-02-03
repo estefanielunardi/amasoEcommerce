@@ -1,104 +1,101 @@
 <nav x-data="{ open: false }" class="greenAmasoBg">
-    <!-- Primary Navigation Menu -->
-    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 ">
-        <div class="flex justify-around h-16">
-            <div class="flex justify-between">
-                <!-- Logo -->
-                <div class="flex items-center ">
-                    <a href="{{ route('home') }}">
-                        <x-application-logo class="block h-10 w-auto fill-current text-gray-600" />
-                    </a>
-                </div>
+<!-- Primary Navigation Menu -->
+<div class="flex flex-row h-20">
+    <!-- Logo -->
+    <div class="flex items-center ml-48">
+        <a href="{{ route('home') }}" class="m-auto">
+            <x-application-logo />
+        </a>
+    </div>
 
-                <!-- Navigation Links -->
-                @can('isAdmin')
-                <div class="hidden space-x-8 sm:-my-px sm:ml-10 sm:flex ">
-                    <x-nav-link :href="route('adminDash')" :active="request()->routeIs('adminDash')">
-                        {{ __('Panel de administrador') }}
-                    </x-nav-link>
-                </div>
+    <!-- Navigation Links -->
+    <div class="flex flex-row w-1/3 items-center ">
+        @can('isAdmin')
+        <div class="hidden space-x-8 sm:-my-px sm:ml-10 sm:flex ">
+            <x-nav-link :href="route('adminDash')" :active="request()->routeIs('adminDash')">
+                {{ __('Panel de administrador') }}
+            </x-nav-link>
+        </div>
+        @endcan
+        @guest
+        <div class="hidden space-x-8 sm:-my-px sm:ml-10 sm:flex">
+            <x-nav-link  :href="route('register')" :active="request()->routeIs('register')">
+                {{ __('Register') }}
+            </x-nav-link>
+        </div>
+        <div class="hidden space-x-8 sm:-my-px sm:ml-10 sm:flex">
+            <x-nav-link  :href="route('login')" :active="request()->routeIs('login')">
+                {{ __('Login') }}
+            </x-nav-link>
+        </div>
+        @endguest
+        @can('isArtisan')
+        <div class="hidden space-x-8 sm:-my-px sm:ml-10 sm:flex">
+            <x-nav-link :href="route('profile')" :active="request()->routeIs('profile')">
+                {{ __('Mi perfil') }}
+            </x-nav-link>
+        </div>
+        @endcan
+        <div class="hidden space-x-8 sm:-my-px sm:ml-10 sm:flex">
+            <x-nav-link :href="route('artisans')" :active="request()->routeIs('artisans')">
+                {{ __('Artesanos') }}
+            </x-nav-link>
+        </div>
+        <div class="hidden space-x-8 sm:-my-px sm:ml-10 sm:flex">
+            <x-nav-link :href="route('cart')" :active="request()->routeIs('cart')">
+                {{ __('Mi compra') }}
+            </x-nav-link>
+        </div>
+        @can('isAuth')
+        <div class="hidden space-x-8 sm:-my-px sm:ml-10 sm:flex">
+            <x-nav-link :href="route('joinArtisan')" :active="request()->routeIs('joinArtisan')">
+                {{ __('Eres artesano? Unete!') }}
+            </x-nav-link>
+        </div>
+    </div>
+    @endcan
+    @auth
+    <!-- Settings Dropdown -->
+    <div class="hidden sm:flex sm:items-center sm:ml-6">
+        <x-dropdown >
+            <x-slot name="trigger">
+                <button class="flex justify-end items-center text-sm font-medium beigeLight hover:text-gray-700 hover:border-gray-300 focus:outline-none focus:text-gray-700 focus:border-gray-300 transition duration-150 ease-in-out">
+                    <div>{{ Auth::user()->name }}</div>
+
+                    <div class="ml-1">
+                        <svg class="fill-current h-4 w-4" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20">
+                            <path fill-rule="evenodd" d="M5.293 7.293a1 1 0 011.414 0L10 10.586l3.293-3.293a1 1 0 111.414 1.414l-4 4a1 1 0 01-1.414 0l-4-4a1 1 0 010-1.414z" clip-rule="evenodd" />
+                        </svg>
+                    </div>
+                </button>
+            </x-slot>
+
+            <x-slot name="content">
+                <!-- Authentication -->
+                <form method="POST" action="{{ route('logout') }}">
+                    @csrf
+
+                    <x-dropdown-link :href="route('logout')"
+                            onclick="event.preventDefault();
+                                        this.closest('form').submit();">
+                        {{ __('Logout') }}
+                    </x-dropdown-link>
+                </form>
+                @can('isAdmin')    
+                <form method="GET" action="{{ route('adminDash') }}">
+                    @csrf
+                    <x-dropdown-link :href="route('adminDash')"
+                            onclick="event.preventDefault();
+                                        this.closest('form').submit();">
+                        {{ __('Panel administrador') }}
+                    </x-dropdown-link>
+                </form>
                 @endcan
-                @guest
-                <div class="hidden space-x-8 sm:-my-px sm:ml-10 sm:flex">
-                    <x-nav-link  :href="route('register')" :active="request()->routeIs('register')">
-                        {{ __('Register') }}
-                    </x-nav-link>
-                </div>
-                <div class="hidden space-x-8 sm:-my-px sm:ml-10 sm:flex">
-                    <x-nav-link  :href="route('login')" :active="request()->routeIs('login')">
-                        {{ __('Login') }}
-                    </x-nav-link>
-                </div>
-                @endguest
-                @can('isArtisan')
-                <div class="hidden space-x-8 sm:-my-px sm:ml-10 sm:flex">
-                    <x-nav-link :href="route('profile')" :active="request()->routeIs('profile')">
-                        {{ __('Mi perfil') }}
-                    </x-nav-link>
-                </div>
-                @endcan
-                <div class="hidden space-x-8 sm:-my-px sm:ml-10 sm:flex">
-                    <x-nav-link :href="route('artisans')" :active="request()->routeIs('artisans')">
-                        {{ __('Artesanos') }}
-                    </x-nav-link>
-                </div>
-                <div class="hidden space-x-8 sm:-my-px sm:ml-10 sm:flex">
-                    <x-nav-link :href="route('cart')" :active="request()->routeIs('cart')">
-                        {{ __('Mi compra') }}
-                    </x-nav-link>
-                </div>
-                @can('isAuth')
-                <div class="hidden space-x-8 sm:-my-px sm:ml-10 sm:flex">
-                    <x-nav-link :href="route('joinArtisan')" :active="request()->routeIs('joinArtisan')">
-                        {{ __('Eres artesano? Unete!') }}
-                    </x-nav-link>
-                </div>
-                @endcan
-            </div>
-
-            @auth
-
-            <!-- Settings Dropdown -->
-            <div class="hidden sm:flex sm:items-center sm:ml-6">
-                <x-dropdown >
-                    <x-slot name="trigger">
-                        <button class="flex items-center text-sm font-medium beigeLight hover:text-gray-700 hover:border-gray-300 focus:outline-none focus:text-gray-700 focus:border-gray-300 transition duration-150 ease-in-out">
-                            <div>{{ Auth::user()->name }}</div>
-
-                            <div class="ml-1">
-                                <svg class="fill-current h-4 w-4" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20">
-                                    <path fill-rule="evenodd" d="M5.293 7.293a1 1 0 011.414 0L10 10.586l3.293-3.293a1 1 0 111.414 1.414l-4 4a1 1 0 01-1.414 0l-4-4a1 1 0 010-1.414z" clip-rule="evenodd" />
-                                </svg>
-                            </div>
-                        </button>
-                    </x-slot>
-
-                    <x-slot name="content">
-                        <!-- Authentication -->
-                        <form method="POST" action="{{ route('logout') }}">
-                            @csrf
-
-                            <x-dropdown-link :href="route('logout')"
-                                    onclick="event.preventDefault();
-                                                this.closest('form').submit();">
-                                {{ __('Logout') }}
-                            </x-dropdown-link>
-                        </form>
-                        @can('isAdmin')    
-                        <form method="GET" action="{{ route('adminDash') }}">
-                            @csrf
-                            <x-dropdown-link :href="route('adminDash')"
-                                    onclick="event.preventDefault();
-                                                this.closest('form').submit();">
-                                {{ __('Panel administrador') }}
-                            </x-dropdown-link>
-                        </form>
-                        @endcan
-                    </x-slot>
-                </x-dropdown>
-            </div>
-            @endauth
-
+            </x-slot>
+        </x-dropdown>
+    </div>
+    @endauth
+</div>
 
             <!-- Hamburger -->
             <div class="-mr-2 flex items-center sm:hidden">
