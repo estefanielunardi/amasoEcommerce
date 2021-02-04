@@ -80,7 +80,7 @@ Aplicación creada con la idea de poder ofrecer una via digital a los pequeños 
 
 - Plantear un proyecto desde scratch.
 - Implementar cambios incrementales.
-- 
+- Fundamentos del trabajo por componentes.
 
 ## Siguientes pasos
 
