@@ -18,7 +18,7 @@ class PaymentController extends Controller
         $products = $user->getProductsInBasket($id);
         $total = $user->calculateTotal($products);
 
-        return view('purchaseOrder', compact('products', 'total', 'user'));
+        return view('cart.purchaseOrder', compact('products', 'total', 'user'));
     }
 
     public function purchase(Request $request)
@@ -47,7 +47,7 @@ class PaymentController extends Controller
         Mail::to($emailUser)->send(new PurchaseConfirmation($name, $products, $total));
         
         return redirect('/')
-        ->with('message' , 'Confirmacion! Gracias por su compra!');
+        ->with('message' , 'Compra realizada con EXITO, Muchas Gracias!');
 
     }
 }

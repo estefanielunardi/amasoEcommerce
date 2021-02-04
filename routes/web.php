@@ -14,7 +14,7 @@ Route::get('/product/create', function () {
 })->middleware(['artisan'])->name('newProduct'); 
 
 Route::get('/joinArtisan', function () {
-    return view('joinArtisan');
+    return view('artisan.joinArtisan');
 })->name('joinArtisan')->middleware(['auth']);
 
 

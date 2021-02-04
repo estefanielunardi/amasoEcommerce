@@ -31,7 +31,7 @@ class ArtisansPageTest extends TestCase
     {
         $this->artisan;
         $response = $this->get('/artisans');
-        $response->assertViewIs('artisans');
+        $response->assertViewIs('artisan.artisans');
     }
 
     public function testReturnArtisansViewWithArtisans()
@@ -39,7 +39,7 @@ class ArtisansPageTest extends TestCase
         $this->artisan;
         $response = $this->get('/artisans');
 
-        $response->assertViewIs('artisans')
+        $response->assertViewIs('artisan.artisans')
             ->assertViewHas('artisans');
     }
 }

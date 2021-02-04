@@ -34,14 +34,14 @@ class ArtisanProfileTest extends TestCase
     {
         $response = $this->get('artisan/' . $this->artisan->slug);
 
-        $response->assertViewIs('profileArtisan');
+        $response->assertViewIs('artisan.profileArtisan');
     }
 
     public function testReturnArtisanProfileViewWithData()
     {
         $response = $this->get('artisan/' . $this->artisan->slug);
 
-        $response->assertViewIs('profileArtisan')
+        $response->assertViewIs('artisan.profileArtisan')
             ->assertViewHas('artisan')
             ->assertSee($this->artisan->name);
     }
@@ -49,7 +49,7 @@ class ArtisanProfileTest extends TestCase
     public function testReturnArtisanProfileViewHasProducts()
     {
         $response = $this->get('artisan/' . $this->artisan->slug);
-        $response->assertViewIs('profileArtisan')
+        $response->assertViewIs('artisan.profileArtisan')
             ->assertViewHas('products');
     }
 }

@@ -17,7 +17,7 @@ class CreateArtisanTest extends TestCase
         $response = $this->get('/joinArtisan');
 
         $response->assertStatus(200)
-            ->assertViewIs('joinArtisan');
+            ->assertViewIs('artisan.joinArtisan');
 
     }
 

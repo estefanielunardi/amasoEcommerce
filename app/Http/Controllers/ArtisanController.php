@@ -15,7 +15,7 @@ class ArtisanController extends Controller
         $products = DB::table('products')
         ->where('artisan_id', $artisan->id)
         ->paginate(3);
-        return view('profileArtisan', compact('products', 'artisan'));   
+        return view('artisan.profileArtisan', compact('products', 'artisan'));   
     }
 
     public function seeProfile() 
@@ -29,10 +29,10 @@ class ArtisanController extends Controller
         }
         else
         {
-            return view('responsesAdmin', ["message" => "Tu perfil está siendo evaluado, ¡Recibirás notícias pronto por email!"]);
+            return view('admin.responsesAdmin', ["message" => "Tu perfil está siendo evaluado, ¡Recibirás notícias pronto por email!"]);
         }
         
-        return view('profileArtisan', compact('products', 'artisan'));   
+        return view('artisan.profileArtisan', compact('products', 'artisan'));   
     }
 
     public function store(Request $request){
@@ -55,7 +55,7 @@ class ArtisanController extends Controller
             
             $newArtisan->save(); 
 
-            return view('responsesAdmin', ["message" => "Tu perfil está siendo evaluado, ¡Recibirás notícias pronto por email!"]);
+            return view('admin.responsesAdmin', ["message" => "Tu perfil está siendo evaluado, ¡Recibirás notícias pronto por email!"]);
     }
 
     public function getAll(){
@@ -63,7 +63,7 @@ class ArtisanController extends Controller
         $artisans = DB::table('artisans')
                     ->where('aproved','=', 1)
                     ->paginate(6);
-        return view('artisans', compact('artisans'));
+        return view('artisan.artisans', compact('artisans'));
     }
 
     public function orders()
@@ -75,7 +75,7 @@ class ArtisanController extends Controller
         $orders = $artisan->getOrders($id);
      
 
-        return view('artisanOrders', compact('orders'));
+        return view('artisan.artisanOrders', compact('orders'));
     }
 
     public function destroy()
@@ -89,7 +89,7 @@ class ArtisanController extends Controller
     public function edit()
     {
         $artisan = Artisan::getArtisan();       
-        return view('editArtisan', compact('artisan'));
+        return view('artisan.editArtisan', compact('artisan'));
     }
 
     public function update(Request $request , Artisan $artisan)
