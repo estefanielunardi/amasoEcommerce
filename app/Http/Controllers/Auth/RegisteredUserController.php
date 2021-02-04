@@ -57,6 +57,8 @@ class RegisteredUserController extends Controller
         event(new Registered($user));
             if($user->isArtisan)
             {
+                $user->isArtisan = 0;
+                $user->save();
                 return redirect('/joinArtisan');
             }
         return redirect('/');

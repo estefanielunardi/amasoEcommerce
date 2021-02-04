@@ -39,6 +39,11 @@ class ArtisanController extends Controller
 
         $image = $this->setImage($request);
 
+        $id = auth()->id();
+        $user = User::find($id);
+        $user->isArtisan = 1;
+        $user->save();
+
         $newArtisan = Artisan::create([
             'name' => $request->name,
             'location' =>$request->location,
@@ -68,6 +73,7 @@ class ArtisanController extends Controller
         $id = DB::table('artisans')->where('user_id','=',$user_id)->value('id');
         $artisan = Artisan::find($id);
         $orders = $artisan->getOrders($id);
+     
 
         return view('artisan.artisanOrders', compact('orders'));
     }
@@ -102,6 +108,12 @@ class ArtisanController extends Controller
         return redirect('/artisan/' . $artisan->slug);
     }
 
+    public function deleteOrder($id)
+    {
+        DB::table('product_user')->where('id','=',$id)->delete();
+        return back();
+    }
+
     private function setImage($request)
     {
         $image = '';
@@ -115,5 +127,7 @@ class ArtisanController extends Controller
         }  
         return $image;  
     }
+
+
 
 }

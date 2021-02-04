@@ -35,7 +35,7 @@
 
     </body>
     <footer id="footerSection" class="flex justify-center flex justify-center my-8">
-    <p>Copyright  AMASÓ 2021   |     Conctacto     |
+    <p>Copyright  AMASÓ 2021   |     Contacto     |
     <br>
             Aviso legal y privacidad</p>
     </footer>
