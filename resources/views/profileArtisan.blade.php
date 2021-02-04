@@ -108,7 +108,7 @@
         <x-button-cart />
         @endif
 
-        @if (count($products) === 0)
+        @if (count($products) === 0 && auth()->id() == $artisan->user_id)
         <section class="p-12 w-full h-96 content-center flex-wrap flex justify-center">
             <p class="beigeAmaso text-xl text-center"> 
                 Aún no has publicado ningún producto. ¡Sube el primero!
