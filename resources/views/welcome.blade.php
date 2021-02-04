@@ -2,9 +2,11 @@
 
 
 @if (session('message'))
-    <div class="alert alert-success">
-        {{ session('message') }}
-    </div>
+<div class="text-white px-6 py-4 border-0 rounded relative mb-4 greenLightBg">
+    <span class="alert alert-success inline-block align-middle mr-8 capitalize">
+    {{ session('message') }}
+    </span>
+</div>
 @endif
 
 
