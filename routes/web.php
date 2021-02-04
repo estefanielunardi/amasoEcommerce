@@ -14,7 +14,7 @@ Route::get('/product/create', function () {
 })->middleware(['artisan'])->name('newProduct'); 
 
 Route::get('/joinArtisan', function () {
-    return view('joinArtisan');
+    return view('artisan.joinArtisan');
 })->name('joinArtisan')->middleware(['auth']);
 
 
@@ -49,6 +49,8 @@ Route::post('/artisan/store', [App\Http\Controllers\ArtisanController::class, 's
 Route::get('/artisans', [App\Http\Controllers\ArtisanController::class, 'getAll'])->name('artisans');
 
 Route::get('/orders', [App\Http\Controllers\ArtisanController::class, 'orders'])->name('orders')->middleware(['artisan']);
+
+Route::delete('/orders/delete/{id}', [App\Http\Controllers\ArtisanController::class, 'deleteOrder'])->name('deleteOrder')->middleware(['artisan']);
 
 
 //---ADMIN ROUTES

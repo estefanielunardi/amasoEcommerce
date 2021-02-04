@@ -33,8 +33,8 @@
                                 <input placeholder="sin espacios ni simbolos" id="card" value="{{$user->card}}"class="w-100 border-solid border-2 borderGreen rounded shadow-md h-10" name="card" required autocomplete="card" autofocus>
                             </div>
                             <div class="flex flex-col my-4 text-xl greenAmaso">
-                                <label for="name" class="font-serif">{{ __('Titular de la tarjeta') }}</label>
-                                <input type="text" id="name" class="w-100 border-solid border-2 borderGreen rounded shadow-md h-10" name="name" required autocomplete="name" autofocus>
+                                <label for="cardholder" class="font-serif">{{ __('Titular de la tarjeta') }}</label>
+                                <input type="text" id="cardholder" class="w-100 border-solid border-2 borderGreen rounded shadow-md h-10" name="cardholder" value="{{$user->cardholder}}" required autocomplete="cardholder" autofocus>
                             </div>
                             <div class="flex flex-col my-4 text-xl greenAmaso">
                                 <label for="nombre" class="font-serif">{{ __('Fecha de vencimiento') }}</label>

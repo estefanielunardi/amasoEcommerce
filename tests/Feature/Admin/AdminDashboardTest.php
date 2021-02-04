@@ -36,7 +36,7 @@ class AdminDashboardTest extends TestCase
         $response = $this->actingAs($this->admin)->get('/admin');
 
         $response->assertStatus(200)
-            ->assertViewIs('adminDashboard')
+            ->assertViewIs('admin.adminDashboard')
             ->assertViewHas('artisanList');
     }
 
@@ -45,7 +45,7 @@ class AdminDashboardTest extends TestCase
         $response = $this->actingAs($this->admin)->get('artisan/' . $this->artisan->slug);
 
         $response->assertStatus(200)
-            ->assertViewIs('profileArtisan')
+            ->assertViewIs('artisan.profileArtisan')
             ->assertViewHas('artisan')
             ->assertSee($this->artisan->id);
     }

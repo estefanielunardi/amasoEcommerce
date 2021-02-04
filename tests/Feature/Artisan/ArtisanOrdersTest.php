@@ -34,8 +34,8 @@ class ArtisanOrdersTest extends TestCase
     {
         $this->get(route('cartAddProduct', $this->product->id));
         $response = $this->get(route('orders'));
-        $response->assertviewIs('artisanOrders');
-        $response->assertviewIs('artisanOrders')
+        $response->assertviewIs('artisan.artisanOrders');
+        $response->assertviewIs('artisan.artisanOrders')
                 ->assertViewHas('orders');
     }
 }

@@ -14,7 +14,7 @@ class AdminController extends Controller
     public function adminDash(){
 
         $artisanList = DB::table('artisans')->get();
-        return view('adminDashboard', ['artisanList' => $artisanList]);
+        return view('admin.adminDashboard', ['artisanList' => $artisanList]);
     }
 
     public function seeArtisanProfile(Artisan $artisan){
