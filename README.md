@@ -36,7 +36,11 @@
 
 ### Kanban link
 
+https://app.gitkraken.com/glo/board/X-wu328EBQARc9EZ
+
 ### Heroku link
+
+http://amaso.herokuapp.com/
 
 ### Proyecto creado en equipo durante el Bootcamp Factoria F5.
 
