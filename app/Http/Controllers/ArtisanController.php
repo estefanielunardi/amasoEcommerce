@@ -15,7 +15,7 @@ class ArtisanController extends Controller
         $products = DB::table('products')
         ->where('artisan_id', $artisan->id)
         ->paginate(3);
-        return view('profileArtisan', compact('products', 'artisan'));   
+        return view('artisan.profileArtisan', compact('products', 'artisan'));   
     }
 
     public function seeProfile() 
@@ -32,7 +32,7 @@ class ArtisanController extends Controller
             return view('admin.responsesAdmin', ["message" => "Tu perfil está siendo evaluado, ¡Recibirás notícias pronto por email!"]);
         }
         
-        return view('profileArtisan', compact('products', 'artisan'));   
+        return view('artisan.profileArtisan', compact('products', 'artisan'));   
     }
 
     public function store(Request $request){
