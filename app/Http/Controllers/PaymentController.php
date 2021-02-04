@@ -18,7 +18,7 @@ class PaymentController extends Controller
         $products = $user->getProductsInBasket($id);
         $total = $user->calculateTotal($products);
 
-        return view('purchaseOrder', compact('products', 'total', 'user'));
+        return view('cart.purchaseOrder', compact('products', 'total', 'user'));
     }
 
     public function purchase(Request $request)

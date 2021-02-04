@@ -23,7 +23,7 @@ class CheckoutFormTest extends TestCase
         $this->actingAs(User::factory()->create());
         $response = $this->get('/purchase/order');
 
-        $response->assertViewIs('purchaseOrder')
+        $response->assertViewIs('cart.purchaseOrder')
         ->assertViewHas('products');
 
     }
