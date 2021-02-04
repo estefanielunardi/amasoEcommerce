@@ -8,7 +8,7 @@
                     <th class="p-3 font-bold vollkorn text-white greenLightBg hidden lg:table-cell">Cantidad</th>
                     <th class="p-3 font-bold vollkorn text-white greenLightBg hidden lg:table-cell">Total</th>
                     <th class="p-3 font-bold vollkorn text-white greenLightBg hidden lg:table-cell">Email</th>
-                    <th class="p-3 font-bold vollkorn text-white greenLightBg hidden lg:table-cell">Direccion</th>
+                    <th class="p-3 font-bold vollkorn text-white greenLightBg hidden lg:table-cell">Dirección</th>
                     <th class="p-3 font-bold vollkorn text-white greenLightBg hidden lg:table-cell">C.P</th>
                     <th class="p-3 font-bold vollkorn text-white greenLightBg hidden lg:table-cell">Fecha</th>
                 </tr>
