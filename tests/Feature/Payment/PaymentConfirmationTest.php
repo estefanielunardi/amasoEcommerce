@@ -32,7 +32,7 @@ class PaymentConfirmationTest extends TestCase
 
     public function testRoute()
     {
-        $this->actingAs($this->user);
+        $this->actingAs($this->alfredo);
         $this->get(route('cartAddProduct', $this->product1->id));
 
         $response = $this->put('/purchase');
@@ -99,15 +99,5 @@ class PaymentConfirmationTest extends TestCase
         $this->put('/purchase');
 
         Mail::assertSent(PurchaseConfirmation::class);
-    }
-
-    public function testMailContent()
-    {
-        $mailable = new PurchaseConfirmation($this->user->name);
-
-        $mailable->assertSeeInHtml('Amasó');
-        $mailable->assertSeeInHtml($this->user->name);
-        $mailable->assertSeeInHtml('tu pedido ha sido realizado con éxito');
-        $mailable->assertSeeInHtml('Gracias por confiar en nosotros.');
     }
 }

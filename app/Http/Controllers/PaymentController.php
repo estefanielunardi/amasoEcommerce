@@ -26,7 +26,6 @@ class PaymentController extends Controller
         $user_id = auth()->id();
         $user = User::find($user_id);
         $user->buyProductsInBasket($user_id);
-        
         $user->id = $user->id;
         $user->name = $user->name;
         $user->email = $user->email;
@@ -40,10 +39,12 @@ class PaymentController extends Controller
         
         $user->save(); 
 
+        $products = $user->getPurchasedProducts($user_id);
+        $total = $user->calculateTotal($products);
         $emailUser = DB::table('users')->where('id', $user_id)->value('email');
         $name = DB::table('users')->where('id', $user_id)->value('name');
 
-        Mail::to($emailUser)->send(new PurchaseConfirmation($name));
+        Mail::to($emailUser)->send(new PurchaseConfirmation($name, $products, $total));
         
         return redirect('/')
         ->with('message' , '¡Compra realizada con éxito, muchas gracias!');
