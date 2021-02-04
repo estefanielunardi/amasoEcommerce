@@ -1,4 +1,13 @@
 <x-app-layout>
+
+
+@if (session('message'))
+    <div class="alert alert-success">
+        {{ session('message') }}
+    </div>
+@endif
+
+
     <header class="static">
         <img class="w-full h-64 object-cover lg:h-full" src="./image/cover2.jpg">
         <section class="absolute top-24 left-10 w-52 lg:w-1/3 lg:top-52 lg:left-52">
