@@ -58,7 +58,7 @@ class ArtisanController extends Controller
         $artisans = DB::table('artisans')
                     ->where('aproved','=', 1)
                     ->paginate(6);
-        return view('artisans', compact('artisans'));
+        return view('artisan.artisans', compact('artisans'));
     }
 
     public function orders()
