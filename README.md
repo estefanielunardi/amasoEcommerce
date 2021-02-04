@@ -88,3 +88,4 @@ Aplicación creada con la idea de poder ofrecer una via digital a los pequeños 
 -   Utilizar sesiones que reserven los productos durante un tiempo determinado en cada carrito.
 -   Utilizar Docker.
 -   Crear las vistas por componentes.
+-   Crear perfil del usuario con su historial de compra.
