@@ -49,6 +49,8 @@ class RegisteredUserController extends Controller
             'postal'=> '',
             'card'=>'',
             'expiring'=>'',
+            'cardholder'=>'',
+
 
         ]));
 
