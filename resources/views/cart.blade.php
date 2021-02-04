@@ -26,13 +26,11 @@
                     {{ csrf_field() }}
                 </form>
                 <div class="flex flex-row relative items-center rounded-md shadow-md greenLightBg text-white h-14 w-full md:w-3/4 md:h-20">
-                    <div class="flex flex-row">
-                        <div class="hidden w-14 h-14 overflow-hidden rounded-xl m-1">
-                            <img class="object-fill h-full" src="{{ asset('storage') .'/'. $product->image}}" />
-                        </div>
-                        <p class="px-3 md:pl-5 text-sm md:text-lg">{{$product->name}}</p>
+                    <div class="flex flex-row md:w-full w-32">
+                        <p class="px-3 md:pl-5 text-sm md:text-lg ">{{$product->name}}</p>
                     </div>
-                    <div class="flex text-sm flex-row w-48 absolute right-4 justify-between">
+                    <div class="flex text-sm flex-row w-44 md:w-48 absolute right-4 justify-between">
+                        @if($product->stock > $product->amount)
                         <div class="flex flex-row justify-end">
                             <div class="flex flex-row h-6 w-full relative bg-transparent exo text-sm shadow-md">
                                 <form action="{{ route('removeProductCart' , $product->id) }}" method="POST">
@@ -43,17 +41,35 @@
                                     </button>
                                 </form>
                                 <input type="number" max="{{$product->stock}}" class="counter border-transparent outline-none focus:outline-none text-center w-6 greenLightBg md:text-basecursor-default flex items-center text-white outline-none" name="custom-input-number" value="{{$product->amount}}"></input>
-                                @if($product->stock > $product->amount)
                                 <button data-action="increment" class="counter  greenAmasoBg  h-full w-6 cursor-pointer outline-none">
                                     <span class="m-auto font-thin text-white">
                                         <a href="{{ route('cartAddProduct' , $product->id) }}">+</a>
                                     </span>
                                 </button>
-                                @else
-                                <p class="text-sm p-2">Agotado</p>
-                                @endif
                             </div>
                         </div>
+                        @else
+                        <div class="flex flex-col relative">
+                            <div class="flex flex-row justify-end">
+                                <div class="flex flex-row h-6 w-full relative bg-transparent exo text-sm shadow-md">
+                                    <form action="{{ route('removeProductCart' , $product->id) }}" method="POST">
+                                        <button data-action="decrement" type="submit" class="counter greenAmasoBg  h-full w-6 cursor-pointer outline-none">
+                                            <span class="m-auto font-thin text-white">-</span>
+                                            @method('DELETE')
+                                            {{ csrf_field() }}
+                                        </button>
+                                    </form>
+                                    <input type="number" max="{{$product->stock}}" class="counter border-transparent outline-none focus:outline-none text-center w-6 greenLightBg md:text-basecursor-default flex items-center text-white outline-none" name="custom-input-number" value="{{$product->amount}}"></input>
+                                    <button class="counter bg-gray-500  h-full w-6 cursor-pointer outline-none">
+                                        <span class="m-auto font-thin text-white">
+                                            <a href="">+</a>
+                                        </span>
+                                    </button>
+                                </div>
+                            </div>
+                            <p class="text-xs absolute top-6 left-2 md:left-1 md:text-sm md:top-7">¡Agotado!</p>
+                        </div>
+                        @endif
                         <p class="pt-1">{{$product->amount}} Ud.</p>
                         <p class="pt-1">{{number_format($product->price / 100, 2)}} €</p>
                     </div>
