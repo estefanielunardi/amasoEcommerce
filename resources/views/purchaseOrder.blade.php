@@ -10,15 +10,15 @@
                 @csrf
                 <div class="flex flex-col my-4 text-xl greenAmaso">
                     <label for="direction" class="font-serif">{{ __('Dirección postal') }}</label>
-                    <input type="text" id="direction" placeholder="Calle, número, piso, puerta" class="w-100 border-solid border-2 borderGreen rounded shadow-md h-10" name="direction" required autocomplete="direction" autofocus>
+                    <input type="text" id="direction" placeholder="Calle, número, piso, puerta" value="{{$user->direction}}"class="w-100 border-solid border-2 borderGreen rounded shadow-md h-10" name="direction" required autocomplete="direction" autofocus>
                 </div>
                 <div class="flex flex-col my-4 text-xl greenAmaso">
                     <label for="location" class="font-serif">{{ __('Localidad/Provincia') }}</label>
-                    <input type="text" id="location" class="w-100 border-solid border-2 borderGreen rounded shadow-md h-10" name="location" required autocomplete="location" autofocus>
+                    <input type="text" id="location" class="w-100 border-solid border-2 borderGreen rounded shadow-md h-10"value="{{$user->location}}" name="location" required autocomplete="location" autofocus>
                 </div>
                 <div class="flex flex-col my-4 text-xl greenAmaso">
                     <label for="postal" class="font-serif">{{ __('Código postal') }}</label>
-                    <input type="number" id="postal" class="w-100 border-solid border-2 borderGreen rounded shadow-md h-10" name="postal" required autocomplete="postal" autofocus>
+                    <input type="number" id="postal" class="w-100 border-solid border-2 borderGreen rounded shadow-md h-10"value="{{$user->postal}}" name="postal" required autocomplete="postal" autofocus>
                 </div>
 
                 <section class="mt-16 text-center pb-8">
@@ -30,7 +30,7 @@
                         <form>
                             <div class="flex flex-col my-4 text-xl greenAmaso">
                                 <label for="card" class="font-serif">{{ __('Número de tarjeta') }}</label>
-                                <input placeholder="sin espacios ni simbolos" id="card" class="w-100 border-solid border-2 borderGreen rounded shadow-md h-10" name="card" required autocomplete="card" autofocus>
+                                <input placeholder="sin espacios ni simbolos" id="card" value="{{$user->card}}"class="w-100 border-solid border-2 borderGreen rounded shadow-md h-10" name="card" required autocomplete="card" autofocus>
                             </div>
                             <div class="flex flex-col my-4 text-xl greenAmaso">
                                 <label for="name" class="font-serif">{{ __('Titular de la tarjeta') }}</label>
@@ -38,7 +38,7 @@
                             </div>
                             <div class="flex flex-col my-4 text-xl greenAmaso">
                                 <label for="nombre" class="font-serif">{{ __('Fecha de vencimiento') }}</label>
-                                <input type="text" required pattern="([0-2][0-9]|(3)[0-1])(\/)(((0)[0-9])|((1)[0-2]))(\/)(0[1-9]|[12]\d|3[01])" placeholder="dd/mm/yy" id="date" class="w-100 border-solid border-2 borderGreen rounded shadow-md h-10" name="date" required autocomplete="date" autofocus>
+                                <input type="text"required pattern="([0-2][0-9]|(3)[0-1])(\/)(((0)[0-9])|((1)[0-2]))(\/)(0[1-9]|[12]\d|3[01])" placeholder="dd/mm/yy" id="date" class="w-100 border-solid border-2 borderGreen rounded shadow-md h-10" name="expiring" required autocomplete="date" autofocus>
                             </div>
 
                     </div>
