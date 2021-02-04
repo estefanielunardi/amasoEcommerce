@@ -28,6 +28,7 @@ class CreateUsersTable extends Migration
             $table->string('postal')->nullable();
             $table->string('card')->nullable();
             $table->string('expiring')->nullable();
+            $table->string('cardholder')->nullable();
 
         });
     }
