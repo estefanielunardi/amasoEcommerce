@@ -69,7 +69,7 @@ class ArtisanController extends Controller
         $artisan = Artisan::find($id);
         $orders = $artisan->getOrders($id);
 
-        return view('artisanOrders', compact('orders'));
+        return view('artisan.artisanOrders', compact('orders'));
     }
 
     public function destroy()
