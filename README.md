@@ -1,3 +1,5 @@
+![](public/image/amaso-peque.png)
+
 # AMASÓ ECOMMERCE
 
 ## La app para conectar artesanos y productores locales con sus clientes.
@@ -48,9 +50,9 @@ Integrantes:
 
 Aplicación creada con la idea de poder ofrecer una via digital a los pequeños productores locales que quieren vender sus productos a clientes cercanos.
 
--   [Usuarios.](#usuarios)
--   [Artesanos.](#artesanos)
--   [Administradores.](#adminstradores)
+ [Usuarios.](#usuarios)  
+ [Artesanos.](#artesanos)  
+ [Administradores.](#adminstradores)
 
 ### Usuarios
 
