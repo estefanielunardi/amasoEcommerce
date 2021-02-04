@@ -6,7 +6,7 @@
         @if (count($products) === 0)
         <section class="p-12 w-full h-96 content-center flex-wrap flex justify-center">
             <p class="beigeAmaso text-xl text-center">
-                Aún no has comprado ningun producto! ¿Que estas esperando?
+                ¡Aún no has añadido ningún producto! ¿Qué estás esperando?
             </p>
         </section>
         @endif
