@@ -46,7 +46,7 @@ class PaymentController extends Controller
         Mail::to($emailUser)->send(new PurchaseConfirmation($name));
         
         return redirect('/')
-        ->with('message' , 'Compra realizada con EXITO, Muchas Gracias!');
+        ->with('message' , '¡Compra realizada con éxito, muchas gracias!');
 
     }
 }

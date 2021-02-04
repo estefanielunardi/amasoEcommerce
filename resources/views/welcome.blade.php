@@ -1,4 +1,12 @@
 <x-app-layout>
+@if (session('message'))
+    <div class="text-white px-6 py-4 border-0 relative greenLightBg">
+        <span class="alert alert-success inline-block align-middle mr-8">
+        {{ session('message') }}
+        </span>
+    </div>
+@endif
+
     <header class="relative">
         <img class="w-full h-64 object-cover lg:h-full" src="./image/cover2.jpg">
             <section class="absolute z-10 top-8 left-10 w-52 lg:w-1/3 lg:top-40 lg:left-52">
