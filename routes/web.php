@@ -50,6 +50,8 @@ Route::get('/artisans', [App\Http\Controllers\ArtisanController::class, 'getAll'
 
 Route::get('/orders', [App\Http\Controllers\ArtisanController::class, 'orders'])->name('orders')->middleware(['artisan']);
 
+Route::delete('/orders/delete/{id}', [App\Http\Controllers\ArtisanController::class, 'deleteOrder'])->name('deleteOrder')->middleware(['artisan']);
+
 
 //---ADMIN ROUTES
 Route::get('/admin', [App\Http\Controllers\AdminController::class, 'adminDash'])->middleware('checkAdmin')->name('adminDash');

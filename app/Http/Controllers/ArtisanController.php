@@ -68,6 +68,7 @@ class ArtisanController extends Controller
         $id = DB::table('artisans')->where('user_id','=',$user_id)->value('id');
         $artisan = Artisan::find($id);
         $orders = $artisan->getOrders($id);
+     
 
         return view('artisanOrders', compact('orders'));
     }
@@ -102,6 +103,12 @@ class ArtisanController extends Controller
         return redirect('/artisan/' . $artisan->slug);
     }
 
+    public function deleteOrder($id)
+    {
+        DB::table('product_user')->where('id','=',$id)->delete();
+        return back();
+    }
+
     private function setImage($request)
     {
         $image = '';
@@ -115,5 +122,7 @@ class ArtisanController extends Controller
         }  
         return $image;  
     }
+
+
 
 }
