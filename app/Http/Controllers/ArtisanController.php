@@ -82,7 +82,6 @@ class ArtisanController extends Controller
     {
         $artisan = Artisan::getArtisan();
         $artisan->delete();
-
         return redirect('/');
     }
 
