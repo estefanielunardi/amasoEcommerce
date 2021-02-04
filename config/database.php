@@ -55,7 +55,6 @@ return [
             'charset' => 'utf8',
             'collation' => 'utf8_unicode_ci',
             'collation_server' => 'utf8_unicode_ci',
-            'character_set_server' => 'utf8',
             'prefix' => '',
             'prefix_indexes' => true,
             'strict' => true,
