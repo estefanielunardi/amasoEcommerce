@@ -43,6 +43,8 @@ class PaymentController extends Controller
         $total = $user->calculateTotal($products);
         $emailUser = DB::table('users')->where('id', $user_id)->value('email');
         $name = DB::table('users')->where('id', $user_id)->value('name');
+
+        Mail::to($emailUser)->send(new PurchaseConfirmation($name, $products, $total));
         
         return redirect('/')
         ->with('message' , '¡Compra realizada con éxito, muchas gracias!');

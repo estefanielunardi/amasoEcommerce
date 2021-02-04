@@ -34,6 +34,7 @@ class AdminController extends Controller
         $emailUser = DB::table('users')->where('id', $user_id)->value('email');
         $name = DB::table('users')->where('id', $user_id)->value('name');
 
+        Mail::to($emailUser)->send(new ArtisanProfileDeletedEmail($name));
         return redirect(route('adminDash'));
     }    
 
@@ -45,6 +46,7 @@ class AdminController extends Controller
         $emailUser = DB::table('users')->where('id', $user_id)->value('email');
         $name = DB::table('users')->where('id', $user_id)->value('name');
     
+        Mail::to($emailUser)->send(new ArtisanProfileAprovedEmail($name));
         return redirect(route('adminDash'));
     }
         
