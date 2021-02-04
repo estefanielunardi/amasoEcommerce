@@ -90,6 +90,7 @@ Aplicación creada con la idea de poder ofrecer una via digital a los pequeños 
 - Implementar transacciones para las bases de datos.
 - Utilizar sesiones que reserven los productos durante un tiempo determinado en cada carrito.
 - Utilizar Docker.
+- Crear las vistas por componentes.
 
 
 
