@@ -9,7 +9,7 @@
                 </a>
             </div>
             <!-- Navigation Links -->
-            <div class="hidden md:flex md:w-full md:m-auto md:ml-20">
+            <div class="hidden md:flex md:w-full md:m-auto md:ml-20 md:mr-10">
                 @can('isAdmin')
                 <div class=" space-x-8 sm:-my-px sm:ml-10 ">
                     <x-nav-link :href="route('adminDash')" :active="request()->routeIs('adminDash')">
@@ -56,7 +56,7 @@
             </div>
             @auth
             <!-- Settings Dropdown -->
-            <div class="hidden md:flex md:items-center md:mr-48 md:justify-end">
+            <div class="hidden md:flex md:items-center md:min-w-max md:mr-48 md:justify-end">
                 <x-dropdown >
                     <x-slot name="trigger">
                         <button class="flex items-center text-sm font-medium beigeLight hover:text-white hover:border-white focus:outline-none focus:text-white focus:border-white transition duration-150 ease-in-out">
@@ -114,12 +114,15 @@
 
 
     <!-- Responsive Navigation Menu -->
-    <div :class="{'block': open, 'hidden': ! open}" class="hidden sm:hidden">
+    <div :class="{'block': open, 'hidden': ! open}" class=" absolute greenAmasoBg w-full z-30">
+        @can('isAdmin')
         <div class="pt-2 pb-3 space-y-1">
             <x-responsive-nav-link :href="route('adminDash')" :active="request()->routeIs('adminDash')">
                 {{ __('Administrador') }}
             </x-responsive-nav-link>
         </div>
+        @endcan
+        @guest
         <div class="pt-2 pb-3 space-y-1">
             <x-responsive-nav-link :href="route('register')" :active="request()->routeIs('register')">
                 {{ __('Register') }}
@@ -130,53 +133,53 @@
                 {{ __('Login') }}
             </x-responsive-nav-link>
         </div>
+        @endguest
+        @can('isArtisan')
         <div class="pt-2 pb-3 space-y-1">
             <x-responsive-nav-link :href="route('profile')" :active="request()->routeIs('profile')">
                 {{ __('Mi perfil') }}
             </x-responsive-nav-link>
         </div>
+        @endcan
         <div class="pt-2 pb-3 space-y-1">
             <x-responsive-nav-link :href="route('artisans')" :active="request()->routeIs('artisans')">
                 {{ __('Artesanos') }}
             </x-responsive-nav-link>
         </div>
         <div class="pt-2 pb-3 space-y-1">
-            <x-responsive-nav-link >
-                {{ __('My Cart') }}
+            <x-responsive-nav-link :href="route('cart')" :active="request()->routeIs('cart')">
+                {{ __('Mi compra') }}
             </x-responsive-nav-link>
         </div>
+        @can('isAuth')
         <div class="pt-2 pb-3 space-y-1">
             <x-responsive-nav-link :href="route('joinArtisan')" :active="request()->routeIs('joinArtisan')">
                 {{ __('Eres artesano? Unete!') }}
             </x-responsive-nav-link>
         </div>
+        @endcan
 
         <!-- Responsive Settings Options -->
-        <div class="pt-4 pb-1 border-t border-gray-200">
-            <div class="flex items-center px-4">
-                
+        <div class="pt-4 pb-1 ">
             @auth
-                <div class="ml-3">
-                    <div class="font-medium text-base beigeLight">{{ Auth::user()->name }}</div>
-                    <div class="font-medium text-sm beigeLight"">{{ Auth::user()->email }}</div>
+            <div class="flex items-center px-4 border-t border-gray-200">          
+                <div class="ml-3 mt-4">
+                    <div class="font-medium text-base text-white">{{ Auth::user()->name }}</div>
+                    <div class="font-medium text-sm text-white">{{ Auth::user()->email }}</div>
                 </div>
-            @endauth
             </div>
-
-            <div class="mt-3 space-y-1">
+            <div class="mt-2 space-y-1">
                 <!-- Authentication -->
                 <form method="POST" action="{{ route('logout') }}">
                     @csrf
-
                     <x-responsive-nav-link :href="route('logout')"
                             onclick="event.preventDefault();
                                         this.closest('form').submit();">
                         {{ __('Logout') }}
                     </x-responsive-nav-link>
-                    
-
                 </form>
             </div>
+            @endauth
         </div>
     </div>
 </nav>

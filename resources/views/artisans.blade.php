@@ -1,7 +1,7 @@
 <x-app-layout>
-    <header class="static">
+    <header class="relative">
         <img class="w-full h-64 object-cover lg:h-96" src="./image/coverArtisans.jpg">
-        <section class="absolute top-24 left-10 w-52 lg:w-96 lg:top-52 lg:left-52">
+        <section class="absolute top-10 left-10 w-52 lg:w-96 lg:top-20 lg:left-52">
             <h2 class="block title text-white pb-5 lg:text-5xl">Nuestros productores</h2>
         </section>
     </header>
