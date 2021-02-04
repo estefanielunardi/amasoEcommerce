@@ -39,6 +39,11 @@ class ArtisanController extends Controller
 
         $image = $this->setImage($request);
 
+        $id = auth()->id();
+        $user = User::find($id);
+        $user->isArtisan = 1;
+        $user->save();
+
         $newArtisan = Artisan::create([
             'name' => $request->name,
             'location' =>$request->location,
