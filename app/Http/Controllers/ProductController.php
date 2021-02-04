@@ -20,8 +20,6 @@ class ProductController extends Controller
     {
         $artisan = Artisan::getArtisan();
 
-        $image = $this->setImage($request);
-
         $product= Product::create([
             'name'=>$request->name,
             'image'=> $request->image,
