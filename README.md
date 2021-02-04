@@ -1,4 +1,4 @@
-![](public/image/amaso.png)
+![](public/image/amaso-peque.png)
 
 # AMASÓ ECOMMERCE
 
