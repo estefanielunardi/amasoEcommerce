@@ -83,7 +83,7 @@ class ArtisanController extends Controller
     public function edit()
     {
         $artisan = Artisan::getArtisan();       
-        return view('editArtisan', compact('artisan'));
+        return view('artisan.editArtisan', compact('artisan'));
     }
 
     public function update(Request $request , Artisan $artisan)

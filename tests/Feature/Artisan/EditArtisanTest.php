@@ -30,7 +30,7 @@ class EditArtisanTest extends TestCase
   {
     $response = $this->get('/artisan/edit/' . $this->artisan->id);
 
-    $response->assertViewIs('editArtisan')
+    $response->assertViewIs('artisan.editArtisan')
       ->assertViewHas('artisan');
   }
 }
