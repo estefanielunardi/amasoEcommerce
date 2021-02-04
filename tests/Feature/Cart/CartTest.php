@@ -28,14 +28,14 @@ class CartTest extends TestCase
     {
         $response = $this->get(route('cart'));
 
-        $response->assertViewIs("cart");
+        $response->assertViewIs("cart.cart");
     }
 
     public function testCartViewHasProducts()
     {
         $response =  $this->get(route('cart'));
 
-        $response->assertViewIs("cart")
+        $response->assertViewIs("cart.cart")
             ->assertViewHas(["products", "total"]);
     }
 }

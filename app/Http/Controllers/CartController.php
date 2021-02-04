@@ -13,7 +13,7 @@ class CartController extends Controller
         $products = $user->getProductsInBasket($id);
         $total = $user->calculateTotal($products);
 
-        return view('cart', compact("products", "total"));
+        return view('cart.cart', compact("products", "total"));
     }
 
     public function addProduct($product_id)
