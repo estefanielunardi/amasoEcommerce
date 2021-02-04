@@ -48,9 +48,9 @@ Integrantes:
 
 Aplicación creada con la idea de poder ofrecer una via digital a los pequeños productores locales que quieren vender sus productos a clientes cercanos.
 
--   [Usuarios.](#usuarios)
--   [Artesanos.](#artesanos)
--   [Administradores.](#adminstradores)
+ [Usuarios.](#usuarios)  
+ [Artesanos.](#artesanos)  
+ [Administradores.](#adminstradores)
 
 ### Usuarios
 
