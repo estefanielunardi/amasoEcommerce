@@ -8,7 +8,7 @@
     </section>
     <section class="container md:container md:mx-auto p-6 flex justify-center">
     <div class="box-border p-4 bg-white h-128 w-96">
-            <form action="{{route('artisanStore')}}" method="POST" enctype="multipart/form-data">
+            <form action="{{route('artisanStore')}}" method="POST">
             @method('POST')
                 @csrf
                 <div class="flex flex-col my-4 text-xl greenAmaso">
@@ -17,7 +17,7 @@
             </div>
             <div class="flex flex-col my-4 text-xl greenAmaso">
                 <label for="imagen" class="font-serif">{{ __('Imagen de Perfil') }}</label>
-                <input accept="image/*" type="file" id="image" class="custom-file-input  w-100 border-solid border-2 borderGreen rounded shadow-md h-10" name="image" autofocus>
+                <input type="text" id="image" class=" w-100 border-solid border-2 borderGreen rounded shadow-md h-10" name="image" autofocus>
             </div>
             <div class="flex flex-col my-4 text-xl greenAmaso">
                 <label for="location" class="font-serif">{{ __('Localidad') }}</label>

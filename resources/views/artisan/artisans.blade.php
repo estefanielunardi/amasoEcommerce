@@ -11,7 +11,7 @@
         @foreach ($artisans as $artisan)           
         <div class="flex flex-col -mx-1 lg:-mx-4 pb-10 items-center">
             <div class="relative w-56 h-56 overflow-hidden rounded-full">
-                <img alt="Placeholder" class="object-fill w-full rounded-2xl" src="{{ asset('storage') .'/'. $artisan->image}}"/>
+                <img alt="Placeholder" class="object-fill w-full rounded-2xl" src="{{$artisan->image}}"/>
             </div>              
             <a href="/artisan/{{$artisan->slug}}"> 
                 <p class="vollkorn text-xl pt-5">{{$artisan->name}}</p>

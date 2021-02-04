@@ -4,7 +4,7 @@
     </section>
     <section class="container md:container md:mx-auto p-8 flex justify-center">
     <div class="box-border p-4 bg-white h-128 w-96">
-        <form method="POST" action="{{ route('updateProduct' , $product) }}" enctype="multipart/form-data">
+        <form method="POST" action="{{ route('updateProduct' , $product) }}">
         @method('PUT')
                 @csrf
             <div class="flex flex-col my-4 text-xl greenAmaso">
@@ -13,7 +13,7 @@
             </div>
             <div class="flex flex-col my-4 text-xl greenAmaso">
                 <label for="imagen" class="font-serif">{{ __('Imagen') }}</label>
-                <input accept="image/*" type="file" id="image" class="custom-file-input  w-100 border-solid border-2 borderGreen rounded shadow-md h-10" name="image" autofocus>
+                <input type="text" id="image" class="w-100 border-solid border-2 borderGreen rounded shadow-md h-10" value="{{$product->image}}"name="image" autofocus>
             </div>
             <div class="flex flex-col my-4 text-xl greenAmaso">
                 <label for="precio" class="font-serif">{{ __('Precio') }}</label>

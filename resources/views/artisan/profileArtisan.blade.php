@@ -1,11 +1,10 @@
 <x-app-layout>
-
     <body>
         <section class="block space-y-8 ... p-12 ">
             <section class=" flex flex-col md:flex-row">
                 <article class="flex justify-start pb-6">
                     <div class="max-h-96 w-96 overflow-hidden rounded-xl">
-                        <img class="object-fill w-full" src="{{ asset('storage') .'/'. $artisan->image}}" alt="foto de perfil">
+                        <img class="object-fill w-full" src="{{$artisan->image}}" alt="foto de perfil">
                     </div>
                 </article>
                 <article class="space-y-3 md:pl-10">
@@ -124,7 +123,7 @@
                 <div class=" px-1 w-full flex flex-col p-6 sm:w-1/2 lg:w-1/3">
                     <section class="w-72 h-96 shadow-lg rounded-xl">
                         <header class="h-48 overflow-hidden">
-                            <img alt="Placeholder" class="rounded-xl rounded-b-none object-fill w-full" src="{{ asset('storage') .'/'. $product->image}}">
+                            <img alt="Placeholder" class="rounded-xl rounded-b-none object-fill w-full" src="{{$product->image}}">
                         </header>
 
                         <section class="px-4">

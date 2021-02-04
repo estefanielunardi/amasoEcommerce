@@ -1,10 +1,10 @@
 <x-app-layout>
     <section class="flex flex-col m-10">
         <h1 class="title pb-8">Nuevo Producto</h1>
-    </section>
+</section>
     <section class="container md:container md:mx-auto p-8 flex justify-center">
     <div class="box-border p-4 bg-white h-128 w-96">
-        <form method="POST" action="{{ route('storeProduct') }}" enctype="multipart/form-data">
+        <form method="POST" action="{{ route('storeProduct') }}">
         @method('POST')
                 @csrf
             <div class="flex flex-col my-4 text-xl greenAmaso">
@@ -13,7 +13,7 @@
             </div>
             <div class="flex flex-col my-4 text-xl greenAmaso">
                 <label for="imagen" class="font-serif">{{ __('Imagen') }}</label>
-                <input id="image" type="text" id="image" class="custom-file-input w-100 border-solid border-2 borderGreen rounded shadow-md h-10" name="image" autofocus>
+                <input id="image" type="text" class="custom-file-input w-100 border-solid border-2 borderGreen rounded shadow-md h-10" name="image" autofocus>
             </div>
             <div class="flex flex-col my-4 text-xl greenAmaso">
                 <label for="precio" class="font-serif">{{ __('Precio') }}</label>

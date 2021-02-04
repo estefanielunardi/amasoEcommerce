@@ -54,9 +54,8 @@ class ProductController extends Controller
     public function update(Request $request , Product $product)
     { 
         $artisan = Artisan::getArtisan();
-        $image = $this->setImage($request);
 
-        $product->image = $image;
+        $product->image = $request->image;
         $product->name = $request->name;
         $product->description = $request->description;
         $product->price = $request->price*100;

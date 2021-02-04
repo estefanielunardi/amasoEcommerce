@@ -37,8 +37,6 @@ class ArtisanController extends Controller
 
     public function store(Request $request){
 
-        $image = $this->setImage($request);
-
         $id = auth()->id();
         $user = User::find($id);
         $user->isArtisan = 1;
@@ -48,7 +46,7 @@ class ArtisanController extends Controller
             'name' => $request->name,
             'location' =>$request->location,
             'description' =>$request->description,
-            'image' => $image, 
+            'image' => $request->image, 
             'user_id' =>auth()->id(),
             'slug' => Str::slug($request->name, '-')
             ]);
@@ -94,12 +92,11 @@ class ArtisanController extends Controller
 
     public function update(Request $request , Artisan $artisan)
     {
-        $image = $this->setImage($request);
 
         $artisan->name = $request->name;
         $artisan->location = $request->location;
         $artisan->description = $request->description;
-        $artisan->image  = $image;
+        $artisan->image  = $request->image;
         $artisan->user_id =auth()->id();
         $artisan->slug =Str::slug($request->name, '-');
 
