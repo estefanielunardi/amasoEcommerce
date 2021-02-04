@@ -29,7 +29,7 @@ class ArtisanController extends Controller
         }
         else
         {
-            return view('responsesAdmin', ["message" => "Tu perfil está siendo evaluado, ¡Recibirás notícias pronto por email!"]);
+            return view('admin.responsesAdmin', ["message" => "Tu perfil está siendo evaluado, ¡Recibirás notícias pronto por email!"]);
         }
         
         return view('profileArtisan', compact('products', 'artisan'));   
@@ -50,7 +50,7 @@ class ArtisanController extends Controller
             
             $newArtisan->save(); 
 
-            return view('responsesAdmin', ["message" => "Tu perfil está siendo evaluado, ¡Recibirás notícias pronto por email!"]);
+            return view('admin.responsesAdmin', ["message" => "Tu perfil está siendo evaluado, ¡Recibirás notícias pronto por email!"]);
     }
 
     public function getAll(){
