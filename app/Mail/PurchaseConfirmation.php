@@ -16,9 +16,11 @@ class PurchaseConfirmation extends Mailable
      *
      * @return void
      */
-    public function __construct($name)
+    public function __construct($name, $products, $total)
     {
         $this->name = $name;
+        $this->products = $products;
+        $this->total = $total;
     }
 
     /**
@@ -33,6 +35,8 @@ class PurchaseConfirmation extends Mailable
         ->view('emails.purchaseConfirmation')
         ->with([
             'name' => $this->name,
+            'products' => $this->products,
+            'total' =>$this->total,
         ]);
     }
 }
