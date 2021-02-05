@@ -82,6 +82,7 @@ Aplicación creada con la idea de poder ofrecer una via digital a los pequeños 
 -   Plantear un proyecto desde scratch.
 -   Implementar cambios incrementales.
 -   Fundamentos del trabajo por componentes.
+-   ORM
 
 ## Siguientes pasos
 
@@ -91,5 +92,6 @@ Aplicación creada con la idea de poder ofrecer una via digital a los pequeños 
 -   Implementar transacciones para las bases de datos.
 -   Utilizar sesiones que reserven los productos durante un tiempo determinado en cada carrito.
 -   Utilizar Docker.
+-   Manejo de errores.
 -   Crear las vistas por componentes.
 -   Crear perfil del usuario con su historial de compra.
