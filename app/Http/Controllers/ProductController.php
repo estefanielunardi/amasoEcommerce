@@ -84,4 +84,10 @@ class ProductController extends Controller
         return $image;  
     }
 
+    public function showProduct($id){
+
+        $product = Product::find($id);
+        return view('products.productPage', compact('product'));
+    }
+
 }
