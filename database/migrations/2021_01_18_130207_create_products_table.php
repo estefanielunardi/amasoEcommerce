@@ -24,6 +24,7 @@ class CreateProductsTable extends Migration
             $table->unsignedBigInteger('artisan_id');
             $table->foreign('artisan_id')->references('id')->on('artisans')->onUpdate('cascade')
             ->onDelete('cascade');
+            $table->string('category');
             $table->timestamps();
         });
     }
