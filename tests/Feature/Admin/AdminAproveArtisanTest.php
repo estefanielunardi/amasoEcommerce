@@ -66,7 +66,6 @@ class AdminAproveArtisanTest extends TestCase
 
         $mailable->assertSeeInHtml('Amasó');
         $mailable->assertSeeInHtml($this->user->name);
-        $mailable->assertSeeInHtml('Felicidades Pepita! Tu perfil ha sido aprovado');
-        $mailable->assertSeeInHtml('Ya puedes subir tus productos en www.amaso.com');
+        $mailable->assertSeeInHtml('Felicidades Pepita! Tu perfil ha sido aprovado'); 
     }
 }

@@ -33,6 +33,7 @@ Route::get('/product/edit/{id}', [App\Http\Controllers\ProductController::class,
 
 Route::put('/product/update/{product}', [App\Http\Controllers\ProductController::class, 'update'])->name('updateProduct')->middleware(['artisan']);
 
+
 //---ARTISAN ROUTES
 Route::get('/artisan/{artisan:slug}',  [\App\Http\Controllers\ArtisanController::class, 'profile'])->name('artisanProfile');
 
@@ -63,7 +64,6 @@ Route::delete('/profiles/{id}', [App\Http\Controllers\AdminController::class, 'd
 Route::post('/profiles/{id}', [App\Http\Controllers\AdminController::class, 'aproveArtisan'])->middleware(['checkAdmin'])->name('aproveArtisan');
 
 
-
 //---CART ROUTES
 Route::get('/cart', [App\Http\Controllers\CartController::class, 'getProducts'])->name('cart')->middleware(['auth']); 
 
@@ -74,6 +74,7 @@ Route::get('/cart/add/{id}', [App\Http\Controllers\CartController::class, 'addPr
 Route::delete('/cart/{id}', [App\Http\Controllers\CartController::class, 'removeProduct'])->name('removeProductCart')->middleware(['auth']);
 
 Route::delete('/all/cart/{id}', [App\Http\Controllers\CartController::class, 'deleteProduct'])->name('deleteProductCart')->middleware(['auth']);
+
 
 //--PAYMENT ROUTES
 Route::get('/purchase/order', [App\Http\Controllers\PaymentController::class, 'order'])->name('purchaseOrder')->middleware(['auth']);
