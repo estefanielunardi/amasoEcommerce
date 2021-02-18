@@ -136,6 +136,7 @@
                                 <p class="productDescription">
                                     {{$product->description}}
                                 </p>
+                                <h3 class="productProductor">Categoria: {{$product->category}}</h3>
                             </div>
                             <div class="block py-2 flex items-center justify-around">
                                 <p class="inline-block productPrice">{{number_format($product->price / 100,2)}} €</p>                                

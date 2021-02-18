@@ -15,6 +15,7 @@
                 <p class="productDescription">
                     {{$product->description}}
                 </p>
+                <h3 class="productProductor">Categoria: {{$product->category}}</h3>
             </div>
             <div class="block py-2 flex items-center justify-around">
                 @if ($product->stock > $product->sold)
