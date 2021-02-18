@@ -33,6 +33,14 @@ Route::get('/product/edit/{id}', [App\Http\Controllers\ProductController::class,
 
 Route::put('/product/update/{product}', [App\Http\Controllers\ProductController::class, 'update'])->name('updateProduct')->middleware(['artisan']);
 
+//PRODUCT CATEGORY
+Route::get('/vegetables', [App\Http\Controllers\ProductController::class, 'getVegetablesProducts'])->name('vegetables');
+
+Route::get('/drinks', [App\Http\Controllers\ProductController::class, 'getDrinkProducts'])->name('drinks');
+
+Route::get('/bakery', [App\Http\Controllers\ProductController::class, 'getBakeryProducts'])->name('bakery');
+
+
 //---ARTISAN ROUTES
 Route::get('/artisan/{artisan:slug}',  [\App\Http\Controllers\ArtisanController::class, 'profile'])->name('artisanProfile');
 

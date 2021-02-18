@@ -23,7 +23,23 @@
     </header>
 
     <x-button-cart />
-    <h1 class="title text-center pb-10 pt-20">Catálogo</h1>
+    <div>
+        <h1 class="title text-center pb-10 pt-20">Catálogo</h1>
+        <div class="flex space-x-4 flex-row h-9 w-full justify-center rounded-lg relative bg-transparent mt-1 vollkorn"> 
+            <button class="greenLightBg  rounded-xl">
+                    <a class="m-auto text-lg p-2 font-thin exo text-white" href="{{ url('/') }}">Todos</a> 
+            </button>
+            <button class="greenLightBg  rounded-xl">
+                    <a class="m-auto text-lg p-2 font-thin exo text-white" href="{{ url('/vegetables') }}">Vegetales</a> 
+            </button>
+            <button class="greenLightBg  rounded-xl">
+                    <a class="m-auto text-lg p-2 font-thin exo text-white" href="{{ url('/drinks') }}">Bebidas</a>
+            </button>
+            <button class="greenLightBg  rounded-xl">
+                    <a class="m-auto text-lg p-2 font-thin exo text-white" href="{{ url('/bakery') }}">Pasteleria/Reposteria</a>
+            </button>
+        </div>
+    </div>
     <article class="max-w-screen-xl pl-4 sm:pl-10 xl:pl-20 mx-auto px-4">
         <div class=" ml-6 flex flex-wrap justify-center">
 
