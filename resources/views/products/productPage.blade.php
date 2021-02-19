@@ -4,7 +4,7 @@
             <section class=" flex flex-col md:flex-row">
                 <article class="flex justify-start pb-6">
                     <div class="max-h-96 w-96 overflow-hidden rounded-xl">
-                        <img class="object-fill w-full" src="{{ asset('storage') .'/'. $product->image}}" alt="foto de perfil">
+                        <img class="object-fill w-full" src="{{$product->image}}" alt="foto de perfil">
                     </div>
                 </article>
                 <article class="space-y-3 md:pl-10">
