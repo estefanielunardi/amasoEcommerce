@@ -69,6 +69,8 @@ body {
 		'Apple Color Emoji',
 		'Segoe UI Emoji';
 }
+
+
 .whiteAmaso{
   color: #FFFFFF;
 }
@@ -220,64 +222,75 @@ body {
   background: -webkit-linear-gradient(top, #e3e3e3, #f9f9f9);
 }
   
-  input[type='number']::-webkit-inner-spin-button,
-  input[type='number']::-webkit-outer-spin-button {
-    -webkit-appearance: none;
-    margin: 0;
-  }
+input[type='number']::-webkit-inner-spin-button,
+input[type='number']::-webkit-outer-spin-button {
+  -webkit-appearance: none;
+  margin: 0;
+}
+
+.custom-number-input input:focus {
+  outline: none !important;
+}
+
+.custom-number-input button:focus {
+outline: none !important;
+}
+
+#footerSection{
+  position: center;
   
-  .custom-number-input input:focus {
-    outline: none !important;
-  }
+  font-family: Exo;
+  font-style: normal;
+  font-weight: normal;
+  font-size: 12px;
+  line-height: 150%;
+  /* or 18px */
 
-  .custom-number-input button:focus {
-    outline: none !important;
-  }
+  display: flex;
+  align-items: center;
+  text-align: center;
 
-  #footerSection{
-    position: center;
+  /* color 2 */
 
-    font-family: Exo;
-    font-style: normal;
-    font-weight: normal;
-    font-size: 12px;
-    line-height: 150%;
-    /* or 18px */
+  color: #81A78C;
+}
 
-    display: flex;
-    align-items: center;
-    text-align: center;
+.productCart {
+  background: #81A78C;
+  border-radius: 9px;
+}
 
-    /* color 2 */
+.tuCarritoTitle {
+  position: absolute;
+  padding: 1em;
+  font-family: Vollkorn;
+  font-style: normal;
+  font-weight: bold;
+  font-size: 30px;
+  line-height: 123%;
+  display: flex;
+  align-items: center;
+  color: #81A78C;
+}
 
-    color: #81A78C;
-  }
-
-  .productCart {
-    background: #81A78C;
-    border-radius: 9px;
-  }
-
-  .tuCarritoTitle {
-    position: absolute;
-    padding: 1em;
-    font-family: Vollkorn;
-    font-style: normal;
-    font-weight: bold;
-    font-size: 30px;
-    line-height: 123%;
-    display: flex;
-    align-items: center;
-    color: #81A78C;
-  }
 
 .no-scrollbar::-webkit-scrollbar {
-    display: none;
+  display: none;
+}
+  
+input:focus {
+  border: 2px solid #DAB162;
+  text-indent: 5px;
+}
+
+textarea:focus {
+  border: 2px solid #DAB162;
+  text-indent: 5px;
 }
 
 /*
-Grouping content
-================
+  Grouping content
+  ================
 */
 
 /**
@@ -648,6 +661,7 @@ img {
 textarea {
   resize: vertical;
 }
+
 
 input::-moz-placeholder, textarea::-moz-placeholder {
   color: #9ca3af;

@@ -29,9 +29,19 @@ Route::post('/product/store', [App\Http\Controllers\ProductController::class, 's
 
 Route::delete('/product/{id}', [App\Http\Controllers\ProductController::class, 'destroy'])->name('deleteProduct')->middleware(['artisan']);
 
+Route::get('/product/{id}', [App\Http\Controllers\ProductController::class, 'showProduct'])->name('deleteProduct');
+
 Route::get('/product/edit/{id}', [App\Http\Controllers\ProductController::class, 'edit'])->name('editProduct')->middleware(['artisan']);
 
 Route::put('/product/update/{product}', [App\Http\Controllers\ProductController::class, 'update'])->name('updateProduct')->middleware(['artisan']);
+
+//PRODUCT CATEGORY
+Route::get('/vegetables', [App\Http\Controllers\ProductController::class, 'getVegetablesProducts'])->name('vegetables');
+
+Route::get('/drinks', [App\Http\Controllers\ProductController::class, 'getDrinkProducts'])->name('drinks');
+
+Route::get('/bakery', [App\Http\Controllers\ProductController::class, 'getBakeryProducts'])->name('bakery');
+
 
 //---ARTISAN ROUTES
 Route::get('/artisan/{artisan:slug}',  [\App\Http\Controllers\ArtisanController::class, 'profile'])->name('artisanProfile');

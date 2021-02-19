@@ -44,7 +44,7 @@ Integrantes:
 
 -   Carmen Pérez.
 -   Laura Bassani.
--   Estefanie Garcia.
+-   Estefanie Garcia L.
 -   Alejandra Stasi.
 -   Joaquim Francès.
 
