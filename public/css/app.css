@@ -276,17 +276,16 @@ outline: none !important;
   display: none;
 }
   
-input[type=text]:focus {
+input:focus {
   border: 2px solid #DAB162;
+  text-indent: 5px;
 }
 
-input[type=number]:focus {
+textarea:focus {
   border: 2px solid #DAB162;
+  text-indent: 5px;
 }
 
-textarea[type=text]:focus {
-  border: 2px solid #DAB162;
-}
 /*
   Grouping content
   ================
