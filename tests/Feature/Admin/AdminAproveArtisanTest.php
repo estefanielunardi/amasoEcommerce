@@ -51,22 +51,4 @@ class AdminAproveArtisanTest extends TestCase
         $this->assertDatabaseHas('artisans', ['name' => 'Pepita', 'aproved' => true]);
     }
 
-    public function testSendsEmailWhenProfileIsAproved()
-    {
-        Mail::fake();
-
-        $this->actingAs($this->admin)->post('profiles/' . $this->artisan->id);
-
-        Mail::assertSent(ArtisanProfileAprovedEmail::class);
-    }
-
-    public function testMailContent()
-    {
-        $mailable = new ArtisanProfileAprovedEmail($this->user->name);
-
-        $mailable->assertSeeInHtml('Amasó');
-        $mailable->assertSeeInHtml($this->user->name);
-        $mailable->assertSeeInHtml('Felicidades Pepita! Tu perfil ha sido aprovado');
-        $mailable->assertSeeInHtml('Ya puedes subir tus productos en www.amaso.com');
-    }
 }

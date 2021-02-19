@@ -45,21 +45,4 @@ class AdminDeleteArtisanTest extends TestCase
         $this->assertDatabaseMissing('artisans', ['name' => 'Pepita']);
     }
 
-    public function testSendsEmailWhenProfileIsDeleted()
-    {
-        Mail::fake();
-
-        $this->actingAs($this->admin)->delete('profiles/' . $this->artisan->id);
-
-        Mail::assertSent(ArtisanProfileDeletedEmail::class);
-    }
-
-    public function testMailContent()
-    {
-        $mailable = new ArtisanProfileDeletedEmail($this->user->name);
-
-        $mailable->assertSeeInHtml('Amasó');
-        $mailable->assertSeeInHtml($this->user->name);
-        $mailable->assertSeeInHtml('Lo sentimos Pepita, Tu perfil no ha sido aprovado');
-    }
 }

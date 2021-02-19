@@ -91,13 +91,4 @@ class PaymentConfirmationTest extends TestCase
         ]);
     }
 
-    public function testSendsEmailWhenPurchaseIsCompleted()
-    {
-        Mail::fake();
-        $this->actingAs($this->user);
-
-        $this->put('/purchase');
-
-        Mail::assertSent(PurchaseConfirmation::class);
-    }
 }
