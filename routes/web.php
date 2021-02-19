@@ -29,7 +29,7 @@ Route::post('/product/store', [App\Http\Controllers\ProductController::class, 's
 
 Route::delete('/product/{id}', [App\Http\Controllers\ProductController::class, 'destroy'])->name('deleteProduct')->middleware(['artisan']);
 
-Route::get('/product/{id}', [App\Http\Controllers\ProductController::class, 'showProduct'])->name('deleteProduct')->middleware(['artisan']);
+Route::get('/product/{id}', [App\Http\Controllers\ProductController::class, 'showProduct'])->name('deleteProduct');
 
 Route::get('/product/edit/{id}', [App\Http\Controllers\ProductController::class, 'edit'])->name('editProduct')->middleware(['artisan']);
 

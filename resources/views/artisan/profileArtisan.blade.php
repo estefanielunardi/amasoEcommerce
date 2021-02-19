@@ -123,9 +123,11 @@
                 @foreach($products as $product)
                 <div class=" px-1 w-full flex flex-col p-6 sm:w-1/2 lg:w-1/3">
                     <section class="w-72 h-96 shadow-lg rounded-xl">
-                        <header class="h-48 overflow-hidden">
-                            <img alt="Placeholder" class="rounded-xl rounded-b-none object-fill w-full" src="{{ asset('storage') .'/'. $product->image}}">
+                        <a href="/product/{{$product->id}}">
+                            <header class="h-48 overflow-hidden">
+                           <img alt="Placeholder" class="rounded-xl rounded-b-none object-fill w-full" src="{{ asset('storage') .'/'. $product->image}}">
                         </header>
+                        </a>
 
                         <section class="px-4">
                             <div class="block py-2">
