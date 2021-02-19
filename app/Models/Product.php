@@ -5,6 +5,8 @@ namespace App\Models;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 use App\Models\User;
+use Illuminate\Support\Facades\DB;
+use App\Models\Cart;
 
 
 class Product extends Model
@@ -22,5 +24,15 @@ class Product extends Model
     {
         return $this->belongsToMany(User::class);
     }
-    
+    public static function decrementStock($user_id)
+    {
+        $products = Cart::getProductsInBasket($user_id);  
+        foreach($products as $product)
+        {
+            DB::table('products')
+                ->where('id',$product->id)
+                ->decrement('stock', $product->amount);       
+
+        }
+    }
 }

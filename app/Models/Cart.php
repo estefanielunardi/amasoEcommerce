@@ -111,4 +111,24 @@ class Cart extends Model
         return $total;
     }
 
+    public static function buyProductsInBasket($user_id){
+        Product::decrementStock($user_id);
+        
+        DB::table('product_user')
+            ->where('user_id',$user_id)
+            ->update(['buyed' => 1]);
+    }
+
+    public static function getPurchasedProducts($id)
+    {
+        $products = DB::table('products')
+        ->join('product_user', 'products.id', '=', 'product_user.product_id')   
+        ->where('user_id','=', $id)
+        ->where('buyed', '=', 1)
+        ->select('products.*', 'product_user.amount')
+        ->get();
+    
+        return $products;
+    }
+
 }

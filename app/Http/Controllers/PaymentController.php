@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Mail\PurchaseConfirmation;
 use App\Models\User;
+use App\Models\Cart;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Mail;
 use Illuminate\Support\Facades\DB;
@@ -15,8 +16,8 @@ class PaymentController extends Controller
 
         $id = auth()->id();
         $user = User::find($id);
-        $products = $user->getProductsInBasket($id);
-        $total = $user->calculateTotal($products);
+        $products = Cart::getProductsInBasket($id);
+        $total = Cart::calculateTotal($products);
 
         return view('cart.purchaseOrder', compact('products', 'total', 'user'));
     }
@@ -25,7 +26,7 @@ class PaymentController extends Controller
     {
         $user_id = auth()->id();
         $user = User::find($user_id);
-        $user->buyProductsInBasket($user_id);
+        Cart::buyProductsInBasket($user_id);
         $user->id = $user->id;
         $user->name = $user->name;
         $user->email = $user->email;
@@ -39,8 +40,8 @@ class PaymentController extends Controller
         
         $user->save(); 
 
-        $products = $user->getPurchasedProducts($user_id);
-        $total = $user->calculateTotal($products);
+        $products = Cart::getPurchasedProducts($user_id);
+        $total = Cart::calculateTotal($products);
         $emailUser = DB::table('users')->where('id', $user_id)->value('email');
         $name = DB::table('users')->where('id', $user_id)->value('name');
         
