@@ -21,6 +21,7 @@ class ProductFactory extends Factory
             'stock' =>$this->faker->numberBetween(0,100),
             'sold' =>$this->faker->numberBetween(0,100),
             'artisan_id'=>1,
+            'category' =>$this->faker->word(),
         ];
     }
 }

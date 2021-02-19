@@ -12,7 +12,29 @@ class ProductController extends Controller
 {
     public function getProducts()
     {
-        $products = Product::with('artisans')->paginate(6);
+        $products = Product::whereIn('category', ['vegetales', 'bebidas', 'pasteleria'])
+                ->with('artisans')->paginate(6);
+        return view('welcome', compact("products"));
+    }
+
+    public function getVegetablesProducts()
+    {
+        $products = Product::whereIn('category', ['vegetales'])
+                ->with('artisans')->paginate(6);
+        return view('welcome', compact("products"));
+    }
+
+    public function getDrinkProducts()
+    {
+        $products = Product::whereIn('category', ['bebidas'])
+                ->with('artisans')->paginate(6);
+        return view('welcome', compact("products"));
+    }
+
+    public function getBakeryProducts()
+    {
+        $products = Product::whereIn('category', ['pasteleria'])
+                ->with('artisans')->paginate(6);        
         return view('welcome', compact("products"));
     }
 
@@ -30,6 +52,7 @@ class ProductController extends Controller
             'stock'=>$request->stock,
             'sold'=> 0,
             'artisan_id'=>$artisan->id,
+            'category'=>$request->category,
         ]);
 
         $product->save();
@@ -64,6 +87,8 @@ class ProductController extends Controller
         $product->price = $request->price*100;
         $product->stock = $request->stock;
         $product->sold = 0;
+        $product->category = $request->category;
+
 
         $product->save();
 
