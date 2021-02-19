@@ -2,6 +2,8 @@
 
 namespace App\Http\Controllers;
 use App\Models\User;
+use App\Models\Product;
+use App\Models\Cart;
 
 
 class CartController extends Controller
@@ -9,9 +11,8 @@ class CartController extends Controller
     public function getProducts()
     {
         $id = auth()->id();
-        $user = User::find($id);
-        $products = $user->getProductsInBasket($id);
-        $total = $user->calculateTotal($products);
+        $products = Cart::getProductsInBasket($id);
+        $total = Cart::calculateTotal($products);
 
         return view('cart.cart', compact("products", "total"));
     }
@@ -19,17 +20,15 @@ class CartController extends Controller
     public function addProduct($product_id)
     {
         $user_id = auth()->id();
-        $user = User::find($user_id); 
-        $user->addProductInCart($product_id, $user_id);
+        Cart::addProductInCart($product_id, $user_id);
 
         return back();            
     }
 
     public function removeProduct($product_id)
     {
-        $user_id = auth()->id();
-        $user = User::find($user_id); 
-        $user->removeProductFromCart($product_id,$user_id);
+        $user_id = auth()->id();    
+        Cart::removeProductFromCart($product_id,$user_id);
 
         return back();
     }
@@ -37,8 +36,7 @@ class CartController extends Controller
     public function deleteProduct($product_id)
     {
         $user_id = auth()->id();
-        $user = User::find($user_id); 
-        $user->deleteProductFromCart($product_id);
+        Cart::deleteProductFromCart($product_id, $user_id);
 
         return back();
     }

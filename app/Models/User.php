@@ -116,47 +116,6 @@ class User extends Authenticatable
         return $buyed;
     }
 
-    public function addProductInCart($product_id, $user_id)
-    {
-        $buyed = $this->findProduct($product_id, $user_id);
-        $userProduct = $this->products()->find($product_id);
-        
-        if(is_null($userProduct) || $buyed)
-        {
-            $this->products()->attach($product_id);
-            $this->incrementProductAmount($product_id,$user_id);
-        }
-        else
-        {
-            $this->incrementProductAmount($product_id,$user_id);
-        }
-    }
-
-    public function removeProductFromCart($product_id,$user_id)
-    {
-        $userProduct = $this->products()->find($product_id);
-
-        if($userProduct)
-        {
-            $amount = $this->getProductAmount($product_id,$user_id);    
-            
-            if ($amount == 1)
-            {
-                $this->products()->detach($product_id);
-            }
-            else
-            {
-                $this->decrementProductAmount($product_id,$user_id);
-            }
-        }  
-    }
-
-    public function deleteProductFromCart($product_id)
-    {
-        $this->products()->detach($product_id);
-    
-    }
-
     public function incrementProductAmount($product_id,$user_id)
     {
         DB::table('product_user')
