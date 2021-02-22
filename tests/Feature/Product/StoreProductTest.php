@@ -24,7 +24,8 @@ class StoreProductTest extends TestCase
             'price' => 10,
             'stock' => 20,
             'artisan_id' => 1,
-            'category' => 'Pasteleria'
+            'category' => 'Pasteleria',
+            'highlight' => 1
         ];
         $response = $this->post(route('storeProduct', $product));
 
