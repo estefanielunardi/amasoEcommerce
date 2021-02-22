@@ -23,8 +23,17 @@
 			    </div>
             </div>
             <div class="flex flex-col my-4 text-xl greenAmaso">
-                <label for="cantidad" class="font-serif">{{ __('Cantidad') }}</label>
-                <input type="number" min="0" id="cantidad" class="w-100 border-solid border-2 borderGreen rounded shadow-md h-10" name="stock" required autocomplete="stock" autofocus>
+                <label for="typeQuantity" class="font-serif">{{ __('Unidad de venta') }}</label>
+                <select id="typeQuantity" class="w-100 border-solid border-2 borderGreen rounded shadow-md h-10" name="typeQuantity"  required autocomplete="typeQuantity" autofocus>
+                    <option value="Unidad">Unidad</option>
+                    <option value="Media docena">Media Docena</option>
+                    <option value="Docena">Docena</option>
+                    <option value="Kg">Kg</option>
+                </select> 
+            </div>
+            <div class="flex flex-col my-4 text-xl greenAmaso">
+                <label for="cantidad" class="font-serif">{{ __('Cantidad segun unidad de venta') }}</label>
+                <input type="number" min="0" id="cantidad" class="w-100 border-solid border-2 borderGreen rounded shadow-md h-10" placeholder="Ej: 2 Kg"name="stock" required autocomplete="stock" autofocus>
             </div>
             <div class="flex flex-col my-4 text-xl greenAmaso">
                 <label for="descripcion" class="font-serif">{{ __('Descripción') }}</label>
@@ -33,7 +42,6 @@
             <div class="flex flex-col my-4 text-xl greenAmaso">
                 <label for="category" class="font-serif">{{ __('Categoria') }}</label>
                 <select id="category" class="w-100 border-solid border-2 borderGreen rounded shadow-md h-10" name="category"  required autocomplete="category" autofocus>
-                    <option></option>
                     <option value="vegetales">Vegetales</option>
                     <option value="bebidas">Bebidas</option>
                     <option value="pasteleria">Pasteleria/Reposteria</option>

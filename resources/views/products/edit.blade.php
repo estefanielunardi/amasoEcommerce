@@ -23,7 +23,16 @@
                 </div>
             </div>
             <div class="flex flex-col my-4 text-xl greenAmaso">
-                <label for="cantidad" class="font-serif">{{ __('Cantidad') }}</label>
+                <label for="typeQuantity" class="font-serif">{{ __('Unidad de venta') }}</label>
+                <select id="typeQuantity" class="w-100 border-solid border-2 borderGreen rounded shadow-md h-10" name="typeQuantity"  required autocomplete="typeQuantity" autofocus>
+                    <option value="Unidad">Unidad</option>
+                    <option value="Media docena">Media Docena</option>
+                    <option value="Docena">Docena</option>
+                    <option value="Kg">Kg</option>
+                </select> 
+            </div>
+            <div class="flex flex-col my-4 text-xl greenAmaso">
+                <label for="cantidad" class="font-serif">{{ __('Cantidad segun Unidad de Venta') }}</label>
                 <input type="number" min="0" id="stock" class="w-100 border-solid border-2 borderGreen rounded shadow-md h-10" name="stock" value="{{$product->stock}}" required autocomplete="stock" autofocus>
             </div>
             <div class="flex flex-col my-4 text-xl greenAmaso">
@@ -33,7 +42,6 @@
             <div class="flex flex-col my-4 text-xl greenAmaso">
                 <label for="category" class="font-serif">{{ __('Categoria') }}</label>
                 <select id="category" class="w-100 border-solid border-2 borderGreen rounded shadow-md h-10" name="category" value="{{$product->category}}" required autocomplete="category" autofocus>
-                    <option></option>
                     <option value="vegetales">Vegetales</option>
                     <option value="bebidas">Bebidas</option>
                     <option value="pasteleria">Pasteleria/Reposteria</option>

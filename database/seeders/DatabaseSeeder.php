@@ -29,14 +29,15 @@ class DatabaseSeeder extends Seeder
             'slug'=>Str::slug('Rosa Maria', '-'),
             'description' => 'Una artesana de corazon',
             'location'=>'Montserrat, Barcelona',
-            'image'=>'https://i.ibb.co/g7RZC31/edward-cisneros-H6wpor9mjs-unsplash.jpg'
+            'image'=>'https://i.ibb.co/g7RZC31/edward-cisneros-H6wpor9mjs-unsplash.jpg',
+            'aproved'=>'1',
         ]);
 
         Product::factory(5)->create([
             'artisan_id'=>1,
-            'image'=> 'uploads/8Q8qn1T92X929f4uDmlk34lwpRXGKk1GNQ2z5wJC.jpg',
-            'name'=> 'Mermelada de Fresa',
-            'description'=> 'Mermelada de fresa elaborada con las mejores materias primas',
+            'image'=> 'https://images.unsplash.com/photo-1509440159596-0249088772ff?ixid=MXwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHw%3D&ixlib=rb-1.2.1&auto=format&fit=crop&w=1052&q=80',
+            'name'=> 'Pan',
+            'description'=> 'Pan de campo',
             
         ]);
 

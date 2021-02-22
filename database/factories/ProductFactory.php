@@ -19,9 +19,10 @@ class ProductFactory extends Factory
             'description' => $this->faker->text,
             'price' =>$this->faker->numberBetween(0,100),
             'stock' =>$this->faker->numberBetween(0,100),
+            'typeQuantity'=>'Kg',
             'sold' =>$this->faker->numberBetween(0,100),
             'artisan_id'=>1,
-            'category' =>$this->faker->word(),
+            'category' =>'bebidas',
         ];
     }
 }
