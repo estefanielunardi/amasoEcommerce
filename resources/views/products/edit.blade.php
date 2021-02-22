@@ -33,10 +33,18 @@
             <div class="flex flex-col my-4 text-xl greenAmaso">
                 <label for="category" class="font-serif">{{ __('Categoria') }}</label>
                 <select id="category" class="w-100 border-solid border-2 borderGreen rounded shadow-md h-10" name="category" value="{{$product->category}}" required autocomplete="category" autofocus>
+                    <option></option>
                     <option value="vegetales">Vegetales</option>
                     <option value="bebidas">Bebidas</option>
                     <option value="pasteleria">Pasteleria/Reposteria</option>
                 </select> 
+            </div>
+            <div class="flex flex-col my-4 text-xl greenAmaso">
+                <label for="highlight" class="font-serif">{{ __('Highlight Product') }}</label>
+                <select id="highlight" class="focus:ring-indigo-500 bg-gray-100 focus:border-indigo-500 h-full py-0 pl-2 pr-7 border-transparent bg-transparent greenAmaso sm:text-sm rounded-md" name="highlight"  value="{{$product->highlight}}" required autocomplete="highlight" autofocus>
+                    <option value="0">No</option>
+                    <option value="1">Si</option>
+                </select>
             </div>
             <div class="flex justify-center">
                 <button type="submit" class=" beigeAmasoBg font-serif text-white text-2xl mt-4 px-12 py-4  rounded-xl shadow-md">{{ __('Editar Producto') }}</button>

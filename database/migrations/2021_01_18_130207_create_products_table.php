@@ -25,6 +25,7 @@ class CreateProductsTable extends Migration
             $table->foreign('artisan_id')->references('id')->on('artisans')->onUpdate('cascade')
             ->onDelete('cascade');
             $table->string('category');
+            $table->boolean('highlight')->default(false);
             $table->timestamps();
         });
     }
