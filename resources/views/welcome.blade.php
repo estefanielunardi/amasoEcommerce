@@ -23,7 +23,18 @@
     </header>
 
     <x-button-cart />
+    @if (isset($bestSellers))
     <div>
+        <h1 class="title text-center pb-10 pt-5 lg:pt-20">Productos más vendidos</h1>
+        <article class="max-w-screen-xl pl-4 sm:pl-10 xl:pl-20 mx-auto px-4">
+            <div class=" ml-6 flex flex-wrap justify-center">
+                @foreach($bestSellers as $bestSeller)
+                <x-product-card :product="$bestSeller"/>
+                @endforeach
+            </div>
+        </article>
+    </div>
+    @endif
         <h1 class="title text-center pb-10 pt-5 lg:pt-20">Catálogo</h1>
         <div class="flex space-x-4 flex-row h-9 w-full justify-center rounded-lg relative bg-transparent mt-1 vollkorn"> 
             <button class="greenLightBg  rounded-xl">
