@@ -23,8 +23,8 @@
 			    </div>
             </div>
             <div class="flex flex-col my-4 text-xl greenAmaso">
-                <label for="typeQuantity" class="font-serif">{{ __('Unidad de venta') }}</label>
-                <select id="typeQuantity" class="w-100 border-solid border-2 borderGreen rounded shadow-md h-10" name="typeQuantity"  required autocomplete="typeQuantity" autofocus>
+                <label for="typequantity" class="font-serif">{{ __('Unidad de venta') }}</label>
+                <select id="typequantity" class="w-100 border-solid border-2 borderGreen rounded shadow-md h-10" name="typequantity"  required autocomplete="typequantity" autofocus>
                     <option value="Unidad">Unidad</option>
                     <option value="Media docena">Media Docena</option>
                     <option value="Docena">Docena</option>

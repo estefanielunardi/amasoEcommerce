@@ -21,7 +21,7 @@ class CreateProductsTable extends Migration
             $table->integer('price');
             $table->integer('stock');
             $table->integer('sold');
-            $table->string('typeQuantity');
+            $table->string('typequantity');
             $table->unsignedBigInteger('artisan_id');
             $table->foreign('artisan_id')->references('id')->on('artisans')->onUpdate('cascade')
             ->onDelete('cascade');

@@ -25,7 +25,7 @@
                     <p class="pt-2 pr-2 inline-block productPrice">{{number_format($product->price / 100,2)}} € </p>
                 </div>
                 <div class="inline-block">
-                    <p class="text-sm">{{$product->typeQuantity}}</p>
+                    <p class="text-sm">{{$product->typequantity}}</p>
                 </div>
                 <div class="grid justify-items-center">
                     

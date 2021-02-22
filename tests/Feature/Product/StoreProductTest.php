@@ -23,7 +23,7 @@ class StoreProductTest extends TestCase
             'description' => 'Un Pan de trigo',
             'price' => 10,
             'stock' => 20,
-            'typeQuantity'=>'Docena',
+            'typequantity'=>'Docena',
             'artisan_id' => 1,
             'category' => 'Pasteleria',
             'highlight' => 1
