@@ -38,6 +38,7 @@ class ProductController extends Controller
         return view('welcome', compact("products"));
     }
 
+
     public function store(Request $request)
     {
         $artisan = Artisan::getArtisan();
@@ -51,9 +52,11 @@ class ProductController extends Controller
             'sold'=> 0,
             'artisan_id'=>$artisan->id,
             'category'=>$request->category,
-        ]);
-
-        $product->save();
+            'highlight'=>$request->highlight,
+            ]);
+            
+            $product->save();
+    
         return redirect('/artisan/' .  $artisan->slug);
 
     }
@@ -85,7 +88,7 @@ class ProductController extends Controller
         $product->stock = $request->stock;
         $product->sold = 0;
         $product->category = $request->category;
-
+        $product->highlight = $request->highlight;
 
         $product->save();
 
