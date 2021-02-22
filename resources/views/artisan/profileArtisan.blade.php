@@ -117,7 +117,7 @@
 
         @if (count($highlightProducts))
         <article class="max-w-screen-xl  pl-4 sm:pl-10 xl:pl-20 mx-auto px-4">
-                <h1 class="title">Productos Destacados de {{$artisan->name}}</h1>
+                <h1 class="title text-center">Productos Destacados de {{$artisan->name}}</h1>
             <div class=" ml-6 flex flex-wrap justify-center">
 
                 @foreach($highlightProducts as $product)
@@ -193,9 +193,8 @@
         @endif
 
         <article class="max-w-screen-xl  pl-4 sm:pl-10 xl:pl-20 mx-auto px-4">
+        <h1 class="title text-center">Todos los productos de {{$artisan->name}}</h1>
             <div class=" ml-6 flex flex-wrap justify-center">
-
-
                 @foreach($products as $product)
                 <div class=" px-1 w-full flex flex-col p-6 sm:w-1/2 lg:w-1/3">
                     <section class="w-72 h-96 shadow-lg rounded-xl">
