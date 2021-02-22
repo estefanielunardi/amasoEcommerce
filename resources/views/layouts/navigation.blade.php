@@ -1,4 +1,4 @@
-<nav x-data="{ open: false }" class="greenAmasoBg">
+<nav x-data="{ open: false }" class="greenAmasoBg sticky z-40 top-0">
     <!-- Primary Navigation Menu -->
     <div class="flex flex-row items-center w-full h-16">
         <div class="flex flex-row items-center w-full">
