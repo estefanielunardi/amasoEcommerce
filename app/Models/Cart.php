@@ -56,7 +56,7 @@ class Cart extends Model
         if ($userProduct) {
             $amount = Cart::getProductAmount($product_id, $user_id);
 
-            if ($amount == 1) {
+            if ($amount <= 1) {
                 $user->products()->detach($product_id);
             } else {
                 Cart::decrementProductAmount($product_id, $user_id);
