@@ -17,7 +17,7 @@ class NavComposer{
         $products = Cart::getProductsInBasket($id);
         foreach ($products as $product) {
             $product_id = $product->id;
-            $amountProduct = Cart::getProductAmount($product_id, $id);
+            $amountProduct = Cart::getProductAmountInBasket($product_id, $id);
             array_push($productsCounter, $amountProduct);
         }
         $productsCount = array_sum($productsCounter);

@@ -81,6 +81,17 @@ class Cart extends Model
         return $amount;
     }
 
+    public static function getProductAmountInBasket($product_id, $user_id)
+    {
+        $amount = DB::table('product_user')
+            ->where('user_id', $user_id)
+            ->where('product_id', $product_id)
+            ->where('buyed','=',0)
+            ->value('amount');
+        return $amount;
+    }
+
+
     public static function getProductsInBasket($id)
     {
         $products = DB::table('products')
@@ -128,7 +139,7 @@ class Cart extends Model
         $buyed = DB::table('product_user')
             ->where(['buyed' => 1])
             ->get(['amount', 'product_id']);
-        if (count($buyed) > 3)
+        if (count($buyed) > 0)
         {
             $ids = Cart::findBestSeller($buyed);
             return $ids;
@@ -161,7 +172,18 @@ class Cart extends Model
             return $b['amount'] - $a['amount'];
         });
         $ids = [];
-        array_push($ids, $result[0]['id'], $result[1]['id'], $result[2]['id']);
+        if(count($result) == 1)
+        {
+            array_push($ids, $result[0]['id']);
+        }
+        if(count($result) == 2)
+        {
+            array_push($ids, $result[0]['id'], $result[1]['id']);
+        }
+        if(count($result) > 2)
+        {
+            array_push($ids, $result[0]['id'], $result[1]['id'], $result[2]['id']);
+        }
         return $ids;
     }
 
