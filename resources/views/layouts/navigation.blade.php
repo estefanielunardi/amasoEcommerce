@@ -51,7 +51,7 @@
                         </svg>
 
                         @if ($productsCount != 0)
-                            <div class=" flex rounded-full bg-white w-5 h-5 absolute top-0 left-8 justify-center align-center " id="items-cart"><p class='text-green-700 vollkorn'>{{$productsCount}}</p></div>
+                            <div class=" flex rounded-full beigeAmasoBg w-5 h-5 absolute top-0 left-8 justify-center align-center " id="items-cart"><p class='text-white vollkorn'>{{$productsCount}}</p></div>
                             @endif
                         </div>
                             
