@@ -63,7 +63,7 @@
                         <p class="pt-1">{{number_format($product->price / 100, 2)}} €</p>
                     </div>
                 </div>
-                <form method="POST" action="{{ route('removeProductCart', $product->id) }}">
+                <form method="POST" action="{{ route('deleteProductCart', $product->id) }}">
                     <x-modal title="¿Eliminar producto?" submit-label="Eliminar">
                         <x-slot name="trigger">
                             <button type="button" @click="on = true" class="text-xl font-bold greenAmaso mt-2 px-3 py-8 rounded-xl">
