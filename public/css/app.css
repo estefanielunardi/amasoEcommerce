@@ -161,6 +161,14 @@ body {
   color: #81A78C;
 }
 
+.productCategory {
+  font-family: Exo;
+  font-style: normal;
+  font-weight: 300;
+  font-size: 14px;
+  color: #DAB162;
+}
+
 .productDescription {
   font-family: Exo;
   font-style: italic;

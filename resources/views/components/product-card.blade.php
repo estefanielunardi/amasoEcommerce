@@ -6,20 +6,20 @@
             </header>
         </a>
 
-        <section class="px-4">
+        <section class="relative px-4 h-44">
             <div class="block py-2">
                 <h2 class="productTitle">{{$product->name}}</h2>
                 <h3 class="productProductor">Productor: 
                     <a href="/artisan/{{$product->artisans->slug}}">{{$product->artisans->name}}</a>
                 </h3>
+                <h3 class="productCategory">Categoria: {{$product->category}}</h3>
             </div>
             <div class="block py-1 h-16 overflow-auto">
                 <p class="productDescription">
                     {{$product->description}}
                 </p>
-                <h3 class="productProductor">Categoria: {{$product->category}}</h3>
             </div>
-            <div class="block py-2 flex items-center justify-around">
+            <div class="absolute bottom-0 py-2 w-full flex items-center justify-around pr-3">
                 @if ($product->stock > $product->sold)
                 <div class="inline-block">
                     <p class="pt-2 pr-2 inline-block productPrice">{{number_format($product->price / 100,2)}} € </p>
