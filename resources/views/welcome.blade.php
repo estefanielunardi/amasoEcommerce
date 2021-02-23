@@ -33,6 +33,7 @@
         </article>
     </div>
     @endif
+    <div>
         <h1 class="title text-center pb-10 pt-5 lg:pt-20">Catálogo</h1>
     </div>
 
