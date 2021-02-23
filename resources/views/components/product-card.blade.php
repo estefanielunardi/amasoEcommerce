@@ -19,15 +19,13 @@
                     {{$product->description}}
                 </p>
             </div>
-            <div class="absolute bottom-0 py-2 w-full flex items-center justify-around pr-3">
+            <div class="absolute bottom-0 py-2 w-full flex items-center pr-3">
                 @if ($product->stock > $product->sold)
                 <div class="inline-block">
                     <p class="pt-2 pr-2 inline-block productPrice">{{number_format($product->price / 100,2)}} € </p>
+                    <p class="text-xs">Precio por: {{$product->typequantity}}</p>
                 </div>
-                <div class="inline-block">
-                    <p class="text-sm">{{$product->typequantity}}</p>
-                </div>
-                <div class="grid justify-items-center">
+                <div class="grid justify-items-center absolute right-10 top-5">
                     
                     <div class="flex flex-row h-9 w-full justify-center rounded-lg relative bg-transparent mt-1 vollkorn">                      
                         <button class="greenLightBg  rounded-xl">
