@@ -16,14 +16,23 @@
             <p class="heroText text-left w-44 text-xs md:text-sm lg:text-base lg:w-full xl:text-xl">
                 Tienda online de productos locales y artesanales.
             </p>
-            <!-- <button class="exo text-white text-base sm:text-xl uppercase py-1 px-4 sm:py-2 sm:px-8 rounded-full shadow-lg greenAmasoBg mt-4 sm:mt-8">
-                    <a href="/register"> ¡únete! </a> 
-                </button> -->
+            
         </section>
     </header>
 
     <x-button-cart />
+    @if (isset($bestSellers))
     <div>
+        <h1 class="title text-center pb-10 pt-5 lg:pt-20">Productos más vendidos</h1>
+        <article class="max-w-screen-xl pl-4 sm:pl-10 xl:pl-20 mx-auto px-4">
+            <div class=" ml-6 flex flex-wrap justify-center">
+                @foreach($bestSellers as $bestSeller)
+                <x-product-card :product="$bestSeller"/>
+                @endforeach
+            </div>
+        </article>
+    </div>
+    @endif
         <h1 class="title text-center pb-10 pt-5 lg:pt-20">Catálogo</h1>
     </div>
 

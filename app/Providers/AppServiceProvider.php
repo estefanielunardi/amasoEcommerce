@@ -2,6 +2,9 @@
 
 namespace App\Providers;
 
+
+
+use Illuminate\Support\Facades\View;
 use Illuminate\Support\ServiceProvider;
 use Illuminate\Support\Facades\Schema;
 
@@ -24,6 +27,7 @@ class AppServiceProvider extends ServiceProvider
      */
     public function boot()
     {
+        View::composer(['layouts.navigation','components.button-cart'], 'App\Http\ViewsComposer\NavComposer');
         Schema::defaultStringLength(191);
     }
 }

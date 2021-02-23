@@ -1,7 +1,7 @@
 <div x-data="{ on: false }">
     {{ $trigger }}
 
-    <div class="fixed bottom-0 inset-x-0 px-4 pb-4 sm:inset-0 sm:flex sm:items-center sm:justify-center" x-show="on">
+    <div class="fixed z-40 bottom-0 inset-x-0 px-4 pb-4 sm:inset-0 sm:flex sm:items-center sm:justify-center" x-show="on">
       <div
           class="fixed inset-0 transition-opacity"
           x-show="on"

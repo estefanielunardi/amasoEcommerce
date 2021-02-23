@@ -10,6 +10,7 @@ class CartController extends Controller
 {
     public function getProducts()
     {
+        $productsCounter = [];
         $id = auth()->id();
         $products = Cart::getProductsInBasket($id);
         $total = Cart::calculateTotal($products);

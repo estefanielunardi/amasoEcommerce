@@ -4,9 +4,9 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use App\Models\Product;
-use Illuminate\Support\Facades\DB;
+use App\Models\Cart;
 use App\Models\Artisan;
-use App\Models\User;
+
 
 class ProductController extends Controller
 {
@@ -14,6 +14,18 @@ class ProductController extends Controller
     {
         $products = Product::whereIn('category', ['vegetales', 'bebidas', 'pasteleria'])
                 ->with('artisans')->paginate(6);
+        $ids = Cart::getBestSellersIds();
+        $bestSellers = [];
+        if ($ids)
+        {
+            foreach($ids as $id)
+            {
+                $best = Product::whereIn('id', [$id])
+                ->with('artisans')->first();
+                array_push($bestSellers, $best);            
+            }
+            return view('welcome', compact("products", "bestSellers"));
+        }
         return view('welcome', compact("products"));
     }
 
@@ -48,6 +60,7 @@ class ProductController extends Controller
             'image'=> $request->image,
             'description'=>$request->description,
             'price'=>$request->price * 100,
+            'typequantity'=>$request->typequantity,
             'stock'=>$request->stock,
             'sold'=> 0,
             'artisan_id'=>$artisan->id,
@@ -86,6 +99,7 @@ class ProductController extends Controller
         $product->description = $request->description;
         $product->price = $request->price*100;
         $product->stock = $request->stock;
+        $product->typequantity = $request->typequantity;
         $product->sold = 0;
         $product->category = $request->category;
         $product->highlight = $request->highlight;

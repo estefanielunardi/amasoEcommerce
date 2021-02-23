@@ -24,9 +24,11 @@ class CatalogTest extends TestCase
 
     public function testCatalogViewHasProducts()
     {
+        $this->withoutExceptionHandling();
         $response = $this->get(route('home'));
 
         $response->assertViewIs("welcome")
-            ->assertViewHas("products");
+            ->assertViewHas("products")
+            ->assertDontSee('bestSellers');           
     }
 }
