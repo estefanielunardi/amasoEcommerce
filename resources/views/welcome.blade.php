@@ -25,21 +25,33 @@
     <x-button-cart />
     <div>
         <h1 class="title text-center pb-10 pt-5 lg:pt-20">Catálogo</h1>
-        <div class="flex space-x-4 flex-wrap h-9 w-full justify-center rounded-lg relative bg-transparent mt-1 vollkorn">
-            <button class="greenLightBg  rounded-xl">
-                <a class="m-auto text-lg p-2 font-thin exo text-white"  href="{{ url('/') }}">Todos</a>
-            </button>
-            <button class="greenLightBg  rounded-xl">
-                <a class="m-auto text-lg p-2 font-thin exo text-white" id="buttonVegetales" href="{{ url('/vegetables') }}">Vegetales</a>
-            </button>
-            <button class="greenLightBg  rounded-xl">
-                <a class="m-auto text-lg p-2 font-thin exo text-white"  href="{{ url('/drinks') }}">Bebidas</a>
-            </button>
-            <button class="greenLightBg  rounded-xl">
-                <a class="m-auto text-lg p-2 font-thin exo text-white"  href="{{ url('/bakery') }}">Pasteleria/Reposteria</a>
-            </button>
+    </div>
+
+    <script src="https://cdn.jsdelivr.net/gh/alpinejs/alpine@v2.x.x/dist/alpine.min.js" defer></script>
+
+    <div class="flex justify-center">
+        <div class="flex items-center">
+            <button class="py-2 px-4 tracking-wide greenLightBg text-white font-medium hover:bg-gray-700 focus:outline-none focus:bg-gray-700 rounded-xl">Categorias</button>
+
+            <div x-data="{ dropdownOpen: true }" class="relative">
+                <button @click="dropdownOpen = !dropdownOpen" class="relative z-10 block greenLightBg p-2 hover:bg-gray-700 focus:outline-none focus:bg-gray-700 rounded-xl">
+                    <svg class="h-6 w-6 text-white" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 12h.01M12 12h.01M19 12h.01M6 12a1 1 0 11-2 0 1 1 0 012 0zm7 0a1 1 0 11-2 0 1 1 0 012 0zm7 0a1 1 0 11-2 0 1 1 0 012 0z" />
+                    </svg>
+                </button>
+
+                <div x-show="dropdownOpen" @click="dropdownOpen = false" class="fixed inset-0 h-full w-full z-10"></div>
+                <div x-show="dropdownOpen" class="absolute right-0 mt-2 w-48 bg-white rounded-md overflow-hidden shadow-xl z-20">
+                    <a href="{{ url('/') }}" class="block px-4 py-2 text-sm text-gray-800 border-b hover:bg-gray-200">Todas</a>
+                    <a href="{{ url('/drinks') }}" class="block px-4 py-2 text-sm text-gray-800 border-b hover:bg-gray-200">Bebidas</a>
+                    <a href="{{ url('/bakery') }}" class="block px-4 py-2 text-sm text-gray-800 border-b hover:bg-gray-200">Pasteleria</a>
+                    <a href="{{ url('/vegetables') }}" class="block px-4 py-2 text-sm text-gray-800 border-b hover:bg-gray-200">Vegetales</a>
+                    <a href="#" class="block px-4 py-2 text-sm text-gray-800 border-b hover:bg-gray-200">Otras</a>
+                </div>
+            </div>
         </div>
     </div>
+
     <br>
     <article class="max-w-screen-xl pl-4 sm:pl-10 xl:pl-20 mx-auto px-4">
         <div class=" ml-6 flex flex-wrap justify-center">
@@ -52,5 +64,4 @@
         {!! $products->links() !!}
         </div>
     </article>
-
 </x-app-layout>
