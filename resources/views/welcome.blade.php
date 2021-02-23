@@ -16,9 +16,7 @@
             <p class="heroText text-left w-44 text-xs md:text-sm lg:text-base lg:w-full xl:text-xl">
                 Tienda online de productos locales y artesanales.
             </p>
-            <!-- <button class="exo text-white text-base sm:text-xl uppercase py-1 px-4 sm:py-2 sm:px-8 rounded-full shadow-lg greenAmasoBg mt-4 sm:mt-8">
-                    <a href="/register"> ¡únete! </a> 
-                </button> -->
+            
         </section>
     </header>
 
