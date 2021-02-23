@@ -1,5 +1,4 @@
 <x-app-layout>
-    <body>
         <section class="block space-y-8 ... p-12 ">
             <section class=" flex flex-col md:flex-row">
                 <article class="flex justify-start pb-6">
@@ -70,6 +69,38 @@
             </div>
         </section>
 
+        <section>
+            <h4>Add comment</h4>
 
+            <form method="POST" action="{{ route('commentAdd') }}">
+                @method('POST')
+                @csrf
+                <div class="flex flex-col my-4 text-xl greenAmaso">
+                    <label for="nombre" class="font-serif">{{ __('Comentario') }}</label>
+                    <input type="text" id="nombre" class="w-100 border-solid border-2 borderGreen rounded shadow-md h-10" name="comment"  required autocomplete="comment" autofocus>
+                    <input type="hidden" name="product_id" value="{{ $product->id }}" />
+                </div>
+                <div class="flex justify-center">
+                    <button type="submit" class=" beigeAmasoBg font-serif text-white text-2xl mt-4 px-12 py-4  rounded-xl shadow-md">{{ __('Publicar comentario') }}</button>
+                </div>
+            </form>
+           
+        </section>
+        @foreach ($comments as $comment)
+        <p>{{ $comment->user->name }}</p>
+        <p>{{ $comment->body }}</p>
+        <form method="POST" action="{{ route('replyAdd') }}">
+            @method('POST')    
+            @csrf
+            <div class="flex flex-col my-4 text-xl greenAmaso">
+                <input type="text"class="w-100 border-solid border-2 borderGreen rounded shadow-md h-10" name="comment"  required autocomplete="comment" autofocus>
+                <input type="hidden" name="product_id" value="{{ $product->id }}" />
+                <input type="hidden" name="comment_id" value="{{ $comment->id }}" />
+            </div>
+            <div class="flex justify-center">
+                <input type="submit" class=" beigeAmasoBg font-serif text-white text-2xl mt-4 px-12 py-4  rounded-xl shadow-md" value="Reply" />
+            </div>
+        </form>
+        @endforeach
 
 </x-app-layout>

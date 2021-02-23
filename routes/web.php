@@ -89,3 +89,8 @@ Route::delete('/all/cart/{id}', [App\Http\Controllers\CartController::class, 'de
 Route::get('/purchase/order', [App\Http\Controllers\PaymentController::class, 'order'])->name('purchaseOrder')->middleware(['auth']);
 
 Route::put('/purchase', [App\Http\Controllers\PaymentController::class, 'purchase'])->name('purchase')->middleware(['auth']);
+
+//--COMMENTS ROUTES
+
+Route::post('/comment/store', [App\Http\Controllers\CommentController::class, 'store'])->name('commentAdd')->middleware(['auth']);
+Route::post('/reply/store', [App\Http\Controllers\CommentController::class, 'replyStore'])->name('replyAdd')->middleware(['auth']);
