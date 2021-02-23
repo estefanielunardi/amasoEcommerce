@@ -93,3 +93,4 @@ Route::put('/purchase', [App\Http\Controllers\PaymentController::class, 'purchas
 //--COMMENTS ROUTES
 
 Route::post('/comment/store', [App\Http\Controllers\CommentController::class, 'store'])->name('commentAdd')->middleware(['auth']);
+Route::post('/reply/store', [App\Http\Controllers\CommentController::class, 'replyStore'])->name('replyAdd')->middleware(['auth']);
