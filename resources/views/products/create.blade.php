@@ -2,7 +2,7 @@
     <section class="flex flex-col m-10">
         <h1 class="title pb-8">Nuevo Producto</h1>
 </section>
-    <section class="container md:container md:mx-auto p-8 flex justify-center">
+    <section class="container md:container md:mx-auto p-6 flex justify-center">
     <div class="box-border p-4 bg-white h-128 w-96">
         <form method="POST" action="{{ route('storeProduct') }}">
         @method('POST')
@@ -48,19 +48,23 @@
                     <option value="otras">Otras</option>
                 </select> 
             </div>
-            <div class="flex flex-col my-4 text-xl greenAmaso">
+            <div class="flex flex-col my-4 text-xl mb-10 greenAmaso">
                 <label for="highlight" class="font-serif">{{ __('Highlight Product') }}</label>
                 <select id="highlight" class="focus:ring-indigo-500 bg-gray-100 focus:border-indigo-500 h-full py-0 pl-2 pr-7 border-transparent bg-transparent greenAmaso sm:text-sm rounded-md" name="highlight"  required autocomplete="highlight" autofocus>
                     <option value="0">No</option>
                     <option value="1">Si</option>
                 </select>
             </div>
-            <div class="flex flex-col my-4 text-xl greenAmaso">
-                <label for="allergens" class="font-serif">Seleccionar información de alérgenos:</label>
+            <label for="allergens" class="font-serif font-bold font-xl">Información de alérgenos:</label>
+            <div class="flex flex-col m-auto my-4 text-xl greenAmaso">
+                @php
+                    $counter = 0;
+                @endphp
                 @foreach ($allergensTypes as $allergen)
-                <div class="flex flex-row m-4">
-                <input class="hidden" type="checkbox" name="something" value="allergen-check" id="allergen-check"> 
-                <label for="allergen-check" class="w-full greenAmaso rounded border-solid border-2  borderGreen text-greenAmaso hover:bg-green-100" id="allergen-label">{{$allergen->type}}</label>
+                <div class="flex flex-row m-2">
+                <p class="hidden">{{$counter++}}</p>  
+                <input class="hidden"  type="checkbox" name="Allergen-Type-{{$counter}}" value="{{$allergen->type}}" id="{{$counter}}"> 
+                <label for="{{$counter}}" class="w-48 pl-2 greenAmaso rounded border-solid border-2  borderGreen text-greenAmaso hover:bg-green-100" id="allergen-label">{{$allergen->type}}</label>
                 </div>
                 @endforeach
             </div>
@@ -78,5 +82,5 @@
         </script>
     @endpush
 
-}
+
 </x-app-layout>

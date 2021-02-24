@@ -61,6 +61,7 @@ class ProductController extends Controller
 
     public function store(Request $request)
     {
+        dd($request);
         $artisan = Artisan::getArtisan();
 
         $product= Product::create([
