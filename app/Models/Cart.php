@@ -121,9 +121,11 @@ class Cart extends Model
     {
         Product::decrementStock($user_id);
 
-        DB::table('product_user')
-            ->where('user_id', $user_id)
-            ->update(['buyed' => 1]);
+        DB::transaction(function () use ($user_id) {
+            DB::table('product_user')
+                ->where('user_id', $user_id)
+                ->update(['buyed' => 1]);
+            });
     }
 
     public static function getPurchasedProducts($id)
