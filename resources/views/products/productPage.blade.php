@@ -79,7 +79,7 @@
 
         <section class="p-12 pt-10">
             <h2 class=" title pb-5">Comentarios del producto</h2>
-           
+
             @foreach ($comments as $comment)
             <div class="py-5">
                 <p class="font-bold">{{ $comment->user->name }}</p>
@@ -87,13 +87,13 @@
                 <div class="flex flex row">
                     <p class="text-xs greenAmaso">{{ $comment->created_at }}</p>
                     <button onClick="openReply('{{$comment->id}}')"class="text-xs beigeAmaso font-bold pl-7">Responder</button>
-                    <button onClick="showReplies('{{$comment->id}}')"class="text-xs beigeAmaso font-bold pl-7">Ver respuestas</button>
+                    <button onClick="showReplies('.replies{{$comment->id}}')"class="text-xs beigeAmaso font-bold pl-7">Ver respuestas</button>
                 </div>
             </div>
             
             @foreach ($replies as $reply)
             @if($reply->parent_id === $comment->id)
-            <div id="replies{{$comment->id}}"class=" replies py-5 pl-20">
+            <div class="displayNone replies{{$comment->id}} py-5 pl-20">
                 <p class="font-bold">{{ $reply->user->name }}</p>
                 <p class="py-2">{{ $reply->body }}</p>
                 <div class="flex flex row">
@@ -101,8 +101,8 @@
                 </div>
             </div>
             @endif
-           @endforeach
-           
+            @endforeach
+
             <form method="POST" id="{{$comment->id}}"class=" pl-20 reply items-end min-w-full" action="{{ route('replyAdd') }}">
                 @method('POST')    
                 @csrf
@@ -140,12 +140,14 @@
         reply.style.display === "none" ? reply.style.display = "flex" : reply.style.display = "none";
     }
     function showReplies(id){
-        let replies = document.getElementById('replies' + id);
-        if (replies == null){
+        let replies = Array.from(document.querySelectorAll(id));
+        if (replies.length == 0){
             alert('aun no hay respuestas')
         } else {
-            replies.style.display === "none" ? replies.style.display = "block" : replies.style.display = "none";
+            replies.forEach(reply => 
+                reply.style.display === "none" ? reply.style.display = "block" : reply.style.display = "none")
         }
     }
+
 </script>
 
