@@ -69,38 +69,46 @@
             </div>
         </section>
 
-        <section>
-            <h4>Add comment</h4>
+        <section class="p-12">
+            <h2 class=" title pb-5">Comentarios del producto</h2>
 
-            <form method="POST" action="{{ route('commentAdd') }}">
+            <form method="POST" class="flex flex-row items-end min-w-full" action="{{ route('commentAdd') }}">
                 @method('POST')
                 @csrf
-                <div class="flex flex-col my-4 text-xl greenAmaso">
-                    <label for="nombre" class="font-serif">{{ __('Comentario') }}</label>
-                    <input type="text" id="nombre" class="w-100 border-solid border-2 borderGreen rounded shadow-md h-10" name="comment"  required autocomplete="comment" autofocus>
+                <div class="flex flex-col text-xl greenAmaso w-2/3">
+                    <label for="nombre" class="font-serif">{{ __('Escribe un comentario') }}</label>
+                    <input type="text" id="nombre" class=" min-w-full border-solid border-2 borderGreen rounded shadow-md h-10" name="comment"  required autocomplete="comment" autofocus>
                     <input type="hidden" name="product_id" value="{{ $product->id }}" />
                 </div>
-                <div class="flex justify-center">
-                    <button type="submit" class=" beigeAmasoBg font-serif text-white text-2xl mt-4 px-12 py-4  rounded-xl shadow-md">{{ __('Publicar comentario') }}</button>
+                <div class="pl-3 flex justify-center">
+                    <button type="submit" class="w-20 h-10 beigeAmasoBg font-serif text-white text-xl  rounded-md shadow-md">{{ __('enviar') }}</button>
                 </div>
             </form>
            
+            @foreach ($comments as $comment)
+            <div class="py-5">
+                <p class="font-bold">{{ $comment->user->name }}</p>
+                <p class="py-2">{{ $comment->body }}</p>
+                <div class="flex flex row">
+                    <p class="text-xs greenAmaso">{{ $comment->created_at }}</p>
+                    <button class="text-xs beigeAmaso font-bold pl-7">Responder</button>
+                </div>
+            </div>
+
+            <form method="POST" class="flex flex-row items-end min-w-full" action="{{ route('replyAdd') }}">
+                @method('POST')    
+                @csrf
+                <div class="flex flex-col text-xl greenAmaso w-2/3">
+                    <input type="text" class="m-w-full border-solid border-2 borderGreen rounded shadow-md h-10" name="comment"  required autocomplete="comment" autofocus>
+                    <input type="hidden" name="product_id" value="{{ $product->id }}" />
+                    <input type="hidden" name="comment_id" value="{{ $comment->id }}" />
+                </div>
+                <div class="pl-3 flex justify-center">
+                    <input type="submit" class="w-28 h-10 beigeAmasoBg font-serif text-white text-xl  rounded-md shadow-md" value="Responder" />
+                </div>
+            </form>
+            @endforeach
         </section>
-        @foreach ($comments as $comment)
-        <p>{{ $comment->user->name }}</p>
-        <p>{{ $comment->body }}</p>
-        <form method="POST" action="{{ route('replyAdd') }}">
-            @method('POST')    
-            @csrf
-            <div class="flex flex-col my-4 text-xl greenAmaso">
-                <input type="text"class="w-100 border-solid border-2 borderGreen rounded shadow-md h-10" name="comment"  required autocomplete="comment" autofocus>
-                <input type="hidden" name="product_id" value="{{ $product->id }}" />
-                <input type="hidden" name="comment_id" value="{{ $comment->id }}" />
-            </div>
-            <div class="flex justify-center">
-                <input type="submit" class=" beigeAmasoBg font-serif text-white text-2xl mt-4 px-12 py-4  rounded-xl shadow-md" value="Reply" />
-            </div>
-        </form>
-        @endforeach
 
 </x-app-layout>
+
