@@ -43,7 +43,7 @@
         <div class="flex items-center">
             <button class="py-2 px-4 tracking-wide greenLightBg text-white font-medium hover:bg-gray-700 focus:outline-none focus:bg-gray-700 rounded-xl">Categorias</button>
 
-            <div x-data="{ dropdownOpen: true }" class="relative">
+            <div x-data="{ dropdownOpen: false }" class="relative">
                 <button @click="dropdownOpen = !dropdownOpen" class="relative z-10 block greenLightBg p-2 hover:bg-gray-700 focus:outline-none focus:bg-gray-700 rounded-xl">
                     <svg class="h-6 w-6 text-white" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor">
                         <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 12h.01M12 12h.01M19 12h.01M6 12a1 1 0 11-2 0 1 1 0 012 0zm7 0a1 1 0 11-2 0 1 1 0 012 0zm7 0a1 1 0 11-2 0 1 1 0 012 0z" />
