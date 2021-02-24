@@ -45,6 +45,7 @@
                     <option value="vegetales">Vegetales</option>
                     <option value="bebidas">Bebidas</option>
                     <option value="pasteleria">Pasteleria/Reposteria</option>
+                    <option value="otras">Otras</option>
                 </select> 
             </div>
             <div class="flex flex-col my-4 text-xl greenAmaso">

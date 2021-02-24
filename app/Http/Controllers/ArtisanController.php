@@ -119,20 +119,4 @@ class ArtisanController extends Controller
         return back();
     }
 
-    private function setImage($request)
-    {
-        $image = '';
-        if($request->image)
-        {
-            $image = $request->file('image')->store('uploads', 'public');
-        } 
-        else
-        {
-            $image = 'uploads/amaso.png';
-        }  
-        return $image;  
-    }
-
-
-
 }

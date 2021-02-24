@@ -90,6 +90,7 @@
                     <button onClick="showReplies('.replies{{$comment->id}}')"class="text-xs beigeAmaso font-bold pl-7">Ver respuestas</button>
                 </div>
             </div>
+            <p id="message.replies{{$comment->id}}"class='message text-xs greenAmaso p-2'> Aun no hay respuestas a este comentario</p>
             
             @foreach ($replies as $reply)
             @if($reply->parent_id === $comment->id)
@@ -126,7 +127,7 @@
                     <textarea type="text" id="nombre" class=" min-w-full border-solid border-2 borderGreen rounded shadow-md h-20" name="comment"  required autocomplete="comment" autofocus></textarea>
                     <input type="hidden" name="product_id" value="{{ $product->id }}" />
                 </div>
-                <div class="pl-3 flex justify-center">
+                <div class="pl-3 pt-2 flex justify-start">
                     <button type="submit" class="w-20 h-10 beigeAmasoBg font-serif text-white text-xl  rounded-md shadow-md">{{ __('enviar') }}</button>
                 </div>
             </form>
@@ -141,8 +142,10 @@
     }
     function showReplies(id){
         let replies = Array.from(document.querySelectorAll(id));
-        if (replies.length == 0){
-            alert('aun no hay respuestas')
+        let message = document.getElementById('message' + id);
+        console.log(message)
+        if (replies.length == 0) {
+            message.style.display === "none" ? message.style.display = "block" : message.style.display = "none"
         } else {
             replies.forEach(reply => 
                 reply.style.display === "none" ? reply.style.display = "block" : reply.style.display = "none")
