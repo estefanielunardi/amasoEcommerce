@@ -42,6 +42,8 @@ Route::get('/drinks', [App\Http\Controllers\ProductController::class, 'getDrinkP
 
 Route::get('/bakery', [App\Http\Controllers\ProductController::class, 'getBakeryProducts'])->name('bakery');
 
+Route::get('/others', [App\Http\Controllers\ProductController::class, 'getOthersProducts'])->name('others');
+
 
 //---ARTISAN ROUTES
 Route::get('/artisan/{artisan:slug}',  [\App\Http\Controllers\ArtisanController::class, 'profile'])->name('artisanProfile');

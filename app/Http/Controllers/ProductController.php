@@ -51,6 +51,13 @@ class ProductController extends Controller
         return view('welcome', compact("products"));
     }
 
+    public function getOthersProducts()
+    {
+        $products = Product::whereIn('category', ['otras'])
+                ->with('artisans')->paginate(6);        
+        return view('welcome', compact("products"));
+    }
+
 
     public function store(Request $request)
     {
