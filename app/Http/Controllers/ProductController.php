@@ -117,20 +117,6 @@ class ProductController extends Controller
         return redirect('/artisan/' .  $artisan->slug);
     }
 
-    private function setImage($request)
-    {
-        $image = '';
-        if($request->image)
-        {
-             $image = $request->file('image')->store('uploads', 'public');
-        } 
-        else
-        {
-             $image = 'uploads/amaso.png';
-        }  
-        return $image;  
-    }
-
     public function showProduct($id){
 
         $product = Product::find($id);
