@@ -18,7 +18,6 @@
                 <p class="title">Iniciar sesión</p>
                 <form method="POST" action="{{ route('login') }}">
                     @csrf
-
                     <!-- Email Address -->
                     <div class="flex flex-col my-4 text-xl greenAmaso">
                         <label class="font-serif" for="email" :value="__('Email')">{{ __('Email') }}</label>

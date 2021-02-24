@@ -54,6 +54,15 @@
                     <option value="1">Si</option>
                 </select>
             </div>
+            <div class="flex flex-col my-4 text-xl greenAmaso">
+                <label for="allergens" class="font-serif">Seleccionar información de alérgenos:</label>
+                @foreach ($allergensTypes as $allergen)
+                <div class="flex flex-row m-4">
+                <input class="hidden" type="checkbox" name="something" value="allergen-check" id="allergen-check"> 
+                <label for="allergen-check" class="w-full greenAmaso rounded border-solid border-2  borderGreen text-greenAmaso hover:bg-green-100" id="allergen-label">{{$allergen->type}}</label>
+                </div>
+                @endforeach
+            </div>
             <div class="flex justify-center">
                 <button type="submit" class=" beigeAmasoBg font-serif text-white text-2xl mt-4 px-12 py-4  rounded-xl shadow-md">{{ __('Publicar Producto') }}</button>
             </div>

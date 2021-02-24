@@ -69,6 +69,24 @@ body {
 		'Apple Color Emoji',
 		'Segoe UI Emoji';
 }
+
+#allergenCheck{
+  margin-right: 6px;
+  margin-left: 12px;
+}
+
+#allergenLabel{
+  background-color: #ffffff;
+}
+
+#allergen-check:checked + #allergen-label {
+  background-color: #ccc;
+}
+
+#allergenLabel:hover{
+  background-color: #BE9A56;
+}
+
 .displayNone{
   display: none;
 }
