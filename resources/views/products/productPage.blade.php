@@ -79,9 +79,7 @@
                 <div class="flex flex row">
                     <p class="text-xs greenAmaso">{{ $comment->created_at }}</p>
                     <button onClick="openReply('{{$comment->id}}')"class="text-xs beigeAmaso font-bold pl-7">Responder</button>
-                    @if (isset($replies))
                     <button onClick="showReplies('{{$comment->id}}')"class="text-xs beigeAmaso font-bold pl-7">Ver respuestas</button>
-                    @endif
                 </div>
             </div>
             
@@ -135,7 +133,11 @@
     }
     function showReplies(id){
         let replies = document.getElementById('replies' + id);
-        replies.style.display === "none" ? replies.style.display = "block" : replies.style.display = "none";
+        if (replies == null){
+            alert('aun no hay respuestas')
+        } else {
+            replies.style.display === "none" ? replies.style.display = "block" : replies.style.display = "none";
+        }
     }
 </script>
 
