@@ -69,7 +69,9 @@ body {
 		'Apple Color Emoji',
 		'Segoe UI Emoji';
 }
-
+.replies{
+  display: none;
+}
 .reply{
   display: none;
 }
