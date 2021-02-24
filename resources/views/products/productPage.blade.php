@@ -126,7 +126,7 @@
                     <textarea type="text" id="nombre" class=" min-w-full border-solid border-2 borderGreen rounded shadow-md h-20" name="comment"  required autocomplete="comment" autofocus></textarea>
                     <input type="hidden" name="product_id" value="{{ $product->id }}" />
                 </div>
-                <div class="pl-3 flex justify-center">
+                <div class="pl-3 pt-2 flex justify-start">
                     <button type="submit" class="w-20 h-10 beigeAmasoBg font-serif text-white text-xl  rounded-md shadow-md">{{ __('enviar') }}</button>
                 </div>
             </form>
