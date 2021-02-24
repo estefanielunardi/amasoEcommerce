@@ -81,6 +81,8 @@ Route::get('/cart', [App\Http\Controllers\CartController::class, 'getProducts'])
 
 Route::get('/cart/add/{id}', [App\Http\Controllers\CartController::class, 'addProduct'])->name('cartAddProduct')->middleware(['auth']);
 
+Route::get('/cart/increment/{id}', [App\Http\Controllers\CartController::class, 'incrementAmount'])->name('cartIncrementProduct')->middleware(['auth']);
+
 Route::delete('/cart/{id}', [App\Http\Controllers\CartController::class, 'removeProduct'])->name('removeProductCart')->middleware(['auth']);
 
 Route::delete('/all/cart/{id}', [App\Http\Controllers\CartController::class, 'deleteProduct'])->name('deleteProductCart')->middleware(['auth']);

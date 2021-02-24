@@ -34,10 +34,13 @@ class Cart extends Model
         $buyed = Cart::findProduct($product_id, $user_id);
         $userProduct = $user->products()->find($product_id);
 
-        if (is_null($userProduct) || $buyed) {
+        if (is_null($userProduct) || $buyed) 
+        {
             $user->products()->attach($product_id);
             Cart::incrementProductAmount($product_id, $user_id);
-        } else {
+        } 
+        else
+        {
             Cart::incrementProductAmount($product_id, $user_id);
         }
     }
@@ -172,7 +175,7 @@ class Cart extends Model
             return $b['amount'] - $a['amount'];
         });
         $ids = [];
-        
+
         $i = 0;
         while($i < count($result) && $i < 3)
         {
