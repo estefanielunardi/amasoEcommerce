@@ -172,17 +172,12 @@ class Cart extends Model
             return $b['amount'] - $a['amount'];
         });
         $ids = [];
-        if(count($result) == 1)
+        
+        $i = 0;
+        while($i < count($result) && $i < 3)
         {
-            array_push($ids, $result[0]['id']);
-        }
-        if(count($result) == 2)
-        {
-            array_push($ids, $result[0]['id'], $result[1]['id']);
-        }
-        if(count($result) > 2)
-        {
-            array_push($ids, $result[0]['id'], $result[1]['id'], $result[2]['id']);
+            array_push($ids, $result[$i]['id']);
+            $i++;
         }
         return $ids;
     }
