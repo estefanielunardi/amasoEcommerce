@@ -6,7 +6,8 @@ use Illuminate\Http\Request;
 use App\Models\Product;
 use App\Models\Cart;
 use App\Models\Artisan;
-
+use App\Models\Comment;
+use Illuminate\Support\Facades\DB;
 
 class ProductController extends Controller
 {
@@ -126,7 +127,9 @@ class ProductController extends Controller
     public function showProduct($id){
 
         $product = Product::find($id);
-        return view('products.productPage', compact('product'));
+        $comments =Comment::whereIn('commentable_id', [$id])->with('user')->get();
+        
+        return view('products.productPage', compact('product', 'comments'));
     }
 
 }

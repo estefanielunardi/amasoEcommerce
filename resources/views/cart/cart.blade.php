@@ -32,7 +32,7 @@
                                 <input type="number" max="{{$product->stock}}" class="counter border-transparent outline-none focus:outline-none text-center w-6 greenLightBg md:text-basecursor-default flex items-center text-white outline-none" name="custom-input-number" value="{{$product->amount}}"></input>
                                 <button data-action="increment" class="counter  greenAmasoBg  h-full w-6 cursor-pointer outline-none">
                                     <span class="m-auto font-thin text-white">
-                                        <a href="{{ route('cartAddProduct' , $product->id) }}">+</a>
+                                        <a href="{{ route('cartIncrementProduct' , $product->id) }}">+</a>
                                     </span>
                                 </button>
                             </div>
@@ -63,7 +63,7 @@
                         <p class="pt-1">{{number_format($product->price / 100, 2)}} €</p>
                     </div>
                 </div>
-                <form method="POST" action="{{ route('removeProductCart', $product->id) }}">
+                <form method="POST" action="{{ route('deleteProductCart', $product->id) }}">
                     <x-modal title="¿Eliminar producto?" submit-label="Eliminar">
                         <x-slot name="trigger">
                             <button type="button" @click="on = true" class="text-xl font-bold greenAmaso mt-2 px-3 py-8 rounded-xl">

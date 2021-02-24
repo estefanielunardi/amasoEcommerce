@@ -81,6 +81,8 @@ Route::get('/cart', [App\Http\Controllers\CartController::class, 'getProducts'])
 
 Route::get('/cart/add/{id}', [App\Http\Controllers\CartController::class, 'addProduct'])->name('cartAddProduct')->middleware(['auth']);
 
+Route::get('/cart/increment/{id}', [App\Http\Controllers\CartController::class, 'incrementAmount'])->name('cartIncrementProduct')->middleware(['auth']);
+
 Route::delete('/cart/{id}', [App\Http\Controllers\CartController::class, 'removeProduct'])->name('removeProductCart')->middleware(['auth']);
 
 Route::delete('/all/cart/{id}', [App\Http\Controllers\CartController::class, 'deleteProduct'])->name('deleteProductCart')->middleware(['auth']);
@@ -89,3 +91,8 @@ Route::delete('/all/cart/{id}', [App\Http\Controllers\CartController::class, 'de
 Route::get('/purchase/order', [App\Http\Controllers\PaymentController::class, 'order'])->name('purchaseOrder')->middleware(['auth']);
 
 Route::put('/purchase', [App\Http\Controllers\PaymentController::class, 'purchase'])->name('purchase')->middleware(['auth']);
+
+//--COMMENTS ROUTES
+
+Route::post('/comment/store', [App\Http\Controllers\CommentController::class, 'store'])->name('commentAdd')->middleware(['auth']);
+Route::post('/reply/store', [App\Http\Controllers\CommentController::class, 'replyStore'])->name('replyAdd')->middleware(['auth']);

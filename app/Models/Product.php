@@ -24,6 +24,7 @@ class Product extends Model
     {
         return $this->belongsToMany(User::class);
     }
+    
     public static function decrementStock($user_id)
     {
         $products = Cart::getProductsInBasket($user_id);  
@@ -39,5 +40,10 @@ class Product extends Model
     public function allergens()
     {
         return $this->belongsToMany(Allergen::class);
+    }
+
+    public function comments()
+    {
+        return $this->morphMany(Comment::class, 'commentable')->whereNull('parent_id');
     }
 }

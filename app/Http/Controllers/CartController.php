@@ -26,6 +26,14 @@ class CartController extends Controller
         return back();            
     }
 
+    public function incrementAmount($product_id)
+    {
+        $user_id = auth()->id();
+        Cart::incrementProductAmount($product_id, $user_id);
+
+        return back();            
+    }
+
     public function removeProduct($product_id)
     {
         $user_id = auth()->id();    
