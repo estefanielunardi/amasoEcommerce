@@ -69,21 +69,8 @@
             </div>
         </section>
 
-        <section class="p-12">
+        <section class="p-12 pt-10">
             <h2 class=" title pb-5">Comentarios del producto</h2>
-
-            <form method="POST" class="flex flex-row items-end min-w-full" action="{{ route('commentAdd') }}">
-                @method('POST')
-                @csrf
-                <div class="flex flex-col text-xl greenAmaso w-2/3">
-                    <label for="nombre" class="font-serif">{{ __('Escribe un comentario') }}</label>
-                    <input type="text" id="nombre" class=" min-w-full border-solid border-2 borderGreen rounded shadow-md h-10" name="comment"  required autocomplete="comment" autofocus>
-                    <input type="hidden" name="product_id" value="{{ $product->id }}" />
-                </div>
-                <div class="pl-3 flex justify-center">
-                    <button type="submit" class="w-20 h-10 beigeAmasoBg font-serif text-white text-xl  rounded-md shadow-md">{{ __('enviar') }}</button>
-                </div>
-            </form>
            
             @foreach ($comments as $comment)
             <div class="py-5">
@@ -91,11 +78,24 @@
                 <p class="py-2">{{ $comment->body }}</p>
                 <div class="flex flex row">
                     <p class="text-xs greenAmaso">{{ $comment->created_at }}</p>
-                    <button class="text-xs beigeAmaso font-bold pl-7">Responder</button>
+                    <button onClick="openReply('{{$comment->id}}')"class="text-xs beigeAmaso font-bold pl-7">Responder</button>
+                    <button onClick="showReplies('{{$comment->id}}')"class="text-xs beigeAmaso font-bold pl-7">Ver respuestas</button>
                 </div>
             </div>
-
-            <form method="POST" class="flex flex-row items-end min-w-full" action="{{ route('replyAdd') }}">
+            
+            @foreach ($replies as $reply)
+            @if($reply->parent_id === $comment->id)
+            <div id="replies{{$comment->id}}"class=" replies py-5 pl-20">
+                <p class="font-bold">{{ $reply->user->name }}</p>
+                <p class="py-2">{{ $reply->body }}</p>
+                <div class="flex flex row">
+                    <p class="text-xs greenAmaso">{{ $reply->created_at }}</p>
+                </div>
+            </div>
+            @endif
+           @endforeach
+           
+            <form method="POST" id="{{$comment->id}}"class=" pl-20 reply items-end min-w-full" action="{{ route('replyAdd') }}">
                 @method('POST')    
                 @csrf
                 <div class="flex flex-col text-xl greenAmaso w-2/3">
@@ -108,7 +108,36 @@
                 </div>
             </form>
             @endforeach
+            {!! $comments->links() !!}
+
+            <form method="POST" class="items-end min-w-full" action="{{ route('commentAdd') }}">
+                @method('POST')
+                @csrf
+                <div class=" pt-10 flex flex-col text-xl greenAmaso w-1/3">
+                    <label for="nombre" class="font-serif">{{ __('Escribe un comentario') }}</label>
+                    <textarea type="text" id="nombre" class=" min-w-full border-solid border-2 borderGreen rounded shadow-md h-20" name="comment"  required autocomplete="comment" autofocus></textarea>
+                    <input type="hidden" name="product_id" value="{{ $product->id }}" />
+                </div>
+                <div class="pl-3 flex justify-center">
+                    <button type="submit" class="w-20 h-10 beigeAmasoBg font-serif text-white text-xl  rounded-md shadow-md">{{ __('enviar') }}</button>
+                </div>
+            </form>
         </section>
 
 </x-app-layout>
+
+<script>
+    function openReply(id){
+        let reply = document.getElementById(id);
+        reply.style.display === "none" ? reply.style.display = "flex" : reply.style.display = "none";
+    }
+    function showReplies(id){
+        let replies = document.getElementById('replies' + id);
+        if (replies == null){
+            alert('aun no hay respuestas')
+        } else {
+            replies.style.display === "none" ? replies.style.display = "block" : replies.style.display = "none";
+        }
+    }
+</script>
 

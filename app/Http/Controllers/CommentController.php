@@ -20,7 +20,7 @@ class CommentController extends Controller
 
     public function replyStore(Request $request)
     {
-        $reply = new Comment();
+        $reply = new Comment;
         $reply->body = $request->comment;
         $reply->user()->associate($request->user());
         $reply->parent_id = $request->comment_id;

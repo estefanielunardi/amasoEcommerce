@@ -127,9 +127,17 @@ class ProductController extends Controller
     public function showProduct($id){
 
         $product = Product::find($id);
-        $comments =Comment::whereIn('commentable_id', [$id])->with('user')->get();
+        $comments = Comment::whereIn('commentable_id', [$id])
+                ->where('parent_id', null)
+                ->with('user')
+                ->paginate(6);
         
-        return view('products.productPage', compact('product', 'comments'));
+        $replies = Comment::whereIn('commentable_id', [$id])
+        ->where('parent_id','!=', null)
+        ->with('user')
+        ->get();
+        
+        return view('products.productPage', compact('product', 'comments', 'replies'));
     }
 
 }
