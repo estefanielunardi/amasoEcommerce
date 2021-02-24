@@ -90,6 +90,7 @@
                     <button onClick="showReplies('.replies{{$comment->id}}')"class="text-xs beigeAmaso font-bold pl-7">Ver respuestas</button>
                 </div>
             </div>
+            <p id="message.replies{{$comment->id}}"class='message text-xs greenAmaso p-2'> Aun no hay respuestas a este comentario</p>
             
             @foreach ($replies as $reply)
             @if($reply->parent_id === $comment->id)
@@ -141,8 +142,10 @@
     }
     function showReplies(id){
         let replies = Array.from(document.querySelectorAll(id));
-        if (replies.length == 0){
-            alert('aun no hay respuestas')
+        let message = document.getElementById('message' + id);
+        console.log(message)
+        if (replies.length == 0) {
+            message.style.display === "none" ? message.style.display = "block" : message.style.display = "none"
         } else {
             replies.forEach(reply => 
                 reply.style.display === "none" ? reply.style.display = "block" : reply.style.display = "none")
