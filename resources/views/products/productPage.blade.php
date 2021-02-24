@@ -64,8 +64,16 @@
             </section>
         </section>
         <section>
-            <div class="flex ml-12 lg:w-4/5">
-                <p class="block greenAmaso text-sm font-light w-64 lg:w-full pb-5"> {{$product->description}} </p>
+            <div class="flex flex-col ml-14 lg:w-4/5">
+                <p class="font-extrabold greenAmaso mb-4">Información de alérgenos:</p>
+                <ul class="italic list-disc ml-10">
+                @foreach ($product->allergens as $allergen)
+                <li>{{$allergen->type}}</li>
+                @endforeach
+                </ul>
+            </div>
+            <div class="flex ml-14 lg:w-4/5 mt-8">
+                <p class="block greenAmaso text-md font-light w-64 lg:w-full pb-5"> {{$product->description}} </p>
             </div>
         </section>
 

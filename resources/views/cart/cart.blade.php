@@ -16,7 +16,8 @@
                 
                 <div class="flex flex-row relative items-center rounded-md shadow-md greenLightBg text-white h-14 w-full md:w-3/4 md:h-20">
                     <div class="flex flex-row md:w-full w-32">
-                        <p class="px-3 md:pl-5 text-sm md:text-lg ">{{$product->name}}</p>
+                        <a href="{{ route('productPage' , $product->id) }}"><p class="px-3 md:pl-5 text-sm md:text-lg ">{{$product->name}}</p></a>
+                        {{-- <a href="{{ route('profile' , $product->artisans->id) }}"><p class="px-3 md:pl-5 text-sm md:text-lg ml-4">{{$product->artisans->id}}</p></a> --}}
                     </div>
                     <div class="flex text-sm flex-row w-44 md:w-48 absolute right-4 justify-between">
                         @if($product->stock > $product->amount)
