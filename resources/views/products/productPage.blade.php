@@ -91,11 +91,11 @@
                 <p class="py-2">{{ $comment->body }}</p>
                 <div class="flex flex row">
                     <p class="text-xs greenAmaso">{{ $comment->created_at }}</p>
-                    <button class="text-xs beigeAmaso font-bold pl-7">Responder</button>
+                    <button onClick="openReply('{{$comment->id}}')"class="text-xs beigeAmaso font-bold pl-7">Responder</button>
                 </div>
             </div>
 
-            <form method="POST" class="flex flex-row items-end min-w-full" action="{{ route('replyAdd') }}">
+            <form method="POST" id="{{$comment->id}}"class="reply items-end min-w-full" action="{{ route('replyAdd') }}">
                 @method('POST')    
                 @csrf
                 <div class="flex flex-col text-xl greenAmaso w-2/3">
@@ -111,4 +111,11 @@
         </section>
 
 </x-app-layout>
+
+<script>
+    function openReply(id){
+        let reply = document.getElementById(id);
+        reply.style.display === "none" ? reply.style.display = "flex" : reply.style.display = "none";
+    }
+</script>
 

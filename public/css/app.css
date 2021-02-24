@@ -70,7 +70,9 @@ body {
 		'Segoe UI Emoji';
 }
 
-
+.reply{
+  display: none;
+}
 .whiteAmaso{
   color: #FFFFFF;
 }
