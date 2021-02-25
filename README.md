@@ -26,6 +26,10 @@
 
 `php artisan test`
 
+## Running PHP Mess Detector
+
+`vendor/bin/phpmd ./app text cleancode,unusedcode,codesize,design,naming`
+
 ## Metodología de trabajo
 
 -   TDD
