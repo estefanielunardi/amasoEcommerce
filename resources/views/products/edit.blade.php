@@ -55,6 +55,12 @@
                     <option value="1">Si</option>
                 </select>
             </div>
+            @foreach ($allergensTypes as $allergen)
+                <div class="flex flex-row m-2">  
+                <input class="hidden"  type="checkbox" name="{{$allergen->type}}" value="{{$allergen->id}}" id="{{$allergen->id}}"> 
+                <label for="{{$allergen->id}}" class="w-48 pl-2 greenAmaso rounded border-solid border-2  borderGreen text-greenAmaso hover:bg-green-100" id="allergen-label">{{$allergen->type}}</label>
+                </div>
+            @endforeach
             <div class="flex justify-center">
                 <button type="submit" class=" beigeAmasoBg font-serif text-white text-2xl mt-4 px-12 py-4  rounded-xl shadow-md">{{ __('Editar Producto') }}</button>
             </div>

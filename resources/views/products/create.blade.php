@@ -57,14 +57,10 @@
             </div>
             <label for="allergens" class="font-serif font-bold font-xl">Información de alérgenos:</label>
             <div class="flex flex-col m-auto my-4 text-xl greenAmaso">
-                @php
-                    $counter = 0;
-                @endphp
                 @foreach ($allergensTypes as $allergen)
                 <div class="flex flex-row m-2">
-                <p class="hidden">{{$counter++}}</p>  
-                <input class="hidden"  type="checkbox" name="Allergen-Type-{{$counter}}" value="{{$allergen->type}}" id="{{$counter}}"> 
-                <label for="{{$counter}}" class="w-48 pl-2 greenAmaso rounded border-solid border-2  borderGreen text-greenAmaso hover:bg-green-100" id="allergen-label">{{$allergen->type}}</label>
+                <input class="hidden"  type="checkbox" name="{{$allergen->type}}" value="{{$allergen->id}}" id="{{$allergen->id}}"> 
+                <label for="{{$allergen->id}}" class="w-48 pl-2 greenAmaso rounded border-solid border-2  borderGreen text-greenAmaso hover:bg-green-100" id="allergen-label">{{$allergen->type}}</label>
                 </div>
                 @endforeach
             </div>

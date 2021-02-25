@@ -61,7 +61,7 @@ class ProductController extends Controller
 
     public function store(Request $request)
     {
-        dd($request);
+        
         $artisan = Artisan::getArtisan();
 
         $product= Product::create([
@@ -78,10 +78,30 @@ class ProductController extends Controller
             ]);
             
             $product->save();
-    
-        return redirect('/artisan/' .  $artisan->slug);
 
+
+            $listAllergens = [];
+            $data = $request->all();
+            
+            foreach ($data as $key => $value) {
+                if(str_starts_with($key, "Sin")){
+                    array_push($listAllergens, [$key=>$value]);
+                }
+            }
+            
+
+            for ($i=0; $i < count($listAllergens) ; $i++) { 
+                foreach ($listAllergens[$i] as $key => $value) {
+                    $product->allergens()->attach($value);
+                }
+            }
+            
+            return redirect('/artisan/' .  $artisan->slug);
     }
+        
+    
+
+
 
     public function destroy($id)
     {   
@@ -114,6 +134,23 @@ class ProductController extends Controller
         $product->highlight = $request->highlight;
 
         $product->save();
+
+        $product->allergens()->detach();
+        $listAllergens = [];
+        $data = $request->all();
+        
+        foreach ($data as $key => $value) {
+            if(str_starts_with($key, "Sin")){
+                array_push($listAllergens, [$key=>$value]);
+            }
+        }
+        
+
+        for ($i=0; $i < count($listAllergens) ; $i++) { 
+            foreach ($listAllergens[$i] as $key => $value) {
+                $product->allergens()->attach($value);
+            }
+        }
 
         return redirect('/artisan/' .  $artisan->slug);
     }
