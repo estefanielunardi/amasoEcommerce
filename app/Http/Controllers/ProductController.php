@@ -13,7 +13,7 @@ class ProductController extends Controller
 {
     public function getProducts()
     {
-        $products = Product::whereIn('category', ['vegetales', 'bebidas', 'pasteleria'])
+        $products = Product::whereIn('category', ['vegetales', 'bebidas', 'pasteleria','otras'])
                 ->with('artisans')->paginate(6);
         $ids = Cart::getBestSellersIds();
         $bestSellers = [];
