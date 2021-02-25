@@ -237,9 +237,14 @@
                                             </div>
                                         @endif
                                         @else
-                                        <p class="text-lg beigeAmasoBg p-1 my-2 leading-4">Producto agotado</p>
+                                        <p class="text-sm beigeAmasoBg p-1 my-2 leading-4">Producto agotado</p>
                                     @endif
                                     @if(auth()->id() == $artisan->user_id)
+                                    @if($product->stock > 0)
+                                    <div class="flex flex-row justify-center"> 
+                                        <p class="pl-2 productDescription">Stock: {{$product->stock}}</p>
+                                    </div>
+                                    @endif
                                         <div class= "flex flex-row justify-around w-28 pt-3 pl-6">
                                             <form action="{{ route('editProduct', ['id' => $product->id]) }}" method="get">
                                                 <button type="submit">
@@ -265,6 +270,7 @@
                                                 @method('DELETE')
                                                 {{ csrf_field() }}
                                             </form>
+                                           
                                         </div>
                                     @endif
                             </div>
