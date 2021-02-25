@@ -123,12 +123,12 @@
                 @method('POST')
                 @csrf
                 <div class=" pt-10 flex flex-col text-xl greenAmaso w-1/3">
-                    <label for="nombre" class="font-serif">{{ __('Escribe un comentario') }}</label>
+                    <label for="nombre" class="font-serif pb-3">{{ __('Escribe un comentario') }}</label>
                     <textarea type="text" id="nombre" class=" min-w-full border-solid border-2 borderGreen rounded shadow-md h-20" name="comment"  required autocomplete="comment"></textarea>
                     <input type="hidden" name="product_id" value="{{ $product->id }}" />
-                </div>
-                <div class="pl-3 pt-2 flex justify-start">
-                    <button type="submit" class="w-20 h-10 beigeAmasoBg font-serif text-white text-xl  rounded-md shadow-md">{{ __('enviar') }}</button>
+                    <div class="pl-3 pt-2 flex justify-end">
+                        <button type="submit" class="w-20 h-10 beigeAmasoBg font-serif text-white text-xl  rounded-md shadow-md">{{ __('enviar') }}</button>
+                    </div>
                 </div>
             </form>
         </section>
