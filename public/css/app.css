@@ -139,6 +139,11 @@ body {
   border-color: #81A78C;
 }
 
+.shadowHighlighted {
+  box-shadow: 5px 5px 10px #DAB162;
+
+}
+
 
 .heroTitle {
   font-family: Vollkorn;
