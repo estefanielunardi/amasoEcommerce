@@ -62,8 +62,6 @@ Route::get('/artisans', [App\Http\Controllers\ArtisanController::class, 'getAll'
 
 Route::get('/orders', [App\Http\Controllers\ArtisanController::class, 'orders'])->name('orders')->middleware(['artisan']);
 
-Route::delete('/orders/delete/{id}', [App\Http\Controllers\ArtisanController::class, 'deleteOrder'])->name('deleteOrder')->middleware(['artisan']);
-
 Route::post('/orders/archive/{id}', [App\Http\Controllers\ArtisanController::class, 'archiveOrder'])->name('archiveOrder')->middleware(['artisan']);
 
 

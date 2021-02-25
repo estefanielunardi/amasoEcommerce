@@ -116,12 +116,6 @@ class ArtisanController extends Controller
         return redirect('/artisan/' . $artisan->slug);
     }
 
-    public function deleteOrder($id)
-    {
-        DB::table('product_user')->where('id','=',$id)->delete();
-        return back();
-    }
-
     public function archiveOrder($id)
     {
         DB::table('product_user')
