@@ -79,7 +79,7 @@ body {
   background-color: #ffffff;
 }
 
-#allergen-check:checked + #allergen-label {
+:checked + #allergen-label {
   background-color: #ccc;
 }
 

@@ -28,7 +28,7 @@ class AppServiceProvider extends ServiceProvider
     public function boot()
     {
         View::composer(['layouts.navigation','components.button-cart'], 'App\Http\ViewsComposer\NavComposer');
-        View::composer(['products.create','products.create'], 'App\Http\ViewsComposer\ProductAllergensComposer');
+        View::composer(['products.create','products.edit'], 'App\Http\ViewsComposer\ProductAllergensComposer');
         Schema::defaultStringLength(191);
     }
 }
