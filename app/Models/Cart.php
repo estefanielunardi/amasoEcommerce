@@ -7,6 +7,7 @@ use Illuminate\Database\Eloquent\Model;
 use App\Models\User;
 use Illuminate\Support\Facades\DB;
 use App\Models\Product;
+use Carbon\Carbon;
 
 class Cart extends Model
 {
@@ -124,7 +125,7 @@ class Cart extends Model
         DB::transaction(function () use ($user_id) {
             DB::table('product_user')
                 ->where('user_id', $user_id)
-                ->update(['buyed' => 1]);
+                ->update(['buyed' => 1, 'updated_at' => Carbon::now()]);
             });
     }
 
@@ -142,9 +143,13 @@ class Cart extends Model
 
     public static function getBestSellersIds()
     {
+        $startMonth = Carbon::now()->startOfMonth();
+        $now = Carbon::now(); 
         $buyed = DB::table('product_user')
-            ->where(['buyed' => 1])
-            ->get(['amount', 'product_id']);
+        ->where(['buyed' => 1])
+        ->whereBetween('updated_at',[$startMonth, $now])       
+        ->get(['amount', 'product_id']);
+        
         if (count($buyed) > 0)
         {
             $ids = Cart::findBestSeller($buyed);
