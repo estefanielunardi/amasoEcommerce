@@ -76,12 +76,15 @@ class ArtisanController extends Controller
     {
         $user_id = auth()->id();
         $user = User::find($user_id); 
-        $id = DB::table('artisans')->where('user_id','=',$user_id)->value('id');
+        $id = DB::table('artisans')
+            ->where('user_id','=',$user_id)
+            ->value('id');
         $artisan = Artisan::find($id);
         $orders = $artisan->getOrders($id);
+        $archivedOrders = $artisan->getArchivedOrders($id);
      
 
-        return view('artisan.artisanOrders', compact('orders'));
+        return view('artisan.artisanOrders', compact('orders','archivedOrders'));
     }
 
     public function destroy()
@@ -116,6 +119,15 @@ class ArtisanController extends Controller
     public function deleteOrder($id)
     {
         DB::table('product_user')->where('id','=',$id)->delete();
+        return back();
+    }
+
+    public function archiveOrder($id)
+    {
+        DB::table('product_user')
+            ->where('id','=',$id)
+            ->update(['archived'=> 1]);
+
         return back();
     }
 

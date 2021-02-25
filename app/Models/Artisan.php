@@ -42,10 +42,22 @@ class Artisan extends Model
                             ->where('artisan_id','=', $id)
                             ->join('product_user', 'products.id', '=', 'product_user.product_id') 
                             ->join('users', 'users.id','=', 'product_user.user_id')  
-                            ->where('buyed','=', 1)
+                            ->where('archived','=', 0,'and', 'buyed','=', 1)
                             ->select('product_user.amount', 'users.*','products.*')
                             ->paginate(10);
         return $orders;
+    }
+
+    public function getArchivedOrders($id)
+    {
+        $archivedOrders = DB::table('products')
+                            ->where('artisan_id','=', $id)
+                            ->join('product_user', 'products.id', '=', 'product_user.product_id') 
+                            ->join('users', 'users.id','=', 'product_user.user_id')  
+                            ->where('archived','=', 1,'and', 'buyed','=', 1)
+                            ->select('product_user.amount', 'users.*','products.*')
+                            ->paginate(10);
+        return $archivedOrders;
     }
         
 }
