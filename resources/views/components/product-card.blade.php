@@ -1,10 +1,9 @@
 <div class=" px-1 w-full flex flex-col p-6 sm:w-1/2 lg:w-1/3">
-    <section class="w-72 h-96 shadow-lg rounded-xl">
-        <a href="/product/{{$product->id}}">
+    <a href="/product/{{$product->id}}">
+        <section class="w-72 h-96 shadow-lg rounded-xl">
             <header class="h-48 overflow-hidden">
                 <img alt="Placeholder" class="rounded-xl rounded-b-none object-fill w-full" src="{{$product->image}}">
             </header>
-        </a>
 
         <section class="relative px-4 h-44">
             <div class="block py-2">
@@ -36,10 +35,11 @@
                     </div>
                 </div>
                 @else
-                <p class="text-lg beigeAmasoBg p-1 mt-2 leading-4">Producto agotado</p>
+                <p class="text-lg beigeAmasoBg p-1 ml-12 mt-2 leading-4">Producto agotado</p>
                 @endif
             </div>
         </section>
-    </section>
+        </section>
+    </a>
 </div>
 
