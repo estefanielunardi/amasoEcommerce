@@ -124,7 +124,7 @@
                 @csrf
                 <div class=" pt-10 flex flex-col text-xl greenAmaso w-1/3">
                     <label for="nombre" class="font-serif">{{ __('Escribe un comentario') }}</label>
-                    <textarea type="text" id="nombre" class=" min-w-full border-solid border-2 borderGreen rounded shadow-md h-20" name="comment"  required autocomplete="comment" autofocus></textarea>
+                    <textarea type="text" id="nombre" class=" min-w-full border-solid border-2 borderGreen rounded shadow-md h-20" name="comment"  required autocomplete="comment"></textarea>
                     <input type="hidden" name="product_id" value="{{ $product->id }}" />
                 </div>
                 <div class="pl-3 pt-2 flex justify-start">
