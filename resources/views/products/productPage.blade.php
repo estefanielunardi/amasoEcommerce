@@ -143,7 +143,6 @@
     function showReplies(id){
         let replies = Array.from(document.querySelectorAll(id));
         let message = document.getElementById('message' + id);
-        console.log(message)
         if (replies.length == 0) {
             message.style.display === "none" ? message.style.display = "block" : message.style.display = "none"
         } else {

@@ -86,7 +86,9 @@ body {
 #allergenLabel:hover{
   background-color: #BE9A56;
 }
-
+.message{
+  display: none;
+}
 .displayNone{
   display: none;
 }
