@@ -32,7 +32,7 @@
                 </select> 
             </div>
             <div class="flex flex-col my-4 text-xl greenAmaso">
-                <label for="cantidad" class="font-serif">{{ __('Cantidad segun unidad de venta') }}</label>
+                <label for="cantidad" class="font-serif">{{ __('Stock segun unidad de venta') }}</label>
                 <input type="number" min="0" id="cantidad" class="w-100 border-solid border-2 borderGreen rounded shadow-md h-10" placeholder="Ej: 2 Kg"name="stock" required autocomplete="stock" autofocus>
             </div>
             <div class="flex flex-col my-4 text-xl greenAmaso">
@@ -49,7 +49,7 @@
                 </select> 
             </div>
             <div class="flex flex-col my-4 text-xl mb-10 greenAmaso">
-                <label for="highlight" class="font-serif">{{ __('Highlight Product') }}</label>
+                <label for="highlight" class="font-serif">{{ __('¿Destacar producto?') }}</label>
                 <select id="highlight" class="focus:ring-indigo-500 bg-gray-100 focus:border-indigo-500 h-full py-0 pl-2 pr-7 border-transparent bg-transparent greenAmaso sm:text-sm rounded-md" name="highlight"  required autocomplete="highlight" autofocus>
                     <option value="0">No</option>
                     <option value="1">Si</option>
