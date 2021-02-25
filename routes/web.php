@@ -64,6 +64,8 @@ Route::get('/orders', [App\Http\Controllers\ArtisanController::class, 'orders'])
 
 Route::delete('/orders/delete/{id}', [App\Http\Controllers\ArtisanController::class, 'deleteOrder'])->name('deleteOrder')->middleware(['artisan']);
 
+Route::post('/orders/archive/{id}', [App\Http\Controllers\ArtisanController::class, 'archiveOrder'])->name('archiveOrder')->middleware(['artisan']);
+
 
 //---ADMIN ROUTES
 Route::get('/admin', [App\Http\Controllers\AdminController::class, 'adminDash'])->middleware('checkAdmin')->name('adminDash');
