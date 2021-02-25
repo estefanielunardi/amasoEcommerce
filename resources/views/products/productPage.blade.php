@@ -68,7 +68,7 @@
                 <p class="font-extrabold greenAmaso mb-4">Información de alérgenos:</p>
                 <ul class="italic list-disc ml-10">
                 @foreach ($product->allergens as $allergen)
-                <li>{{$allergen->type}}</li>
+                <li class="productDescription greenAmaso">{{$allergen->type}}</li>
                 @endforeach
                 </ul>
             </div>

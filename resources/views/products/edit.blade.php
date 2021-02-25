@@ -55,7 +55,7 @@
                     <option value="1">Si</option>
                 </select>
             </div>
-            <label for="allergens" class="font-serif font-bold font-xl">Información de alérgenos:</label>
+            <label for="allergens" class="font-serif font-bold font-xl greenAmaso">Información de alérgenos:</label>
             <div class="flex flex-col m-auto my-4 text-xl greenAmaso">
             @foreach ($allergensTypes as $allergen)
                 <div class="flex flex-row m-2">  
