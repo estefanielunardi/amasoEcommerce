@@ -8,6 +8,7 @@ use App\Models\Artisan;
 use App\Models\User;
 use Illuminate\Support\Str;
 use Illuminate\Support\Facades\Hash;
+use App\Models\Allergen;
 
 class DatabaseSeeder extends Seeder
 {
@@ -38,9 +39,38 @@ class DatabaseSeeder extends Seeder
             'image'=> 'https://images.unsplash.com/photo-1509440159596-0249088772ff?ixid=MXwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHw%3D&ixlib=rb-1.2.1&auto=format&fit=crop&w=1052&q=80',
             'name'=> 'Pan',
             'description'=> 'Pan de campo',
-            
+            'stock'=> 10,
+            'sold' => 0,  
         ]);
 
         User::factory(10)->create();
+
+        Allergen::factory(1)->create([
+            'type'=> 'Sin Gluten',
+        ]);
+
+        Allergen::factory(1)->create([
+            'type'=> 'Sin Lactosa',
+        ]);
+
+        Allergen::factory(1)->create([
+            'type'=> 'Sin Huevo',
+        ]);
+
+        Allergen::factory(1)->create([
+            'type'=> 'Sin Frutos de Cáscara',
+        ]);
+
+        Allergen::factory(1)->create([
+            'type'=> 'Sin Cacahuete',
+        ]);
+
+        Allergen::factory(1)->create([
+            'type'=> 'Sin Soja',
+        ]);
+
+        Allergen::factory(1)->create([
+            'type'=> 'Sin Mariscos',
+        ]);
     }
 }
