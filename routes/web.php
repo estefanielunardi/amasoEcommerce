@@ -97,4 +97,9 @@ Route::put('/purchase', [App\Http\Controllers\PaymentController::class, 'purchas
 //--COMMENTS ROUTES
 
 Route::post('/comment/store', [App\Http\Controllers\CommentController::class, 'store'])->name('commentAdd')->middleware(['auth']);
+
 Route::post('/reply/store', [App\Http\Controllers\CommentController::class, 'replyStore'])->name('replyAdd')->middleware(['auth']);
+
+//--USER ROUTES
+
+Route::get('/user/profile/{id}', [App\Http\Controllers\UserController::class, 'profile'])->name('userProfile')->middleware(['auth']);
