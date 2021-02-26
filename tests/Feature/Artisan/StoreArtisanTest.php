@@ -17,13 +17,15 @@ class StoreArtisanTest extends TestCase
             'name' => 'Pepita',
             'location' => 'Tarragona',
             'description' => 'sfxghrsf',
+            'slug' => 'pepita',
         ];
 
         $response = $this->post(route('artisanStore', $artisan));
 
+        $response->assertRedirect('artisan/' . $artisan['slug']);
+
         $this->assertDatabaseCount('artisans', 1)
             ->assertDatabaseHas('artisans', ['name' => 'Pepita']);
 
-        $response->assertViewIs('admin.responsesAdmin');
     }
 }

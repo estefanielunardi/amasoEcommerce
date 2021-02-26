@@ -19,7 +19,7 @@ class CreateArtisansTable extends Migration
             $table->string('location');
             $table->text('description');
             $table->string('image')->nullable();
-            $table->boolean('aproved')->default(false);
+            $table->boolean('aproved')->default(true);
         });
     }
 
