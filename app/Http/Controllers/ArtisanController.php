@@ -61,7 +61,8 @@ class ArtisanController extends Controller
             
             $newArtisan->save(); 
 
-            return view('admin.responsesAdmin', ["message" => "Tu perfil está siendo evaluado, ¡Recibirás notícias pronto por email!"]);
+            return redirect('/artisan/' . $newArtisan->slug);
+            
     }
 
     public function getAll(){
