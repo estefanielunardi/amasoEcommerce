@@ -3,11 +3,13 @@
 namespace Tests\Feature\Product;
 
 use Illuminate\Foundation\Testing\RefreshDatabase;
+use Illuminate\Support\Facades\DB;
 use Tests\TestCase;
 use App\Models\Cart;
 use App\Models\Product;
 use App\Models\User;
 use App\Models\Artisan;
+use Illuminate\Support\Carbon;
 
 class ProductBestSellerTest extends TestCase
 {
@@ -79,5 +81,20 @@ class ProductBestSellerTest extends TestCase
 
         $response = Cart::getBestSellersIds();
         $this->assertEquals([4, 3, 1], $response); 
+    }
+
+    public function testReturnBestSellersIdsOfTheMonth()
+    {
+        $testDate = Carbon::create(2021, 2, 28, 1, 1);
+        Carbon::setTestNow($testDate);
+
+        DB::table('product_user')
+        ->insert(['product_id'=>1, 'user_id'=>1, 'updated_at'=> '2021-01-01','buyed' => 1]);
+
+        DB::table('product_user')
+        ->insert(['product_id'=>2, 'user_id'=>1, 'updated_at'=> '2021-02-26','buyed' => 1]);
+
+        $response = Cart::getBestSellersIds();
+        $this->assertEquals([2],$response); 
     }
 }
