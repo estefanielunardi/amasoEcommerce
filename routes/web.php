@@ -102,4 +102,4 @@ Route::post('/reply/store', [App\Http\Controllers\CommentController::class, 'rep
 
 //--USER ROUTES
 
-Route::get('/user/profile/{id}', [App\Http\Controllers\UserController::class, 'profile'])->name('userProfile')->middleware(['auth']);
+Route::get('/user/profile', [App\Http\Controllers\UserController::class, 'profile'])->name('userProfile')->middleware(['auth']);
