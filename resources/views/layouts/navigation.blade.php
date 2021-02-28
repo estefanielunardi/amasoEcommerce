@@ -29,10 +29,18 @@
                     </x-nav-link>
                 </div>
                 @endguest
+                @auth
+                <div class=" space-x-8 sm:-my-px sm:ml-10">
+                    <x-nav-link :href="route('userProfile')" :active="request()->routeIs('userProfile')">
+                        {{ __('Mi perfil') }}
+                    </x-nav-link>
+                </div>
+                @endauth
+                
                 @can('isArtisan')
                 <div class=" space-x-8 sm:-my-px sm:ml-10">
                     <x-nav-link :href="route('profile')" :active="request()->routeIs('profile')">
-                        {{ __('Mi perfil') }}
+                        {{ __('Mi perfil Artesano') }}
                     </x-nav-link>
                 </div>
                 @endcan
@@ -146,10 +154,17 @@
             </x-responsive-nav-link>
         </div>
         @endguest
+        @auth
+        <div class="pt-2 pb-3 space-y-1">
+            <x-responsive-nav-link :href="route('userProfile')" :active="request()->routeIs('userProfile')">
+                {{ __('Mi perfil') }}
+            </x-responsive-nav-link>
+        </div>
+        @endauth
         @can('isArtisan')
         <div class="pt-2 pb-3 space-y-1">
             <x-responsive-nav-link :href="route('profile')" :active="request()->routeIs('profile')">
-                {{ __('Mi perfil') }}
+                {{ __('Mi perfil Artesano') }}
             </x-responsive-nav-link>
         </div>
         @endcan
