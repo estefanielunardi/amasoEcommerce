@@ -8,6 +8,7 @@ use App\Models\Cart;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Mail;
 use Illuminate\Support\Facades\DB;
+use Laravel\Cashier\Cashier;
 
 class PaymentController extends Controller
 {
@@ -19,11 +20,12 @@ class PaymentController extends Controller
         $products = Cart::getProductsInBasket($id);
         $total = Cart::calculateTotal($products);
 
-        return view('cart.purchaseOrder', compact('products', 'total', 'user'));
+        return view('cart.purchaseOrder', [ 'intent' => $user->createSetupIntent()],  compact('products', 'total', 'user'));
     }
 
     public function purchase(Request $request)
     {
+    
         $user_id = auth()->id();
         $user = User::find($user_id);
         Cart::buyProductsInBasket($user_id);
@@ -49,4 +51,15 @@ class PaymentController extends Controller
         ->with('message' , '¡Compra realizada con éxito, muchas gracias!');
 
     }
+
+    public function cashier(){
+
+        $user_id = auth()->id();
+        $stripeId = DB::table('users')->where('id', $user_id)->value('stripe_id');
+        $user = Cashier::findBillable($stripeId);
+      
+        return view('payment' , [ 'intent' => $user->createSetupIntent()]);
+    
+    }
+
 }
