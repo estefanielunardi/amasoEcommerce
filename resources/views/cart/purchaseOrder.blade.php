@@ -16,33 +16,19 @@
                     <label for="location" class="font-serif">{{ __('Localidad/Provincia') }}</label>
                     <input type="text" id="location" class="w-100 border-solid border-2 borderGreen rounded shadow-md h-10" value="{{$user->location}}" name="location" required autocomplete="location" autofocus>
                 </div>
-                <!-- <div class="flex flex-col my-4 text-xl greenAmaso">
-                    <label for="postal" class="font-serif">{{ __('Código postal') }}</label>
-                    <input type="number" id="postal" class="w-100 border-solid border-2 borderGreen rounded shadow-md h-10"value="{{$user->postal}}" name="postal" required autocomplete="postal" autofocus>
-                </div> -->
-
                 <section class="mt-16 text-center pb-8">
                     <h1 class="flex justify-center title">Metodo de pago</h1>
                     <h3 class="flex justify-center greenAmaso">Tarjeta de crédito o débito</h3>
                 </section>
                 <section class="container md:container md:mx-auto flex justify-center">
                     <div class="box-border bg-white h-128 w-96">
-                        <form>
+            
                             <div class="flex flex-col my-4 text-xl greenAmaso">
                                 <label for="cardholder" class="font-serif">{{ __('Titular de la tarjeta') }}</label>
                                 <input type="text" id="card-holder-name" class="w-100 border-solid border-2 borderGreen rounded shadow-md h-10" name="cardholder" value="{{$user->cardholder}}" required autocomplete="cardholder" autofocus>
                             </div>
                             <div id="card-element">
                             </div>
-                            <!-- <div class="flex flex-col my-4 text-xl greenAmaso">
-                                <label for="card" class="font-serif">{{ __('Número de tarjeta') }}</label>
-                                <input placeholder="sin espacios ni simbolos" id="card" value="{{$user->card}}"class="w-100 border-solid border-2 borderGreen rounded shadow-md h-10" name="card" required autocomplete="card" autofocus>
-                            </div>
-                            <div class="flex flex-col my-4 text-xl greenAmaso">
-                                <label for="nombre" class="font-serif">{{ __('Fecha de vencimiento') }}</label>
-                                <input type="text"required pattern="([0-2][0-9]|(3)[0-1])(\/)(((0)[0-9])|((1)[0-2]))(\/)(0[1-9]|[12]\d|3[01])" placeholder="dd/mm/yy" id="date" class="w-100 border-solid border-2 borderGreen rounded shadow-md h-10" name="expiring" required autocomplete="date" autofocus>
-                            </div> -->
-
                     </div>
                 </section>
                 <section class="flex justify-center mt-10">
@@ -131,7 +117,7 @@
         if (error) {
             console.log(error);
         } else {
-            console.log('success');
+            console.log(paymentRequest);
         }
     });
 
