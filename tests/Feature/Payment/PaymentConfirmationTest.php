@@ -70,9 +70,6 @@ class PaymentConfirmationTest extends TestCase
         $checkoutFormData = [
             'direction' => 'calle tomas',
             'location' => 'Madrid',
-            'postal' => 2020,
-            'card' => 'SE12345678',
-            'expiring' => '11/12/20',
         ];
 
         $response = $this->put(route('purchase', $checkoutFormData));
@@ -85,9 +82,6 @@ class PaymentConfirmationTest extends TestCase
             'password' => '12345678',
             'direction' => 'calle tomas',
             'location' => 'Madrid',
-            'postal' => 2020,
-            'card' => 'SE12345678',
-            'expiring' => '11/12/20'
         ]);
     }
 
