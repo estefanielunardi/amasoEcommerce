@@ -94,6 +94,10 @@ Route::get('/purchase/order', [App\Http\Controllers\PaymentController::class, 'o
 
 Route::put('/purchase', [App\Http\Controllers\PaymentController::class, 'purchase'])->name('purchase')->middleware(['auth']);
 
+Route::get('/cashier', [App\Http\Controllers\PaymentController::class, 'cashier'])->name('cashier')->middleware(['auth']);
+
+
+
 //--COMMENTS ROUTES
 
 Route::post('/comment/store', [App\Http\Controllers\CommentController::class, 'store'])->name('commentAdd')->middleware(['auth']);
