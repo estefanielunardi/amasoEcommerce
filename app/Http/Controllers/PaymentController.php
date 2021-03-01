@@ -35,9 +35,6 @@ class PaymentController extends Controller
         $user->password = $user->password;
         $user->direction = $request->direction;
         $user->location = $request->location;
-        $user->postal = $request->postal;
-        $user->card = $request->card;
-        $user->expiring = $request->expiring;
         $user->cardholder = $request->cardholder;
         
         $user->save(); 
