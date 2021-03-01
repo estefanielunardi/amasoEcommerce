@@ -101,5 +101,7 @@ Route::post('/comment/store', [App\Http\Controllers\CommentController::class, 's
 Route::post('/reply/store', [App\Http\Controllers\CommentController::class, 'replyStore'])->name('replyAdd')->middleware(['auth']);
 
 //--USER ROUTES
-
 Route::get('/user/profile', [App\Http\Controllers\UserController::class, 'profile'])->name('userProfile')->middleware(['auth']);
+
+//--RATTINGS
+

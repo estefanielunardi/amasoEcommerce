@@ -31,6 +31,27 @@
                         @endif
                     </div>
                     <div>
+                        <h2 class="block text-xl beigeAmaso mt-8">Valoración de los usuarios:</h2>
+                        <p id="productRatting" class="mt-2 mb-2">Test Ratting</p>
+                        @can('isAuth')
+                            <form action="ruta ratting store" method="POST"> 
+                            <select name="valoracion" id="ratting">
+                                <option value="1">1</option>
+                                <option value="2">2</option>
+                                <option value="3">3</option>
+                                <option value="4">4</option>
+                                <option value="5">5</option>
+                                <option value="6">6</option>
+                                <option value="7">7</option>
+                                <option value="8">8</option>
+                                <option value="9">9</option>
+                                <option value="10">10</option>
+                            </select>
+                            <button type="submit" class="greenLightBg  rounded-xl p-1 text-white">Valorar</button>
+                            </form>
+                        </div>
+                        @endcan
+                    <div>
                         @can('isArtisan')
                         <button class= "greenLightBg flex flex-row align-start text-sm text-white mt-4 px-3 py-2  rounded-xl shadow-md">               
                             <svg  width="24" height="24" viewBox="0 0 31 32" fill="none" xmlns="http://www.w3.org/2000/svg">
