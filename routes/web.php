@@ -94,9 +94,6 @@ Route::get('/purchase/order', [App\Http\Controllers\PaymentController::class, 'o
 
 Route::put('/purchase', [App\Http\Controllers\PaymentController::class, 'purchase'])->name('purchase')->middleware(['auth']);
 
-Route::get('/cashier', [App\Http\Controllers\PaymentController::class, 'cashier'])->name('cashier')->middleware(['auth']);
-
-
 
 //--COMMENTS ROUTES
 
