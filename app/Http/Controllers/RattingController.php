@@ -41,6 +41,17 @@ class RattingController extends Controller
         $ratting->ratting = (int)$request->ratting;
         $ratting->user_id = $request->user()->id;
         $ratting->product_id = $request->id;
+        
+        $rattingId = Ratting::whereIn('product_id', [$ratting->product_id])
+            ->where('user_id', [$ratting->user_id])
+            ->value('id');
+
+        if($rattingId != null  && $rattingId != 0 ){
+            Ratting::whereIn('id', [$rattingId])->update(['ratting'=>$ratting->ratting]);
+            
+            return back();
+        }
+
         $ratting->save();
 
         return back();

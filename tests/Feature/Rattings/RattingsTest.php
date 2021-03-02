@@ -8,6 +8,7 @@ use Tests\TestCase;
 use App\Models\Product;
 use App\Models\User;
 use App\Models\Artisan;
+use App\Models\Ratting;
 
 class RattingsTest extends TestCase
 {
@@ -21,6 +22,7 @@ class RattingsTest extends TestCase
         $this->alfredo = User::factory()->create(['name' => 'Alfredo', 'email' => 'alfredo@alfredo', 'password' => '12345678']);
         $this->artisan = Artisan::factory()->create(['user_id' => 1, 'id' => 1]);
         $this->product = Product::factory()->create(['image' => null, 'name' => 'mermelada']);
+        $this->ratting = Ratting::factory()->create(['ratting' => 8, 'product_id' => 1, 'user_id' => 1] );
      }
      
     
@@ -42,5 +44,19 @@ class RattingsTest extends TestCase
 
         $this->assertDatabaseCount('rattings', 1)
         ->assertDatabaseHas('rattings', ['ratting'=>'5']);
+    }
+
+    public function test_registered_user_cant_rate_more_than_once()
+    {
+        $this->actingAs($this->alfredo);
+        
+        $ratting = ['ratting' => 7, 'product_id' => 1, 'user_id' => 1] ;
+
+        
+
+        $this->post(route('productRatting', $this->product->id), $ratting);
+
+        $this->assertDatabaseCount('rattings', 1)
+        ->assertDatabaseHas('rattings', ['ratting'=>'7', 'product_id' => 1, 'user_id' => 1]);
     }
 }
