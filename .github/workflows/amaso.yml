@@ -32,5 +32,5 @@ jobs:
       env:
         DB_CONNECTION: sqlite
         DB_DATABASE: database/database.sqlite
-        STRIPE_KEY: pk_test_51IOetXCF1EAwCvsv89niJOflntko0aKPhBQuMF6EHPa0DZMbfC5jV5sMgoB0heEW1PxihCqAKLDkEvMweMPrIz0c00bDdmijkP
+        STRIPE_SECRET = env('STRIPE_SECRET')
       run: vendor/bin/phpunit
