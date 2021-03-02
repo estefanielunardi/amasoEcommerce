@@ -34,8 +34,10 @@
                         <h2 class="block text-xl beigeAmaso mt-8">Valoración de los usuarios:</h2>
                         <p id="productRatting" class="mt-2 mb-2">Test Ratting</p>
                         @can('isAuth')
-                            <form action="ruta ratting store" method="POST"> 
-                            <select name="valoracion" id="ratting">
+                            <form action="{{ route('productRatting', $product->id) }}" method="POST"> 
+                            @method('POST')    
+                            @csrf
+                            <select name="ratting" id="ratting">
                                 <option value="1">1</option>
                                 <option value="2">2</option>
                                 <option value="3">3</option>
@@ -47,7 +49,7 @@
                                 <option value="9">9</option>
                                 <option value="10">10</option>
                             </select>
-                            <button type="submit" class="greenLightBg  rounded-xl p-1 text-white">Valorar</button>
+                            <button type="submit" value="submit" class="greenLightBg  rounded-xl p-1 text-white">Valorar</button>
                             </form>
                         </div>
                         @endcan

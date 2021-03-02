@@ -4,6 +4,8 @@ namespace App\Http\Controllers;
 
 use App\Models\Ratting;
 use Illuminate\Http\Request;
+use App\Models\Product;
+use Illuminate\Support\Facades\DB;
 
 class RattingController extends Controller
 {
@@ -35,7 +37,19 @@ class RattingController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        $ratting = new Ratting();
+        $ratting->ratting = (int)$request->ratting;
+        $ratting->user_id = $request->user()->id;
+        $ratting->product_id = $request->id;
+        $ratting->save();
+
+        return back();
+        
+
+        //coger el valor del rating.
+        //guardar el valor del rating, vinculado al usuario y al producto.
+        //sobreescribir el ultimo valor entrado por el mismo usuario.
+        
     }
 
     /**
@@ -46,7 +60,10 @@ class RattingController extends Controller
      */
     public function show(Ratting $ratting)
     {
-        //
+        //recoger total de valores del producto.
+        //hacer la media de valoraciones totales del producto.
+        //recoger la utltima votacion del usuario.
+        //mostrar la media y la utlima votacion
     }
 
     /**
