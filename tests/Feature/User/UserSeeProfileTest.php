@@ -7,6 +7,7 @@ use Tests\TestCase;
 use App\Models\User;
 use App\Models\Artisan;
 use App\Models\Product;
+use Illuminate\Support\Facades\DB;
 
 class UserSeeProfileTest extends TestCase
 {
@@ -44,18 +45,15 @@ class UserSeeProfileTest extends TestCase
         $this->actingAs(User::factory()->create());
         $response = $this->get('/user/profile');
 
-        $response->assertViewIs('user.userProfile');
-        
-       
+        $response->assertViewIs('user.userProfile');               
     }
 
     public function testReturnUserProfileWithHistoryProducts()
     {
         $this->withoutExceptionHandling();
         $this->actingAs(User::factory()->create(['id'=>4]));
-        $this->get(route('cartAddProduct', $this->product1->id));
-        $this->get(route('cartAddProduct', $this->product2->id));
-        $this->put('/purchase');
+        DB::table('product_user')
+        ->insert(['product_id'=>1, 'user_id'=>4, 'updated_at'=> '2021-01-01','buyed' => 1]);
     
         $response = $this->get('/user/profile');
 

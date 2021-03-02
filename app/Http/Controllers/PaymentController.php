@@ -22,19 +22,12 @@ class PaymentController extends Controller
     }
 
     public function purchase(Request $request)
-    {    
+    {   
         $user_id = auth()->id();
         $products = Cart::getPurchasedProducts($user_id);
-        $total = Cart::calculateTotal($products);  
-
-        Stripe\Stripe::setApiKey(env('STRIPE_SECRET'));
-        Stripe\Charge::create ([
-                "amount" => $total * 100,
-                "currency" => "eur",
-                "source" => $request->stripeToken,
-                "description"=> "Compra en amaso"
-        ]);  
-
+        $total = Cart::calculateTotal($products); 
+        $amount = $total * 100; 
+        
         Cart::buyProductsInBasket($user_id);
         $user = User::find($user_id);
         $user->id = $user->id;
@@ -45,11 +38,23 @@ class PaymentController extends Controller
         $user->location = $request->location;
         $user->cardholder = $request->cardholder;
         
-        $user->save();       
-        
+        $user->save(); 
+        $this->createStripeCharge($request->stripeToken, $amount);    
+
         return redirect('/')
         ->with('message' , '¡Compra realizada con éxito, muchas gracias!');
 
+    }
+
+    private function createStripeCharge($token, $amount)
+    {
+        Stripe\Stripe::setApiKey(env('STRIPE_SECRET'));
+        Stripe\Charge::create ([
+                "amount" => $amount,
+                "currency" => "eur",
+                "source" => $token,
+                "description"=> "Compra en amaso"
+        ]); 
     }
 
 }
