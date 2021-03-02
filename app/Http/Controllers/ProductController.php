@@ -7,6 +7,7 @@ use App\Models\Product;
 use App\Models\Cart;
 use App\Models\Artisan;
 use App\Models\Comment;
+use App\Models\Ratting;
 use Illuminate\Support\Facades\DB;
 
 class ProductController extends Controller
@@ -167,8 +168,22 @@ class ProductController extends Controller
         ->where('parent_id','!=', null)
         ->with('user')
         ->get();
+
+        $rattingsSum = [];
+        $rattings = Ratting::where('product_id', [$id])->get();
+        if(count($rattings) != 0){
+            foreach ($rattings as $ratting) {
+                array_push($rattingsSum, $ratting->ratting);
+            }
+            $totalRate = array_sum($rattingsSum);
+            $midRate = strval($totalRate / count($rattingsSum));
+
+            return view('products.productPage', compact('product', 'comments', 'replies', 'midRate'));
+        }else
+
         
         return view('products.productPage', compact('product', 'comments', 'replies'));
+
     }
 
 }

@@ -31,8 +31,12 @@
                         @endif
                     </div>
                     <div>
-                        <h2 class="block text-xl beigeAmaso mt-8">Valoración de los usuarios:</h2>
-                        <p id="productRatting" class="mt-2 mb-2">Test Ratting</p>
+                        <h2 class="block text-xl beigeAmaso mt-4">Valoración de los usuarios:</h2>
+                        @if (isset($midRate))
+                        <p id="productRatting" class="mt-2 mb-2 mb-8">{{$midRate}} sobre 10</p>
+                        @else
+                        <p id="productRatting" class="mt-2 mb-2 mb-8">Aún no hay valoraciones.</p>   
+                        @endif
                         @can('isAuth')
                             <form action="{{ route('productRatting', $product->id) }}" method="POST"> 
                             @method('POST')    
