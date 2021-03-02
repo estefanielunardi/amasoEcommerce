@@ -2,13 +2,11 @@
 
 namespace App\Http\Controllers;
 
-use App\Mail\PurchaseConfirmation;
+
 use App\Models\User;
 use App\Models\Cart;
 use Illuminate\Http\Request;
-use Illuminate\Support\Facades\Mail;
-use Illuminate\Support\Facades\DB;
-use Laravel\Cashier\Cashier;
+use Stripe;
 
 class PaymentController extends Controller
 {
@@ -24,11 +22,21 @@ class PaymentController extends Controller
     }
 
     public function purchase(Request $request)
-    {
-    
+    {    
         $user_id = auth()->id();
-        $user = User::find($user_id);
+        $products = Cart::getPurchasedProducts($user_id);
+        $total = Cart::calculateTotal($products);  
+
+        Stripe\Stripe::setApiKey(env('STRIPE_SECRET'));
+        Stripe\Charge::create ([
+                "amount" => $total * 100,
+                "currency" => "eur",
+                "source" => $request->stripeToken,
+                "description"=> "Compra en amaso"
+        ]);  
+
         Cart::buyProductsInBasket($user_id);
+        $user = User::find($user_id);
         $user->id = $user->id;
         $user->name = $user->name;
         $user->email = $user->email;
@@ -37,26 +45,11 @@ class PaymentController extends Controller
         $user->location = $request->location;
         $user->cardholder = $request->cardholder;
         
-        $user->save(); 
-
-        $products = Cart::getPurchasedProducts($user_id);
-        $total = Cart::calculateTotal($products);
-        $emailUser = DB::table('users')->where('id', $user_id)->value('email');
-        $name = DB::table('users')->where('id', $user_id)->value('name');
+        $user->save();       
         
         return redirect('/')
         ->with('message' , '¡Compra realizada con éxito, muchas gracias!');
 
-    }
-
-    public function cashier(){
-
-        $user_id = auth()->id();
-        $stripeId = DB::table('users')->where('id', $user_id)->value('stripe_id');
-        $user = Cashier::findBillable($stripeId);
-      
-        return view('payment' , [ 'intent' => $user->createSetupIntent()]);
-    
     }
 
 }

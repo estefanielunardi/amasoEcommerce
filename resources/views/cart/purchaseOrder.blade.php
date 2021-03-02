@@ -5,7 +5,7 @@
 
     <section class="container md:container md:mx-auto flex justify-center">
         <div class="box-border bg-white h-128 w-96">
-            <form method="POST" action="{{ route('purchase') }}">
+            <form id="payment-form"method="POST" action="{{ route('purchase') }}">
                 @method('PUT')
                 @csrf
                 <div class="flex flex-col my-4 text-xl greenAmaso">
@@ -22,13 +22,13 @@
                 </section>
                 <section class="container md:container md:mx-auto flex justify-center">
                     <div class="box-border bg-white h-128 w-96">
-            
-                            <div class="flex flex-col my-4 text-xl greenAmaso">
-                                <label for="cardholder" class="font-serif">{{ __('Titular de la tarjeta') }}</label>
-                                <input type="text" id="card-holder-name" class="w-100 border-solid border-2 borderGreen rounded shadow-md h-10" name="cardholder" value="{{$user->cardholder}}" required autocomplete="cardholder" autofocus>
-                            </div>
-                            <div id="card-element">
-                            </div>
+
+                        <div id="data" class="flex flex-col my-4 text-xl greenAmaso">
+                            <label for="cardholder" class="font-serif">{{ __('Titular de la tarjeta') }}</label>
+                            <input type="text" id="card-holder-name" class="w-100 border-solid border-2 borderGreen rounded shadow-md h-10" name="cardholder" value="{{$user->cardholder}}" required autocomplete="cardholder" autofocus>
+                        </div>
+                        <div id="card-element">
+                        </div>
                     </div>
                 </section>
                 <section class="flex justify-center mt-10">
@@ -56,7 +56,7 @@
 
                         </div>
                         <div class="flex justify-center pt-8">
-                            <h2 class=" greenAmaso text-lg font-bold">Total: {{number_format($total, 2)}} €</h2>
+                            <h2 id="amount" class=" greenAmaso text-lg font-bold">Total: {{number_format($total, 2)}} €</h2>
                         </div>
                         <div class="flex justify-center p-4">
                             <button type="submit" id="card-button" class=" beigeAmasoBg font-serif text-white text-2xl mt-4 px-12 py-4 rounded-xl shadow-md" data-secret="{{ $intent->client_secret }}">Tramitar Pedido</button>
@@ -89,16 +89,15 @@
                 payment_method: {
                     card: cardElement,
                     billing_details: {
-                        name: cardHolderName.value
+                        name: cardHolderName.value,
                     }
                 }
             }
         );
-
         if (error) {
             console.log(error);
         } else {
-            console.log('success');
+            console.log('success 1');
         }
     });
 
@@ -111,45 +110,20 @@
                 billing_details: {
                     name: cardHolderName.value
                 }
-            }
-        );
+            });
 
         if (error) {
             console.log(error);
         } else {
-            console.log(paymentRequest);
+            stripe.createToken(cardElement).then(function(result) {
+                let form = document.getElementById('payment-form');
+                let hiddenInput = document.createElement('input');
+                hiddenInput.setAttribute('type', 'hidden');
+                hiddenInput.setAttribute('name', 'stripeToken');
+                hiddenInput.setAttribute('value', result.token.id);
+                form.appendChild(hiddenInput);
+                form.submit();
+            });
         }
-    });
-
-    paymentRequest.on('paymentmethod', function(ev) {
-
-        stripe.confirmCardPayment(
-            clientSecret, {
-                payment_method: ev.paymentMethod.id
-            }, {
-                handleActions: false
-            }
-        ).then(function(confirmResult) {
-            if (confirmResult.error) {
-
-                ev.complete('fail');
-            } else {
-
-                ev.complete('success');
-
-                if (confirmResult.paymentIntent.status === "requires_action") {
-
-                    stripe.confirmCardPayment(clientSecret).then(function(result) {
-                        if (result.error) {
-                            console.log(result.error);
-                        } else {
-                            console.log('success');
-                        }
-                    });
-                } else {
-                    console.log('success');
-                }
-            }
-        });
     });
 </script>
