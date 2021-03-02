@@ -33,4 +33,5 @@ jobs:
         DB_CONNECTION: sqlite
         DB_DATABASE: database/database.sqlite
         STRIPE_SECRET: ${{ secrets.StripeSecret }}
-      run: vendor/bin/phpunit
+      run: |
+      example-command "$STRIPE_SECRET"
