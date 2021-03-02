@@ -32,6 +32,5 @@ jobs:
       env:
         DB_CONNECTION: sqlite
         DB_DATABASE: database/database.sqlite
-        with:
-          STRIPE_SECRET: ${{ secrets.STRIPE_SECRET }}
+        STRIPE_SECRET: ${{ secrets.STRIPE_SECRET }}
       run: vendor/bin/phpunit
