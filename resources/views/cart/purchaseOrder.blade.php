@@ -26,9 +26,9 @@
                         <div id="data" class="flex flex-col my-4 text-xl greenAmaso">
                             <label for="cardholder" class="font-serif">{{ __('Titular de la tarjeta') }}</label>
                             <input type="text" id="card-holder-name" class="w-100 border-solid border-2 borderGreen rounded shadow-md h-10" name="cardholder" value="{{$user->cardholder}}" required autocomplete="cardholder" autofocus>
+                            <input id="token"type="hidden" name="stripeToken"/>
                         </div>
-                        <div id="card-element">
-                        </div>
+                        <div id="card-element"></div>
                     </div>
                 </section>
                 <section class="flex justify-center mt-10">
@@ -59,7 +59,7 @@
                             <h2 id="amount" class=" greenAmaso text-lg font-bold">Total: {{number_format($total, 2)}} €</h2>
                         </div>
                         <div class="flex justify-center p-4">
-                            <button type="submit" id="card-button" class=" beigeAmasoBg font-serif text-white text-2xl mt-4 px-12 py-4 rounded-xl shadow-md" data-secret="{{ $intent->client_secret }}">Tramitar Pedido</button>
+                            <button id="card-button"  class=" beigeAmasoBg font-serif text-white text-2xl mt-4 px-12 py-4 rounded-xl shadow-md" data-secret="{{ $intent->client_secret }}">Tramitar Pedido</button>
                         </div>
             </form>
         </div>
@@ -115,14 +115,12 @@
         if (error) {
             console.log(error);
         } else {
-            stripe.createToken(cardElement).then(function(result) {
+            stripe.createToken(cardElement).then(function(result) {                
                 let form = document.getElementById('payment-form');
-                let hiddenInput = document.createElement('input');
-                hiddenInput.setAttribute('type', 'hidden');
-                hiddenInput.setAttribute('name', 'stripeToken');
+                let hiddenInput = document.getElementById('token');
                 hiddenInput.setAttribute('value', result.token.id);
-                form.appendChild(hiddenInput);
-                form.submit();
+                
+                form.submit();               
             });
         }
     });
