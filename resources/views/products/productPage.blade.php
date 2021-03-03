@@ -30,14 +30,22 @@
                         <p class="text-lg beigeAmasoBg p-1 mt-2 leading-4">Producto agotado</p>
                         @endif
                     </div>
+                    
                     <div>
-                        <h2 class="block text-md greenAmaso mt-4">Valoración de los usuarios:</h2>
+                        <h2 class="block text-md greenAmaso mt-4 mb-2">Valoración de los usuarios:</h2>
                         @if (isset($midRate))
-                        <div class="flex flex-row justify-start items-baseline">
-                        {{-- <p id="productRatting" class="mt-2 mb-2 beigeAmaso text-2xl font-bold">{{$midRate}}</p><p class="text-sm italic ml-2"> sobre 10</p> --}}
-                            <div>
-                                <img src="{{asset('public/image/star-ragular.svg')}}" alt="">
-                                
+                        <div class="flex flex-row justify-start items-baseline mb-6">
+                            <div class="flex flex-row">
+                            @php
+                                $emptyStars =  5 - $midRate;
+                            @endphp
+                            @for ($i = 1; $i <= $midRate; $i++)
+                            <img src="{{URL::to('/image/star-solid.svg')}}" alt="Cosa" width="25" class="mr-4">
+                            @endfor
+                            @for ($i = 1; $i <= $emptyStars; $i++)
+                                <img src="{{URL::to('/image/star-regular.svg')}}" alt="Cosa" width="25" class="mr-4">
+                            @endfor
+                            
                             </div>
                         </div>
                         @else
@@ -53,11 +61,6 @@
                                 <option value="3">3</option>
                                 <option value="4">4</option>
                                 <option value="5">5</option>
-                                <option value="6">6</option>
-                                <option value="7">7</option>
-                                <option value="8">8</option>
-                                <option value="9">9</option>
-                                <option value="10">10</option>
                             </select>
                             <button type="submit" value="submit" class="greenLightBg  rounded-xl p-1 text-white">Valorar</button>
                             </form>
