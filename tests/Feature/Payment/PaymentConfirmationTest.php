@@ -28,19 +28,19 @@ class PaymentConfirmationTest extends TestCase
         $this->product2 = Product::factory()->create(['image' => null, 'id' => 2, 'name' => 'pan', 'stock' => 4]);
     }
 
-    // public function testRoute()
-    // {
-    //     $this->withoutExceptionHandling();
-    //     $this->actingAs($this->alfredo);
-    //     $this->get(route('cartAddProduct', $this->product1->id));
-    //     $token = [ 
-    //         'stripeToken'=>'tok_visa',
-    //     ];
+    public function testRoute()
+    {
+        $this->withoutExceptionHandling();
+        $this->actingAs($this->alfredo);
+        $this->get(route('cartAddProduct', $this->product1->id));
+        $token = [ 
+            'stripeToken'=>'tok_visa',
+        ];
 
-    //     $response = $this->put(route('purchase'), $token);
+        $response = $this->put(route('purchase'), $token);
         
-    //     $response->assertRedirect('/');
-    // }
+        $response->assertRedirect('/');
+    }
 
     public function testBuyProductsWhenPurchase()
     {
