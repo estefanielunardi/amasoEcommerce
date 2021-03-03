@@ -69,7 +69,11 @@
 <script src="https://js.stripe.com/v3/"></script>
 
 <script>
-    const stripe = Stripe('{{ env("STRIPE_KEY") }}');
+
+    require('dotenv').config();
+    console.log(process.env);
+
+    const stripe = Stripe('{{ env("STRIPE_SECRET") }}');
 
     const elements = stripe.elements();
     const cardElement = elements.create('card');
