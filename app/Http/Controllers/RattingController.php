@@ -49,11 +49,13 @@ class RattingController extends Controller
         if($rattingId != null  && $rattingId != 0 ){
             Ratting::whereIn('id', [$rattingId])->update(['ratting'=>$ratting->ratting]);
             
+            //return redirect(route('productPage', $ratting->product_id));
             return back();
         }
 
         $ratting->save();
 
+        //return redirect(route('productPage', $ratting->product_id));
         return back();
         
 

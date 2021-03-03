@@ -31,10 +31,10 @@
                         @endif
                     </div>
                     <div>
-                        <h2 class="block text-md beigeAmaso mt-4">Valoración de los usuarios:</h2>
+                        <h2 class="block text-md greenAmaso mt-4">Valoración de los usuarios:</h2>
                         @if (isset($midRate))
                         <div class="flex flex-row justify-start items-baseline">
-                        <p id="productRatting" class="mt-2 mb-2 greenAmaso text-2xl font-bold">{{$midRate}}</p><p class="text-sm italic ml-2"> sobre 10</p>
+                        <p id="productRatting" class="mt-2 mb-2 beigeAmaso text-2xl font-bold">{{$midRate}}</p><p class="text-sm italic ml-2"> sobre 10</p>
                         </div>
                         @else
                         <p id="productRatting" class="mt-2 mb-8 ">Aún no hay valoraciones.</p>   

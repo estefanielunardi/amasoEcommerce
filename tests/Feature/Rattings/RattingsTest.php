@@ -25,26 +25,24 @@ class RattingsTest extends TestCase
         $this->alfredo = User::factory()->create(['name' => 'Alfredo', 'email' => 'alfredo@alfredo', 'password' => '12345678']);
         $this->artisan = Artisan::factory()->create(['user_id' => 1, 'id' => 1]);
         $this->product = Product::factory()->create(['id'=>1,'image' => null, 'name' => 'mermelada']);
-        //$this->ratting = Ratting::factory()->create(['ratting' => 8, 'product_id' => 1, 'user_id' => 1] );
+        
+
      }
      
     
-    // public function test_rattings_route()
-    // {
+    public function test_rattings_route()
+    {
         
-    //     $response = $this->post('/ratting/store', [$this->product]);
-
-    //     $response->assertRedirect(route('productPage'), $this->product->id);
-    // }
+        $response = $this->post('/ratting/store/1');
+        $response->assertRedirect();
+        
+    }
 
     public function test_registered_user_can_rate_products()
     {
         $this->actingAs($this->alfredo);
-
         $ratting = [ "ratting" => "5", "product_id" => "1"];
-
         $this->post(route('productRatting', $this->product->id), $ratting);
-
         $this->assertDatabaseCount('rattings', 1)
         ->assertDatabaseHas('rattings', ['ratting'=>'5']);
     }
@@ -52,12 +50,11 @@ class RattingsTest extends TestCase
     public function test_registered_user_cant_rate_more_than_once()
     {
         $this->actingAs($this->alfredo);
-        
         $ratting = ['ratting' => 7, 'product_id' => 1, 'user_id' => 1] ;    
-
+        $ratting2 = ['ratting' => 2, 'product_id' => 1, 'user_id' => 1] ;    
         $this->post(route('productRatting', $this->product->id), $ratting);
-
+        $this->post(route('productRatting', $this->product->id), $ratting2);
         $this->assertDatabaseCount('rattings', 1)
-        ->assertDatabaseHas('rattings', ['ratting'=>'7', 'product_id' => 1, 'user_id' => 2]);
+        ->assertDatabaseHas('rattings', ['ratting'=>'2', 'product_id' => 1, 'user_id' => 2]);
     }
 }
