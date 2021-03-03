@@ -73,7 +73,7 @@
     require('dotenv').config();
     console.log(process.env);
 
-    const stripe = Stripe('{{ env("STRIPE_SECRET") }}');
+    const stripe = Stripe(process.env.STRIPE_SECRET);
 
     const elements = stripe.elements();
     const cardElement = elements.create('card');
