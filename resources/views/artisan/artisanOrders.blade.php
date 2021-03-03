@@ -9,7 +9,6 @@
                     <th class="p-3 font-bold vollkorn text-white greenLightBg hidden lg:table-cell">Total</th>
                     <th class="p-3 font-bold vollkorn text-white greenLightBg hidden lg:table-cell">Email</th>
                     <th class="p-3 font-bold vollkorn text-white greenLightBg hidden lg:table-cell">Dirección</th>
-                    <th class="p-3 font-bold vollkorn text-white greenLightBg hidden lg:table-cell">C.P</th>
                     <th class="p-3 font-bold vollkorn text-white greenLightBg hidden lg:table-cell">Fecha</th>
                     <th class="p-3 font-bold vollkorn text-white greenLightBg hidden lg:table-cell">Archivar</th>
                 </tr>
@@ -36,10 +35,6 @@
                     <td class="w-full lg:w-auto p-3 text-gray-800 text-center border border-b text-center block lg:table-cell relative lg:static">
                         <span>{{$order->direction}}</span>
                     </td>
-                    <td class="w-full lg:w-auto p-3 text-gray-800 text-center border border-b text-center block lg:table-cell relative lg:static">
-                        <span>{{$order->postal}}</span>
-                    </td>
-
                     <td class="w-full lg:w-auto p-3 text-gray-800 text-center border border-b text-center block lg:table-cell relative lg:static">
                         <span>{{$order->updated_at}}</span>
                     </td>
@@ -78,7 +73,6 @@
                     <th class="p-3 font-bold vollkorn text-white greenLightBg hidden lg:table-cell">Total</th>
                     <th class="p-3 font-bold vollkorn text-white greenLightBg hidden lg:table-cell">Email</th>
                     <th class="p-3 font-bold vollkorn text-white greenLightBg hidden lg:table-cell">Dirección</th>
-                    <th class="p-3 font-bold vollkorn text-white greenLightBg hidden lg:table-cell">C.P</th>
                     <th class="p-3 font-bold vollkorn text-white greenLightBg hidden lg:table-cell">Fecha</th>
                 </tr>
             </thead>
@@ -104,10 +98,6 @@
                     <td class="w-full lg:w-auto p-3 text-gray-800 text-center border border-b text-center block lg:table-cell relative lg:static">
                         <span>{{$order->direction}}</span>
                     </td>
-                    <td class="w-full lg:w-auto p-3 text-gray-800 text-center border border-b text-center block lg:table-cell relative lg:static">
-                        <span>{{$order->postal}}</span>
-                    </td>
-
                     <td class="w-full lg:w-auto p-3 text-gray-800 text-center border border-b text-center block lg:table-cell relative lg:static">
                         <span>{{$order->updated_at}}</span>
                     </td>

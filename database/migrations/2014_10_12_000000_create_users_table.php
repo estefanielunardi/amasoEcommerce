@@ -25,9 +25,6 @@ class CreateUsersTable extends Migration
             $table->timestamps();
             $table->string('direction')->nullable();
             $table->string('location')->nullable();
-            $table->string('postal')->nullable();
-            $table->string('card')->nullable();
-            $table->string('expiring')->nullable();
             $table->string('cardholder')->nullable();
 
         });

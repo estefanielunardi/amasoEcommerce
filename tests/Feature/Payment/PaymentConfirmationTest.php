@@ -7,8 +7,6 @@ use Tests\TestCase;
 use App\Models\User;
 use App\Models\Artisan;
 use App\Models\Product;
-use App\Mail\PurchaseConfirmation;
-use Illuminate\Support\Facades\Mail;
 
 class PaymentConfirmationTest extends TestCase
 {
@@ -26,17 +24,21 @@ class PaymentConfirmationTest extends TestCase
         $this->user = User::factory()->create(['isArtisan' => true, 'id' => 1]);
         $this->alfredo = User::factory()->create(['name' => 'Alfredo', 'email' => 'alfredo@alfredo', 'password' => '12345678']);
         $this->artisan = Artisan::factory()->create(['user_id' => 1, 'id' => 1]);
-        $this->product1 = Product::factory()->create(['image' => null, 'id' => 1, 'name' => 'mermelada', 'stock' => 4]);
+        $this->product1 = Product::factory()->create(['image' => null, 'id' => 1, 'name' => 'mermelada', 'stock' => 4, 'price'=>50]);
         $this->product2 = Product::factory()->create(['image' => null, 'id' => 2, 'name' => 'pan', 'stock' => 4]);
     }
 
     public function testRoute()
     {
+        $this->withoutExceptionHandling();
         $this->actingAs($this->alfredo);
         $this->get(route('cartAddProduct', $this->product1->id));
+        $token = [ 
+            'stripeToken'=>'tok_visa',
+        ];
 
-        $response = $this->put('/purchase');
-
+        $response = $this->put(route('purchase'), $token);
+        
         $response->assertRedirect('/');
     }
 
@@ -70,14 +72,9 @@ class PaymentConfirmationTest extends TestCase
         $checkoutFormData = [
             'direction' => 'calle tomas',
             'location' => 'Madrid',
-            'postal' => 2020,
-            'card' => 'SE12345678',
-            'expiring' => '11/12/20',
         ];
 
-        $response = $this->put(route('purchase', $checkoutFormData));
-
-        $response->assertRedirect('/');
+        $this->put(route('purchase', $checkoutFormData));
 
         $this->assertDatabaseHas('users', [
             'name' => 'Alfredo',
@@ -85,9 +82,6 @@ class PaymentConfirmationTest extends TestCase
             'password' => '12345678',
             'direction' => 'calle tomas',
             'location' => 'Madrid',
-            'postal' => 2020,
-            'card' => 'SE12345678',
-            'expiring' => '11/12/20'
         ]);
     }
 
