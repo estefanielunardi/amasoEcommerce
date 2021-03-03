@@ -49,8 +49,11 @@ class Cart extends Model
 
     public static function deleteProductFromCart($product_id, $user_id)
     {
-        $user = User::find($user_id);
-        $user->products()->detach($product_id);
+        DB::table('product_user')
+            ->where('user_id', $user_id)
+            ->where('product_id', $product_id)
+            ->where('buyed', 0)
+            ->delete();
     }
 
     public static function removeProductFromCart($product_id, $user_id)

@@ -29,6 +29,7 @@
                     <option value="Media docena">Media Docena</option>
                     <option value="Docena">Docena</option>
                     <option value="Kg">Kg</option>
+                    <option value="Litro">Litro</option>
                 </select> 
             </div>
             <div class="flex flex-col my-4 text-xl greenAmaso">
