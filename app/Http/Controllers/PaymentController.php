@@ -52,7 +52,7 @@ class PaymentController extends Controller
         Stripe\Charge::create ([
                 "amount" => $amount,
                 "currency" => "eur",
-                "source" => $token,
+                "source" => "tok_Visa",
         ]); 
     }
 
