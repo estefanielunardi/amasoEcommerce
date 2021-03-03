@@ -40,10 +40,10 @@
                                 $emptyStars =  5 - $midRate;
                             @endphp
                             @for ($i = 1; $i <= $midRate; $i++)
-                            <img src="{{URL::to('/image/star-solid.svg')}}" alt="Cosa" width="25" class="mr-4">
+                            <img src="{{URL::to('/image/star-solid.svg')}}" alt="star-solid" width="25" class="mr-4">
                             @endfor
                             @for ($i = 1; $i <= $emptyStars; $i++)
-                                <img src="{{URL::to('/image/star-regular.svg')}}" alt="Cosa" width="25" class="mr-4">
+                                <img src="{{URL::to('/image/star-regular.svg')}}" alt="star-empty" width="25" class="mr-4">
                             @endfor
                         </div>
                         </div>
