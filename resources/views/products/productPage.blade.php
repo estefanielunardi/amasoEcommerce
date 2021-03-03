@@ -1,5 +1,5 @@
 <x-app-layout>
-        <section class="block space-y-8 ... p-12 ">
+        <section class="block space-y-8 p-12 lg:ml-10 ">
             <section class=" flex flex-col md:flex-row">
                 <article class="flex justify-start pb-6">
                     <div class="max-h-96 w-96 overflow-hidden rounded-xl">
@@ -8,14 +8,14 @@
                 </article>
                 <article class="space-y-3 md:pl-10">
                     <div>
-                        <h2 class="block title text-2xl	"> {{$product->name}} </h2>
+                        <h2 class="block title text-4xl	"> {{$product->name}} </h2>
                         <h2 class="productProductor">Productor: 
                             <a href="/artisan/{{$product->artisans->slug}}">{{$product->artisans->name}}</a>
                         </h2>
                     </div>
-                    <div class="block py-2 flex items-center justify-around">
+                    <div class="block py-2 flex items-center ">
                         @if ($product->stock > $product->sold)
-                        <p class="pt-2 pr-2 inline-block productPrice">{{number_format($product->price / 100,2)}} €</p>
+                        <p class="pt-2 pr-2 text-3xl inline-block productPrice">{{number_format($product->price / 100,2)}} €</p>
                         <div class="grid justify-items-center">
                             
                             <div class="flex flex-row ml-2 h-9 w-full justify-center rounded-lg relative bg-transparent mt-1 vollkorn">                      
@@ -31,11 +31,13 @@
                         @endif
                     </div>
                     <div>
-                        <h2 class="block text-xl beigeAmaso mt-4">Valoración de los usuarios:</h2>
+                        <h2 class="block text-md greenAmaso mt-4">Valoración de los usuarios:</h2>
                         @if (isset($midRate))
-                        <p id="productRatting" class="mt-2 mb-2 mb-8">{{$midRate}} sobre 10</p>
+                        <div class="flex flex-row justify-start items-baseline">
+                        <p id="productRatting" class="mt-2 mb-2 beigeAmaso text-2xl font-bold">{{$midRate}}</p><p class="text-sm italic ml-2"> sobre 10</p>
+                        </div>
                         @else
-                        <p id="productRatting" class="mt-2 mb-2 mb-8">Aún no hay valoraciones.</p>   
+                        <p id="productRatting" class="mt-2 mb-8 ">Aún no hay valoraciones.</p>   
                         @endif
                         @can('isAuth')
                             <form action="{{ route('productRatting', $product->id) }}" method="POST"> 
@@ -90,23 +92,25 @@
                 </article>
             </section>
         </section>
-        <section>
-            <div class="flex flex-col ml-14 lg:w-4/5">
-                <p class="font-extrabold greenAmaso mb-4">Información de alérgenos:</p>
-                <ul class="italic list-disc ml-10">
+      
+        <section class="lg:ml-20 ml-10">
+            <div class="flex flex-col ">
+                <p class="font-extrabold greenAmaso mb-4 ">Información de alérgenos:</p>
+                <ul class="italic list-disc">
                 @foreach ($product->allergens as $allergen)
                 <li class="productDescription greenAmaso">{{$allergen->type}}</li>
                 @endforeach
                 </ul>
             </div>
-            <div class="flex ml-14 lg:w-4/5 mt-8">
-                <p class="block greenAmaso text-md font-light w-64 lg:w-full pb-5"> {{$product->description}} </p>
+        </section>
+        <section>
+            <div class="flex lg:ml-20 ml-10  mt-8">
+                <p class=" block greenAmaso text-md mb-10 font-light w-64 lg:w-full pb-5"> {{$product->description}} </p>
             </div>
         </section>
-
-        <section class="p-12 pt-10">
-            <h2 class=" title pb-5">Comentarios del producto</h2>
-
+        <hr>
+        <section class="lg:ml-20 ml-10">
+            <h2 class=" title pb-2 mt-8">Comentarios del producto</h2>
             @foreach ($comments as $comment)
             <div class="py-5">
                 <p class="font-bold">{{ $comment->user->name }}</p>
