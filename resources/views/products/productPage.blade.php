@@ -113,7 +113,7 @@
         </section>
         <section>
             <div class="flex lg:ml-20 ml-10 mt-8 mr-10">
-                <p class="block greenAmaso vollkorn text-md mb-10 font-light w-full lg:w-full pb-5"> {{$product->description}} </p>
+                <p class="block greenAmaso vollkorn text-md mb-10 font-light w-full lg:w-2/3 pb-5"> {{$product->description}} </p>
             </div>
         </section>
         <hr>
