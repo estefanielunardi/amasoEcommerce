@@ -8,7 +8,7 @@ use App\Models\Cart;
 use App\Models\Artisan;
 use App\Models\Comment;
 use App\Models\Ratting;
-use Illuminate\Support\Facades\DB;
+use Carbon\Carbon;
 
 class ProductController extends Controller
 {
@@ -17,6 +17,10 @@ class ProductController extends Controller
         $products = Product::whereIn('category', ['vegetales', 'bebidas', 'pasteleria','otras'])
                 ->with('artisans')->paginate(6);
         $ids = Cart::getBestSellersIds();
+        $date = Carbon::now();
+  
+        $monthName = $date->format('F');
+    
         $bestSellers = [];
         if ($ids)
         {
@@ -26,7 +30,7 @@ class ProductController extends Controller
                 ->with('artisans')->first();
                 array_push($bestSellers, $best);            
             }
-            return view('welcome', compact("products", "bestSellers"));
+            return view('welcome', compact("products", "bestSellers", "monthName"));
         }
         return view('welcome', compact("products"));
     }
@@ -58,7 +62,6 @@ class ProductController extends Controller
                 ->with('artisans')->paginate(6);        
         return view('welcome', compact("products"));
     }
-
 
     public function store(Request $request)
     {
@@ -99,11 +102,7 @@ class ProductController extends Controller
             
             return redirect('/artisan/' .  $artisan->slug);
     }
-        
     
-
-
-
     public function destroy($id)
     {   
         $artisan = Artisan::getArtisan();
