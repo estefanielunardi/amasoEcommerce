@@ -29,7 +29,7 @@
                     <option value="Media docena">Media Docena</option>
                     <option value="Docena">Docena</option>
                     <option value="Kg">Kg</option>
-                    <option value="Litro">Litro</option>
+                    <option value="Li">Litro</option>
                 </select> 
             </div>
             <div class="flex flex-col my-4 text-xl greenAmaso">
@@ -52,8 +52,13 @@
             <div class="flex flex-col my-4 text-xl greenAmaso">
                 <label for="highlight" class="font-serif">{{ __('¿Destacar producto?') }}</label>
                 <select id="highlight" class="focus:ring-indigo-500 bg-gray-100 focus:border-indigo-500 h-full py-0 pl-2 pr-7 border-transparent bg-transparent greenAmaso sm:text-sm rounded-md" name="highlight"  value="{{$product->highlight}}" required autocomplete="highlight" autofocus>
+                    @if ($product->highlight == 0)
                     <option value="0">No</option>
                     <option value="1">Si</option>
+                    @else
+                    <option value="1">Si</option>
+                    <option value="0">No</option>
+                    @endif
                 </select>
             </div>
             <label for="allergens" class="font-serif font-bold font-xl greenAmaso">Información de alérgenos:</label>
