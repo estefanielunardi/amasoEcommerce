@@ -39,7 +39,7 @@ class PaymentController extends Controller
         $user->cardholder = $request->cardholder;
         
         $user->save(); 
-        $this->createStripeCharge($request->stripeToken, $amount);    
+        // $this->createStripeCharge($request->stripeToken, $amount);    
 
         return redirect('/')
         ->with('message' , '¡Compra realizada con éxito, muchas gracias!');
@@ -53,7 +53,6 @@ class PaymentController extends Controller
                 "amount" => $amount,
                 "currency" => "eur",
                 "source" => $token,
-                "description"=> "Compra en amaso"
         ]); 
     }
 

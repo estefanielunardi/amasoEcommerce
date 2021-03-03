@@ -2,7 +2,7 @@
 
 namespace Tests\Feature\Admin;
 
-use App\Mail\ArtisanProfileAprovedEmail;
+
 use Illuminate\Foundation\Testing\RefreshDatabase;
 use Tests\TestCase;
 use App\Models\User;
