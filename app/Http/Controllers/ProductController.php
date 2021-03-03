@@ -175,10 +175,11 @@ class ProductController extends Controller
             foreach ($rattings as $ratting) {
                 array_push($rattingsSum, $ratting->ratting);
             }
+            $votesCount = count($rattingsSum);
             $totalRate = array_sum($rattingsSum);
             $midRate = strval($totalRate / count($rattingsSum));
             $midRate = round($midRate, 0, PHP_ROUND_HALF_DOWN);
-            return view('products.productPage', compact('product', 'comments', 'replies', 'midRate'));
+            return view('products.productPage', compact('product', 'comments', 'replies', 'midRate', 'votesCount'));
         }else
 
         

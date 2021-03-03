@@ -27,15 +27,15 @@
                             </div>
                         </div>
                         @else
-                        <p class="text-lg beigeAmasoBg p-1 mt-2 leading-4">Producto agotado</p>
+                        <p class="text-lg beigeAmasoBg p-1 mt-1 leading-4">Producto agotado</p>
                         @endif
                     </div>
                     
                     <div>
-                        <h2 class="block text-md greenAmaso mt-4 mb-2">Valoración de los usuarios:</h2>
+                        <h2 class="block text-md greenAmaso mt-2 mb-2">Valoración de los usuarios:</h2>
                         @if (isset($midRate))
-                        <div class="flex flex-row justify-start items-baseline mb-6">
-                            <div class="flex flex-row">
+                        <div class="flex flex-row justify-start items-baseline mb-2">
+                            <div class="flex flex-row items-baseline">
                             @php
                                 $emptyStars =  5 - $midRate;
                             @endphp
@@ -45,9 +45,9 @@
                             @for ($i = 1; $i <= $emptyStars; $i++)
                                 <img src="{{URL::to('/image/star-regular.svg')}}" alt="Cosa" width="25" class="mr-4">
                             @endfor
-                            
-                            </div>
                         </div>
+                        </div>
+                        <p class="italics eko text-sm greenAmaso mb-4">( {{$votesCount}} valoraciones )</p>
                         @else
                         <p id="productRatting" class="mt-2 mb-8 ">Aún no hay valoraciones.</p>   
                         @endif
