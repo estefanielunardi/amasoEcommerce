@@ -18,26 +18,27 @@ class Cart extends Model
         DB::table('product_user')
             ->where('user_id', $user_id)
             ->where('product_id', $product_id)
+            ->where('buyed', 0)
             ->increment('amount', 1);
     }
 
     public static function findProduct($product_id, $user_id)
     {
-        $buyed = DB::table('product_user')
+        $product = DB::table('product_user')
             ->where('user_id', $user_id)
             ->where('product_id', $product_id)
-            ->value('buyed');
-        return $buyed;
+            ->where('buyed', 0)
+            ->get();
+        return $product;
     }
 
     public static function addProductInCart($product_id, $user_id)
     {
-        $user = User::find($user_id);
-        $buyed = Cart::findProduct($product_id, $user_id);
-        $userProduct = $user->products()->find($product_id);
-
-        if (is_null($userProduct) || $buyed) 
+        $productInBasket = Cart::findProduct($product_id, $user_id);
+        
+        if (count($productInBasket) == 0) 
         {
+            $user = User::find($user_id);
             $user->products()->attach($product_id);
             Cart::incrementProductAmount($product_id, $user_id);
         } 
