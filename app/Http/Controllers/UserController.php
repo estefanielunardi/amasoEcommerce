@@ -14,13 +14,23 @@ class UserController extends Controller
         $userHistoryProducts = [];
         $productIds = DB::table('product_user')
                     ->where('user_id','=', $id)
+                    ->where('buyed', true)
                     ->orderByDesc('updated_at')
                     ->get('product_id');
 
+        $ids = [];
+  
+        $repeatIds = [];
         foreach($productIds as $id)
         {
-            array_push($userHistoryProducts, Product::find($id->product_id));
-        }      
+            array_push($repeatIds, $id->product_id);
+        }
+        $ids = array_unique($repeatIds);
+        
+        foreach($ids as $id)
+        {
+            array_push($userHistoryProducts, Product::find($id));
+        }
         return view('user.userProfile', compact('userHistoryProducts','user'));
     }
 }
