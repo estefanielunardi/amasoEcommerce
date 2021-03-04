@@ -30,7 +30,6 @@
                         <p class="text-lg beigeAmasoBg p-1 mt-1 leading-4">Producto agotado</p>
                         @endif
                     </div>
-                    
                     <div>
                         <h2 class="block text-md greenAmaso mt-1 mb-2">Valoración de los usuarios:</h2>
                         @if (isset($midRate))
@@ -51,21 +50,22 @@
                         @else
                         <p id="productRatting" class="mt-2 mb-8 ">Aún no hay valoraciones.</p>   
                         @endif
-                        @can('isAuth')
+                        @auth
+                        <div>  
                             <form action="{{ route('productRatting', $product->id) }}" method="POST"> 
-                            @method('POST')    
-                            @csrf
-                            <select name="ratting" id="ratting">
-                                <option value="1">1</option>
-                                <option value="2">2</option>
-                                <option value="3">3</option>
-                                <option value="4">4</option>
-                                <option value="5">5</option>
-                            </select>
-                            <button type="submit" value="submit" class="greenLightBg  rounded-xl p-1 text-white">Valorar</button>
-                        </form>
-                    </div>
-                    @endcan
+                                @method('POST')    
+                                @csrf
+                                <select name="ratting" id="ratting">
+                                    <option value="1">1</option>
+                                    <option value="2">2</option>
+                                    <option value="3">3</option>
+                                    <option value="4">4</option>
+                                    <option value="5">5</option>
+                                </select>
+                                <button type="submit" value="submit" class="greenLightBg  rounded-xl p-1 text-white">Valorar</button>
+                            </form>
+                        </div>
+                        @endauth
                 </section>
                     <div class="flex flex-row">
                         @can('isArtisan')
