@@ -22,21 +22,21 @@ class Cart extends Model
             ->increment('amount', 1);
     }
 
-    public static function findProduct($product_id, $user_id)
+    public static function findActiveProduct($product_id, $user_id)
     {
-        $product = DB::table('product_user')
+        $activeProduct = DB::table('product_user')
             ->where('user_id', $user_id)
             ->where('product_id', $product_id)
             ->where('buyed', 0)
             ->get();
-        return $product;
+        return $activeProduct;
     }
 
     public static function addProductInCart($product_id, $user_id)
     {
-        $productInBasket = Cart::findProduct($product_id, $user_id);
+        $activeProduct = Cart::findActiveProduct($product_id, $user_id);
         
-        if (count($productInBasket) == 0) 
+        if (count($activeProduct) == 0) 
         {
             $user = User::find($user_id);
             $user->products()->attach($product_id);
