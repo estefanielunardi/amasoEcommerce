@@ -103,14 +103,15 @@
            
         <section class="lg:ml-20 ml-10 mt-4">
             <div class="flex flex-col ">
-                <p class=" greenAmaso mb-4 ">Información de alérgenos:</p>
-                <ul class="italic list-disc">
-                    @foreach ($product->allergens as $allergen)
-                    <li class="productDescription vollkorn text-bold text-lg greenAmaso ml-10">{{$allergen->type}}</li>
-                    @endforeach
-                </ul>
+                @if(count($product->allergens) !== 0)
+                    <p class=" greenAmaso mb-4 ">Información de alérgenos:</p>
+                    <ul class="italic list-disc">
+                        @foreach ($product->allergens as $allergen)
+                        <li class="productDescription vollkorn text-bold text-lg greenAmaso ml-10">{{$allergen->type}}</li>
+                        @endforeach
+                    </ul>
+                @endif
             </div>
-              
         </section>
         <section>
             <div class="flex lg:ml-20 ml-10 mt-8 mr-10">
