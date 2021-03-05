@@ -8,8 +8,13 @@
                     <x-application-logo class="block h-10 w-auto fill-current text-gray-600" />
                 </a>
             </div>
-            <!-- Navigation Links -->
+            <!-- Navigation Links -->            
             <div class="hidden md:flex md:w-full md:m-auto md:ml-20 md:mr-10 items-center">
+                <div class=" space-x-8 sm:-my-px sm:ml-10 ">
+                    <x-nav-link :href="route('home')" :active="request()->routeIs('home')">
+                        {{ __('Catalog') }}
+                    </x-nav-link>
+                </div>
                 @can('isAdmin')
                 <div class=" space-x-8 sm:-my-px sm:ml-10 ">
                     <x-nav-link :href="route('adminDash')" :active="request()->routeIs('adminDash')">
