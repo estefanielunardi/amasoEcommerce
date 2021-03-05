@@ -12,7 +12,7 @@
             <div class="hidden md:flex md:w-full md:m-auto md:ml-20 md:mr-10 items-center">
                 <div class=" space-x-8 sm:-my-px sm:ml-10 ">
                     <x-nav-link :href="route('home')" :active="request()->routeIs('home')">
-                        {{ __('Catalog') }}
+                        {{ __('Catálogo') }}
                     </x-nav-link>
                 </div>
                 @can('isAdmin')
