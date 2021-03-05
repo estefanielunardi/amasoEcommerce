@@ -59,12 +59,12 @@
 
                     <div class="flex items-center justify-end mt-4">
                         <a class="underline text-sm greenAmaso hover:text-green-900" href="{{ route('login') }}">
-                            {{ __('Already registered?') }}
+                            {{ __('Ya estas registrado?') }}
                         </a>
                     </div>
                     <div class="flex justify-center">
                         <button class=" beigeAmasoBg font-serif text-white text-2xl mt-4 px-12 py-4  rounded-xl shadow-md">
-                            {{ __('Register') }}
+                            {{ __('Registarse') }}
                         </button>
                     </div>               
                 </form>
