@@ -33,4 +33,13 @@ class UserController extends Controller
         }
         return view('user.userProfile', compact('userHistoryProducts','user'));
     }
+
+    public function edit()
+    {
+        $id = auth()->id();
+        $user = User::find($id);
+        $name = $user->name;
+        
+        return view('user.editForm', compact('name'));
+    }
 }
