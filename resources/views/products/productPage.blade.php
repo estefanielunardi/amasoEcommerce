@@ -35,9 +35,6 @@
                         @if (isset($midRate))
                         <div class="flex flex-row justify-start items-baseline mb-2">
                             <div class="flex flex-row items-baseline">
-                            @php
-                                $emptyStars =  5 - $midRate;
-                            @endphp
                             @for ($i = 1; $i <= $midRate; $i++)
                             <img src="{{URL::to('/image/star-solid.svg')}}" alt="star-solid" width="25" class="mr-4">
                             @endfor
