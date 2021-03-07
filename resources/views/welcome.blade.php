@@ -52,10 +52,10 @@
                 <div x-show="dropdownOpen" @click="dropdownOpen = false" class="fixed inset-0 h-full w-full z-10"></div>
                 <div x-show="dropdownOpen" class="absolute right-0 mt-2 w-48 bg-white rounded-md overflow-hidden shadow-xl z-20">
                     <a href="{{ url('/') }}" class="block px-4 py-2 text-sm text-gray-800 border-b hover:bg-gray-200">Todas</a>
-                    <a href="{{ url('/drinks') }}" class="block px-4 py-2 text-sm text-gray-800 border-b hover:bg-gray-200">Bebidas</a>
-                    <a href="{{ url('/bakery') }}" class="block px-4 py-2 text-sm text-gray-800 border-b hover:bg-gray-200">Pasteleria</a>
-                    <a href="{{ url('/vegetables') }}" class="block px-4 py-2 text-sm text-gray-800 border-b hover:bg-gray-200">Vegetales</a>
-                    <a href="{{ url('/others') }}" class="block px-4 py-2 text-sm text-gray-800 border-b hover:bg-gray-200">Otras</a>
+                    <a href="{{ url('/categories/bebidas') }}" class="block px-4 py-2 text-sm text-gray-800 border-b hover:bg-gray-200">Bebidas</a>
+                    <a href="{{ url('/categories/pasteleria') }}" class="block px-4 py-2 text-sm text-gray-800 border-b hover:bg-gray-200">Pasteleria</a>
+                    <a href="{{ url('/categories/vegetales') }}" class="block px-4 py-2 text-sm text-gray-800 border-b hover:bg-gray-200">Vegetales</a>
+                    <a href="{{ url('/categories/otras') }}" class="block px-4 py-2 text-sm text-gray-800 border-b hover:bg-gray-200">Otras</a>
                 </div>
             </div>
         </div>
