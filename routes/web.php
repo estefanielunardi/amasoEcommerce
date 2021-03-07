@@ -37,7 +37,7 @@ Route::put('/product/update/{product}', [App\Http\Controllers\ProductController:
 
 //PRODUCT CATEGORY ROUTES
 
-Route::get('/categories/{category}', [App\Http\Controllers\ProductController::class, 'getCategory'])->name('category');
+Route::get('/categorias/{category}', [App\Http\Controllers\ProductController::class, 'getCategory'])->name('category');
 
 //---ARTISAN ROUTES
 Route::get('/artisan/{artisan:slug}',  [\App\Http\Controllers\ArtisanController::class, 'profile'])->name('artisanProfile');

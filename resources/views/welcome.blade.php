@@ -8,7 +8,7 @@
     @endif
 
     <header class="relative">
-        <img class="w-full h-48 object-cover lg:h-72" src="./image/cover2.jpg">
+        <img class="w-full h-48 object-cover lg:h-72" src="../image/cover2.jpg">
         <section class="absolute z-10 top-7 left-10 w-52 w-1/2 lg:top-16 lg:left-32 xl:top-20 xl:left-52">
             <p class="heroTitle text-left text-2xl pb-1 md:text-3xl lg:text-4xl xl:pb-5 xl:text-5xl">
                 Nuestros alimentos tienen orígenes cercanos a tí.
@@ -52,10 +52,10 @@
                 <div x-show="dropdownOpen" @click="dropdownOpen = false" class="fixed inset-0 h-full w-full z-10"></div>
                 <div x-show="dropdownOpen" class="absolute right-0 mt-2 w-48 bg-white rounded-md overflow-hidden shadow-xl z-20">
                     <a href="{{ url('/') }}" class="block px-4 py-2 text-sm text-gray-800 border-b hover:bg-gray-200">Todas</a>
-                    <a href="{{ url('/categories/bebidas') }}" class="block px-4 py-2 text-sm text-gray-800 border-b hover:bg-gray-200">Bebidas</a>
-                    <a href="{{ url('/categories/pasteleria') }}" class="block px-4 py-2 text-sm text-gray-800 border-b hover:bg-gray-200">Pasteleria</a>
-                    <a href="{{ url('/categories/vegetales') }}" class="block px-4 py-2 text-sm text-gray-800 border-b hover:bg-gray-200">Vegetales</a>
-                    <a href="{{ url('/categories/otras') }}" class="block px-4 py-2 text-sm text-gray-800 border-b hover:bg-gray-200">Otras</a>
+                    <a href="{{ url('/categorias/bebidas') }}" class="block px-4 py-2 text-sm text-gray-800 border-b hover:bg-gray-200">Bebidas</a>
+                    <a href="{{ url('/categorias/pasteleria') }}" class="block px-4 py-2 text-sm text-gray-800 border-b hover:bg-gray-200">Pasteleria</a>
+                    <a href="{{ url('/categorias/vegetales') }}" class="block px-4 py-2 text-sm text-gray-800 border-b hover:bg-gray-200">Vegetales</a>
+                    <a href="{{ url('/categorias/otras') }}" class="block px-4 py-2 text-sm text-gray-800 border-b hover:bg-gray-200">Otras</a>
                 </div>
             </div>
         </div>
