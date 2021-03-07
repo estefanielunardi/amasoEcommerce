@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 use App\Models\Product;
 use Illuminate\Support\Facades\DB;
 use App\Models\User;
+use Illuminate\Http\Request;
 
 class UserController extends Controller
 {
@@ -41,5 +42,16 @@ class UserController extends Controller
         $name = $user->name;
         
         return view('user.editForm', compact('name'));
+    }
+
+    public function update(Request $request)
+    {
+        
+        $id = auth()->id();
+        $user = User::find($id);
+        $user->name = $request->name;
+
+        $user->save();
+        return redirect('/user/profile/');
     }
 }

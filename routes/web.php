@@ -100,5 +100,7 @@ Route::get('/user/profile', [App\Http\Controllers\UserController::class, 'profil
 
 Route::get('/user/edit', [App\Http\Controllers\UserController::class, 'edit'])->name('userEdit')->middleware(['auth']);
 
+Route::patch('/user/update', [App\Http\Controllers\UserController::class, 'update'])->name('userUpdate')->middleware(['auth']);
+
 //--RATTINGS
 Route::post('/ratting/store/{id}', [App\Http\Controllers\RattingController::class, 'store'])->name('productRatting')->middleware(['auth']);
