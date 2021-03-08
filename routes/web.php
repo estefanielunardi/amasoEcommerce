@@ -73,8 +73,6 @@ Route::post('/profiles/{id}', [App\Http\Controllers\AdminController::class, 'apr
 //---CART ROUTES
 Route::get('/cart', [App\Http\Controllers\CartController::class, 'getProducts'])->name('cart')->middleware(['auth']); 
 
-Route::get('/cart', [App\Http\Controllers\CartController::class, 'getProducts'])->name('cart')->middleware(['auth']); 
-
 Route::get('/cart/add/{id}', [App\Http\Controllers\CartController::class, 'addProduct'])->name('cartAddProduct')->middleware(['auth']);
 
 Route::get('/cart/increment/{id}', [App\Http\Controllers\CartController::class, 'incrementAmount'])->name('cartIncrementProduct')->middleware(['auth']);
