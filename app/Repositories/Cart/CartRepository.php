@@ -211,4 +211,14 @@ class CartRepository implements ICartRepository
             ->where('buyed', 0)
             ->delete();
     }
+
+    public function getProductAmountInBasket($product_id,  $user_id)
+    {      
+        $amount = DB::table('product_user')
+            ->where('user_id', $user_id)
+            ->where('product_id', $product_id)
+            ->where('buyed','=',0)
+            ->value('amount');
+        return $amount;  
+    }
 }
