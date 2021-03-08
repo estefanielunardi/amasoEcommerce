@@ -4,8 +4,6 @@ namespace App\Repositories\Artisan;
 
 use Illuminate\Support\Facades\DB;
 use App\Repositories\Artisan\IArtisanRepository;
-use App\Models\User;
-use App\Models\Product;
 use App\Models\Artisan;
 use Illuminate\Support\Str;
 
