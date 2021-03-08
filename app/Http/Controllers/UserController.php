@@ -5,6 +5,7 @@ use App\Models\Product;
 use Illuminate\Support\Facades\DB;
 use App\Models\User;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Hash;
 
 class UserController extends Controller
 {
@@ -46,10 +47,10 @@ class UserController extends Controller
 
     public function update(Request $request)
     {
-        
         $id = auth()->id();
         $user = User::find($id);
         $user->name = $request->name;
+        $user->password = Hash::make($request->password);
 
         $user->save();
         return redirect('/user/profile/');
