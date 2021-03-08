@@ -7,6 +7,8 @@ use App\Models\User;
 use App\Models\Cart;
 use Illuminate\Http\Request;
 use Stripe;
+use PHPUnit\Framework\Exception;
+
 
 class PaymentController extends Controller
 {
@@ -48,13 +50,20 @@ class PaymentController extends Controller
 
     private function createStripeCharge($token, $amount)
     {
-        Stripe\Stripe::setApiKey(env('STRIPE_SECRET'));
-        Stripe\Charge::create ([
-                "amount" => $amount,
-                "currency" => "eur",
-                "source" => $token,
-                "description" => 'Compra en Amasó'
-        ]); 
+        try {
+            Stripe\Stripe::setApiKey(env('STRIPE_SECRET'));
+            Stripe\Charge::create ([
+                    "amount" => $amount,
+                    "currency" => "eur",
+                    "source" => $token,
+                    "description" => 'Compra en Amasó'
+            ]); 
+        }
+        catch (Exception $e) {
+            $e->getMessage(["Oh no, ha habido un error!"]);
+
+            // return view('cart.purchaseOrder', ["message" => "Oh no, ha habido un error!"]);
+        }
     }
 
 }
