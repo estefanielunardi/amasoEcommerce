@@ -8,6 +8,7 @@
             <a class="text-sm pl-2 pt-1 exo" href='/user/edit'>Editar perfil</a>
         </button>
     </div>
+    @if(count($userHistoryProducts) !== 0)
     <div>
         <h1 class="title text-center pb-10 pt-5 lg:pt-20">Productos que has comprado</h1>
     </div>
@@ -18,4 +19,11 @@
             @endforeach
         </div>
     </article>
+    @else
+    <section class="p-12 w-full h-96 content-center flex-wrap flex justify-center">
+        <p class="beigeAmaso text-xl text-center">
+            Aún no has comprado ningún producto.
+        </p>
+    </section>
+    @endif
 </x-app-layout>
