@@ -5,6 +5,8 @@ namespace App\Repositories\Cart;
 use Illuminate\Support\Facades\DB;
 use App\Repositories\Cart\ICartRepository;
 use App\Models\User;
+use App\Models\Product;
+use Carbon\Carbon;
 
 class CartRepository implements ICartRepository
 {
@@ -104,5 +106,28 @@ class CartRepository implements ICartRepository
             ->where('product_id', $product_id)
             ->where('buyed', 0)
             ->delete();
+    }
+
+    public function getPurchasedProducts($id)
+    {
+        $products = DB::table('products')
+            ->join('product_user', 'products.id', '=', 'product_user.product_id')
+            ->where('user_id', '=', $id)
+            ->where('buyed', '=', 1)
+            ->select('products.*', 'product_user.amount')
+            ->get();
+
+        return $products;
+    }
+
+    public function buyProductsInBasket($user_id)
+    {
+        Product::decrementStock($user_id);
+
+        DB::transaction(function () use ($user_id) {
+            DB::table('product_user')
+                ->where('user_id', $user_id)
+                ->update(['buyed' => 1, 'updated_at' => Carbon::now()]);
+            });
     }
 }
