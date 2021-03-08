@@ -53,6 +53,7 @@ class PaymentController extends Controller
                 "amount" => $amount,
                 "currency" => "eur",
                 "source" => $token,
+                "description" => 'Compra en Amasó'
         ]); 
     }
 

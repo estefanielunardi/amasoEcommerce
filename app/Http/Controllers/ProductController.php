@@ -32,34 +32,13 @@ class ProductController extends Controller
         return view('welcome', compact("products"));
     }
 
-    public function getVegetablesProducts()
+    public function getCategory($category)
     {
-        $products = Product::whereIn('category', ['vegetales'])
-            ->with('artisans')->paginate(6);
+        $products = Product::whereIn('category', [$category])
+        ->with('artisans')->paginate(6);
         return view('welcome', compact("products"));
     }
-
-    public function getDrinkProducts()
-    {
-        $products = Product::whereIn('category', ['bebidas'])
-            ->with('artisans')->paginate(6);
-        return view('welcome', compact("products"));
-    }
-
-    public function getBakeryProducts()
-    {
-        $products = Product::whereIn('category', ['pasteleria'])
-            ->with('artisans')->paginate(6);
-        return view('welcome', compact("products"));
-    }
-
-    public function getOthersProducts()
-    {
-        $products = Product::whereIn('category', ['otras'])
-            ->with('artisans')->paginate(6);
-        return view('welcome', compact("products"));
-    }
-
+    
     public function store(Request $request)
     {
 
@@ -176,7 +155,9 @@ class ProductController extends Controller
             $totalRate = array_sum($rattingsSum);
             $midRate = strval($totalRate / count($rattingsSum));
             $midRate = round($midRate, 0, PHP_ROUND_HALF_DOWN);
-            return view('products.productPage', compact('product', 'comments', 'replies', 'midRate', 'votesCount'));
+            $emptyStars =  5 - $midRate;
+        
+            return view('products.productPage', compact('product', 'comments', 'replies', 'midRate','emptyStars', 'votesCount'));
         } else
 
 
