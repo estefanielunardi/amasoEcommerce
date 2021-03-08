@@ -50,5 +50,17 @@ class ArtisanRepository implements IArtisanRepository
             return $newArtisan;
     }
 
+    public function artisanUpdate($request, $artisan)
+    {
+        $artisan->name = $request->name;
+        $artisan->location = $request->location;
+        $artisan->description = $request->description;
+        $artisan->image  = $request->image;
+        $artisan->user_id =auth()->id();
+        $artisan->slug =Str::slug($request->name, '-');
+    
+        $artisan->save();
+    }
+
 
 }

@@ -9,16 +9,19 @@ use Illuminate\Support\Str;
 use App\Models\User;
 use App\Repositories\Artisan\ArtisanRepository;
 use App\Repositories\Product\ProductRepository;
+use App\Repositories\Cart\CartRepository;
 
 class ArtisanController extends Controller
 {
     private ArtisanRepository $artisanRepo;
     private ProductRepository $productRepo;
+    private CartRepository $cartRepo;
 
     public function __construct()
     {
         $this->artisanRepo = new ArtisanRepository;
         $this->productRepo = new ProductRepository;
+        $this->cartRepo = new CartRepository;
     }
 
     public function profile(Artisan $artisan) 
@@ -67,10 +70,8 @@ class ArtisanController extends Controller
     {
         $user_id = auth()->id();
         $user = User::find($user_id); 
-        $id = DB::table('artisans')
-            ->where('user_id','=',$user_id)
-            ->value('id');
-        $artisan = Artisan::find($id);
+        $id = $this->artisanRepo->getArtisanId($user_id);
+        $artisan = $this->artisanRepo->getArtisanById($id);
         $orders = $this->productRepo->getOrders($id);
         $archivedOrders = $this->productRepo->getArchivedOrders($id);
     
@@ -96,24 +97,13 @@ class ArtisanController extends Controller
     public function update(Request $request , Artisan $artisan)
     {
 
-        $artisan->name = $request->name;
-        $artisan->location = $request->location;
-        $artisan->description = $request->description;
-        $artisan->image  = $request->image;
-        $artisan->user_id =auth()->id();
-        $artisan->slug =Str::slug($request->name, '-');
-
-        $artisan->save();
-            
+        $this->artisanRepo->artisanUpdate($request, $artisan);  
         return redirect('/artisan/' . $artisan->slug);
     }
 
     public function archiveOrder($id)
     {
-        DB::table('product_user')
-            ->where('id','=',$id)
-            ->update(['archived'=> 1]);
-
+        $this->cartRepo->archiveOrder($id);
         return back();
     }
 
