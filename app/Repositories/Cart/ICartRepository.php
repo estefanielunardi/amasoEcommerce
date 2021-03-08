@@ -15,4 +15,5 @@ interface ICartRepository
     public function getBestSellersIds();
     public function deleteAllProductsFromCart($user_id);
     public function getProductAmountInBasket($product_id,  $user_id);
+    public function archiveOrder($id);
 }

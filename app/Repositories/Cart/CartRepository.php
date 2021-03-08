@@ -221,4 +221,13 @@ class CartRepository implements ICartRepository
             ->value('amount');
         return $amount;  
     }
+
+    public function archiveOrder($id)
+    {
+        DB::table('product_user')
+            ->where('id','=',$id)
+            ->update(['archived'=> 1]);
+    }
+
+
 }
