@@ -247,7 +247,7 @@
                                         <p class="pl-2 productDescription">Stock: {{$product->stock}}</p>
                                     </div>
                                     @endif
-                                    <x-product.card.buttons.admin-buttons :product="$product"></x-product.card.buttons.admin-buttons>
+                                    <x-product.cart.buttons.admin-buttons :product="$product"></x-product.cartgi.buttons.admin-buttons>
                                     @endif
                                 </div>
                             </section>
