@@ -9,5 +9,5 @@ interface IArtisanRepository
     public function getArtisanById($artisan_id);
     public function getAll();
     public function createNewArtisan($request);
-
+    public function artisanUpdate($request, $artisan);
 }
