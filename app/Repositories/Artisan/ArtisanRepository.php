@@ -7,6 +7,7 @@ use App\Repositories\Artisan\IArtisanRepository;
 use App\Models\User;
 use App\Models\Product;
 use App\Models\Artisan;
+use Illuminate\Support\Str;
 
 class ArtisanRepository implements IArtisanRepository
 {
@@ -31,7 +32,21 @@ class ArtisanRepository implements IArtisanRepository
         $artisans = DB::table('artisans')
                     ->where('aproved','=', 1)
                     ->paginate(6);
-        return view('artisan.artisans', compact('artisans'));
+            return $artisans;
+    }
+
+    public function createNewArtisan($request)
+    {
+        $newArtisan= Artisan::create([
+            'name' => $request->name,
+            'location' =>$request->location,
+            'description' =>$request->description,
+            'image' => $request->image, 
+            'user_id' =>auth()->id(),
+            'slug' => Str::slug($request->name, '-')
+            ]);
+            
+            $newArtisan->save(); 
     }
 
 
