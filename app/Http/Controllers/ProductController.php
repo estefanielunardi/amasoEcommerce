@@ -32,7 +32,7 @@ class ProductController extends Controller
         $ids = $this->cartRepo->getBestSellersIds();
 
         $monthName = Carbon::now()->monthName;
-        
+
         $bestSellers = [];
         if ($ids) {
             foreach ($ids as $id) {
@@ -47,17 +47,17 @@ class ProductController extends Controller
     public function getCategory($category)
     {
         $products = $this->productRepo->getCategory($category);
-        
+
         return view('welcome', compact("products"));
     }
-    
+
     public function store(Request $request)
     {
-        $user_id = auth()->id(); 
+        $user_id = auth()->id();
         $artisan = $this->artisanRepo->getArtisan($user_id);
 
         $product = $this->productRepo->createNewProduct($request, $artisan);
-        
+
         $listAllergens = [];
         $data = $request->all();
 
@@ -78,7 +78,7 @@ class ProductController extends Controller
 
     public function destroy($id)
     {
-        $user_id = auth()->id(); 
+        $user_id = auth()->id();
         $artisan = $this->artisanRepo->getArtisan($user_id);
 
         $this->productRepo->deleteProduct($id);
@@ -94,7 +94,7 @@ class ProductController extends Controller
 
     public function update(Request $request, Product $product)
     {
-        $user_id = auth()->id(); 
+        $user_id = auth()->id();
         $artisan = $this->artisanRepo->getArtisan($user_id);
         $this->productRepo->updateProduct($request, $product);
         $product->allergens()->detach();
@@ -141,11 +141,22 @@ class ProductController extends Controller
             $midRate = strval($totalRate / count($rattingsSum));
             $midRate = round($midRate, 0, PHP_ROUND_HALF_DOWN);
             $emptyStars =  5 - $midRate;
-        
-            return view('products.productPage', compact('product', 'comments', 'replies', 'midRate','emptyStars', 'votesCount'));
+
+            return view('products.productPage', compact('product', 'comments', 'replies', 'midRate', 'emptyStars', 'votesCount'));
         } else
 
 
             return view('products.productPage', compact('product', 'comments', 'replies'));
+    }
+
+    public function search(Request $request)
+    {
+        $name = $request->search;
+        $product =  Product::where('name', [$name])->get();
+        if (count($product) !== 0) {
+            return view('products.searchedProduct', compact('product', 'name'));
+        } else {
+            return back() ->with('message' , 'No se han encontrado resultados a su búsqueda');;
+        }
     }
 }
