@@ -226,17 +226,9 @@
                                         <p class="pt-2 pr-2 inline-block productPrice">{{number_format($product->price / 100,2)}} € </p>
                                         <p class="text-xs">Precio por: {{$product->typequantity}}</p>
                                     </div>
-
+                                    
                                     @if(auth()->id() !== $artisan->user_id)
-                                    <div class="grid justify-items-center absolute right-10 top-6">
-                                        <div class="flex flex-row h-9 w-full justify-center rounded-lg relative bg-transparent mt-1">
-                                            <button class="greenLightBg  rounded-xl">
-                                                <span>
-                                                    <a class="font-thin exo text-white m-auto text-lg p-2" href="{{ route('cartAddProduct' , $product->id) }}">Añadir</a>
-                                                </span>
-                                            </button>
-                                        </div>
-                                    </div>
+                                    <x-product.card.buttons.add-button :product="$product"></x-product.card.buttons.add-button>
                                     @endif
                                     @else
                                     <p class="text-sm beigeAmasoBg p-1 my-2 leading-4">Producto agotado</p>
@@ -247,7 +239,7 @@
                                         <p class="pl-2 productDescription">Stock: {{$product->stock}}</p>
                                     </div>
                                     @endif
-                                    <x-product.cart.buttons.admin-buttons :product="$product"></x-product.cartgi.buttons.admin-buttons>
+                                    <x-product.card.buttons.admin-buttons :product="$product"></x-product.card.buttons.admin-buttons>
                                     @endif
                                 </div>
                             </section>
