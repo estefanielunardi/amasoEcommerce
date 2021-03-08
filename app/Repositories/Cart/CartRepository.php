@@ -122,13 +122,24 @@ class CartRepository implements ICartRepository
 
     public function buyProductsInBasket($user_id)
     {
-        Product::decrementStock($user_id);
+        $this->decrementStock($user_id);
 
         DB::transaction(function () use ($user_id) {
             DB::table('product_user')
                 ->where('user_id', $user_id)
                 ->update(['buyed' => 1, 'updated_at' => Carbon::now()]);
             });
+    }
+
+    private function decrementStock($user_id)
+    {
+        $products = $this->getProductsInBasket($user_id);  
+        foreach($products as $product)
+        {
+            DB::table('products')
+                ->where('id',$product->id)
+                ->decrement('stock', $product->amount);       
+        }
     }
 
     public function getBestSellersIds()
