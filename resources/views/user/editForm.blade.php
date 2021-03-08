@@ -6,11 +6,11 @@
                 @method('PATCH')
                 @csrf
                 <div class="flex flex-col my-4 text-xl greenAmaso">
-                    <label class="font-serif" for="name" :value="__('Name')">{{ __('Name') }}</label>
+                    <label class="font-serif" for="name" :value="__('Name')">{{ __('Editar Nombre') }}</label>
                     <input id="name" class="w-100 border-solid border-2 borderGreen rounded shadow-md h-10" type="text" name="name" value={{$name}} required autofocus />
                 </div>
                 <div class="py-2" x-data="{ show: true }">
-                    <span  class="font-serif text-xl greenAmaso">Password</span>
+                    <span  class="font-serif text-xl greenAmaso">Editar Contraseña</span>
                     <div class="relative">
                         <input id="password"  name="password"minlength="8"placeholder="" :type="show ? 'password' : 'text'" class="text-md block px-3 py-2  w-full 
                             border-solid border-2 borderGreen rounded shadow-md"/>
