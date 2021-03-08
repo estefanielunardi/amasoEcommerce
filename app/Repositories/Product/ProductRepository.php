@@ -91,4 +91,21 @@ class ProductRepository implements IProductRepository
                             ->paginate(10);
         return $archivedOrders;
     }
+
+    public function getArtisanProducts($artisan_id)
+    {
+      $products = DB::table('products')
+        ->where('artisan_id', $artisan_id)
+        ->paginate(3);
+        return $products;
+    }
+
+    public function getArtisanHighlightProducts($artisan_id)
+    {
+        $products = DB::table('products')
+        ->where('artisan_id', $artisan_id)
+        ->where('highlight', '=', 1)
+        ->paginate(6);
+        return $products;
+    }
 }
