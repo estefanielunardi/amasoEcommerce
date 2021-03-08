@@ -80,7 +80,7 @@ class ProductBestSellerTest extends TestCase
         $this->get(route('cartAddProduct', $this->product4->id));
         $this->put('/purchase');
 
-        $response = Cart::getBestSellersIds();
+        $response = $this->cartRepo->getBestSellersIds();
         $this->assertEquals([4, 3, 1], $response); 
     }
 
@@ -95,7 +95,7 @@ class ProductBestSellerTest extends TestCase
         DB::table('product_user')
         ->insert(['product_id'=>2, 'user_id'=>1, 'updated_at'=> '2021-02-26','buyed' => 1]);
 
-        $response = Cart::getBestSellersIds();
+        $response = $this->cartRepo->getBestSellersIds();
         $this->assertEquals([2],$response); 
     }
 }
