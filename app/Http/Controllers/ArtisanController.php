@@ -52,17 +52,7 @@ class ArtisanController extends Controller
         $user->isArtisan = 1;
         $user->save();
 
-        $newArtisan = Artisan::create([
-            'name' => $request->name,
-            'location' =>$request->location,
-            'description' =>$request->description,
-            'image' => $request->image, 
-            'user_id' =>auth()->id(),
-            'slug' => Str::slug($request->name, '-')
-            ]);
-            
-            $newArtisan->save(); 
-
+        $newArtisan = $this->artisanRepo->createNewArtisan($request);
             return redirect('/artisan/' . $newArtisan->slug);
             
     }

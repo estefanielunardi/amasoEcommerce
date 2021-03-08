@@ -47,6 +47,7 @@ class ArtisanRepository implements IArtisanRepository
             ]);
             
             $newArtisan->save(); 
+            return $newArtisan;
     }
 
 
