@@ -227,8 +227,8 @@
                                         <p class="text-xs">Precio por: {{$product->typequantity}}</p>
                                     </div>
                                     
-                                    @if(auth()->id() !== !$artisan->user_id)
-                                    <x-product.cart.buttons.add-button :product="$product"></x-product.cart.buttons.add-button>
+                                    @if(auth()->id() !== $artisan->user_id)
+                                    <x-product.card.buttons.add-button :product="$product"></x-product.card.buttons.add-button>
                                     @endif
                                     @else
                                     <p class="text-sm beigeAmasoBg p-1 my-2 leading-4">Producto agotado</p>
@@ -239,7 +239,7 @@
                                         <p class="pl-2 productDescription">Stock: {{$product->stock}}</p>
                                     </div>
                                     @endif
-                                    <x-product.cart.buttons.admin-buttons :product="$product"></x-product.cart.buttons.admin-buttons>
+                                    <x-product.card.buttons.admin-buttons :product="$product"></x-product.card.buttons.admin-buttons>
                                     @endif
                                 </div>
                             </section>

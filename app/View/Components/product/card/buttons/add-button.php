@@ -1,6 +1,6 @@
 <?php
 
-namespace App\View\Components\product\cart\buttons;
+namespace App\View\Components\product\card\buttons;
 
 use Illuminate\View\Component;
 
@@ -20,6 +20,6 @@ class addButton extends Component
      */
     public function render()
     {
-        return view('components.product.cart.buttons.add-button');
+        return view('components.product.card.buttons.add-button');
     }
 }
