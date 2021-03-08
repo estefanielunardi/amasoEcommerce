@@ -12,6 +12,9 @@ use App\Repositories\Product\ProductRepository;
 
 class ArtisanController extends Controller
 {
+    private ArtisanRepository $artisanRepo;
+    private ProductRepository $productRepo;
+    
     public function __construct()
     {
         $this->artisanRepo = new ArtisanRepository;
