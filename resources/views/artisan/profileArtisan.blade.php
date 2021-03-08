@@ -76,6 +76,7 @@
             </form>
             @endcan
         </div>
+
         <article class="pl-12">
             <h2 class="block title">Productos de {{$artisan->name}}</h2>
         </article>
@@ -196,12 +197,10 @@
         </article>
         @endif
 
-        @forelse($products as $product)
-        @once
-            <article class="max-w-screen-xl pl-4 pt-10 sm:pl-10 xl:pl-20 mx-auto px-4">
+        <article class="max-w-screen-xl pl-4 pt-10 sm:pl-10 xl:pl-20 mx-auto px-4">
             <h1 class="text-center pb-1 pr-16 greenAmaso vollkorn text-2xl">Todos los productos</h1>
             <div class=" ml-6 flex flex-wrap justify-center">
-        @endonce
+                @foreach($products as $product)
                 <div class=" px-1 w-full flex flex-col p-6 sm:w-1/2 lg:w-1/3">
                     <a href="/product/{{$product->id}}">
                         <section class="w-72 h-96 shadow-lg rounded-xl">
@@ -278,9 +277,7 @@
                         </section>
                     </section>
                 </div>
-                @empty
-                    <h1 class="text-center pb-1 pr-16 greenAmaso vollkorn text-2xl">No hay productos para mostrar</h1>
-                @endforelse
+                @endforeach
             </div>
         {!! $products->links() !!}
         </article>
