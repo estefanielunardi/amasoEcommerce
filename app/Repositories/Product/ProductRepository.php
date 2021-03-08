@@ -4,6 +4,7 @@ namespace App\Repositories\Product;
 
 use App\Repositories\Product\IProductRepository;
 use App\Models\Product;
+use Illuminate\Support\Facades\DB;
 
 class ProductRepository implements IProductRepository
 {
@@ -65,5 +66,29 @@ class ProductRepository implements IProductRepository
         $product->highlight = $request->highlight;
 
         $product->save();
+    }
+
+    public function getOrders($id)
+    {
+        $orders = DB::table('products')
+                            ->where('artisan_id','=', $id)
+                            ->join('product_user', 'products.id', '=', 'product_user.product_id') 
+                            ->join('users', 'users.id','=', 'product_user.user_id')  
+                            ->where('archived','=', 0,'and', 'buyed','=', 1)
+                            ->select('product_user.amount', 'users.*','products.*')
+                            ->paginate(10);
+        return $orders;
+    }
+
+    public function getArchivedOrders($id)
+    {
+        $archivedOrders = DB::table('products')
+                            ->where('artisan_id','=', $id)
+                            ->join('product_user', 'products.id', '=', 'product_user.product_id') 
+                            ->join('users', 'users.id','=', 'product_user.user_id')  
+                            ->where('archived','=', 1,'and', 'buyed','=', 1)
+                            ->select('product_user.amount', 'users.*','products.*')
+                            ->paginate(10);
+        return $archivedOrders;
     }
 }

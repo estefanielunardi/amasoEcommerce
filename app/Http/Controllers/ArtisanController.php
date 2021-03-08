@@ -7,9 +7,17 @@ use App\Models\Artisan;
 use Illuminate\Support\Facades\DB; 
 use Illuminate\Support\Str;
 use App\Models\User;
+use App\Repositories\Artisan\ArtisanRepository;
+use App\Repositories\Product\ProductRepository;
 
 class ArtisanController extends Controller
 {
+    public function __construct()
+    {
+        $this->artisanRepo = new ArtisanRepository;
+        $this->productRepo = new ProductRepository;
+    }
+
     public function profile(Artisan $artisan) 
     {   
         $products = DB::table('products')
@@ -23,8 +31,9 @@ class ArtisanController extends Controller
     }
 
     public function seeProfile() 
-    {       
-        $artisan = Artisan::getArtisan();
+    {     
+        $user_id = auth()->id();  
+        $artisan = $this->artisanRepo->getArtisan($user_id);
         if($artisan->aproved)
         {
             $products = DB::table('products')
@@ -81,16 +90,16 @@ class ArtisanController extends Controller
             ->where('user_id','=',$user_id)
             ->value('id');
         $artisan = Artisan::find($id);
-        $orders = $artisan->getOrders($id);
-        $archivedOrders = $artisan->getArchivedOrders($id);
-     
-
+        $orders = $this->productRepo->getOrders($id);
+        $archivedOrders = $this->productRepo->getArchivedOrders($id);
+    
         return view('artisan.artisanOrders', compact('orders','archivedOrders'));
     }
 
     public function destroy()
     {
-        $artisan = Artisan::getArtisan();
+        $user_id = auth()->id();  
+        $artisan = $this->artisanRepo->getArtisan($user_id);
         $artisan->delete();
 
         return redirect('/');
@@ -98,7 +107,8 @@ class ArtisanController extends Controller
 
     public function edit()
     {
-        $artisan = Artisan::getArtisan();       
+        $user_id = auth()->id();  
+        $artisan = $this->artisanRepo->getArtisan($user_id);       
         return view('artisan.editArtisan', compact('artisan'));
     }
 
