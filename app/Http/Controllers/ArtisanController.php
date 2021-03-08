@@ -12,6 +12,9 @@ use App\Repositories\Product\ProductRepository;
 
 class ArtisanController extends Controller
 {
+    private ArtisanRepository $artisanRepo;
+    private ProductRepository $productRepo;
+
     public function __construct()
     {
         $this->artisanRepo = new ArtisanRepository;
@@ -20,13 +23,8 @@ class ArtisanController extends Controller
 
     public function profile(Artisan $artisan) 
     {   
-        $products = DB::table('products')
-        ->where('artisan_id', $artisan->id)
-        ->paginate(3);
-        $highlightProducts = DB::table('products')
-        ->where('artisan_id', $artisan->id)
-        ->where('highlight', '=', 1)
-        ->paginate(6);
+        $products = $this->productRepo->getArtisanProducts($artisan->id);
+        $highlightProducts = $this->productRepo->getArtisanHighlightProducts($artisan->id);
         return view('artisan.profileArtisan', compact('products', 'artisan', 'highlightProducts'));   
     }
 
@@ -36,13 +34,8 @@ class ArtisanController extends Controller
         $artisan = $this->artisanRepo->getArtisan($user_id);
         if($artisan->aproved)
         {
-            $products = DB::table('products')
-            ->where('artisan_id', $artisan->id)
-            ->paginate(3);
-        $highlightProducts = DB::table('products')
-                ->where('artisan_id', $artisan->id)
-                ->where('highlight', '=', 1)
-                ->paginate(6);
+            $products = $this->productRepo->getArtisanProducts($artisan->id);
+            $highlightProducts = $this->productRepo->getArtisanHighlightProducts($artisan->id);
         }
         else
         {
