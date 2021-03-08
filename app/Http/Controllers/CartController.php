@@ -55,5 +55,13 @@ class CartController extends Controller
         return back();
     }
 
+    public function deleteAllProducts() 
+    {
+        $user_id = auth()->id();
+        Cart::deleteAllProductsFromCart($user_id);
+
+        return back();
+    }
+
 
 }
