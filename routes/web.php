@@ -35,6 +35,8 @@ Route::get('/product/edit/{id}', [App\Http\Controllers\ProductController::class,
 
 Route::put('/product/update/{product}', [App\Http\Controllers\ProductController::class, 'update'])->name('updateProduct')->middleware(['artisan']);
 
+Route::post('/product/search/', [App\Http\Controllers\ProductController::class, 'search'])->name('searchProduct');
+
 //PRODUCT CATEGORY ROUTES
 
 Route::get('/categorias/{category}', [App\Http\Controllers\ProductController::class, 'getCategory'])->name('category');
