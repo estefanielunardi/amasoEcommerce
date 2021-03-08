@@ -41,8 +41,8 @@ class DeleteAllProductFromCartTest extends TestCase
 
         $this->delete('/all/cart');
 
-        $this->assertDatabaseCount('product_user', 0);
-        // ->assertDatabaseMissing('product_user', ['product_id' => 1, 'user_id' => 1]);
+        $this->assertDatabaseCount('product_user', 0)
+        ->assertDatabaseMissing('product_user', ['product_id' => 1, 'user_id' => 1, 'product_id' => 2]);
 
     }
 }
