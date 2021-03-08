@@ -11,6 +11,8 @@ interface IProductRepository
     public function deleteProduct($id);
     public function findProduct($id);
     public function updateProduct($request, $product);
+    public function getOrders($id);
+    public function getArchivedOrders($id);
     public function getArtisanProducts($artisan_id);
     public function getArtisanHighlightProducts($artisan_id);
 }

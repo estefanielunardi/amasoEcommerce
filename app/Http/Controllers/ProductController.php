@@ -9,16 +9,21 @@ use App\Models\Comment;
 use App\Models\Ratting;
 use Carbon\Carbon;
 use App\Repositories\Cart\CartRepository;
+use App\Repositories\Artisan\ArtisanRepository;
 use App\Repositories\Product\ProductRepository;
+
 
 class ProductController extends Controller
 {
     private CartRepository $cartRepo;
+    private ArtisanRepository $artisanRepo;
+    private ProductRepository $productRepo;
 
     public function __construct()
     {
         $this->cartRepo = new CartRepository;
         $this->productRepo = new ProductRepository;
+        $this->artisanRepo = new ArtisanRepository;
     }
 
     public function getProducts()
@@ -48,7 +53,8 @@ class ProductController extends Controller
     
     public function store(Request $request)
     {
-        $artisan = Artisan::getArtisan();
+        $user_id = auth()->id(); 
+        $artisan = $this->artisanRepo->getArtisan($user_id);
 
         $product = $this->productRepo->createNewProduct($request, $artisan);
         
@@ -72,7 +78,8 @@ class ProductController extends Controller
 
     public function destroy($id)
     {
-        $artisan = Artisan::getArtisan();
+        $user_id = auth()->id(); 
+        $artisan = $this->artisanRepo->getArtisan($user_id);
 
         $this->productRepo->deleteProduct($id);
 
@@ -87,7 +94,8 @@ class ProductController extends Controller
 
     public function update(Request $request, Product $product)
     {
-        $artisan = Artisan::getArtisan();
+        $user_id = auth()->id(); 
+        $artisan = $this->artisanRepo->getArtisan($user_id);
         $this->productRepo->updateProduct($request, $product);
         $product->allergens()->detach();
         $listAllergens = [];
