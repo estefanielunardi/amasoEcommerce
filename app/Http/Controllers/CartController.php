@@ -1,19 +1,24 @@
 <?php
 
 namespace App\Http\Controllers;
-use App\Models\User;
-use App\Models\Product;
-use App\Models\Cart;
+use App\Repositories\Cart\CartRepository;
 
 
 class CartController extends Controller
 {
+    private CartRepository $cartRepo;
+
+    public function __construct()
+    {
+        $this->cartRepo = new CartRepository;
+    }
+
     public function getProducts()
     {
         $productsCounter = [];
-        $id = auth()->id();
-        $products = Cart::getProductsInBasket($id);
-        $total = Cart::calculateTotal($products);
+        $id = auth()->id();       
+        $products = $this->cartRepo->getProductsInBasket($id);
+        $total = $this->cartRepo->calculateTotal($products);
 
         return view('cart.cart', compact("products", "total"));
     }
@@ -21,7 +26,7 @@ class CartController extends Controller
     public function addProduct($product_id)
     {
         $user_id = auth()->id();
-        Cart::addProductInCart($product_id, $user_id);
+        $this->cartRepo->addProductInCart($product_id, $user_id);
 
         return back();            
     }
@@ -29,7 +34,7 @@ class CartController extends Controller
     public function incrementAmount($product_id)
     {
         $user_id = auth()->id();
-        Cart::incrementProductAmount($product_id, $user_id);
+        $this->cartRepo->incrementProductAmount($product_id, $user_id);
 
         return back();            
     }
@@ -37,7 +42,7 @@ class CartController extends Controller
     public function removeProduct($product_id)
     {
         $user_id = auth()->id();    
-        Cart::removeProductFromCart($product_id,$user_id);
+        $this->cartRepo->removeProductFromCart($product_id,$user_id);
 
         return back();
     }
@@ -45,7 +50,7 @@ class CartController extends Controller
     public function deleteProduct($product_id)
     {
         $user_id = auth()->id();
-        Cart::deleteProductFromCart($product_id, $user_id);
+        $this->cartRepo->deleteProductFromCart($product_id, $user_id);
 
         return back();
     }
