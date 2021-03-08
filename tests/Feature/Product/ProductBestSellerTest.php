@@ -10,7 +10,7 @@ use App\Models\Product;
 use App\Models\User;
 use App\Models\Artisan;
 use Illuminate\Support\Carbon;
-
+use App\Repositories\Cart\CartRepository;
 class ProductBestSellerTest extends TestCase
 {
     use RefreshDatabase;
@@ -25,10 +25,11 @@ class ProductBestSellerTest extends TestCase
         $this->product2 = Product::factory()->create(['image' => null, 'id' => 2, 'name' => 'pan', 'stock' => 4]);
         $this->product3 = Product::factory()->create(['image' => null, 'id' => 3, 'name' => 'pan', 'stock' => 4]);
         $this->product4 = Product::factory()->create(['image' => null, 'id' => 4, 'name' => 'pan', 'stock' => 4]);
+        $this->cartRepo = new CartRepository;
     }
     public function testDoesNotReturnBestSellerIdIfNotSoldProduct()
     {               
-        $response = Cart::getBestSellersIds();
+        $response = $this->cartRepo->getBestSellersIds();
         $this->assertEmpty($response);        
     }
 
@@ -38,7 +39,7 @@ class ProductBestSellerTest extends TestCase
         $this->get(route('cartAddProduct', $this->product1->id));
         $this->put('/purchase');
 
-        $response = Cart::getBestSellersIds();
+        $response = $this->cartRepo->getBestSellersIds();
         $this->assertEquals([1], $response); 
     }
 
@@ -50,7 +51,7 @@ class ProductBestSellerTest extends TestCase
         $this->get(route('cartAddProduct', $this->product3->id));
         $this->put('/purchase');
 
-        $response = Cart::getBestSellersIds();
+        $response = $this->cartRepo->getBestSellersIds();
         $this->assertEquals([1, 2, 3], $response); 
     }
 
@@ -63,7 +64,7 @@ class ProductBestSellerTest extends TestCase
         $this->get(route('cartAddProduct', $this->product4->id));
         $this->put('/purchase');
 
-        $response = Cart::getBestSellersIds();
+        $response = $this->cartRepo->getBestSellersIds();
         $this->assertEquals([1, 2, 3], $response); 
     }
 
