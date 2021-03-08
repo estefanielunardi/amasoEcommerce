@@ -144,6 +144,9 @@ body {
 
 }
 
+.delete-icon {
+   fill: #81A78C;
+}
 
 .heroTitle {
   font-family: Vollkorn;

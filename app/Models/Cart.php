@@ -81,6 +81,14 @@ class Cart extends Model
             ->decrement('amount', 1);
     }
 
+    public static function deleteAllProductsFromCart($user_id) 
+    {
+        DB::table('product_user')
+            ->where('user_id', $user_id)
+            ->where('buyed', 0)
+            ->delete();
+    }
+
     public static function getProductAmount($product_id, $user_id)
     {
         $amount = DB::table('product_user')
