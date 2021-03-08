@@ -58,10 +58,9 @@ class CartController extends Controller
     public function deleteAllProducts() 
     {
         $user_id = auth()->id();
-        Cart::deleteAllProductsFromCart($user_id);
+        $this->cartRepo->deleteAllProductsFromCart($user_id);
 
         return back();
     }
-
 
 }

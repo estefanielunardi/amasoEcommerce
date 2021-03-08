@@ -192,4 +192,12 @@ class CartRepository implements ICartRepository
         }
         return $ids;
     }
+
+    public function deleteAllProductsFromCart($user_id) 
+    {
+        DB::table('product_user')
+            ->where('user_id', $user_id)
+            ->where('buyed', 0)
+            ->delete();
+    }
 }

@@ -13,4 +13,5 @@ interface ICartRepository
     public function getPurchasedProducts($id);
     public function buyProductsInBasket($user_id);
     public function getBestSellersIds();
+    public function deleteAllProductsFromCart($user_id);
 }
