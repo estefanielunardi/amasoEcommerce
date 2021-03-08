@@ -152,7 +152,7 @@ class ProductController extends Controller
     public function search(Request $request)
     {
         $name = $request->search;
-        $product =  Product::where('name', [$name])->get();
+        $product =   $this->productRepo->findProductByName($name);
         if (count($product) !== 0) {
             return view('products.searchedProduct', compact('product', 'name'));
         } else {

@@ -108,4 +108,8 @@ class ProductRepository implements IProductRepository
         ->paginate(6);
         return $products;
     }
+    public function findProductByName($name)
+    {
+       return Product::where('name', [$name])->get();
+    }
 }

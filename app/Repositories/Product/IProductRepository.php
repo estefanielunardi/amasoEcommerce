@@ -15,4 +15,5 @@ interface IProductRepository
     public function getArchivedOrders($id);
     public function getArtisanProducts($artisan_id);
     public function getArtisanHighlightProducts($artisan_id);
+    public function findProductByName($name);
 }
