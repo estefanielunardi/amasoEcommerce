@@ -130,4 +130,66 @@ class CartRepository implements ICartRepository
                 ->update(['buyed' => 1, 'updated_at' => Carbon::now()]);
             });
     }
+
+    public function getBestSellersIds()
+    {
+        $startMonth = Carbon::now()->startOfMonth();
+        $now = Carbon::now(); 
+        $buyed = DB::table('product_user')
+        ->where(['buyed' => 1])
+        ->whereBetween('updated_at',[$startMonth, $now])       
+        ->get(['amount', 'product_id']);
+        
+        if (count($buyed) > 0)
+        {
+            $ids = $this->findBestSeller($buyed);
+            return $ids;
+        };
+    }
+
+    private function findBestSeller($buyed)
+    {
+        $resultDict = [];
+        foreach ($buyed as $item) {
+            $amount = 0;
+            $equals = $this->findEqual($buyed, $item->product_id);
+            foreach ($equals as $item) {
+                $amount += $item->amount;
+            }
+            $resultDict[$item->product_id] = ['amount' => $amount, 'id' => $item->product_id];
+        }
+        $ids = $this->sortSoldAmount($resultDict);
+        return $ids;
+    }
+
+    private function findEqual($products, $id)
+    {
+        $equals = [];
+        foreach ($products as $product) {
+            if ($product->product_id == $id) {
+                array_push($equals, $product);
+            }
+        }
+        return $equals;
+    }
+
+    private function sortSoldAmount($resultDict)
+    {
+        $result = [];
+        foreach ($resultDict as $item) {
+            array_push($result, $item);
+        }
+        usort($result, function ($a, $b) {
+            return $b['amount'] - $a['amount'];
+        });
+        $ids = [];
+
+        $i = 0;
+        while($i < count($result) && $i < 3)
+        {
+            array_push($ids, $result[$i]['id']);
+            $i++;
+        }
+        return $ids;
+    }
 }

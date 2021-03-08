@@ -4,19 +4,26 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use App\Models\Product;
-use App\Models\Cart;
 use App\Models\Artisan;
 use App\Models\Comment;
 use App\Models\Ratting;
 use Carbon\Carbon;
+use App\Repositories\Cart\CartRepository;
 
 class ProductController extends Controller
 {
+    private CartRepository $cartRepo;
+
+    public function __construct()
+    {
+        $this->cartRepo = new CartRepository;
+    }
+
     public function getProducts()
     {
         $products = Product::whereIn('category', ['vegetales', 'bebidas', 'pasteleria', 'otras'])
             ->with('artisans')->paginate(6);
-        $ids = Cart::getBestSellersIds();
+        $ids = $this->cartRepo->getBestSellersIds();
 
         $monthName = Carbon::now()->monthName;
         
