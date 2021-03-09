@@ -49,7 +49,6 @@ Integrantes:
 -   Carmen Pérez.
 -   Laura Bassani.
 -   Estefanie Garcia L.
--   Alejandra Stasi.
 -   Joaquim Francès.
 
 Aplicación creada con la idea de poder ofrecer una via digital a los pequeños productores locales que quieren vender sus productos a clientes cercanos.
