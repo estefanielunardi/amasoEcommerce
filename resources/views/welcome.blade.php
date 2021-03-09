@@ -39,8 +39,8 @@
 
     <script src="https://cdn.jsdelivr.net/gh/alpinejs/alpine@v2.x.x/dist/alpine.min.js" defer></script>
 
-    <div class="flex justify-evenly">
-        <div class="flex items-center">
+    <div class="flex flex-wrap-reverse justify-evenly">
+        <div class="flex items-center py-2">
             <div x-data="{ dropdownOpen: false }" class="relative">
                 <button @click="dropdownOpen = !dropdownOpen" class=" flex flex-row py-2 px-4 tracking-wide greenLightBg text-white font-medium focus:outline-none rounded-xl">
                     <p class="pr-2">Categorias</p>
@@ -58,11 +58,11 @@
                 </div>
             </div>
         </div>
-        <section>
+        <div class="flex items-center p-2">
             <div class="pt-2 relative mx-auto greenAmaso">
                 <form method="POST" action="{{ route('searchProduct') }}" role="search">
-                @method('POST')
-                @csrf
+                    @method('POST')
+                    @csrf
                     <input class="border-2 borderGreen bg-white h-10 px-5 pr-16 rounded-lg text-lg focus:outline-none" type="text" name="search" placeholder="Buscador">
                     <button type="submit" class="absolute right-0 top-0 mt-5 mr-4">
                         <svg class="text-green-600 h-4 w-4 fill-current" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" version="1.1" id="Capa_1" x="0px" y="0px" viewBox="0 0 56.966 56.966" style="enable-background:new 0 0 56.966 56.966;" xml:space="preserve" width="512px" height="512px">
@@ -71,7 +71,7 @@
                     </button>
                 </form>
             </div>
-        </section>
+        </div>
     </div>
 
     <br>
