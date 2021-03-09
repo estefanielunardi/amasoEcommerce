@@ -152,11 +152,11 @@ class ProductController extends Controller
     public function search(Request $request)
     {
         $name = $request->search;
-        $product =   $this->productRepo->findProductByName($name);
-        if (count($product) !== 0) {
-            return view('products.searchedProduct', compact('product', 'name'));
+        $products =   $this->productRepo->findProductByName($name);
+        if (count($products) !== 0) {
+            return view('products.searchedProduct', compact('products', 'name'));
         } else {
-            return back() ->with('message' , 'No se han encontrado resultados a su búsqueda');;
+            return back() ->with('message' , 'No se han encontrado resultados a su búsqueda');
         }
     }
 }
