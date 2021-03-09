@@ -1,6 +1,18 @@
 @foreach ($comments as $comment)
 <div class="py-5">
     <p class="font-bold">{{ $comment->user->name }}</p>
+    @foreach ($comment->user->rattings as $rating)
+        @if($rating->product_id === $product->id)
+        <div class="flex flex-row items-baseline mt-2">
+            @for ($i = 1; $i <= $rating->ratting; $i++)
+            <img src="{{URL::to('/image/star-solid.svg')}}" alt="star-solid" width="12" class="mr-2">
+            @endfor
+            @for ($i = 1; $i <= (5 -$rating->ratting); $i++)
+                <img src="{{URL::to('/image/star-regular.svg')}}" alt="star-empty" width="12" class="mr-2">
+            @endfor
+        </div>
+        @endif
+    @endforeach
     <p class="py-2">{{ $comment->body }}</p>
     <div class="flex flex row">
         <p class="text-xs greenAmaso">{{ $comment->created_at }}</p>
@@ -14,6 +26,18 @@
 @if($reply->parent_id === $comment->id)
 <div class="displayNone replies{{$comment->id}} py-5 pl-20">
     <p class="font-bold">{{ $reply->user->name }}</p>
+    @foreach ($reply->user->rattings as $rating)
+        @if($rating->product_id === $product->id)
+        <div class="flex flex-row items-baseline mt-2">
+            @for ($i = 1; $i <= $rating->ratting; $i++)
+            <img src="{{URL::to('/image/star-solid.svg')}}" alt="star-solid" width="12" class="mr-2">
+            @endfor
+            @for ($i = 1; $i <= (5 -$rating->ratting); $i++)
+                <img src="{{URL::to('/image/star-regular.svg')}}" alt="star-empty" width="12" class="mr-2">
+            @endfor
+        </div>
+        @endif
+    @endforeach
     <p class="py-2">{{ $reply->body }}</p>
     <div class="flex flex row">
         <p class="text-xs greenAmaso">{{ $reply->created_at }}</p>

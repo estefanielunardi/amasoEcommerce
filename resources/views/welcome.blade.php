@@ -39,9 +39,9 @@
 
     <script src="https://cdn.jsdelivr.net/gh/alpinejs/alpine@v2.x.x/dist/alpine.min.js" defer></script>
 
-    <div class="flex flex-wrap-reverse justify-evenly">
-        <x-welcome.categories />
+    <div class="flex flex-col justify-center">
         <x-welcome.searcher />
+        <x-welcome.categories />
     </div>
     <br>
     <article class="max-w-screen-xl pl-4 sm:pl-10 xl:pl-20 mx-auto px-4">
