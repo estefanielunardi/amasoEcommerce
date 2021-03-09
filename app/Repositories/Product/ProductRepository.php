@@ -5,10 +5,12 @@ namespace App\Repositories\Product;
 use App\Repositories\Product\IProductRepository;
 use App\Models\Product;
 use Illuminate\Support\Facades\DB;
+use Illuminate\Http\Request;
+use App\Models\Artisan;
 
 class ProductRepository implements IProductRepository
 {
-    public function getCategory($category)
+    public function getCategory(string $category)
     {
        return Product::whereIn('category', [$category])
             ->with('artisans')->paginate(6);
@@ -26,7 +28,7 @@ class ProductRepository implements IProductRepository
                     ->with('artisans')->first();
     }
 
-    public function createNewProduct($request, $artisan)
+    public function createNewProduct(Request $request, Artisan  $artisan)
     {
         $product = Product::create([
             'name' => $request->name,
@@ -53,7 +55,7 @@ class ProductRepository implements IProductRepository
        return Product::find($id);
     }
 
-    public function updateProduct($request, $product)
+    public function updateProduct(Request $request, Product $product)
     {
         $product->image = $request->image;
         $product->name = $request->name;
