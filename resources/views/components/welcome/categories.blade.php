@@ -1,4 +1,4 @@
-<div class="flex items-center py-2">
+<div class="flex justify-center py-2">
     <div x-data="{ dropdownOpen: false }" class="relative">
         <button @click="dropdownOpen = !dropdownOpen" class=" flex flex-row py-2 px-4 tracking-wide greenLightBg text-white font-medium focus:outline-none rounded-xl">
             <p class="pr-2">Categorias</p>
