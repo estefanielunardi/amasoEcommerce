@@ -3,11 +3,12 @@
     @php
         echo "<p class='hidden' id='midRate'>" . $midRate . "</p>"
     @endphp
-    
+    @auth
+    @if(auth()->id() != $product->artisans->user_id)
     <form action="{{ route('productRatting', $product->id) }}" method="POST" id="starForm">
         @method('POST')    
         @csrf
-        <div class="rate">
+        <div class="rate mt-4">
             <input type="radio" id="star5" name="ratting" value="5" class="vote"  onclick="castVote(this);"/>
             <label for="star5" title="text">5 stars</label>
             <input type="radio" id="star4" name="ratting" value="4" class="vote"  onclick="castVote(this);"/>
@@ -20,9 +21,24 @@
             <label for="star1" title="text">1 star</label>
         </div>
     </form>
-   
+    @endif
+    @endauth
+    @guest
+        @if ($votesCount != 0)
+        <div class="flex flex-row items-baseline mt-4">
+            @for ($i = 1; $i <= $midRate; $i++)
+            <img src="{{URL::to('/image/star-solid.svg')}}" alt="star-solid" width="25" class="mr-3">
+            @endfor
+            @for ($i = 1; $i <= (5 -$midRate); $i++)
+                <img src="{{URL::to('/image/star-regular.svg')}}" alt="star-empty" width="25" class="mr-3">
+            @endfor
+        </div>
+        @endif
+    @endguest
 </div>
-<div class="flex flex-row">
+
+
+<div class="flex flex-row mt-2">
     @if ($votesCount == 0)
             <p class="greenAmaso text-md"> Aún no hay valoraciones.</p>
     @elseif($votesCount == 1)
@@ -43,92 +59,62 @@
 
     const starForm = document.getElementById('starForm');
     function castVote(input){
-        console.log('We are here!');
         starForm.submit(input.value);
+    }
+
+    function noChange(check){
+        const checkId = check.id;
+        const selectedCheck = document.getElementById(checkId);
+        if(selectedCheck.checked){
+            selectedCheck.checked = true;
+        }else{
+            selectedCheck.checked = false;
+        }
     }
 </script>
 
 
-{{-- document.getElementById("checkbox").checked = true; --}}
+<style>
+    *{
+    margin: 0;
+    padding: 0;
+}
+.rate {
+    float: left;
+    height: 46px;  
+}
+.rate:not(:checked) > input {
+    position:absolute;
+    top:-9999px;
+}
+.rate:not(:checked) > label {
+    float:right;
+    width:1em;
+    overflow:hidden;
+    white-space:nowrap;
+    cursor:pointer;
+    font-size:30px;
+    color:#ccc;
+    margin-right: 8px;
+}
+.rate:not(:checked) > label:before {
+    content: '★ ';
+}
+.rate > input:checked ~ label {
+    color:#DAB162;    
+}
+.rate:not(:checked) > label:hover,
+.rate:not(:checked) > label:hover ~ label {
+    color: #deb217;  
+}
+.rate > input:checked + label:hover,
+.rate > input:checked + label:hover ~ label,
+.rate > input:checked ~ label:hover,
+.rate > input:checked ~ label:hover ~ label,
+.rate > label:hover ~ input:checked ~ label {
+    color: #c59b08;
+}
+
+</style>
 
 
-{{-- {{URL::to('/image/star-solid.svg')}} --}}
-
-{{-- <div>
-    <h2 class="block text-md greenAmaso mt-1 mb-2">Valoración de los usuarios:</h2>
-    @if (isset($midRate))
-    <div class="flex flex-row justify-start items-baseline mb-2">
-        <div class="flex flex-row items-baseline">
-        @for ($i = 1; $i <= $midRate; $i++)
-        <img src="{{URL::to('/image/star-solid.svg')}}" alt="star-solid" width="25" class="mr-4">
-        @endfor
-        @for ($i = 1; $i <= $emptyStars; $i++)
-            <img src="{{URL::to('/image/star-regular.svg')}}" alt="star-empty" width="25" class="mr-4">
-        @endfor
-    </div>
-    </div>
-    <p class="italics eko text-sm greenAmaso mb-4">( {{$votesCount}} valoraciones )</p>
-    @else
-    <p id="productRatting" class="mt-2 mb-8 ">Aún no hay valoraciones.</p>   
-    @endif
-    @auth
-        @if(auth()->id() != $product->artisans->user_id)
-            <div>  
-                <form action="{{ route('productRatting', $product->id) }}" method="POST"> 
-                    @method('POST')    
-                    @csrf
-                        <select name="ratting" id="ratting">
-                            <option value="1">1</option>
-                            <option value="2">2</option>
-                            <option value="3">3</option>
-                            <option value="4">4</option>
-                            <option value="5">5</option>
-                        </select>
-                    <button type="submit" value="submit" class="greenLightBg  rounded-xl p-1 text-white">Valorar</button>
-                </form>
-            </div>
-        @endif
-    @endauth --}}
-
-    <style>
-        *{
-        margin: 0;
-        padding: 0;
-    }
-    .rate {
-        float: left;
-        height: 46px;  
-    }
-    .rate:not(:checked) > input {
-        position:absolute;
-        top:-9999px;
-    }
-    .rate:not(:checked) > label {
-        float:right;
-        width:1em;
-        overflow:hidden;
-        white-space:nowrap;
-        cursor:pointer;
-        font-size:30px;
-        color:#ccc;
-        margin-right: 8px;
-    }
-    .rate:not(:checked) > label:before {
-        content: '★ ';
-    }
-    .rate > input:checked ~ label {
-        color: #ffc700;    
-    }
-    .rate:not(:checked) > label:hover,
-    .rate:not(:checked) > label:hover ~ label {
-        color: #deb217;  
-    }
-    .rate > input:checked + label:hover,
-    .rate > input:checked + label:hover ~ label,
-    .rate > input:checked ~ label:hover,
-    .rate > input:checked ~ label:hover ~ label,
-    .rate > label:hover ~ input:checked ~ label {
-        color: #c59b08;
-    }
-    
-    </style>
