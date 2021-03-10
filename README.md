@@ -37,10 +37,13 @@
 -   Scrum
 -   Pair programming
 -   Git Flow
+-   CI/CD
 
 ### Kanban link
 
 ### Heroku link
+
+http://amaso.herokuapp.com/
 
 ### Proyecto creado en equipo durante el Bootcamp Factoria F5.
 
@@ -61,7 +64,7 @@ Aplicación creada con la idea de poder ofrecer una via digital a los pequeños 
 
 -   En la aplicación los usuarios pueden ver tanto los artesanos locales como sus productos.
 -   Pueden comprar productos.
--   Reciven un email de confirmación de compra.
+-   Pueden acceder a su perfil con el historial de sus compras.
 
 ### Artesanos
 
@@ -72,23 +75,26 @@ Aplicación creada con la idea de poder ofrecer una via digital a los pequeños 
 
 ### Adminstradores
 
--   Los administradores disponen de un panel de control donde podrán visualizar a los artesanos que se hayan inscrito en la aplicación.
--   Los administradores deberan aprovar a los artesanos inscritos antes de que estos puedan vender sus productos.
--   Se envía un email a los artesanos con la actualización del estatus de su perfil (aprobado\desaprobado)
+-   Los administradores disponen de un panel de control donde podrán visualizar a los artesanos que se  hayan inscrito en la aplicación.
+-   Los administradores pueden eliminar los perfiles de los artesanos.
 
 ## Aprendizajes
 
 -   Plantear un proyecto desde scratch.
 -   Implementar cambios incrementales.
 -   Fundamentos del trabajo por componentes.
+-   Trabajar con CI.
+-   Implementar GitHub Actions.
+-   Patrón Repositorio.
+-   Creación de vistas por componentes.
 
 ## Siguientes pasos
 
--   Incluir una API para la pasarela de pago.
--   Implementar patrón repositorio.
+X   Incluir una API para la pasarela de pago.
+X   Implementar patrón repositorio.
 -   Vincular a cada usuario un carrito que se destruye luego de la compra.
--   Implementar transacciones para las bases de datos.
+X   Implementar transacciones para las bases de datos.
 -   Utilizar sesiones que reserven los productos durante un tiempo determinado en cada carrito.
 -   Utilizar Docker.
--   Crear las vistas por componentes.
--   Crear perfil del usuario con su historial de compra.
+X   Crear las vistas por componentes.
+X   Crear perfil del usuario con su historial de compra.
