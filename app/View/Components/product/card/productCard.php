@@ -7,12 +7,14 @@ use Illuminate\View\Component;
 class productCard extends Component
 {
     public $product; 
-    public $artisan;  
+    public $artisan; 
+    public $highlightProducts; 
 
-    public function __construct($product, $artisan)
+    public function __construct($product, $artisan, $highlightProducts)
     {
         $this->product = $product;
         $this->artisan = $artisan;
+        $this->highlightProducts = $highlightProducts;
     }
 
     /**
