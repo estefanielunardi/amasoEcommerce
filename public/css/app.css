@@ -141,7 +141,9 @@ body {
 
 .shadowHighlighted {
   box-shadow: 5px 5px 10px #DAB162;
-
+}
+.shadowBestSeller {
+  box-shadow: 5px 5px 10px #81A78C;
 }
 
 .delete-icon {

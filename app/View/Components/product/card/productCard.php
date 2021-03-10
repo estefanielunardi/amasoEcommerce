@@ -9,12 +9,14 @@ class productCard extends Component
     public $product; 
     public $artisan; 
     public $highlightProducts; 
+    public $bestSellers; 
 
-    public function __construct($product, $artisan, $highlightProducts)
+    public function __construct($product, $artisan, $highlightProducts, $bestSellers)
     {
         $this->product = $product;
         $this->artisan = $artisan;
         $this->highlightProducts = $highlightProducts;
+        $this->bestSellers = $bestSellers;
     }
 
     /**

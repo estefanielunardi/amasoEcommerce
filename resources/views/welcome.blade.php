@@ -24,13 +24,12 @@
     @if (isset($bestSellers))
     <div>
         <h1 class="title text-center pb-10 pt-5 lg:pt-20">Productos más vendidos de {{$monthName}}</h1>
-        <article class="max-w-screen-xl pl-4 sm:pl-10 xl:pl-20 mx-auto px-4">
-            <div class=" ml-6 flex flex-wrap justify-center">
-                @foreach($bestSellers as $bestSeller)
-                <x-product-card :product="$bestSeller" />
-                @endforeach
-            </div>
-        </article>
+
+        <div class="w-full flex flex-wrap justify-center content-start p-6 xl:px-32 2xl:px-56">
+            @foreach($bestSellers as $product)
+            <x-product.card.product-card :product="$product" :artisan=null :highlightProducts=null :bestSellers="$bestSellers"/>
+            @endforeach
+        </div>
     </div>
     @endif
 
@@ -47,7 +46,7 @@
 
     <div class="w-full flex flex-wrap justify-center content-start p-6 xl:px-32 2xl:px-56">
         @foreach($products as $product)
-        <x-product.card.product-card :product="$product" :artisan=null :highlightProducts=null/>
+        <x-product.card.product-card :product="$product" :artisan=null :highlightProducts=null :bestSellers=null/>
         @endforeach
     </div>
     <div class="px-6 pb-20 xl:px-32 2xl:px-56">
@@ -56,15 +55,14 @@
 
     <link rel="stylesheet" type="text/css" href="https://cdn.jsdelivr.net/npm/botman-web-widget@0/build/assets/css/chat.min.css">
     <script>
-	    var botmanWidget = {
-            title:'Amasó Bot',
-	        aboutText: 'amasoBot',
-	        introMessage: "✋ Hola! en que puedo ayudarte?",
-            bubbleBackground:'#336147',
-            headerTextColor:  '#ffff',
-            mainColor:'#336147',
-	    };
-        
+        var botmanWidget = {
+            title: 'Amasó Bot',
+            aboutText: 'amasoBot',
+            introMessage: "✋ Hola! en que puedo ayudarte?",
+            bubbleBackground: '#336147',
+            headerTextColor: '#ffff',
+            mainColor: '#336147',
+        };
     </script>
     <script src='https://cdn.jsdelivr.net/npm/botman-web-widget@0/build/js/widget.js'></script>
 

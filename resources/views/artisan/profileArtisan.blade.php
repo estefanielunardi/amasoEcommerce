@@ -115,13 +115,12 @@
             </div>
         </article>
 
-        @foreach($highlightProducts as $product)
         <div class="w-full flex flex-wrap justify-center content-start p-6 xl:px-32 2xl:px-56">
-            @foreach($products as $product)
-            <x-product.card.product-card :product="$product" :artisan="$artisan" :highlightProducts="$highlightProducts"/>
+            @foreach($highlightProducts as $product)
+            <x-product.card.product-card :product="$product" :artisan="$artisan" :highlightProducts="$highlightProducts" :bestSellers=null />
             @endforeach
         </div>
-        @endforeach
+
         @endif
 
         <article class="max-w-screen-xl pl-4 pt-10 sm:pl-10 xl:pl-20 mx-auto px-4">
@@ -138,7 +137,7 @@
 
         <div class="w-full flex flex-wrap justify-center content-start p-6 xl:px-32 2xl:px-56">
             @foreach($products as $product)
-            <x-product.card.product-card :product="$product" :artisan="$artisan" :highlightProducts=null/>
+            <x-product.card.product-card :product="$product" :artisan="$artisan" :highlightProducts=null :bestSellers=null />
             @endforeach
         </div>
         <div class="px-6 pb-20 xl:px-32 2xl:px-56">

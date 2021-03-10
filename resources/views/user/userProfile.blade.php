@@ -15,7 +15,7 @@
 
     <div class="w-full flex flex-wrap justify-center content-start p-6 xl:px-32 2xl:px-56">
         @foreach($userHistoryProducts as $product)
-        <x-product.card.product-card :product="$product" :artisan=null :highlightProducts=null />
+        <x-product.card.product-card :product="$product" :artisan=null :highlightProducts=null :bestSellers=null/>
         @endforeach
     </div>
 
