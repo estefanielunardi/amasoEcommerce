@@ -13,11 +13,11 @@ class CartRepository implements ICartRepository
     public function getProductsInBasket($id)
     {
         $products = DB::table('products')
-        ->join('product_user', 'products.id', '=', 'product_user.product_id')
-        ->where('user_id', '=', $id)
-        ->where('buyed', '=', 0)
-        ->select('products.*', 'product_user.amount')
-        ->get();
+            ->join('product_user', 'products.id', '=', 'product_user.product_id')
+            ->where('user_id', '=', $id)
+            ->where('buyed', '=', 0)
+            ->select('products.*', 'product_user.amount')
+            ->get();
 
         return $products;
     }
@@ -52,15 +52,12 @@ class CartRepository implements ICartRepository
     public function addProductInCart($product_id, $user_id)
     {
         $activeProduct = $this->findActiveProduct($product_id, $user_id);
-        
-        if (count($activeProduct) == 0) 
-        {
+
+        if (count($activeProduct) == 0) {
             $user = User::find($user_id);
             $user->products()->attach($product_id);
             $this->incrementProductAmount($product_id, $user_id);
-        } 
-        else
-        {
+        } else {
             $this->incrementProductAmount($product_id, $user_id);
         }
     }
@@ -128,31 +125,29 @@ class CartRepository implements ICartRepository
             DB::table('product_user')
                 ->where('user_id', $user_id)
                 ->update(['buyed' => 1, 'updated_at' => Carbon::now()]);
-            });
+        });
     }
 
     private function decrementStock($user_id)
     {
-        $products = $this->getProductsInBasket($user_id);  
-        foreach($products as $product)
-        {
+        $products = $this->getProductsInBasket($user_id);
+        foreach ($products as $product) {
             DB::table('products')
-                ->where('id',$product->id)
-                ->decrement('stock', $product->amount);       
+                ->where('id', $product->id)
+                ->decrement('stock', $product->amount);
         }
     }
 
     public function getBestSellersIds()
     {
         $startMonth = Carbon::now()->startOfMonth();
-        $now = Carbon::now(); 
+        $now = Carbon::now();
         $buyed = DB::table('product_user')
-        ->where(['buyed' => 1])
-        ->whereBetween('updated_at',[$startMonth, $now])       
-        ->get(['amount', 'product_id']);
-        
-        if (count($buyed) > 0)
-        {
+            ->where(['buyed' => 1])
+            ->whereBetween('updated_at', [$startMonth, $now])
+            ->get(['amount', 'product_id']);
+
+        if (count($buyed) > 0) {
             $ids = $this->findBestSeller($buyed);
             return $ids;
         };
@@ -196,15 +191,14 @@ class CartRepository implements ICartRepository
         $ids = [];
 
         $i = 0;
-        while($i < count($result) && $i < 3)
-        {
+        while ($i < count($result) && $i < 3) {
             array_push($ids, $result[$i]['id']);
             $i++;
         }
         return $ids;
     }
 
-    public function deleteAllProductsFromCart($user_id) 
+    public function deleteAllProductsFromCart($user_id)
     {
         DB::table('product_user')
             ->where('user_id', $user_id)
@@ -213,21 +207,28 @@ class CartRepository implements ICartRepository
     }
 
     public function getProductAmountInBasket($product_id,  $user_id)
-    {      
+    {
         $amount = DB::table('product_user')
             ->where('user_id', $user_id)
             ->where('product_id', $product_id)
-            ->where('buyed','=',0)
+            ->where('buyed', '=', 0)
             ->value('amount');
-        return $amount;  
+        return $amount;
     }
 
     public function archiveOrder($id)
     {
         DB::table('product_user')
-            ->where('id','=',$id)
-            ->update(['archived'=> 1]);
+            ->where('id', '=', $id)
+            ->update(['archived' => 1]);
     }
 
-
+    public function getProductsIdsWhereUserId($id)
+    {
+      return  DB::table('product_user')
+            ->where('user_id', '=', $id)
+            ->where('buyed', true)
+            ->orderByDesc('updated_at')
+            ->get('product_id');
+    }
 }
