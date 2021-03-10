@@ -4,45 +4,44 @@ namespace App\Http\Controllers;
 
 use Illuminate\Support\Facades\Artisan;
 use Illuminate\Support\Facades\DB;
+use App\Repositories\Artisan\ArtisanRepository;
+use App\Repositories\Product\ProductRepository;
 
 
 class AdminController extends Controller
 {
-    public function adminDash(){
+    private ArtisanRepository $artisanRepo;
+    private ProductRepository $productRepo;
 
-        $artisanList = DB::table('artisans')->get();
+    public function __construct()
+    {
+        $this->artisanRepo = new ArtisanRepository;
+        $this->productRepo = new ProductRepository;
+    }
+    public function adminDash()
+    {
+        $artisanList =$this->artisanRepo->getAll();
+
         return view('admin.adminDashboard', ['artisanList' => $artisanList]);
     }
 
-    public function seeArtisanProfile(Artisan $artisan){
+    public function seeArtisanProfile(Artisan $artisan)
+    {
+        $products = $this->productRepo->getArtisanProducts($artisan->id);
 
-        $products = DB::table('products')
-        ->where('artisan_id', $artisan->id)
-        ->paginate(3);
         return view('profileArtisan', compact('products', 'artisan'));
     }
         
 
-    public function deleteArtisan($id){
+    public function deleteArtisan($id)
+    {
         
-        $user_id = DB::table('artisans')->where('id', $id)->value('user_id');
-        DB::table('users')->where('id', $user_id)->update(['isArtisan'=> 0]);
-        DB::table('artisans')->where('id', $id)->delete();
+        $user_id = $this->artisanRepo->getUserIdFromArtisan($id);
+        $this->artisanRepo->setUserArtisanToFalse($user_id);
+        $this->artisanRepo->deleteArtisan($id);
         
         return redirect(route('adminDash'));
     }    
-
-    public function aproveArtisan($id){
-        
-        DB::table('artisans')->where('id', $id)->update(['aproved'=> 1]);
-        
-        return redirect(route('adminDash'));
-    }
-        
-        
-        
-        
-        
 
 }
 
