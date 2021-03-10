@@ -140,13 +140,12 @@ class ProductController extends Controller
             $totalRate = array_sum($rattingsSum);
             $midRate = strval($totalRate / count($rattingsSum));
             $midRate = round($midRate, 0, PHP_ROUND_HALF_DOWN);
-            $emptyStars =  5 - $midRate;
-
-            return view('products.productPage', compact('product', 'comments', 'replies', 'midRate', 'emptyStars', 'votesCount'));
+            return view('products.productPage', compact('product', 'comments', 'replies', 'midRate', 'votesCount'));
+            
         } else
-
-
-            return view('products.productPage', compact('product', 'comments', 'replies'));
+            $midRate = 0;
+            $votesCount = 0;
+            return view('products.productPage', compact('product', 'comments', 'replies', 'midRate', 'votesCount'));
     }
 
     public function search(Request $request)

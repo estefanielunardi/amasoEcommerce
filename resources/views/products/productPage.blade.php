@@ -30,41 +30,9 @@
                         <p class="text-lg beigeAmasoBg p-1 mt-1 leading-4">Producto agotado</p>
                         @endif
                     </div>
-                    <div>
-                        <h2 class="block text-md greenAmaso mt-1 mb-2">Valoración de los usuarios:</h2>
-                        @if (isset($midRate))
-                        <div class="flex flex-row justify-start items-baseline mb-2">
-                            <div class="flex flex-row items-baseline">
-                            @for ($i = 1; $i <= $midRate; $i++)
-                            <img src="{{URL::to('/image/star-solid.svg')}}" alt="star-solid" width="25" class="mr-4">
-                            @endfor
-                            @for ($i = 1; $i <= $emptyStars; $i++)
-                                <img src="{{URL::to('/image/star-regular.svg')}}" alt="star-empty" width="25" class="mr-4">
-                            @endfor
-                        </div>
-                        </div>
-                        <p class="italics eko text-sm greenAmaso mb-4">( {{$votesCount}} valoraciones )</p>
-                        @else
-                        <p id="productRatting" class="mt-2 mb-8 ">Aún no hay valoraciones.</p>   
-                        @endif
-                        @auth
-                            @if(auth()->id() != $product->artisans->user_id)
-                                <div>  
-                                    <form action="{{ route('productRatting', $product->id) }}" method="POST"> 
-                                        @method('POST')    
-                                        @csrf
-                                            <select name="ratting" id="ratting">
-                                                <option value="1">1</option>
-                                                <option value="2">2</option>
-                                                <option value="3">3</option>
-                                                <option value="4">4</option>
-                                                <option value="5">5</option>
-                                            </select>
-                                        <button type="submit" value="submit" class="greenLightBg  rounded-xl p-1 text-white">Valorar</button>
-                                    </form>
-                                </div>
-                            @endif
-                        @endauth
+                    <div class="container">
+                        <x-star-ratting :midRate="$midRate" :votesCount="$votesCount" :product="$product"/>
+                    </div>
                     </section>
                     @if(auth()->id() == $product->artisans->user_id)
                     <div class="flex flex-row">
@@ -101,12 +69,7 @@
         <section class="lg:ml-20 ml-10 mt-4">
             <div class="flex flex-col ">
                 @if(count($product->allergens) !== 0)
-                    <p class=" greenAmaso mb-4 ">Información de alérgenos:</p>
-                    <ul class="italic list-disc">
-                        @foreach ($product->allergens as $allergen)
-                        <li class="productDescription vollkorn text-bold text-lg greenAmaso ml-10">{{$allergen->type}}</li>
-                        @endforeach
-                    </ul>
+                <x-product.page.allergens :product=$product/>
                 @endif
             </div>
         </section>
