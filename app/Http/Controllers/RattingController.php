@@ -4,8 +4,6 @@ namespace App\Http\Controllers;
 
 use App\Models\Ratting;
 use Illuminate\Http\Request;
-use App\Models\Product;
-use Illuminate\Support\Facades\DB;
 
 class RattingController extends Controller
 {
