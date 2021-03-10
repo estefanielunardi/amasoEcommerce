@@ -36,7 +36,6 @@
 -   Agile
 -   Scrum
 -   Pair programming
--   Git Flow
 -   CI/CD
 
 ### Kanban link
@@ -82,8 +81,7 @@ Aplicación creada con la idea de poder ofrecer una via digital a los pequeños 
 
 -   Plantear un proyecto desde scratch.
 -   Implementar cambios incrementales.
--   Fundamentos del trabajo por componentes.
--   Trabajar con CI.
+-   Trabajar con CI/CD.
 -   Implementar GitHub Actions.
 -   Patrón Repositorio.
 -   Creación de vistas por componentes.
