@@ -190,7 +190,6 @@
         @endif
 
         <article class="max-w-screen-xl pl-4 pt-10 sm:pl-10 xl:pl-20 mx-auto px-4">
-
             @if (count($products) === 0 && auth()->id() == $artisan->user_id)
             <section class="p-12 w-full h-96 content-center flex-wrap flex justify-center">
                 <p class="beigeAmaso text-xl text-center">
@@ -200,16 +199,16 @@
             @else
             <h1 class="text-center pb-1 pr-16 greenAmaso vollkorn text-2xl">Todos los productos</h1>
             @endif
+        </article>
 
             <div class="w-full flex flex-wrap justify-center content-start p-6 xl:px-32 2xl:px-56">
                 @foreach($products as $product)
-                <x-product.card.product-card :product="$product" :artisan=null />
+                <x-product.card.product-card :product="$product" :artisan="$artisan" />
                 @endforeach
             </div>
             <div class="px-6 pb-20 xl:px-32 2xl:px-56">
                 {!! $products->links() !!}
             </div>
-        </article>
 
     </body>
     @push('scripts')

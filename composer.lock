@@ -1154,16 +1154,16 @@
         },
         {
             "name": "laravel/cashier",
-            "version": "v12.9.2",
+            "version": "v12.9.3",
             "source": {
                 "type": "git",
                 "url": "https://github.com/laravel/cashier-stripe.git",
-                "reference": "03b9d763fd4ea55e9bf1180132aa23514e962fe0"
+                "reference": "8cf08649446b7c9d91fa9f344e12ab924f5d29f4"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/laravel/cashier-stripe/zipball/03b9d763fd4ea55e9bf1180132aa23514e962fe0",
-                "reference": "03b9d763fd4ea55e9bf1180132aa23514e962fe0",
+                "url": "https://api.github.com/repos/laravel/cashier-stripe/zipball/8cf08649446b7c9d91fa9f344e12ab924f5d29f4",
+                "reference": "8cf08649446b7c9d91fa9f344e12ab924f5d29f4",
                 "shasum": ""
             },
             "require": {
@@ -1228,20 +1228,20 @@
                 "issues": "https://github.com/laravel/cashier/issues",
                 "source": "https://github.com/laravel/cashier"
             },
-            "time": "2021-03-05T14:13:41+00:00"
+            "time": "2021-03-09T18:56:42+00:00"
         },
         {
             "name": "laravel/framework",
-            "version": "v8.31.0",
+            "version": "v8.32.1",
             "source": {
                 "type": "git",
                 "url": "https://github.com/laravel/framework.git",
-                "reference": "2aa5c2488d25178ebc097052c7897a0e463ddc35"
+                "reference": "7c37b64f8153c16b6406f5c28cf37828ebbe8846"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/laravel/framework/zipball/2aa5c2488d25178ebc097052c7897a0e463ddc35",
-                "reference": "2aa5c2488d25178ebc097052c7897a0e463ddc35",
+                "url": "https://api.github.com/repos/laravel/framework/zipball/7c37b64f8153c16b6406f5c28cf37828ebbe8846",
+                "reference": "7c37b64f8153c16b6406f5c28cf37828ebbe8846",
                 "shasum": ""
             },
             "require": {
@@ -1396,7 +1396,7 @@
                 "issues": "https://github.com/laravel/framework/issues",
                 "source": "https://github.com/laravel/framework"
             },
-            "time": "2021-03-04T15:22:36+00:00"
+            "time": "2021-03-09T15:37:45+00:00"
         },
         {
             "name": "laravel/tinker",
@@ -6885,16 +6885,16 @@
         },
         {
             "name": "laravel/sail",
-            "version": "v1.4.6",
+            "version": "v1.4.7",
             "source": {
                 "type": "git",
                 "url": "https://github.com/laravel/sail.git",
-                "reference": "59ee7e2b2efeb644eabea719186db91d11666733"
+                "reference": "c57927e1e3919a317034ff706c684f01f15c10d8"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/laravel/sail/zipball/59ee7e2b2efeb644eabea719186db91d11666733",
-                "reference": "59ee7e2b2efeb644eabea719186db91d11666733",
+                "url": "https://api.github.com/repos/laravel/sail/zipball/c57927e1e3919a317034ff706c684f01f15c10d8",
+                "reference": "c57927e1e3919a317034ff706c684f01f15c10d8",
                 "shasum": ""
             },
             "require": {
@@ -6941,7 +6941,7 @@
                 "issues": "https://github.com/laravel/sail/issues",
                 "source": "https://github.com/laravel/sail"
             },
-            "time": "2021-03-03T15:22:44+00:00"
+            "time": "2021-03-09T19:15:10+00:00"
         },
         {
             "name": "mockery/mockery",
