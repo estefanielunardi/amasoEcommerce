@@ -43,6 +43,7 @@ class ProductRepository implements IProductRepository
             'highlight' => $request->highlight,
         ]);
         $product->save();
+        return $product;
     }
     public function deleteProduct($id)
     {
