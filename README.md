@@ -88,11 +88,11 @@ Aplicación creada con la idea de poder ofrecer una via digital a los pequeños 
 
 ## Siguientes pasos
 
--   Incluir una API para la pasarela de pago.
--   Implementar patrón repositorio.
--   Vincular a cada usuario un carrito que se destruye luego de la compra.
--   Implementar transacciones para las bases de datos.
--   Utilizar sesiones que reserven los productos durante un tiempo determinado en cada carrito.
--   Utilizar Docker.
--   Crear las vistas por componentes.
--   Crear perfil del usuario con su historial de compra.
+- [x] Incluir una API para la pasarela de pago.
+- [x] Implementar patrón repositorio.
+- [ ] Vincular a cada usuario un carrito que se destruye luego de la compra.
+- [x] Implementar transacciones para las bases de datos.
+- [ ] Utilizar sesiones que reserven los productos durante un tiempo determinado en cada carrito.
+- [ ] Utilizar Docker.
+- [x] Crear las vistas por componentes.
+- [x] Crear perfil del usuario con su historial de compra.
