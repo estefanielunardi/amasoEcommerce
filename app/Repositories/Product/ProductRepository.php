@@ -99,7 +99,7 @@ class ProductRepository implements IProductRepository
     {
       $products = DB::table('products')
         ->where('artisan_id', $artisan_id)
-        ->paginate(3);
+        ->paginate(6);
         return $products;
     }
 
@@ -108,13 +108,13 @@ class ProductRepository implements IProductRepository
         $products = DB::table('products')
         ->where('artisan_id', $artisan_id)
         ->where('highlight', '=', 1)
-        ->paginate(6);
+        ->paginate(3);
         return $products;
     }
     public function findProductByName($name)
     {
        return Product::where('name', 'LIKE', '%' . $name . '%' )
                         ->orWhere ( 'category', 'LIKE', '%' . $name . '%' )
-                        ->get ();
+                        ->paginate (6);
     }
 }
