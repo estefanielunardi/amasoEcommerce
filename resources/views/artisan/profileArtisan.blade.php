@@ -201,53 +201,14 @@
             <h1 class="text-center pb-1 pr-16 greenAmaso vollkorn text-2xl">Todos los productos</h1>
             @endif
 
-            <div class=" ml-6 flex flex-wrap justify-center">
+            <div class="w-full flex flex-wrap justify-center content-start p-6 xl:px-32 2xl:px-56">
                 @foreach($products as $product)
-                <div class=" px-1 w-full flex flex-col p-6 sm:w-1/2 lg:w-1/3">
-                    <a href="/product/{{$product->id}}">
-                        <section class="w-72 h-96 shadow-lg rounded-xl">
-                            <header class="h-48 overflow-hidden">
-                                <img alt="Placeholder" class="rounded-xl rounded-b-none object-fill w-full" src="{{$product->image}}">
-                            </header>
-
-                            <section class="relative px-4 h-44">
-                                <div class="block py-2">
-                                    <h2 class="productTitle">{{$product->name}}</h2>
-                                    <h3 class="productCategory">Categoria: {{$product->category}}</h3>
-                                </div>
-                                <div class="block pb-1 h-9 overflow-x-auto">
-                                    <p class="productDescription">
-                                        {{$product->description}}
-                                    </p>
-                                </div>
-                                <div class="absolute bottom-0 w-full pt-3 flex items-center">
-                                    @if ($product->stock > $product->sold)
-                                    <div class="inline-block">
-                                        <p class="pt-2 pr-2 inline-block productPrice">{{number_format($product->price / 100,2)}} € </p>
-                                        <p class="text-xs">Precio por: {{$product->typequantity}}</p>
-                                    </div>
-                                    
-                                    @if(auth()->id() !== $artisan->user_id)
-                                    <x-product.card.buttons.add-button :product="$product"></x-product.card.buttons.add-button>
-                                    @endif
-                                    @else
-                                    <p class="text-sm beigeAmasoBg p-1 my-2 leading-4">Producto agotado</p>
-                                    @endif
-                                    @if(auth()->id() == $artisan->user_id)
-                                    @if($product->stock > 0)
-                                    <div class="flex flex-row justify-center">
-                                        <p class="pl-2 productDescription">Stock: {{$product->stock}}</p>
-                                    </div>
-                                    @endif
-                                    <x-product.card.buttons.admin-buttons :product="$product"></x-product.card.buttons.admin-buttons>
-                                    @endif
-                                </div>
-                            </section>
-                        </section>
-                </div>
+                <x-product.card.product-card :product="$product" :artisan=null />
                 @endforeach
             </div>
-            {!! $products->links() !!}
+            <div class="px-6 pb-20 xl:px-32 2xl:px-56">
+                {!! $products->links() !!}
+            </div>
         </article>
 
     </body>

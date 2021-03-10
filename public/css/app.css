@@ -179,17 +179,17 @@ body {
 }
 
 .productTitle {
-  font-family: Vollkorn;
+  font-family: 'Exo';
   font-style: normal;
-  font-weight: 500;
-  font-size: 22px;
+  font-weight: 600;
+  font-size: 24px;
 }
 
 .productProductor {
-  font-family: Exo;
+  font-family: 'Exo';
   font-style: normal;
   font-weight: 300;
-  font-size: 14px;
+  font-size: 12px;
   color: #81A78C;
 }
 
@@ -211,8 +211,8 @@ body {
 .productPrice {
   font-family: Exo;
   font-style: normal;
-  font-weight: normal;
-  font-size: 21px;
+  font-weight: 600;
+  font-size: 24px;
 }
 
 .exo {

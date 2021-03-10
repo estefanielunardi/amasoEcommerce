@@ -16,11 +16,11 @@
             <p class="heroText text-left w-44 text-xs md:text-sm lg:text-base lg:w-full xl:text-xl">
                 Tienda online de productos locales y artesanales.
             </p>
-
         </section>
     </header>
 
     <x-button-cart />
+
     @if (isset($bestSellers))
     <div>
         <h1 class="title text-center pb-10 pt-5 lg:pt-20">Productos más vendidos de {{$monthName}}</h1>
@@ -33,6 +33,7 @@
         </article>
     </div>
     @endif
+
     <div>
         <h1 class="title text-center pb-10 pt-5 lg:pt-20">Catálogo</h1>
     </div>
@@ -48,7 +49,9 @@
                         <path fill-rule="evenodd" d="M5.293 7.293a1 1 0 011.414 0L10 10.586l3.293-3.293a1 1 0 111.414 1.414l-4 4a1 1 0 01-1.414 0l-4-4a1 1 0 010-1.414z" clip-rule="evenodd" />
                     </svg>
                 </button>
-                <div x-show="dropdownOpen" @click="dropdownOpen = false" class="fixed inset-0 h-full w-full z-10"></div>
+
+                <div x-show="dropdownOpen" @click="dropdownOpen = false" class="fixed inset-0 h-full w-full z-10">
+                </div>
                 <div x-show="dropdownOpen" class="absolute right-0 mt-2 w-48 bg-white rounded-md overflow-hidden shadow-xl z-20">
                     <a href="{{ url('/') }}" class="block px-4 py-2 text-sm text-gray-800 border-b hover:bg-gray-200">Todas</a>
                     <a href="{{ url('/categorias/bebidas') }}" class="block px-4 py-2 text-sm text-gray-800 border-b hover:bg-gray-200">Bebidas</a>
@@ -58,6 +61,7 @@
                 </div>
             </div>
         </div>
+
         <div class="flex items-center p-2">
             <div class="pt-2 relative mx-auto greenAmaso">
                 <form method="POST" action="{{ route('searchProduct') }}" role="search">
@@ -74,16 +78,14 @@
         </div>
     </div>
 
-    <br>
-    <article class="max-w-screen-xl pl-4 sm:pl-10 xl:pl-20 mx-auto px-4">
-        <div class=" ml-6 flex flex-wrap justify-center">
-
-            @foreach($products as $product)
-            <x-product-card :product="$product" />
-            @endforeach
-
-        </div>
+    <div class="w-full flex flex-wrap justify-center content-start p-6 xl:px-32 2xl:px-56">
+        @foreach($products as $product)
+        <x-product.card.product-card :product="$product" :artisan=null />
+        @endforeach
+    </div>
+    <div class="px-6 pb-20 xl:px-32 2xl:px-56">
         {!! $products->links() !!}
-        </div>
-    </article>
+    </div>
+
+
 </x-app-layout>
