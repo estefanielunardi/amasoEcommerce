@@ -3,7 +3,7 @@
 namespace App\Repositories\Rating;
 
 use App\Models\Ratting;
-use Illuminate\Http\Request;
+
 
 class RatingRepository implements IRatingRepository
 {
