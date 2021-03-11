@@ -5,7 +5,6 @@ namespace App\Repositories\Cart;
 use Illuminate\Support\Facades\DB;
 use App\Repositories\Cart\ICartRepository;
 use App\Models\User;
-use App\Models\Product;
 use Carbon\Carbon;
 
 class CartRepository implements ICartRepository

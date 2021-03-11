@@ -5,12 +5,12 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use App\Models\Product;
 use App\Models\Comment;
-use App\Models\Ratting;
-use Carbon\Carbon;
 use App\Repositories\Cart\CartRepository;
 use App\Repositories\Artisan\ArtisanRepository;
 use App\Repositories\Product\ProductRepository;
 use App\Repositories\Rating\RatingRepository;
+use App\Services\DateService\DateService;
+
 
 class ProductController extends Controller
 {
@@ -18,6 +18,7 @@ class ProductController extends Controller
     private ArtisanRepository $artisanRepo;
     private ProductRepository $productRepo;
     private RatingRepository $ratingRepo;
+    private DateService $dateService;
 
     public function __construct()
     {
@@ -25,6 +26,7 @@ class ProductController extends Controller
         $this->productRepo = new ProductRepository;
         $this->artisanRepo = new ArtisanRepository;
         $this->ratingRepo = new RatingRepository;
+        $this->dateService = new DateService;
     }
 
     public function getProducts()
@@ -32,7 +34,7 @@ class ProductController extends Controller
         $products = $this->productRepo->getAllProducts();
         $ids = $this->cartRepo->getBestSellersIds();
 
-        $monthName = Carbon::now()->monthName;
+        $monthName = $this->dateService->getMonthName();
 
         $bestSellers = [];
         if ($ids) {
