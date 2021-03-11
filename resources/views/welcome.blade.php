@@ -16,43 +16,41 @@
             <p class="heroText text-left w-44 text-xs md:text-sm lg:text-base lg:w-full xl:text-xl">
                 Tienda online de productos locales y artesanales.
             </p>
-
         </section>
     </header>
 
     <x-button-cart />
+
     @if (isset($bestSellers))
     <div>
         <h1 class="title text-center pb-10 pt-5 lg:pt-20">Productos más vendidos de {{$monthName}}</h1>
-        <article class="max-w-screen-xl pl-4 sm:pl-10 xl:pl-20 mx-auto px-4">
-            <div class=" ml-6 flex flex-wrap justify-center">
-                @foreach($bestSellers as $bestSeller)
-                <x-product-card :product="$bestSeller" />
-                @endforeach
-            </div>
-        </article>
+
+        <div class="w-full flex flex-wrap justify-center content-start p-6 xl:px-32 2xl:px-56">
+            @foreach($bestSellers as $product)
+            <x-product.card.product-card :product="$product" :artisan=null :highlightProducts=null :bestSellers="$bestSellers"/>
+            @endforeach
+        </div>
     </div>
     @endif
+
     <div>
         <h1 class="title text-center pb-10 pt-5 lg:pt-20">Catálogo</h1>
     </div>
 
     <script src="https://cdn.jsdelivr.net/gh/alpinejs/alpine@v2.x.x/dist/alpine.min.js" defer></script>
 
-    <div class="flex flex-wrap-reverse justify-evenly">
-        <x-welcome.categories />
+    <div class="flex flex-col justify-center">
         <x-welcome.searcher />
+        <x-welcome.categories />
     </div>
-    <br>
-    <article class="max-w-screen-xl pl-4 sm:pl-10 xl:pl-20 mx-auto px-4">
-        <div class=" ml-6 flex flex-wrap justify-center">
 
-            @foreach($products as $product)
-            <x-product-card :product="$product" />
-            @endforeach
-
-        </div>
+    <div class="w-full flex flex-wrap justify-center content-start p-6 xl:px-32 2xl:px-56">
+        @foreach($products as $product)
+        <x-product.card.product-card :product="$product" :artisan=null :highlightProducts=null :bestSellers=null/>
+        @endforeach
+    </div>
+    <div class="px-6 pb-20 xl:px-32 2xl:px-56">
         {!! $products->links() !!}
-        </div>
-    </article>
+    </div>
+
 </x-app-layout>

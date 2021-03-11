@@ -4,7 +4,6 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use App\Models\Product;
-use App\Models\Artisan;
 use App\Models\Comment;
 use App\Models\Ratting;
 use Carbon\Carbon;

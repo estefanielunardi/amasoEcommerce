@@ -1,15 +1,16 @@
 <?php
 
-namespace App\View\Components;
+namespace App\View\Components\product\page;
 
 use Illuminate\View\Component;
 
-class productCard extends Component
+class ratings extends Component
 {
-    public $product;
-    public function __construct($product)
+    public $rating;
+
+    public function __construct($rating)
     {
-        $this->product = $product;
+       $this->rating = $rating;
     }
 
     /**
@@ -19,6 +20,6 @@ class productCard extends Component
      */
     public function render()
     {
-        return view('components.product-card');
+        return view('components.product.page.ratings');
     }
 }

@@ -6,19 +6,28 @@ use Illuminate\Support\Facades\DB;
 use App\Models\User;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Hash;
+use App\Repositories\Cart\CartRepository;
+use App\Repositories\Product\ProductRepository;
+use App\Repositories\User\UserRepository;
 
 class UserController extends Controller
 {
+    private UserRepository $userRepo;
+    private CartRepository $cartRepo;
+    private ProductRepository $productRepo;
+
+    public function __construct()
+    {
+        $this->cartRepo = new CartRepository;
+        $this->userRepo = new UserRepository;
+        $this->productRepo = new ProductRepository;
+    }
     public function profile() 
     {
         $id = auth()->id();
         $user = User::find($id);
         $userHistoryProducts = [];
-        $productIds = DB::table('product_user')
-                    ->where('user_id','=', $id)
-                    ->where('buyed', true)
-                    ->orderByDesc('updated_at')
-                    ->get('product_id');
+        $productIds = $this->cartRepo->getProductsIdsWhereUserId($id);
 
         $ids = [];
   
@@ -31,28 +40,24 @@ class UserController extends Controller
         
         foreach($ids as $id)
         {
-            array_push($userHistoryProducts, Product::find($id));
+            array_push($userHistoryProducts, $this->productRepo->findProduct($id));
         }
         return view('user.userProfile', compact('userHistoryProducts','user'));
     }
 
     public function edit()
     {
-        $id = auth()->id();
-        $user = User::find($id);
-        $name = $user->name;
-        
+        $user_id = auth()->id();
+        $name = $this->userRepo->getUserName($user_id);
+
         return view('user.editForm', compact('name'));
     }
 
     public function update(Request $request)
     {
-        $id = auth()->id();
-        $user = User::find($id);
-        $user->name = $request->name;
-        $user->password = Hash::make($request->password);
-
-        $user->save();
+        $user_id = auth()->id();
+        $user = $this->userRepo->getUserById($user_id);
+        $this->userRepo->userUpdate($request, $user);
         return redirect('/user/profile/');
     }
 }

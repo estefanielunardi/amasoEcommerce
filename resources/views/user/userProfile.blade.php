@@ -12,13 +12,13 @@
     <div>
         <h1 class="title text-center pb-10 pt-5 lg:pt-20">Productos que has comprado</h1>
     </div>
-    <article class="max-w-screen-xl pl-4 sm:pl-10 xl:pl-20 mx-auto px-4">
-        <div class=" ml-6 flex flex-wrap justify-center">
-            @foreach($userHistoryProducts as $product)
-            <x-product-card :product="$product" />
-            @endforeach
-        </div>
-    </article>
+
+    <div class="w-full flex flex-wrap justify-center content-start p-6 xl:px-32 2xl:px-56">
+        @foreach($userHistoryProducts as $product)
+        <x-product.card.product-card :product="$product" :artisan=null :highlightProducts=null :bestSellers=null/>
+        @endforeach
+    </div>
+
     @else
     <section class="p-12 w-full h-96 content-center flex-wrap flex justify-center">
         <p class="beigeAmaso text-xl text-center">

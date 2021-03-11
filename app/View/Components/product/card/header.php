@@ -1,10 +1,10 @@
 <?php
 
-namespace App\View\Components\product\card\buttons;
+namespace App\View\Components\product\card;
 
 use Illuminate\View\Component;
 
-class addButton extends Component
+class header extends Component
 {
     public $product; 
 
@@ -20,6 +20,6 @@ class addButton extends Component
      */
     public function render()
     {
-        return view('components.product.card.buttons.add-button');
+        return view('components.product.card.header');
     }
 }

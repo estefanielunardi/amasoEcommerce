@@ -4,8 +4,6 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use App\Models\Artisan; 
-use Illuminate\Support\Facades\DB; 
-use Illuminate\Support\Str;
 use App\Models\User;
 use App\Repositories\Artisan\ArtisanRepository;
 use App\Repositories\Product\ProductRepository;

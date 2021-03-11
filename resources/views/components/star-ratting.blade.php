@@ -65,23 +65,12 @@
 
     if (midRate != 0) {
         const inputId = "star" + midRate;
-        console.log(midRate);
         document.getElementById(inputId).checked = true;
     }
 
     const starForm = document.getElementById('starForm');
     function castVote(input){
         starForm.submit(input.value);
-    }
-
-    function noChange(check){
-        const checkId = check.id;
-        const selectedCheck = document.getElementById(checkId);
-        if(selectedCheck.checked){
-            selectedCheck.checked = true;
-        }else{
-            selectedCheck.checked = false;
-        }
     }
 </script>
 

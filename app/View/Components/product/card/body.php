@@ -1,21 +1,18 @@
 <?php
 
-namespace App\View\Components\product\card\buttons;
+namespace App\View\Components\product\card;
 
 use Illuminate\View\Component;
 
-class adminButtons extends Component
+class body extends Component
 {
-    /**
-     * Create a new component instance.
-     *
-     * @return void
-     */
     public $product; 
-    
-    public function __construct($product)
+    public $artisan; 
+
+    public function __construct($product, $artisan)
     {
         $this->product = $product;
+        $this->artisan = $artisan;
     }
 
     /**
@@ -25,6 +22,6 @@ class adminButtons extends Component
      */
     public function render()
     {
-        return view('components.product.card.buttons.admin-buttons');
+        return view('components.product.card.body');
     }
 }
