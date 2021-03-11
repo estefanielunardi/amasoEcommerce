@@ -3,26 +3,30 @@
 namespace App\Http\Controllers;
 
 
-use App\Models\User;
 use Illuminate\Http\Request;
 use Stripe;
 use PHPUnit\Framework\Exception;
 use App\Repositories\Cart\CartRepository;
+use App\Repositories\User\UserRepository;
 
 class PaymentController extends Controller
 { 
     private CartRepository $cartRepo;
+    private UserRepository $userRepo;
+    
 
     public function __construct()
     {
         $this->cartRepo = new CartRepository;
+        $this->userRepo = new UserRepository;
+        
     }
 
     public function order()
     {
 
         $id = auth()->id();
-        $user = User::find($id);
+        $user = $this->userRepo->getUserById($id);
         $products =  $this->cartRepo->getProductsInBasket($id);
         $total =  $this->cartRepo->calculateTotal($products);
 
@@ -37,7 +41,7 @@ class PaymentController extends Controller
         $amount = $total * 100; 
         
         $this->cartRepo->buyProductsInBasket($user_id);
-        $user = User::find($user_id);
+        $user = $this->userRepo->getUserById($user_id);
         $user->id = $user->id;
         $user->name = $user->name;
         $user->email = $user->email;
