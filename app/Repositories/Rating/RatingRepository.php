@@ -25,6 +25,11 @@ class RatingRepository implements IRatingRepository
         $ratting->save();
         return;
     }
+
+    public function findAllRatings($id)
+    {
+        return Ratting::where('product_id', [$id])->get();
+    }
     
 
 }

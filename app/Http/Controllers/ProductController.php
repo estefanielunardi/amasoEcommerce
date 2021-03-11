@@ -10,19 +10,21 @@ use Carbon\Carbon;
 use App\Repositories\Cart\CartRepository;
 use App\Repositories\Artisan\ArtisanRepository;
 use App\Repositories\Product\ProductRepository;
-
+use App\Repositories\Rating\RatingRepository;
 
 class ProductController extends Controller
 {
     private CartRepository $cartRepo;
     private ArtisanRepository $artisanRepo;
     private ProductRepository $productRepo;
+    private RatingRepository $ratingRepo;
 
     public function __construct()
     {
         $this->cartRepo = new CartRepository;
         $this->productRepo = new ProductRepository;
         $this->artisanRepo = new ArtisanRepository;
+        $this->ratingRepo = new RatingRepository;
     }
 
     public function getProducts()
@@ -130,7 +132,7 @@ class ProductController extends Controller
             ->get();
 
         $rattingsSum = [];
-        $rattings = Ratting::where('product_id', [$id])->get();
+        $rattings = $this->ratingRepo->findAllRatings( $id );
         if (count($rattings) != 0) {
             foreach ($rattings as $ratting) {
                 array_push($rattingsSum, $ratting->ratting);
