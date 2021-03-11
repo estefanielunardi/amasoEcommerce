@@ -55,16 +55,15 @@ class CartRepository implements ICartRepository
     }
 
 
-    public function addProductInCart($product_id, $user_id)
+    public function addProductInCart($product_id, User $user)
     {
-        $activeProduct = $this->findActiveProduct($product_id, $user_id);
+        $activeProduct = $this->findActiveProduct($product_id, $user->id);
 
         if (count($activeProduct) == 0) {
-            $user = User::find($user_id);
             $user->products()->attach($product_id);
-            $this->incrementProductAmount($product_id, $user_id);
+            $this->incrementProductAmount($product_id, $user->id);
         } else {
-            $this->incrementProductAmount($product_id, $user_id);
+            $this->incrementProductAmount($product_id, $user->id);
         }
     }
 
@@ -86,18 +85,17 @@ class CartRepository implements ICartRepository
     }
 
 
-    public function removeProductFromCart($product_id, $user_id)
+    public function removeProductFromCart($product_id, User $user)
     {
-        $user = User::find($user_id);
         $userProduct = $user->products()->find($product_id);
 
         if ($userProduct) {
-            $amount = $this->getProductAmount($product_id, $user_id);
+            $amount = $this->getProductAmount($product_id, $user->id);
 
             if ($amount <= 1) {
                 $user->products()->detach($product_id);
             } else {
-                $this->decrementProductAmount($product_id, $user_id);
+                $this->decrementProductAmount($product_id, $user->id);
             }
         }
     }

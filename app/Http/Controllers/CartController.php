@@ -2,7 +2,7 @@
 
 namespace App\Http\Controllers;
 use App\Repositories\Cart\CartRepository;
-
+use App\Repositories\User\UserRepository;
 
 class CartController extends Controller
 {
@@ -11,6 +11,7 @@ class CartController extends Controller
     public function __construct()
     {
         $this->cartRepo = new CartRepository;
+        $this->userRepo = new UserRepository;
     }
 
     public function getProducts()
@@ -26,7 +27,8 @@ class CartController extends Controller
     public function addProduct($product_id)
     {
         $user_id = auth()->id();
-        $this->cartRepo->addProductInCart($product_id, $user_id);
+        $user = $this->userRepo->getUserById($user_id);
+        $this->cartRepo->addProductInCart($product_id, $user);
 
         return back();            
     }
@@ -41,8 +43,9 @@ class CartController extends Controller
 
     public function removeProduct($product_id)
     {
-        $user_id = auth()->id();    
-        $this->cartRepo->removeProductFromCart($product_id,$user_id);
+        $user_id = auth()->id();  
+        $user = $this->userRepo->getUserById($user_id);  
+        $this->cartRepo->removeProductFromCart($product_id,$user);
 
         return back();
     }
