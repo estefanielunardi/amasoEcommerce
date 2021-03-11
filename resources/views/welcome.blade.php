@@ -53,18 +53,4 @@
         {!! $products->links() !!}
     </div>
 
-    <link rel="stylesheet" type="text/css" href="https://cdn.jsdelivr.net/npm/botman-web-widget@0/build/assets/css/chat.min.css">
-    <script>
-        var botmanWidget = {
-            title: 'Amasó Bot',
-            aboutText: 'amasoBot',
-            introMessage: "✋ Hola! en que puedo ayudarte?",
-            bubbleBackground: '#336147',
-            headerTextColor: '#ffff',
-            mainColor: '#336147',
-        };
-    </script>
-    <script src='https://cdn.jsdelivr.net/npm/botman-web-widget@0/build/js/widget.js'></script>
-
-
 </x-app-layout>

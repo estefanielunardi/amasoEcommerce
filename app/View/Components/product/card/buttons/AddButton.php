@@ -4,7 +4,7 @@ namespace App\View\Components\product\card\buttons;
 
 use Illuminate\View\Component;
 
-class addButton extends Component
+class AddButton extends Component
 {
     public $product; 
 
