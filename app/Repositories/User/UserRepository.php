@@ -4,10 +4,6 @@ namespace App\Repositories\User;
 
 use App\Repositories\User\IUserRepository;
 use App\Models\User;
-use App\Models\Product;
-use Illuminate\Support\Facades\DB;
-use Illuminate\Http\Request;
-use App\Models\Artisan;
 use Illuminate\Support\Facades\Hash;
 
 class UserRepository implements IUserRepository {

@@ -1,11 +1,7 @@
 <?php
 
 namespace App\Http\Controllers;
-use App\Models\Product;
-use Illuminate\Support\Facades\DB;
-use App\Models\User;
 use Illuminate\Http\Request;
-use Illuminate\Support\Facades\Hash;
 use App\Repositories\Cart\CartRepository;
 use App\Repositories\Product\ProductRepository;
 use App\Repositories\User\UserRepository;
@@ -25,7 +21,7 @@ class UserController extends Controller
     public function profile() 
     {
         $id = auth()->id();
-        $user = User::find($id);
+        $user = $this->userRepo->getUserById($id);
         $userHistoryProducts = [];
         $productIds = $this->cartRepo->getProductsIdsWhereUserId($id);
 
