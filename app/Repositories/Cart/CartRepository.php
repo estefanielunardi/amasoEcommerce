@@ -5,10 +5,17 @@ namespace App\Repositories\Cart;
 use Illuminate\Support\Facades\DB;
 use App\Repositories\Cart\ICartRepository;
 use App\Models\User;
-use Carbon\Carbon;
+use App\Services\DateService\DateService;
 
 class CartRepository implements ICartRepository
 {
+    public DateService $dateService;
+
+    public function __construct()
+    {
+        $this->dateService = new DateService;
+    }
+
     public function getProductsInBasket($id)
     {
         $products = DB::table('products')
@@ -123,7 +130,7 @@ class CartRepository implements ICartRepository
         DB::transaction(function () use ($user_id) {
             DB::table('product_user')
                 ->where('user_id', $user_id)
-                ->update(['buyed' => 1, 'updated_at' => Carbon::now()]);
+                ->update(['buyed' => 1, 'updated_at' => $this->dateService->now()]);
         });
     }
 
@@ -139,8 +146,8 @@ class CartRepository implements ICartRepository
 
     public function getBestSellersIds()
     {
-        $startMonth = Carbon::now()->startOfMonth();
-        $now = Carbon::now();
+        $startMonth = $this->dateService->getStartOfMonth();
+        $now = $this->dateService->now();
         $buyed = DB::table('product_user')
             ->where(['buyed' => 1])
             ->whereBetween('updated_at', [$startMonth, $now])

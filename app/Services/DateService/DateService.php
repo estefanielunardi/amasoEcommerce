@@ -11,6 +11,16 @@ class DateService implements IDateService
     {
         return Carbon::now()->monthName;
     }
+
+    public function now()
+    {
+        return Carbon::now();
+    }
+
+    public function getStartOfMonth()
+    {
+       return Carbon::now()->startOfMonth();
+    }
 }
 
 
