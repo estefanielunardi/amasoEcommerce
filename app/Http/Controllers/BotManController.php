@@ -30,7 +30,7 @@ class BotManController extends Controller
 
             $name = $answer->getText();
 
-            $this->say('Encantada de conocerte ' . $name);
+            $this->say('Encantadx de conocerte ' . $name);
         });
     }
 }
