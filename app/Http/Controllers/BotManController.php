@@ -2,8 +2,6 @@
 
 namespace App\Http\Controllers;
 
-use BotMan\BotMan\BotMan;
-use Illuminate\Http\Request;
 use BotMan\BotMan\Messages\Incoming\Answer;
 
 class BotManController extends Controller
@@ -13,14 +11,13 @@ class BotManController extends Controller
     {
         $botman = app('botman');
 
-        $botman->hears('{message}', function($botman, $message) {
+        $botman->hears('{message}', function ($botman, $message) {
 
-        if ($message == 'hola') {
+            if ($message == 'hola' || $message == 'Hola') {
                 $this->askName($botman);
-            }else{
-                $botman->reply("escribe 'hola' para probar...");
+            } else {
+                $botman->reply("Bienvenidx a Amasó");
             }
-
         });
 
         $botman->listen();
@@ -29,11 +26,11 @@ class BotManController extends Controller
 
     public function askName($botman)
     {
-        $botman->ask('Hello! What is your Name?', function (Answer $answer) {
+        $botman->ask('Cómo te llamas?', function (Answer $answer) {
 
             $name = $answer->getText();
 
-            $this->say('Nice to meet you ' . $name);
+            $this->say('Encantada de conocerte ' . $name);
         });
     }
 }
