@@ -1,6 +1,8 @@
 <?php
 
 namespace App\Repositories\Artisan;
+use App\Models\Artisan;
+use Illuminate\Http\Request;
 
 interface IArtisanRepository 
 {
@@ -8,8 +10,8 @@ interface IArtisanRepository
     public function getArtisanId($user_id);
     public function getArtisanById($artisan_id);
     public function getAll();
-    public function createNewArtisan($request);
-    public function artisanUpdate($request, $artisan);
+    public function createNewArtisan(Request $request);
+    public function artisanUpdate(Request $request, Artisan $artisan);
     public function getUserIdFromArtisan($id);
     public function setUserArtisanToFalse($user_id);
     public function deleteArtisan($id);
