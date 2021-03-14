@@ -9,7 +9,7 @@ use App\Repositories\Cart\ICartRepository;
 use App\Repositories\Artisan\IArtisanRepository;
 use App\Repositories\Product\IProductRepository;
 use App\Repositories\Rating\IRatingRepository;
-use App\Services\DateService\DateService;
+use App\Services\DateService\IDateService;
 
 
 class ProductController extends Controller
@@ -18,15 +18,15 @@ class ProductController extends Controller
     private IArtisanRepository $artisanRepo;
     private IProductRepository $productRepo;
     private IRatingRepository $ratingRepo;
-    private DateService $dateService;
+    private IDateService $dateService;
 
-    public function __construct(IRatingRepository $ratingRepo, ICartRepository $cartRepo, IArtisanRepository $artisanRepo, IProductRepository $productRepo)
+    public function __construct(IDateService $dateService, IRatingRepository $ratingRepo, ICartRepository $cartRepo, IArtisanRepository $artisanRepo, IProductRepository $productRepo)
     {
         $this->cartRepo = $cartRepo;
         $this->productRepo = $productRepo;
         $this->artisanRepo = $artisanRepo;
         $this->ratingRepo = $ratingRepo;
-        $this->dateService = new DateService;
+        $this->dateService = $dateService;
     }
 
     public function getProducts()
