@@ -2,19 +2,19 @@
 
 namespace App\Http\Controllers;
 use Illuminate\Http\Request;
-use App\Repositories\Cart\CartRepository;
+use App\Repositories\Cart\ICartRepository;
 use App\Repositories\Product\ProductRepository;
 use App\Repositories\User\UserRepository;
 
 class UserController extends Controller
 {
     private UserRepository $userRepo;
-    private CartRepository $cartRepo;
+    private ICartRepository $cartRepo;
     private ProductRepository $productRepo;
 
-    public function __construct()
+    public function __construct(ICartRepository $cartRepo)
     {
-        $this->cartRepo = new CartRepository;
+        $this->cartRepo =  $cartRepo;
         $this->userRepo = new UserRepository;
         $this->productRepo = new ProductRepository;
     }

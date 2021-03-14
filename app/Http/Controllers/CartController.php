@@ -1,16 +1,16 @@
 <?php
 
 namespace App\Http\Controllers;
-use App\Repositories\Cart\CartRepository;
+use App\Repositories\Cart\ICartRepository;
 use App\Repositories\User\UserRepository;
 
 class CartController extends Controller
 {
-    private CartRepository $cartRepo;
+    private ICartRepository $cartRepo;
 
-    public function __construct()
+    public function __construct(ICartRepository $cartRepo)
     {
-        $this->cartRepo = new CartRepository;
+        $this->cartRepo = $cartRepo;
         $this->userRepo = new UserRepository;
     }
 

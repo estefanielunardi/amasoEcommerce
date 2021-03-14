@@ -6,18 +6,18 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use Stripe;
 use PHPUnit\Framework\Exception;
-use App\Repositories\Cart\CartRepository;
+use App\Repositories\Cart\ICartRepository;
 use App\Repositories\User\UserRepository;
 
 class PaymentController extends Controller
 { 
-    private CartRepository $cartRepo;
+    private ICartRepository $cartRepo;
     private UserRepository $userRepo;
     
 
-    public function __construct()
+    public function __construct(ICartRepository $cartRepo)
     {
-        $this->cartRepo = new CartRepository;
+        $this->cartRepo = $cartRepo;
         $this->userRepo = new UserRepository;
         
     }

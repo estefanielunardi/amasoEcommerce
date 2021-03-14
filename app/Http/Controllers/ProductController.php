@@ -5,7 +5,7 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use App\Models\Product;
 use App\Models\Comment;
-use App\Repositories\Cart\CartRepository;
+use App\Repositories\Cart\ICartRepository;
 use App\Repositories\Artisan\ArtisanRepository;
 use App\Repositories\Product\ProductRepository;
 use App\Repositories\Rating\RatingRepository;
@@ -14,15 +14,15 @@ use App\Services\DateService\DateService;
 
 class ProductController extends Controller
 {
-    private CartRepository $cartRepo;
+    private ICartRepository $cartRepo;
     private ArtisanRepository $artisanRepo;
     private ProductRepository $productRepo;
     private RatingRepository $ratingRepo;
     private DateService $dateService;
 
-    public function __construct()
+    public function __construct(ICartRepository $cartRepo)
     {
-        $this->cartRepo = new CartRepository;
+        $this->cartRepo = $cartRepo;
         $this->productRepo = new ProductRepository;
         $this->artisanRepo = new ArtisanRepository;
         $this->ratingRepo = new RatingRepository;
