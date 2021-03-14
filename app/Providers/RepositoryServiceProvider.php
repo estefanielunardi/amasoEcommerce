@@ -10,6 +10,8 @@ use App\Repositories\Artisan\IArtisanRepository;
 use App\Repositories\Artisan\ArtisanRepository;
 use App\Repositories\Product\ProductRepository;
 use App\Repositories\Product\IProductRepository;
+use App\Repositories\Comment\CommentRepository;
+use App\Repositories\Comment\ICommentRepository;
 
 use Illuminate\Support\ServiceProvider;
 
@@ -36,5 +38,6 @@ class RepositoryServiceProvider extends ServiceProvider
         $this->app->bind(IUserRepository::class, UserRepository::class);
         $this->app->bind(IArtisanRepository::class, ArtisanRepository::class);
         $this->app->bind(IProductRepository::class, ProductRepository::class);
+        $this->app->bind(ICommentRepository::class, CommentRepository::class);
     }
 }
