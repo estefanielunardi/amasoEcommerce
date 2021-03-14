@@ -4,6 +4,9 @@ namespace App\Providers;
 
 use App\Repositories\Cart\CartRepository;
 use App\Repositories\Cart\ICartRepository;
+use App\Repositories\User\UserRepository;
+use App\Repositories\User\IUserRepository;
+
 use Illuminate\Support\ServiceProvider;
 
 class RepositoryServiceProvider extends ServiceProvider
@@ -26,5 +29,6 @@ class RepositoryServiceProvider extends ServiceProvider
     public function boot()
     {
         $this->app->bind(ICartRepository::class, CartRepository::class);
+        $this->app->bind(IUserRepository::class, UserRepository::class);
     }
 }

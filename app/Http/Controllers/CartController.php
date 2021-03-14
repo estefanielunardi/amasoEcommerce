@@ -2,16 +2,17 @@
 
 namespace App\Http\Controllers;
 use App\Repositories\Cart\ICartRepository;
-use App\Repositories\User\UserRepository;
+use App\Repositories\User\IUserRepository;
 
 class CartController extends Controller
 {
     private ICartRepository $cartRepo;
+    private IUserRepository $userRepo;
 
-    public function __construct(ICartRepository $cartRepo)
+    public function __construct(ICartRepository $cartRepo, IUserRepository $userRepo)
     {
         $this->cartRepo = $cartRepo;
-        $this->userRepo = new UserRepository;
+        $this->userRepo = $userRepo;
     }
 
     public function getProducts()

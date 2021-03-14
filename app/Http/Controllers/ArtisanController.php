@@ -7,21 +7,21 @@ use App\Models\Artisan;
 use App\Repositories\Artisan\ArtisanRepository;
 use App\Repositories\Product\ProductRepository;
 use App\Repositories\Cart\ICartRepository;
-use App\Repositories\User\UserRepository;
+use App\Repositories\User\IUserRepository;
 
 class ArtisanController extends Controller
 {
     private ArtisanRepository $artisanRepo;
     private ProductRepository $productRepo;
     private ICartRepository $cartRepo;
-    private UserRepository $userRepo;
+    private IUserRepository $userRepo;
 
-    public function __construct(ICartRepository $cartRepo)
+    public function __construct(ICartRepository $cartRepo, IUserRepository $userRepo)
     {
         $this->artisanRepo = new ArtisanRepository;
         $this->productRepo = new ProductRepository;
         $this->cartRepo = $cartRepo;
-        $this->userRepo = new UserRepository;
+        $this->userRepo = $userRepo;
     }
 
     public function profile(Artisan $artisan) 
