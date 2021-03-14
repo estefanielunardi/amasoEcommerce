@@ -7,7 +7,7 @@ use App\Models\Product;
 use App\Models\Comment;
 use App\Repositories\Cart\ICartRepository;
 use App\Repositories\Artisan\IArtisanRepository;
-use App\Repositories\Product\ProductRepository;
+use App\Repositories\Product\IProductRepository;
 use App\Repositories\Rating\RatingRepository;
 use App\Services\DateService\DateService;
 
@@ -16,14 +16,14 @@ class ProductController extends Controller
 {
     private ICartRepository $cartRepo;
     private IArtisanRepository $artisanRepo;
-    private ProductRepository $productRepo;
+    private IProductRepository $productRepo;
     private RatingRepository $ratingRepo;
     private DateService $dateService;
 
-    public function __construct(ICartRepository $cartRepo, IArtisanRepository $artisanRepo)
+    public function __construct(ICartRepository $cartRepo, IArtisanRepository $artisanRepo, IProductRepository $productRepo)
     {
         $this->cartRepo = $cartRepo;
-        $this->productRepo = new ProductRepository;
+        $this->productRepo = $productRepo;
         $this->artisanRepo = $artisanRepo;
         $this->ratingRepo = new RatingRepository;
         $this->dateService = new DateService;

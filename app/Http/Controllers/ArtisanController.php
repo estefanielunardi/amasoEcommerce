@@ -5,21 +5,21 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use App\Models\Artisan; 
 use App\Repositories\Artisan\IArtisanRepository;
-use App\Repositories\Product\ProductRepository;
+use App\Repositories\Product\IProductRepository;
 use App\Repositories\Cart\ICartRepository;
 use App\Repositories\User\IUserRepository;
 
 class ArtisanController extends Controller
 {
     private IArtisanRepository $artisanRepo;
-    private ProductRepository $productRepo;
+    private IProductRepository $productRepo;
     private ICartRepository $cartRepo;
     private IUserRepository $userRepo;
 
-    public function __construct(ICartRepository $cartRepo, IUserRepository $userRepo, IArtisanRepository $artisanRepo)
+    public function __construct(IProductRepository $productRepo, ICartRepository $cartRepo, IUserRepository $userRepo, IArtisanRepository $artisanRepo)
     {
         $this->artisanRepo = $artisanRepo;
-        $this->productRepo = new ProductRepository;
+        $this->productRepo = $productRepo;
         $this->cartRepo = $cartRepo;
         $this->userRepo = $userRepo;
     }

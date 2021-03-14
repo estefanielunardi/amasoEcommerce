@@ -5,20 +5,20 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use App\Repositories\Cart\ICartRepository;
-use App\Repositories\Product\ProductRepository;
+use App\Repositories\Product\IProductRepository;
 use App\Repositories\User\IUserRepository;
 
 class UserController extends Controller
 {
     private IUserRepository $userRepo;
     private ICartRepository $cartRepo;
-    private ProductRepository $productRepo;
+    private IProductRepository $productRepo;
 
-    public function __construct(ICartRepository $cartRepo, IUserRepository $userRepo)
+    public function __construct(ICartRepository $cartRepo, IUserRepository $userRepo, IProductRepository $productRepo)
     {
         $this->cartRepo =  $cartRepo;
         $this->userRepo = $userRepo;
-        $this->productRepo = new ProductRepository;
+        $this->productRepo = $productRepo;
     }
     public function profile() 
     {

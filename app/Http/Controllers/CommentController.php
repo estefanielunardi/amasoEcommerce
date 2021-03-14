@@ -4,17 +4,17 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use App\Repositories\Comment\CommentRepository;
-use App\Repositories\Product\ProductRepository;
+use App\Repositories\Product\IProductRepository;
 
 class CommentController extends Controller
 {
     private CommentRepository $commentRepo;
-    private ProductRepository $producRepo;
+    private IProductRepository $producRepo;
 
-    public function __construct()
+    public function __construct(IProductRepository $producRepo)
     {
         $this->commentRepo  = new CommentRepository;
-        $this->producRepo  = new ProductRepository;
+        $this->producRepo  = $producRepo;
     }
     public function store(Request $request)
     {
