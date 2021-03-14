@@ -3,18 +3,18 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Support\Facades\Artisan;
-use App\Repositories\Artisan\ArtisanRepository;
+use App\Repositories\Artisan\IArtisanRepository;
 use App\Repositories\Product\ProductRepository;
 
 
 class AdminController extends Controller
 {
-    private ArtisanRepository $artisanRepo;
+    private IArtisanRepository $artisanRepo;
     private ProductRepository $productRepo;
 
-    public function __construct()
+    public function __construct(IArtisanRepository $artisanRepo)
     {
-        $this->artisanRepo = new ArtisanRepository;
+        $this->artisanRepo = $artisanRepo;
         $this->productRepo = new ProductRepository;
     }
     public function adminDash()
