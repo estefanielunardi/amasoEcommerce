@@ -14,6 +14,8 @@ use App\Repositories\Comment\CommentRepository;
 use App\Repositories\Comment\ICommentRepository;
 use App\Repositories\Rating\IRatingRepository;
 use App\Repositories\Rating\RatingRepository;
+use App\Services\DateService\DateService;
+use App\Services\DateService\IDateService;
 
 use Illuminate\Support\ServiceProvider;
 
@@ -42,5 +44,6 @@ class RepositoryServiceProvider extends ServiceProvider
         $this->app->bind(IProductRepository::class, ProductRepository::class);
         $this->app->bind(ICommentRepository::class, CommentRepository::class);
         $this->app->bind(IRatingRepository::class, RatingRepository::class);
+        $this->app->bind(IDateService::class, DateService::class);
     }
 }
