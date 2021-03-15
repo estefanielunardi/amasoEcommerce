@@ -58,7 +58,7 @@
         var botmanWidget = {
             title: 'Amasó Bot',
             aboutText: 'amasoBot',
-            introMessage: "✋ Hola! en que puedo ayudarte?",
+            introMessage: "✋ Hola! Mi nombre es AmaBot!",
             bubbleBackground: '#336147',
             headerTextColor: '#ffff',
             mainColor: '#336147',
