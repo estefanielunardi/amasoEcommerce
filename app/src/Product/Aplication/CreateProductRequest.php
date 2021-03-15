@@ -27,5 +27,29 @@ class CreateProductRequest
 
     }
 
+    public function getDescription()
+    {
+        return $this->description;
+
+    }
+
+    public function getPrice()
+    {
+        return $this->price;
+
+    }
+
+    public function getStock()
+    {
+        return $this->stock;
+
+    }
+
+    public function getArtisanId()
+    {
+        return $this->artisan_id;
+
+    }
+
     
 }
