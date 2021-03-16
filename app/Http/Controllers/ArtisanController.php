@@ -4,22 +4,24 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use App\Models\Artisan; 
-use App\Models\User;
-use App\Repositories\Artisan\ArtisanRepository;
-use App\Repositories\Product\ProductRepository;
-use App\Repositories\Cart\CartRepository;
+use App\Repositories\Artisan\IArtisanRepository;
+use App\Repositories\Product\IProductRepository;
+use App\Repositories\Cart\ICartRepository;
+use App\Repositories\User\IUserRepository;
 
 class ArtisanController extends Controller
 {
-    private ArtisanRepository $artisanRepo;
-    private ProductRepository $productRepo;
-    private CartRepository $cartRepo;
+    private IArtisanRepository $artisanRepo;
+    private IProductRepository $productRepo;
+    private ICartRepository $cartRepo;
+    private IUserRepository $userRepo;
 
-    public function __construct()
+    public function __construct(IProductRepository $productRepo, ICartRepository $cartRepo, IUserRepository $userRepo, IArtisanRepository $artisanRepo)
     {
-        $this->artisanRepo = new ArtisanRepository;
-        $this->productRepo = new ProductRepository;
-        $this->cartRepo = new CartRepository;
+        $this->artisanRepo = $artisanRepo;
+        $this->productRepo = $productRepo;
+        $this->cartRepo = $cartRepo;
+        $this->userRepo = $userRepo;
     }
 
     public function profile(Artisan $artisan) 
@@ -49,7 +51,7 @@ class ArtisanController extends Controller
     public function store(Request $request){
 
         $id = auth()->id();
-        $user = User::find($id);
+        $user = $this->userRepo->getUserById($id);
         $user->isArtisan = 1;
         $user->save();
 
@@ -67,7 +69,7 @@ class ArtisanController extends Controller
     public function orders()
     {
         $user_id = auth()->id();
-        $user = User::find($user_id); 
+        $user = $this->userRepo->getUserById($user_id);
         $id = $this->artisanRepo->getArtisanId($user_id);
         $artisan = $this->artisanRepo->getArtisanById($id);
         $orders = $this->productRepo->getOrders($id);

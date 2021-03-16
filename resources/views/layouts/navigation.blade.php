@@ -50,7 +50,7 @@
                 @auth
                 <div class=" space-x-8 sm:-my-px sm:ml-10">
                     <x-nav-link :href="route('userProfile')" :active="request()->routeIs('userProfile')">
-                        {{ __('Pedidos') }}
+                        {{ __('Mi panel') }}
                     </x-nav-link>
                 </div>
                 @endauth

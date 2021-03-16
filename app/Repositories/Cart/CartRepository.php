@@ -5,11 +5,17 @@ namespace App\Repositories\Cart;
 use Illuminate\Support\Facades\DB;
 use App\Repositories\Cart\ICartRepository;
 use App\Models\User;
-use App\Models\Product;
-use Carbon\Carbon;
+use App\Services\DateService\DateService;
 
 class CartRepository implements ICartRepository
 {
+    public DateService $dateService;
+
+    public function __construct()
+    {
+        $this->dateService = new DateService;
+    }
+
     public function getProductsInBasket($id)
     {
         $products = DB::table('products')
@@ -49,16 +55,15 @@ class CartRepository implements ICartRepository
     }
 
 
-    public function addProductInCart($product_id, $user_id)
+    public function addProductInCart($product_id, User $user)
     {
-        $activeProduct = $this->findActiveProduct($product_id, $user_id);
+        $activeProduct = $this->findActiveProduct($product_id, $user->id);
 
         if (count($activeProduct) == 0) {
-            $user = User::find($user_id);
             $user->products()->attach($product_id);
-            $this->incrementProductAmount($product_id, $user_id);
+            $this->incrementProductAmount($product_id, $user->id);
         } else {
-            $this->incrementProductAmount($product_id, $user_id);
+            $this->incrementProductAmount($product_id, $user->id);
         }
     }
 
@@ -80,18 +85,17 @@ class CartRepository implements ICartRepository
     }
 
 
-    public function removeProductFromCart($product_id, $user_id)
+    public function removeProductFromCart($product_id, User $user)
     {
-        $user = User::find($user_id);
         $userProduct = $user->products()->find($product_id);
 
         if ($userProduct) {
-            $amount = $this->getProductAmount($product_id, $user_id);
+            $amount = $this->getProductAmount($product_id, $user->id);
 
             if ($amount <= 1) {
                 $user->products()->detach($product_id);
             } else {
-                $this->decrementProductAmount($product_id, $user_id);
+                $this->decrementProductAmount($product_id, $user->id);
             }
         }
     }
@@ -124,7 +128,7 @@ class CartRepository implements ICartRepository
         DB::transaction(function () use ($user_id) {
             DB::table('product_user')
                 ->where('user_id', $user_id)
-                ->update(['buyed' => 1, 'updated_at' => Carbon::now()]);
+                ->update(['buyed' => 1, 'updated_at' => $this->dateService->now()]);
         });
     }
 
@@ -140,8 +144,8 @@ class CartRepository implements ICartRepository
 
     public function getBestSellersIds()
     {
-        $startMonth = Carbon::now()->startOfMonth();
-        $now = Carbon::now();
+        $startMonth = $this->dateService->getStartOfMonth();
+        $now = $this->dateService->now();
         $buyed = DB::table('product_user')
             ->where(['buyed' => 1])
             ->whereBetween('updated_at', [$startMonth, $now])

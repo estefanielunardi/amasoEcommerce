@@ -5,24 +5,28 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use App\Models\Product;
 use App\Models\Comment;
-use App\Models\Ratting;
-use Carbon\Carbon;
-use App\Repositories\Cart\CartRepository;
-use App\Repositories\Artisan\ArtisanRepository;
-use App\Repositories\Product\ProductRepository;
+use App\Repositories\Cart\ICartRepository;
+use App\Repositories\Artisan\IArtisanRepository;
+use App\Repositories\Product\IProductRepository;
+use App\Repositories\Rating\IRatingRepository;
+use App\Services\DateService\IDateService;
 
 
 class ProductController extends Controller
 {
-    private CartRepository $cartRepo;
-    private ArtisanRepository $artisanRepo;
-    private ProductRepository $productRepo;
+    private ICartRepository $cartRepo;
+    private IArtisanRepository $artisanRepo;
+    private IProductRepository $productRepo;
+    private IRatingRepository $ratingRepo;
+    private IDateService $dateService;
 
-    public function __construct()
+    public function __construct(IDateService $dateService, IRatingRepository $ratingRepo, ICartRepository $cartRepo, IArtisanRepository $artisanRepo, IProductRepository $productRepo)
     {
-        $this->cartRepo = new CartRepository;
-        $this->productRepo = new ProductRepository;
-        $this->artisanRepo = new ArtisanRepository;
+        $this->cartRepo = $cartRepo;
+        $this->productRepo = $productRepo;
+        $this->artisanRepo = $artisanRepo;
+        $this->ratingRepo = $ratingRepo;
+        $this->dateService = $dateService;
     }
 
     public function getProducts()
@@ -30,7 +34,7 @@ class ProductController extends Controller
         $products = $this->productRepo->getAllProducts();
         $ids = $this->cartRepo->getBestSellersIds();
 
-        $monthName = Carbon::now()->monthName;
+        $monthName = $this->dateService->getMonthName();
 
         $bestSellers = [];
         if ($ids) {
@@ -130,7 +134,7 @@ class ProductController extends Controller
             ->get();
 
         $rattingsSum = [];
-        $rattings = Ratting::where('product_id', [$id])->get();
+        $rattings = $this->ratingRepo->findAllRatings( $id );
         if (count($rattings) != 0) {
             foreach ($rattings as $ratting) {
                 array_push($rattingsSum, $ratting->ratting);

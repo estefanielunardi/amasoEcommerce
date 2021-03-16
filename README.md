@@ -40,6 +40,8 @@
 
 ### Kanban link
 
+https://app.gitkraken.com/glo/board/X-wu328EBQARc9EZ 
+
 ### Heroku link
 
 http://amaso.herokuapp.com/
@@ -93,6 +95,6 @@ Aplicación creada con la idea de poder ofrecer una via digital a los pequeños 
 - [ ] Vincular a cada usuario un carrito que se destruye luego de la compra.
 - [x] Implementar transacciones para las bases de datos.
 - [ ] Utilizar sesiones que reserven los productos durante un tiempo determinado en cada carrito.
-- [ ] Utilizar Docker.
+- [x] Utilizar Docker.
 - [x] Crear las vistas por componentes.
 - [x] Crear perfil del usuario con su historial de compra.
