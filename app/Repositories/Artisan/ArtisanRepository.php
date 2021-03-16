@@ -6,6 +6,7 @@ use Illuminate\Support\Facades\DB;
 use App\Repositories\Artisan\IArtisanRepository;
 use App\Models\Artisan;
 use Illuminate\Support\Str;
+use Illuminate\Http\Request;
 
 class ArtisanRepository implements IArtisanRepository
 {
@@ -33,7 +34,7 @@ class ArtisanRepository implements IArtisanRepository
         return $artisans;
     }
 
-    public function createNewArtisan($request)
+    public function createNewArtisan(Request $request)
     {
         $newArtisan = Artisan::create([
             'name' => $request->name,
@@ -48,7 +49,7 @@ class ArtisanRepository implements IArtisanRepository
         return $newArtisan;
     }
 
-    public function artisanUpdate($request, $artisan)
+    public function artisanUpdate(Request $request, Artisan $artisan)
     {
         $artisan->name = $request->name;
         $artisan->location = $request->location;

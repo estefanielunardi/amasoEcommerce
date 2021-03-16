@@ -5,28 +5,28 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use App\Models\Product;
 use App\Models\Comment;
-use App\Repositories\Cart\CartRepository;
-use App\Repositories\Artisan\ArtisanRepository;
-use App\Repositories\Product\ProductRepository;
-use App\Repositories\Rating\RatingRepository;
-use App\Services\DateService\DateService;
+use App\Repositories\Cart\ICartRepository;
+use App\Repositories\Artisan\IArtisanRepository;
+use App\Repositories\Product\IProductRepository;
+use App\Repositories\Rating\IRatingRepository;
+use App\Services\DateService\IDateService;
 
 
 class ProductController extends Controller
 {
-    private CartRepository $cartRepo;
-    private ArtisanRepository $artisanRepo;
-    private ProductRepository $productRepo;
-    private RatingRepository $ratingRepo;
-    private DateService $dateService;
+    private ICartRepository $cartRepo;
+    private IArtisanRepository $artisanRepo;
+    private IProductRepository $productRepo;
+    private IRatingRepository $ratingRepo;
+    private IDateService $dateService;
 
-    public function __construct()
+    public function __construct(IDateService $dateService, IRatingRepository $ratingRepo, ICartRepository $cartRepo, IArtisanRepository $artisanRepo, IProductRepository $productRepo)
     {
-        $this->cartRepo = new CartRepository;
-        $this->productRepo = new ProductRepository;
-        $this->artisanRepo = new ArtisanRepository;
-        $this->ratingRepo = new RatingRepository;
-        $this->dateService = new DateService;
+        $this->cartRepo = $cartRepo;
+        $this->productRepo = $productRepo;
+        $this->artisanRepo = $artisanRepo;
+        $this->ratingRepo = $ratingRepo;
+        $this->dateService = $dateService;
     }
 
     public function getProducts()

@@ -3,17 +3,17 @@
 namespace App\Http\Controllers;
 
 use App\Models\Ratting;
-use App\Repositories\Rating\RatingRepository;
+use App\Repositories\Rating\IRatingRepository;
 use Illuminate\Http\Request;
 
 
 class RattingController extends Controller
 {
-    private RatingRepository $ratingRepo;
+    private IRatingRepository $ratingRepo;
 
-    public function __construct()
+    public function __construct(IRatingRepository $ratingRepo)
     {
-        $this->ratingRepo = new RatingRepository;
+        $this->ratingRepo = $ratingRepo;
     }
     public function store(Request $request)
     {
