@@ -4,7 +4,7 @@ namespace App\View\Components\product\card\buttons;
 
 use Illuminate\View\Component;
 
-class adminButtons extends Component
+class AdminButtons extends Component
 {
     /**
      * Create a new component instance.
