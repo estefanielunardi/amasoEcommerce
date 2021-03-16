@@ -19,7 +19,7 @@
         </section>
     </header>
 
-    <x-button-cart />
+    {{-- <x-button-cart /> --}}
 
     @if (isset($bestSellers))
     <div>
