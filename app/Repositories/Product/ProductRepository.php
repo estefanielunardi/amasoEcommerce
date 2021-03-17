@@ -78,7 +78,7 @@ class ProductRepository implements IProductRepository
                             ->join('product_user', 'products.id', '=', 'product_user.product_id') 
                             ->join('users', 'users.id','=', 'product_user.user_id')  
                             ->where('archived','=', 0,'and', 'buyed','=', 1)
-                            ->select('product_user.amount', 'users.*','products.*')
+                            ->select('product_user.amount', 'users.*','products.*', 'product_user.id')
                             ->paginate(10);
         return $orders;
     }
