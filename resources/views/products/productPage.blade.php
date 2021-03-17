@@ -17,15 +17,16 @@
                         @if ($product->stock > $product->sold)
                         <p class=" pr-2 text-3xl inline-block productPrice">{{number_format($product->price / 100,2)}} €</p>
                         <div class="grid justify-items-center">
-                            
                             <div class="flex flex-row ml-2 h-9 w-full justify-center rounded-lg relative bg-transparent mt-1 vollkorn">                      
-                                <button class="greenLightBg  rounded-xl">
-                                    <span class="m-auto text-lg p-2 font-thin exo text-white">
-                                        <a href="{{ route('cartAddProduct' , $product->id) }}">Añadir</a>
-                                    </span>
-                                </button>
+                                @if(auth()->id() != $product->artisans->user_id)
+                                    <button class="greenLightBg  rounded-xl">
+                                        <span class="m-auto text-lg p-2 font-thin exo text-white">
+                                            <a href="{{ route('cartAddProduct' , $product->id) }}">Añadir</a>
+                                        </span>
+                                    </button>
+                                    @endif
+                                </div>
                             </div>
-                        </div>
                         @else
                         <p class="text-lg beigeAmasoBg p-1 mt-1 leading-4">Producto agotado</p>
                         @endif
