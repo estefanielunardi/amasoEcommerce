@@ -158,7 +158,7 @@ class ProductController extends Controller
         if (count($products) !== 0) {
             return view('products.searchedProduct', compact('products', 'name'));
         } else {
-            return back() ->with('message' , 'No se han encontrado resultados a su búsqueda');
+            return redirect('/') ->with('message' , 'No se han encontrado resultados a su búsqueda');
         }
     }
 }
