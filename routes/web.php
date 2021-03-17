@@ -107,5 +107,3 @@ Route::patch('/user/update', [App\Http\Controllers\UserController::class, 'updat
 //--RATTINGS
 Route::post('/ratting/store/{id}', [App\Http\Controllers\RattingController::class, 'store'])->name('productRatting')->middleware(['auth']);
 
-//--BOTMAN ROUTE
-Route::match(['get', 'post'], '/botman', [App\Http\Controllers\BotManController::class, 'handle']);
