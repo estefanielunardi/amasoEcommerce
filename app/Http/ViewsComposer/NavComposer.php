@@ -2,20 +2,16 @@
 
 namespace App\Http\ViewsComposer;
 
-
-use App\Models\Product;
-use Illuminate\Support\Facades\Auth;
 use Illuminate\Contracts\View\View;
-use App\Models\Cart;
-use App\Repositories\Cart\CartRepository;
+use App\Repositories\Cart\ICartRepository;
 
 class NavComposer
 {
-    private CartRepository $cartRepo;
+    private ICartRepository $cartRepo;
 
-    public function __construct()
+    public function __construct(ICartRepository $cartRepo)
     {
-        $this->cartRepo = new CartRepository;
+        $this->cartRepo = $cartRepo;
     }
 
     public function compose(View $view){
