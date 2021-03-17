@@ -70,9 +70,7 @@ class PaymentController extends Controller
             ]); 
         }
         catch (Exception $e) {
-            $e->getMessage(["Oh no, ha habido un error!"]);
-
-            // return view('cart.purchaseOrder', ["message" => "Oh no, ha habido un error!"]);
+            $e->getMessage(["Su compra no se ha podido realizar"]);
         }
     }
 
