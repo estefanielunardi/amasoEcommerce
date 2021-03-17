@@ -113,8 +113,8 @@ class ProductRepository implements IProductRepository
     }
     public function findProductByName($name)
     {
-       return Product::where('name', 'ILIKE', '%' . $name . '%' )
-                        ->orWhere ( 'category', 'ILIKE', '%' . $name . '%' )
+       return Product::where('name', 'LIKE', '%' . $name . '%' )
+                        ->orWhere ( 'category', 'LIKE', '%' . $name . '%' )
                         ->paginate (6);
     }
 }
