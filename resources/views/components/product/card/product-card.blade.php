@@ -9,6 +9,6 @@
 @endempty
     <a href="/product/{{$product->id}}">
         <x-product.card.header :product="$product" />
-        <x-product.card.body :product="$product" :artisan="$artisan"/>
     </a>
+        <x-product.card.body :product="$product" :artisan="$artisan"/>
 </section>
