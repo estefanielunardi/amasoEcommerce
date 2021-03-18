@@ -16,6 +16,8 @@ use App\Repositories\Rating\IRatingRepository;
 use App\Repositories\Rating\RatingRepository;
 use App\Services\DateService\DateService;
 use App\Services\DateService\IDateService;
+use App\Repositories\Allergens\AllergenRepository;
+use App\Repositories\Allergens\IAllergenRepository;
 
 use Illuminate\Support\ServiceProvider;
 
@@ -45,5 +47,7 @@ class RepositoryServiceProvider extends ServiceProvider
         $this->app->bind(ICommentRepository::class, CommentRepository::class);
         $this->app->bind(IRatingRepository::class, RatingRepository::class);
         $this->app->bind(IDateService::class, DateService::class);
+        $this->app->bind(IAllergenRepository::class, AllergenRepository::class);
+
     }
 }

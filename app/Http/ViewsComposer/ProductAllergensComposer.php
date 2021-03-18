@@ -3,21 +3,24 @@
 namespace App\Http\ViewsComposer;
 
 
-use App\Models\Product;
-use Illuminate\Support\Facades\Auth;
 use Illuminate\Contracts\View\View;
-use App\Models\Cart;
-use Illuminate\Support\Facades\DB;
+use App\Repositories\Allergens\IAllergenRepository;
 
-class ProductAllergensComposer{
+class ProductAllergensComposer
+{    
+    private IAllergenRepository $allergenRepo;
+
+    public function __construct(IAllergenRepository $allergenRepo)
+    {   
+        $this->allergenRepo = $allergenRepo;    
+    }
 
     public function compose(View $view){
         
-        $allergensTypes = DB::table('allergens')->get();
+        $allergensTypes = $this->allergenRepo->getAllAllergens();
         
         $view->with('allergensTypes', $allergensTypes);
-        
-        
+            
     }
 
 }
