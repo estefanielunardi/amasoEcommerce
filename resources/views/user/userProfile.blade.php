@@ -1,5 +1,5 @@
 <x-app-layout>
-    <div>
+    <div class= "pl-5 xl:pl-20 pb-10">
         <h1 class="title pl-4 pb-10 pt-5 lg:pt-20">Hola {{$user->name}}</h1>
         <button class="greenLightBg flex flex-row align-start text-sm text-white mt-4 px-3 py-2 ml-3 rounded-xl shadow-md">
             <svg width="24" height="24" viewBox="0 0 31 32" fill="none" xmlns="http://www.w3.org/2000/svg">
