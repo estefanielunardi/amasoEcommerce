@@ -35,18 +35,31 @@ class AdminDashboardTest extends TestCase
     {
         $response = $this->actingAs($this->admin)->get('/admin');
 
-        $response->assertStatus(200)
-            ->assertViewIs('admin.adminDashboard')
-            ->assertViewHas('artisanList');
+        $response->assertStatus(200);
+            
+    }
+
+    public function testAdminDashboardView()
+    {
+        $response = $this->actingAs($this->admin)->get('/admin');
+
+        $response->assertViewIs('admin.adminDashboard')
+                    ->assertViewHas('artisanList');
+    }
+
+    public function testAdminDashboardLinksArtisanProfileRoute()
+    {
+        $response = $this->actingAs($this->admin)->get('artisan/' . $this->artisan->slug);
+
+        $response->assertStatus(200);
     }
 
     public function testAdminDashboardLinksArtisanProfile()
     {
         $response = $this->actingAs($this->admin)->get('artisan/' . $this->artisan->slug);
 
-        $response->assertStatus(200)
-            ->assertViewIs('artisan.profileArtisan')
-            ->assertViewHas('artisan')
-            ->assertSee($this->artisan->id);
+        $response->assertViewIs('artisan.profileArtisan')
+                    ->assertViewHas('artisan')
+                    ->assertSee($this->artisan->id);
     }
 }

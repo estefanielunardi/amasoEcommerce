@@ -5,7 +5,6 @@ namespace Tests\Feature\Product;
 use Illuminate\Foundation\Testing\RefreshDatabase;
 use Illuminate\Support\Facades\DB;
 use Tests\TestCase;
-use App\Models\Cart;
 use App\Models\Product;
 use App\Models\User;
 use App\Models\Artisan;

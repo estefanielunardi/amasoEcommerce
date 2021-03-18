@@ -5,7 +5,6 @@ namespace Tests\Feature\Product;
 use App\Models\Product;
 use App\Models\User;
 use Illuminate\Foundation\Testing\RefreshDatabase;
-use Illuminate\Foundation\Testing\WithFaker;
 use Tests\TestCase;
 use App\Models\Artisan;
 
@@ -24,13 +23,20 @@ class ShowProductTest extends TestCase
         $this->product = Product::factory()->create();
     }
 
-    public function test_product_page_is_showed()
+    public function testProductPageRoute()
     {
         $this->withoutExceptionHandling();
         $response = $this->get('/product/' . $this->product->id);
 
-        $response->assertStatus(200)
-            ->assertViewIs('products.productPage')
+        $response->assertStatus(200);
+    }
+
+    public function testProductPageIsShowed()
+    {
+        $this->withoutExceptionHandling();
+        $response = $this->get('/product/' . $this->product->id);
+
+        $response->assertViewIs('products.productPage')
             ->assertViewHas(['product' => $this->product]);
     }
 }
