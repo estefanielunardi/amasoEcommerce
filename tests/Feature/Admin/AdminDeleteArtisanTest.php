@@ -3,11 +3,9 @@
 namespace Tests\Feature\Admin;
 
 use Illuminate\Foundation\Testing\RefreshDatabase;
-use Illuminate\Support\Facades\Mail;
 use Tests\TestCase;
 use App\Models\User;
 use App\Models\Artisan;
-use App\Mail\ArtisanProfileDeletedEmail;
 
 
 class AdminDeleteArtisanTest extends TestCase
