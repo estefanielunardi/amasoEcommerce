@@ -98,3 +98,4 @@ Aplicación creada con la idea de poder ofrecer una via digital a los pequeños 
 - [x] Crear las vistas por componentes.
 - [x] Crear perfil del usuario con su historial de compra.
 - [ ] Desacoplar backend y frontend en distintos servidores. 
+- [ ] Desarrollar la accesibilidad de la web. 
